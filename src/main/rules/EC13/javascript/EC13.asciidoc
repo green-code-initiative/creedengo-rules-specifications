@@ -1,0 +1,48 @@
+:!sectids:
+
+== Why is this an issue?
+
+Pagination helps in optimizing the performance of API requests, especially when dealing with large datasets.
+Instead of retrieving the entire dataset in a single request, pagination allows fetching a smaller subset of data, reducing the response time and resource usage.
+
+Fetching only the necessary data reduces the amount of data transmitted over the network.
+This is particularly important for users on limited bandwidth or mobile devices.
+Pagination ensures that only the relevant data is transferred, conserving bandwidth and improving overall network efficiency.
+
+This rule is built for the https://nestjs.com[NestJS framework] but can work with a controller `@Controller()` and a decorated method `@Get()`.
+
+[source,typescript,data-diff-id="4",data-diff-type="noncompliant"]
+----
+@Controller()
+class Test {
+  @Get()
+  public find(): Promise<string[]> {} // Non-compliant
+}
+----
+
+[source,typescript,data-diff-id="10",data-diff-type="compliant"]
+----
+interface Pagination {
+  items: string[];
+  currentPage: number;
+  totalPages: number;
+}
+
+@Controller()
+class Test {
+  @Get()
+  public find(): Promise<Pagination> {} // Compliant
+}
+----
+
+== Resources
+
+=== Documentation
+
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_076_en.md[CNUMR best practices] - Avoid transferring large amounts of data for processing tasks
+- https://github.com/ppetzold/nestjs-paginate[nestjs-paginate] - Pagination and filtering helper method using Nest.js framework
+
+=== Articles & blog posts
+
+- https://nordicapis.com/optimizing-the-api-response-package/[How to Optimize the API Response Package]
+- https://dev.to/pragativerma18/unlocking-the-power-of-api-pagination-best-practices-and-strategies-4b49[Unlocking the Power of API Pagination: Best Practices and Strategies]

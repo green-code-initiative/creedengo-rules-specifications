@@ -1,0 +1,15 @@
+{
+  "title": "orElseGet instead of orElse",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance"
+  ],
+  "defaultSeverity": "Minor"
+}

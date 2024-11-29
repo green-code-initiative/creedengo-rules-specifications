@@ -1,0 +1,56 @@
+# This workflow will build a Java project with Maven and publish artifact to Maven Central (https://search.maven.org)
+#
+# After deploy to https://s01.oss.sonatype.org finished, manual steps is required :
+# - Go to: https://s01.oss.sonatype.org/#stagingRepositories
+# - Check upload and if all is right, "Close" corresponding Staging Repository
+# - "Release" corresponding Staging Repository
+# - Wait some hours and then check availability of release on Maven central: https://search.maven.org/search?q=g:org.greencodeinitiative
+#
+# Additional information:
+# - https://docs.github.com/en/actions/publishing-packages/publishing-java-packages-with-maven#publishing-packages-to-the-maven-central-repository
+# - https://blogs.itemis.com/en/github-actions-releasing-artifacts-into-maven-central
+
+name: Publish to Maven Central
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Deploy to Maven central
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of project's repository.
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Sets up the Java JDK, and also configures the Maven `settings.xml` file to add authentication for the
+      # `ossrh` repository using the `OSSRH_USERNAME` and `OSSRH_TOKEN` environment variables.
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          server-id: 'ossrh'  # must match the serverId configured for the nexus-staging-maven-plugin in `pom.xml`
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_TOKEN
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Substituted with the value stored in the referenced secret
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE # Env var that holds the key's passphrase
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      # Runs the Maven command to publish to the `ossrh` repository.
+      # The `OSSRH_USERNAME` environment variable will be set with the contents of your `OSSRH_USERNAME` secret,
+      # and the `OSSRH_TOKEN` environment variable will be set with the contents of your `OSSRH_TOKEN` secret.
+      - name: Publish package
+        run: ./mvnw --batch-mode deploy -Pmaven-central-publishing
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}

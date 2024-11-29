@@ -1,0 +1,39 @@
+:!sectids:
+
+Use string.Length instead of comparison with empty string
+
+## Why is this an issue ?
+
+Comparing a string to an empty string is unnecessary and can be replaced by a call to `string.Length`, which is more performant and more readable.
+
+### When can it be ignored ?
+
+This rule should not be ignored.
+
+## Non-compliant examples
+
+[source, cs]
+----
+public void Main()
+{
+	string s = "";
+	if (s == "") // Non-compliant
+	{
+		Console.WriteLine("Empty string");
+	}
+}
+----
+
+## Compliant examples
+
+[source, cs]
+----
+ public void Main()
+{
+	string s = "";
+	if (s.Length == 0) // Compliant
+	{
+		Console.WriteLine("Empty string");
+	}
+}
+----

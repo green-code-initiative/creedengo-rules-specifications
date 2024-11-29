@@ -1,0 +1,18 @@
+{
+  "title": "Sobriety: Thrifty Bluetooth Low Energy (requestConnectionPriority)",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "sobriety",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "ecoScore": "0.4",
+  "defaultSeverity": "Major"
+}

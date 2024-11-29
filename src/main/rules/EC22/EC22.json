@@ -1,0 +1,15 @@
+{
+  "title": "Use of methods for basic operations",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "eco-design",
+    "performance",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

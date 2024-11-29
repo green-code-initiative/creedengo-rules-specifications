@@ -1,0 +1,46 @@
+Most iOS devices have built-in sensors that measure motion, orientation, and various environmental conditions. Additionally, they have image sensors (a.k.a. Camera) and geo-positioning sensors (a.k.a. GPS).
+
+The common point of all these sensors is that they consume significant power while in use. Their common issue is processing data unnecessarily when the app is in an idle state, typically when it enters the background or becomes inactive.
+
+    Consequently, calls to start and stop sensor updates must be carefully managed for motion sensor: CMMotionManager#startAccelerometerUpdates()/CMMotionManager#stopAccelerometerUpdates().
+    Failing to do so can drain the battery quickly.
+
+== Noncompliant Code Example
+
+[source,swift]
+----
+import CoreMotion
+
+let motionManager = CMMotionManager()
+
+func startMotionUpdates() {
+    if motionManager.isAccelerometerAvailable {
+        motionManager.startAccelerometerUpdates(to: .main) { data, error in
+            // Handle accelerometer updates
+        }
+    }
+}
+----
+
+== Compliant Code Example
+
+[source,swift]
+----
+import CoreMotion
+
+let motionManager = CMMotionManager()
+
+func startMotionUpdates() {
+    if motionManager.isAccelerometerAvailable {
+        motionManager.startAccelerometerUpdates(to: .main) { data, error in
+            // Handle accelerometer updates
+        }
+    }
+}
+
+func stopMotionUpdates() {
+    if motionManager.isAccelerometerActive {
+        motionManager.stopAccelerometerUpdates()
+    }
+}
+----

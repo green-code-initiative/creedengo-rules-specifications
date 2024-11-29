@@ -1,0 +1,9 @@
+Allowing the system to pause location updates, at times when the location data is unlikely to change, can improve battery life without sacrificing location data. This is the default behavior. For example, if the user stops for food while using a navigation app, the location manager might pause updates for a period of time. It is possible to disable this behavior, by setting the `CLLocationManager#pausesLocationUpdatesAutomatically` property to `false`, but applications are strongly discouraged of doing it.
+
+## Noncompliant Code Example
+
+```swift
+let manager = CLLocationManager()
+manager.pausesLocationUpdatesAutomatically = false
+```
+

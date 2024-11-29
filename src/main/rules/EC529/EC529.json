@@ -1,0 +1,18 @@
+{
+  "title": "Sobriety: Thrifty Notification",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "sobriety",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "ecoScore": "0.4",
+  "defaultSeverity": "Minor"
+}

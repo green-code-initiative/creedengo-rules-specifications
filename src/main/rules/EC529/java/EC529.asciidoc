@@ -1,0 +1,30 @@
+Giving information to the end-user through notifications is an important aspect of a modern app.
+
+However, a notification does not necessarily need to be loud and vibrant to achieve its purpose. Default mode is enough. That is why when building a notification with `NotificationManager` there should be no extra calls to the methods `setSound()` nor `setVibrate()` (API26) nor `setVibrationPattern()` (API31) on the builder object.
+
+## Noncompliant Code Example
+
+API 26:
+
+```java
+Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext(), "42");
+notificationBuilder.setVibrate(new long[] {1000, 1000, 1000, 1000, 1000});
+notificationBuilder.setSound(
+    RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
+    Notification.AUDIO_ATTRIBUTES_DEFAULT
+);
+```
+
+API 31:
+
+```java
+NotificationChannel notification = new NotificationChannel("42",
+    "test",
+    NotificationManager.IMPORTANCE_DEFAULT
+);
+notification.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+notification.setSound(
+    RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
+    Notification.AUDIO_ATTRIBUTES_DEFAULT
+);
+```

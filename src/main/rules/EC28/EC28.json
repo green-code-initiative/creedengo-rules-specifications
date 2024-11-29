@@ -1,0 +1,16 @@
+{
+  "title": "Optimize read file exceptions",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "performance",
+    "error-handling",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

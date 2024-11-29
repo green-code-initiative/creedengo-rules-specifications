@@ -1,0 +1,15 @@
+{
+  "title": "Avoid using try-catch statement",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "eco-design",
+    "performance",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

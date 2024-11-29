@@ -1,0 +1,15 @@
+Importing the `com.google.android.gms.analytics.Tracker` or `com.google.firebase.analytics.FirebaseAnalytics` classes means that the app sends hits to Google Analytics. It is not necessarily sensitive information, but it is a first step towards Google Ads and hence this practice should be discouraged at early stage.
+
+## Noncompliant Code Example
+
+Import of Google Analytics :
+
+```java
+import com.google.android.gms.analytics.Tracker
+```
+
+Import of Firebase Analytics :
+
+```java
+import com.google.firebase.analytics
+```

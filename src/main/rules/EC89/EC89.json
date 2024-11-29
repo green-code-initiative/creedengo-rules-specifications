@@ -1,0 +1,17 @@
+{
+  "title": "Avoid suspect unlimited cache size",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "eco-design",
+    "performance",
+    "network",
+    "cache",
+    "creedengo"
+  ],
+  "defaultSeverity": "Major"
+}

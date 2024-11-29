@@ -1,0 +1,42 @@
+:!sectids:
+
+== Why is this an issue?
+
+Using appropriate image formats and optimizing image sizes is essential for improving website performance, user experience, and overall environmental impact.
+Larger image file sizes consume more bandwidth, increasing the data transfer required to load a web page.
+Some image formats are generally considered better for eco-friendly web design and should be used in most cases.
+
+We recommend using the following formats:
+
+- *WebP*, developed by Google, is a modern image format that provides high compression efficiency without significant loss of quality.
+- *AVIF* (AV1 Image File Format) is a relatively new and highly efficient image format that is based on the AV1 video codec.
+- *SVG* (Scalable Vector Graphics) is a vector image format that is based on XML.
+Files are lightweight and can be scaled without loss of quality.
+
+[source,html,data-diff-id="1",data-diff-type="noncompliant"]
+----
+<img src="./assets/images/cat.jpg" alt="Unoptimized image of a cat"/> // Non-compliant
+----
+
+[source,html,data-diff-id="1",data-diff-type="compliant"]
+----
+<img src="./assets/images/cat.webp" alt="Optimized image of a cat"/> // Compliant
+----
+
+Remember that the best image format may vary depending on the specific use case, content, and requirements of your website.
+Always test and evaluate the performance of different formats to find the optimal balance between image quality and file size.
+
+Also remember to consider browser compatibility.
+Older browsers may not recognize .webp/.avif images and fail to display them.
+To address this issue, you can supply multiple formats for the same image.
+
+== Resources
+
+=== Documentation
+
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_080_en.md[CNUMR best practices] - Optimize images
+
+=== Articles & blog posts
+
+- https://greenspector.com/en/which-image-format-to-choose-to-reduce-its-energy-consumption-and-its-environmental-impact/[greenspector.com - Which image format choose to reduce energy consumption and environmental impact?]
+- https://dodonut.com/blog/use-cases-of-web-image-formats/[dodonut.com - The Most Efficient Web Image Formats. Use Cases For Different Types Of Images.]

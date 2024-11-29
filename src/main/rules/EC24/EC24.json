@@ -1,0 +1,27 @@
+{
+  "title": "Limit the number of returns for a SQL query",
+  "type": "CODE_SMELL",
+  "code": {
+    "impacts": {
+      "MAINTAINABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  },
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "15min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "sql"
+  ],
+  "defaultSeverity": "Major",
+  "compatibleLanguages": [
+    "JAVA",
+    "JAVASCRIPT",
+    "TYPESCRIPT"
+  ]
+}

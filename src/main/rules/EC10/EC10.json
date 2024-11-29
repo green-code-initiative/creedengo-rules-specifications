@@ -1,0 +1,14 @@
+{
+  "title": "Avoid using unoptimized vector images",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "60min"
+  },
+  "tags": [
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

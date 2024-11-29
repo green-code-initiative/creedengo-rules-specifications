@@ -1,0 +1,17 @@
+{
+  "title": "Avoid using Pattern.compile() in a non-static context.",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "performance",
+    "regex",
+    "eco-design",
+    "creedengo",
+    "memory"
+  ],
+  "defaultSeverity": "Minor"
+}

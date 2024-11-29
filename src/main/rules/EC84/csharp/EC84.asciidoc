@@ -1,0 +1,57 @@
+:!sectids:
+
+Avoid `async void` methods.
+
+## Why is this an issue ?
+
+Using `async void` methods is strongly discouraged due to the significant drawbacks that affect both performance and environmental impact:
+
+* They differ fundamentally from `async Task` methods as they cannot be awaited and do not return a task. This complicates error handling and prevents their use in method chains, making them more difficult to test, debug and optimize.
+* Because they obscure exceptions, they can lead to unhandled errors that can remain undetected. This can cause silent performance degradation and increase the application's carbon footprint by necessitating additional computing resources to manage avoidable failures.
+* The lack of robust error handling also directly impacts the application stability, leading to potential lags and crashes. These issues not only degrade user experience but also contribute to unnecessary energy consumption as systems work harder to recover from failures.
+
+Overall, `async void` methods are considered poor practice, especially since the recommended alternative `async Task` is readily usable and provides an efficient solution for managing asynchronous operations without these downsides.
+
+### When can it be ignored ?
+
+In some edge cases, using an `async void` method can be beneficial, but you should **really know** what you're doing.
+
+## Non-compliant example
+
+[source, cs]
+----
+public class Test
+{
+    public async void Run()
+    {
+        Console.WriteLine();
+        AsyncMethod(); // Cannot be awaited
+    }
+
+    public async void AsyncMethod() // Non-compliant, use async Task
+    {
+        Console.WriteLine();
+        await Task.Delay(1000);
+    }
+}
+----
+
+## Compliant example
+
+[source, cs]
+----
+public class Test
+{
+    public async Task Run()
+    {
+        Console.WriteLine();
+        await AsyncMethod();
+    }
+
+    public async Task AsyncMethod() // Compliant
+    {
+        Console.WriteLine();
+        await Task.Delay(100);
+    }
+}
+----

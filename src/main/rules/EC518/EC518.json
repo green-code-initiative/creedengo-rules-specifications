@@ -1,0 +1,18 @@
+{
+  "title": "Optimized API: Bluetooth Low-Energy",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "optimized-api",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "ecoScore": "0.6",
+  "defaultSeverity": "Major"
+}

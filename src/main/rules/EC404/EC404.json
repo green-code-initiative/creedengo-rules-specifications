@@ -1,0 +1,15 @@
+{
+  "title": "Use generator comprehension instead of list comprehension in for loop declaration",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "15min"
+  },
+  "tags": [
+    "performance",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

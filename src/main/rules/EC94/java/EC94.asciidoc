@@ -1,0 +1,21 @@
+Parameter of orElse() is evaluated, even when having a non-empty Optional.
+
+Supplier method of orElseGet passed as an argument is only executed when an Optional value isn’t present.
+
+Therefore, using orElseGet() will save computing time.
+
+## Noncompliant Code Example
+
+```java
+Optional.of("creedengo").orElse(getUnpredictedMethod());
+```
+
+## Compliant Code Example
+
+```java
+Optional.of("creedengo").orElseGet(() -> getUnpredictedMethod());
+```
+
+```java
+randomClass.orElse(getUnpredictedMethod());
+```

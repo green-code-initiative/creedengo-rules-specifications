@@ -1,0 +1,36 @@
+Avoid usage of static collections.
+
+If you want to use static collections make them final and create for example a singleton if needed containing the collections.
+
+The static fields are more complicated for the Garbage Collector to manage and can lead to memory leaks.
+
+## Noncompliant Code Example
+
+```java
+/**
+ * Not compliant
+ */
+public class AvoidUsageOfStaticCollections {
+    public static final List<> LIST = new ArrayList<>();
+    public static final Set<> SET = new HashSet<>();
+    public static final Map<> MAP = new HashMap<>();
+}
+```
+
+## Compliant Solution
+
+```java
+/**
+ * Compliant
+ */
+public class GoodUsageOfStaticCollections {
+    public static volatile GoodUsageOfStaticCollections INSTANCE = new GoodUsageOfStaticCollections();
+
+    public final List<> LIST = new ArrayList<>();
+    public final Set<> SET = new HashSet<>();
+    public final Map<> MAP = new HashMap<>();
+
+    private GoodUsageOfStaticCollections() {
+    }
+}
+```

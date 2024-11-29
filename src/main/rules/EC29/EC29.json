@@ -1,0 +1,27 @@
+{
+  "title": "Avoid usage of CSS animations",
+  "type": "CODE_SMELL",
+  "code": {
+    "impacts": {
+      "MAINTAINABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  },
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "15min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "jsx",
+    "performance",
+    "react"
+  ],
+  "defaultSeverity": "Major",
+  "compatibleLanguages": [
+    "JAVASCRIPT",
+    "TYPESCRIPT"
+  ]
+}

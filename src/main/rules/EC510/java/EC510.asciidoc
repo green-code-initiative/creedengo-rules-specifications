@@ -1,0 +1,15 @@
+For developers wishing to display OpenGL rendering, when choosing the rendering mode with `GLSurfaceView#setRenderMode(int renderMode)`, using `RENDERMODE_WHEN_DIRTY` instead of `RENDERMODE_CONTINUOUSLY` (by default) can improve battery life and overall system performance by allowing the GPU and CPU to idle when the view does not need to be updated.
+
+## Noncompliant Code Example
+
+```java
+GLSurfaceView surfaceView = new GLSurfaceView(this);
+surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY)
+```
+
+## Compliant Code Example
+
+```java
+GLSurfaceView surfaceView = new GLSurfaceView(this);
+surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY)
+```

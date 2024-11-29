@@ -1,0 +1,38 @@
+Do not call a function when declaring a for-type loop in order to avoid function calls each iteration. It saves CPU cycles.
+
+## Noncompliant Code Example
+
+```php
+for ($i = 0; $i <= foo(); $i++) {  // Noncompliant
+	// ......
+}
+```
+
+## Compliant Solution
+
+```php
+$maxI = foo();
+for ($i = 0; $i <= $maxI; $i++) {
+  .....
+}
+
+  OR
+
+for ($i = 0, $maxI = foo(); $i <= $maxI; $i++) {
+  .....
+}
+}
+```
+
+include::../../etsdiff-methodology.asciidoc[]
+
+## Case for a 1GB database:
+
+image::https://live.staticflickr.com/65535/52622634654_bf3c3d9ba8_o.png[ETSdiff percent comparison]
+
+[format=csv,cols="1h,1,1"]
+|===
+Source of impacts,Compliant,Non-compliant
+
+include::1GB.etsdiff.csv[]
+|===

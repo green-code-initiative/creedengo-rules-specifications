@@ -1,0 +1,78 @@
+If possible, the utilisation of svg image format (or `<svg/>` html tag) is recommended over other image format.
+
+Because SVGs are generally smaller than other image format, they’re less taxing on your server despite needing to render on load.
+
+When to use SVG :
+
+- Your image is used for decorative website graphics, logos, icons, graphs and diagrams, and other simple images.
+- You image require animation.
+- You image need to be responsive and scale without lack of quality.
+
+Some advantages of using SVG:
+
+- SVGs are scalable and will render pixel-perfect at any resolution whereas JPEGs, PNGs and GIFs will not.
+- SVGs are vector images and therefore are usually much smaller in file-size than bitmap-based images.
+- SVGs can be embedded into the HTML which means they can be cached, edited directly using CSS and indexed for greater accessibility.
+- SVGs can be animated directly or by using CSS or JavaScript making it easy for web designers to add interactivity to a site.
+
+## Noncompliant Code Example
+
+```
+img_jpg = "image.jpg"
+```
+
+## Compliant Solution
+
+```
+img_svg = "image.svg"
+```
+
+## Noncompliant Code Example
+
+```
+public void foo() {
+    // ...
+    image_format = testImage("image.jpg")
+    // ...
+}
+```
+
+## Compliant Solution
+
+```
+public void foo() {
+    // ...
+    image_format = testImage("image.svg")
+    // ...
+}
+```
+
+## Noncompliant Code Example
+
+```
+public void foo() {
+    // ...
+    return '<html><img src="xx/xx/image.bmp"></html>'
+    // ...
+}
+```
+
+## Compliant Solution
+
+```
+public void foo() {
+    // ...
+    return '<html><img src="xx/xx/image.svg"></html>'
+    // ...
+}
+```
+
+Or
+
+```
+ public void foo() {
+    // ...
+    return ('<html><svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow"/></svg></html>')
+    // ...
+}
+```

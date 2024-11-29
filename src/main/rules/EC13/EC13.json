@@ -1,0 +1,25 @@
+{
+  "title": "Prefer API collections with pagination.",
+  "type": "CODE_SMELL",
+  "code": {
+    "impacts": {
+      "MAINTAINABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  },
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "30min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "nestjs",
+    "performance"
+  ],
+  "defaultSeverity": "Major",
+  "compatibleLanguages": [
+    "TYPESCRIPT"
+  ]
+}

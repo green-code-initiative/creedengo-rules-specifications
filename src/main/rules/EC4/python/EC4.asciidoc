@@ -1,0 +1,24 @@
+When function calls global variables, a lot a CPU cycles is consumed.
+
+## Noncompliant Code Example
+
+```python
+global_var = 'foo'
+def print_global_var_details():
+    print(len(global_var)) # Noncompliant
+    print('Global var : ', global_var) # Noncompliant
+    print('Global var : ' + global_var) # Noncompliant
+print_global_var_details()
+```
+
+## Compliant Solution
+
+```python
+global_var = 'foo';
+def print_var_details(local_var) {
+    print(len(local_var));
+    print('Var : ', local_var)
+    print('Var : ' + local_var)
+}
+print_length(global_var);
+```

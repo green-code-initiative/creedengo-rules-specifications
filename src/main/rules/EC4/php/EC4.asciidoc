@@ -1,0 +1,29 @@
+Prefer local variables as parameters
+
+When calling a global variable, the interpretation engine must check that it exists in all the scopes, that it has a value, etc. Passing global variables as arguments gives them the status of local variables inside the function, thus saving computing time (CPU cycles).
+
+## Noncompliant Code Example
+
+```php
+var aGlobal = new String('Hello');
+
+function globalLength(){
+    length = aGlobal.length;
+    console.log(length);
+}
+
+globalLength();
+```
+
+## Compliant Solution
+
+```php
+var aGlobal = new String('Hello');
+
+function someVarLength(str){
+    length = str.length;
+    console.log(length);
+}
+
+somVarLength(aGlobal);
+```

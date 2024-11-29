@@ -1,0 +1,16 @@
+Creation of a Media Player object with `new MediaPlayer()` can be used to control playback of audio/video files and streams. Class own a`release()` method.
+
+In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to call this method immediately if a media object is no longer needed may also lead to continuous battery consumption for mobile devices.
+
+## Noncompliant Code Example
+
+```java
+MediaPlayer mp = new MediaPlayer();
+```
+
+## Compliant Solution
+
+```java
+MediaPlayer mp = new MediaPlayer();
+mp.release();
+```

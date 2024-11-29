@@ -1,0 +1,19 @@
+Score creedengo: 2sur5
+
+Services are long-living operations, as components of the apps. However, they can be started in isolation each time the device is next started, without the user's acknowledgement.
+
+This technique should be discouraged because the accumulation of these silent services results in excessive battery depletion that remains unexplained from the end-user's point of view.
+
+In addition, end-users know how to kill applications, but more rarely how to kill services.
+
+Thus, any developer should avoid having a call to `Context#startService()` from a Broadcast Receiver component that has specified an intent-filter for the `BOOT_COMPLETED` action in the manifest.
+
+## Noncompliant Code Example
+
+```xml
+<receiver>
+    <intent-filter>
+        <action android:name= "android.intent.action.BOOT_COMPLETED"/>
+    </intent-filter>
+</receiver>
+```

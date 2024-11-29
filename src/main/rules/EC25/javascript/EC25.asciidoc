@@ -1,0 +1,45 @@
+:!sectids:
+
+== Why is this an issue?
+
+When the src attribute is missing, some browsers may still attempt to make a request to the current URL (the base URL of the document) in an attempt to fetch the image.
+This can lead to unnecessary server requests, impacting performance and potentially causing errors.
+
+Proper use of the src attribute is essential for web accessibility.
+Screen readers and other assistive technologies rely on valid image sources to provide meaningful information to users with disabilities.
+A missing src attribute can result in confusion and hinder accessibility.
+
+[source,typescriptjsx,data-diff-id="3",data-diff-type="noncompliant"]
+----
+return (
+  <>
+    <img src="" /> // Non-compliant
+    <img /> // Non-compliant
+  </>
+)
+----
+
+The HTML specification requires the src attribute for the <img> element, and not including it may lead to non-compliance with standards.
+
+[source,typescriptjsx,data-diff-id="4",data-diff-type="compliant"]
+----
+import myLogo from "./logo.svg"
+return (
+  <>
+    <img src="./logo.svg" /> // Compliant
+    <img src={myLogo} /> // Compliant
+  </>
+)
+----
+
+This rule is build for https://react.dev/[React] and JSX.
+
+== Resources
+
+=== Documentation
+
+- https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML[Mozilla Web Technology for Developers] - Images in HTML
+
+=== Articles & blog posts
+
+- https://humanwhocodes.com/blog/2009/11/30/empty-image-src-can-destroy-your-site/[Empty image src can destroy your site]

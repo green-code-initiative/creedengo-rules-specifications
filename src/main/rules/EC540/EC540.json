@@ -1,0 +1,17 @@
+{
+  "title": "Batch: Service Boot Time",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "batch",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "defaultSeverity": "Major"
+}

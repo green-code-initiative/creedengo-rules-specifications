@@ -1,0 +1,51 @@
+:!sectids:
+
+Specify struct layout.
+
+## Why is this an issue ?
+
+Structs that don't contain reference types (directly nor indirectly) have the `Sequential` layout by default.
+This is to prevent breaking any project that uses interop code and requires that the fields stay ordered.
+In other cases however, field reordering is usually fine and there are little reasons to use the `Sequential` layout over the `Automatic` one, as it will optimize the layout for you, potentially saving memory and improving performance in the process.
+
+You can read a much more in-depth analysis of struct packing here : http://www.catb.org/esr/structure-packing/
+
+### When can it be ignored ?
+
+It can be ignored if you know you require the `Sequential` layout for all of your structs, most likely for interop purposes.
+
+## Non-compliant examples
+
+[source, cs]
+----
+public struct MyStruct // Non compliant, specify the layout. Will take 24 bytes with Sequential
+{
+    public int A;
+    public double B;
+    public int C;
+}
+----
+
+## Compliant examples
+
+[source, cs]
+----
+[StructLayout(LayoutKind.Sequential)]
+public struct MyStruct // Compliant, specified layout. Will take 24 bytes with Sequential
+{
+    public int A;
+    public double B;
+    public int C;
+}
+----
+
+[source, cs]
+----
+[StructLayout(LayoutKind.Auto)]
+public struct MyStruct // Compliant, specified layout. Will take 16 bytes with Auto
+{
+    public int A;
+    public double B;
+    public int C;
+}
+----

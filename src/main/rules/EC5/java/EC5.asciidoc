@@ -1,0 +1,22 @@
+Use `PreparedStatement` instead of `Statement`, because SQL will only commit the query once, whereas if you used only one statement, it would commit the query every time and thus induce unnecessary calculations by the CPU and therefore superfluous energy consumption.
+
+## Noncompliant Code Example
+
+```java
+public void select() {
+    Statement statement = connection.createStatement();
+    statement.executeUpdate("INSERT INTO persons(id, name) VALUES(2, 'John DOE')");  // Noncompliant
+}
+```
+
+## Compliant Solution
+
+```java
+public void select() {
+    PreparedStatement statement = connection.prepareStatement(INSERT INTO persons(id, name) VALUES(?, ?));
+
+    statement.setInt(1, 2);
+    statement.setString(2, "John DOE");
+    statement.executeQuery();
+}
+```

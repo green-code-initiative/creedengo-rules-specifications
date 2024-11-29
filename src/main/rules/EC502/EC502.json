@@ -1,0 +1,18 @@
+{
+  "title": "Bottleneck: Internet In The Loop",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "3h"
+  },
+  "tags": [
+    "optimized-api",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "ecoScore": "0.2",
+  "defaultSeverity": "Critical"
+}

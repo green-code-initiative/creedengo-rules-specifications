@@ -1,0 +1,14 @@
+Turning on the torch mode programmatically with `CameraManager#setTorchMode(..., true)` must absolutely be avoided because the flashlight is one of the most energy-intensive component.
+
+## Noncompliant Code Example
+
+```java
+ CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+String cameraId = null;
+try {
+    cameraId = camManager.getCameraIdList()[0];
+    camManager.setTorchMode(cameraId, true);
+} catch (CameraAccessException e) {
+    e.printStackTrace();
+}
+```

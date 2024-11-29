@@ -1,0 +1,53 @@
+Avoid using `Pattern.compile()` in a non-static context.
+This operation requires a significant amount of computational power, Using a single match saves CPU cycles and RAM consumption.
+
+## Noncompliant Code Example
+
+```java
+public class AvoidRegexPatternNotStatic {
+    public boolean foo() {
+        final Pattern pattern = Pattern.compile("foo"); // Noncompliant
+        return pattern.matcher("foo").find();
+    }
+}
+```
+
+## Compliant Solution N°1
+
+```java
+public class ValidRegexPattern {
+    private static final Pattern pattern = Pattern.compile("foo"); // Compliant
+
+    public boolean foo() {
+        return pattern.matcher("foo").find();
+    }
+}
+```
+
+## Compliant Solution N°2
+
+```java
+public class ValidRegexPattern2 {
+    private final Pattern pattern = Pattern.compile("foo"); // Compliant
+
+    public boolean foo() {
+        return pattern.matcher("foo").find();
+    }
+}
+```
+
+## Compliant Solution N°3
+
+```java
+public class ValidRegexPattern3 {
+    private final Pattern pattern;
+
+    public ValidRegexPattern3() {
+        pattern = Pattern.compile("foo"); // Compliant
+    }
+
+    public boolean foo() {
+        return pattern.matcher("foo").find();
+    }
+}
+```

@@ -1,0 +1,18 @@
+{
+  "title": "Leakage: Media Leak (MediaPlayer)",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "leakage",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "ecoScore": "0.4",
+  "defaultSeverity": "Major"
+}

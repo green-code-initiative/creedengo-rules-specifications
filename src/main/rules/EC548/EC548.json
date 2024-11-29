@@ -1,0 +1,17 @@
+{
+  "title": "Sobriety: Dark UI (Theme)",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1h"
+  },
+  "tags": [
+    "sobriety",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "defaultSeverity": "Major"
+}

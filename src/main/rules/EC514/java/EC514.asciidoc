@@ -1,0 +1,24 @@
+Most Android-powered devices have built-in sensors that measure motion, orientation, and various environmental conditions.
+    In addition to these are the image sensor (a.k.a. Camera) and the geo-positioning sensor (a.k.a. GPS).
+
+The common point of all these sensors is that they are expensive while in use. Their common bug is to let the sensor unnecessarily process data when the app enters an idle state, typically when paused or stopped.
+
+    Consequently, calls must be carefully pairwised: `SensorManager#registerListener()/unregisterListener()`.
+    Failing to do so can drain the battery in just a few hours.
+
+## Noncompliant Code Example
+
+```java
+SensorManager sManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+Sensor accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+sManager.registerListener(this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+```
+
+## Compliant Code Example
+
+```java
+SensorManager sManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+Sensor accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+sManager.registerListener(this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+sManager.unregisterListener(this);
+```

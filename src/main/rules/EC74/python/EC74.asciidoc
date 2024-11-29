@@ -1,0 +1,21 @@
+Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer.
+
+## Noncompliant Code Example
+
+```python
+public void foo() {
+    ...
+    String baseQuery = "SELECT * FROM users"; // Noncompliant
+    ...
+}
+```
+
+## Compliant Solution
+
+```python
+public void foo() {
+    ...
+        String query = "SELECT id, name, address FROM users ";
+    ...
+}
+```

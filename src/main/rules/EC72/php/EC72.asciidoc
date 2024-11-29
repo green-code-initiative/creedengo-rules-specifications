@@ -1,0 +1,91 @@
+Executing SQL queries in loop induced unnecessary network transfert, calculation by the cpu and RAM usage.
+
+## Noncompliant Code Example
+
+```php
+public function foo() {
+    ...
+    $baseQuery = "SELECT name FROM users where id = ";
+
+    for ($i = 0; $i < 20; ++$i) {
+
+        $query = $baseQuery . $i;
+        $connection = mysql_connect($dbhost, $dbuser, $dbpass) or die("Unable to Connect to '$dbhost'");
+            mysql_select_db($dbname) or die("Could not open the db '$dbname'");
+        $result = mysql_query($this->Query);// Noncompliant
+
+        // iterate through the result
+        ...
+        mysql_close($connection);
+    }
+    ...
+}
+```
+
+## Compliant Solution
+
+```php
+public function foo() {
+    ...
+    $query = "SELECT name FROM users where id in (";
+
+    for ($i = 0; $i < 20; ++$i) {
+        $query .= ',' . $i;
+    }
+    $query .= ')';
+
+    $connection = mysql_connect($dbhost, $dbuser, $dbpass) or die("Unable to Connect to '$dbhost'");
+    mysql_select_db($dbname) or die("Could not open the db '$dbname'");
+    $result = mysql_query($this->Query); // compliant
+
+    // iterate through the result
+    ...
+    mysql_close($connection);
+}
+```
+
+include::../../etsdiff-methodology.asciidoc[]
+
+## Case for a 1GB database:
+
+image::https://live.staticflickr.com/65535/52622813465_9c453a43b1_w.jpg[ETSdiff percent comparison" style="padding: 1rem;]
+
+[format=csv,cols="1h,1,1"]
+|===
+Source of impacts,Compliant,Non-compliant
+
+include::1GB.etsdiff.csv[]
+|===
+
+## Case for a 2GB database:
+
+image::https://live.staticflickr.com/65535/52622862388_720fd219ba_o.png[ETSdiff percent comparison" style="padding: 1rem;]
+
+[format=csv,cols="1h,1,1"]
+|===
+Source of impacts,Compliant,Non-compliant
+
+include::2GB.etsdiff.csv[]
+|===
+
+## Case for a 4GB database:
+
+image::https://live.staticflickr.com/65535/52622814395_f8aab7a5c0_o.png[ETSdiff percent comparison" style="padding: 1rem;]
+
+[format=csv,cols="1h,1,1"]
+|===
+Source of impacts,Compliant,Non-compliant
+
+include::4GB.etsdiff.csv[]
+|===
+
+## Case for a 8GB database:
+
+image::https://live.staticflickr.com/65535/52622635779_f1c5d9660e_o.png[ETSdiff percent comparison" style="padding: 1rem;]
+
+[format=csv,cols="1h,1,1"]
+|===
+Source of impacts,Compliant,Non-compliant
+
+include::8GB.etsdiff.csv[]
+|===

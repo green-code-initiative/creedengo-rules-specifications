@@ -1,0 +1,23 @@
+Use device API to check if low power mode is enabled, and adapt resources usage accordingly.
+
+For example, you can reduce frequency of data update if low power mode is enabled.
+
+Your app can query the `ProcessInfo.processInfo.isLowPowerModeEnabled` property at any time to determine whether Low Power Mode is active. Your app can also register to receive notifications when the Low Power Mode state of a device changes, using `NSProcessInfoPowerStateDidChange`.
+
+## Compliant Code Example
+
+```swift
+let isLowPowerModeEnabled = ProcessInfo.processInfo.isLowPowerModeEnabled
+```
+
+or
+
+```swift
+NotificationCenter.default.addObserver(forName: .NSProcessInfoPowerStateDidChange, object: nil, queue: nil) { _ in }
+```
+
+or
+
+```swift
+NotificationCenter.default.addObserver(forName: Notification.Name.NSProcessInfoPowerStateDidChange, object: nil, queue: nil) { _ in }
+```

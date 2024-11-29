@@ -1,0 +1,23 @@
+Location awareness is one of the most popular features used by apps.
+
+An important point is to try to get the best possible provider (`LocationManager#getBestProvider()`) based on an energy criteria thanks to `Criteria#setPowerRequirement(int level)`, using constant `POWER_LOW` instead of `POWER_HIGH` or `POWER_MEDIUM`.
+
+## Noncompliant Code Example
+
+```java
+locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+    1000L,
+    1.0f,
+    this);
+```
+
+## Compliant Code Example
+
+```java
+Criteria criteria = new Criteria();
+criteria.setPowerRequirement(Criteria.POWER_LOW);
+locationManager.requestLocationUpdates(locationManager.getBestProvider(criteria,true),
+    1000L,
+    1.0f,
+    this);
+```

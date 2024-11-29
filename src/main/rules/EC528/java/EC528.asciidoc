@@ -1,0 +1,17 @@
+Shaking of an Android device is possible in all circumstances with a call to `getSystemService(Context.VIBRATOR_SERVICE)` (API 26) or `getSystemService(Context.VIBRATOR.MANAGER.SERVICE)` (API 31).
+    Behind this effect stands a specific miniature hardware component, motor or actuator, that consumes power.
+    As a consequence, its usage must be discouraged, especially since its added value is not clear.
+
+## Noncompliant Code Example
+
+API 26:
+```java
+Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+v.vibrate(400);
+```
+
+API 31:
+```java
+VibratorManager vm = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
+vm.getDefaultVibrator().vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+```

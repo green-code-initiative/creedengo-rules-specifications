@@ -1,0 +1,16 @@
+{
+  "title": "Don't concatenate strings in loops",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "bad-practice",
+    "eco-design",
+    "creedengo",
+    "performance"
+  ],
+  "defaultSeverity": "Minor"
+}

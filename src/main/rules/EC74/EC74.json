@@ -1,0 +1,17 @@
+{
+  "title": "Don't use the query SELECT * FROM",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "eco-design",
+    "performance",
+    "network",
+    "sql",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

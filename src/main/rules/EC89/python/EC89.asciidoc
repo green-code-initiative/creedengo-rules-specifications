@@ -1,0 +1,36 @@
+Python doesn't have TTL on cache with default libraries.
+
+With functools library @cache acts the same way than @lru_cache(maxsize=None).
+@lru_cache(maxsize=None) create an unlimited cache and must be a source of memory leak, an unlimited cache can take a lot of RAM / Disk space, resulting to a big energy consumption.
+
+By default, lru_cache set the size of cache to 128 entries.
+
+In this case, the cache is unlimited which is suspect.
+
+## Noncompliant Code Examples
+
+```python
+ @cache # Noncompliant
+ def cached_function():
+   ...
+```
+
+```python
+ @lru_cache(maxsize=None) # Noncompliant
+ def cached_function():
+   ...
+```
+
+## Compliant Solution
+
+```python
+ @lru_cache() # By default, the max size of the cache is 128
+ def cached_function():
+    ...
+```
+
+```python
+ @lru_cache(maxsize=16) # Define a max size to the cache
+ def cached_function():
+    ...
+```

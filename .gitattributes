@@ -1,0 +1,11 @@
+# Ensure all SH files are checked out with LF line endings (regardless of the
+# OS they were checked out on).
+*.sh text eol=lf
+
+# Ensure BAT files will always be checked out with CRLFs (regardless of the
+# OS they were checked out on).
+*.bat text eol=crlf
+
+# Ensure BAT files will always be checked out with CRLFs (regardless of the
+# OS they were checked out on).
+*.cmd text eol=crlf

@@ -1,0 +1,15 @@
+{
+  "title": "Replace Enum ToString() with nameof",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "eco-design",
+    "creedengo",
+    "performance"
+  ],
+  "defaultSeverity": "Major"
+}

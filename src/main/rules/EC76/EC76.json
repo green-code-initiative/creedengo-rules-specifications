@@ -1,0 +1,17 @@
+{
+  "title": "Avoid usage of static collections.",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "cwe",
+    "leak",
+    "eco-design",
+    "creedengo",
+    "memory"
+  ],
+  "defaultSeverity": "Minor"
+}

@@ -1,0 +1,62 @@
+:!sectids:
+
+== Why is this an issue?
+
+Including only the required modules decreases the overall size of the program.
+This, in turn, reduces the amount of memory and storage space needed to run and store the application.
+This is especially critical in environments with limited resources, such as on mobile devices or in web applications where bandwidth and download times matter.
+
+Smaller programs generally have better runtime performance.
+Reducing the number of unnecessary modules minimizes the amount of code that needs to be interpreted or compiled, leading to faster execution and improved overall performance.
+
+*Example with the well-known https://lodash.com/[lodash] library, if you only need
+`isEmpty` method.*
+
+|===
+|Full lodash library |Only `isEmpty` method
+
+a|index.js - 531.46 KB
+
+* node_modules/lodash - 531.35 KB
+** lodash.js - 531.35 KB
+
+a|index.js - 24.42 KB
+
+* node_modules/lodash - 24.31 KB
+** isEmpty - 1.95 KB
+** _nodeUtil.js - 995 B
+** isArrayLike.js - 830 B
+** ...
+
+|===
+
+[source,js,data-diff-id="2",data-diff-type="noncompliant"]
+----
+// Example with lodash
+import lodash from "lodash"; // Non-compliant
+import { isEmpty } from "lodash"; // Non-compliant
+import * as lodash from "lodash"; // Non-compliant
+
+// Example with underscore
+import _ from "underscore"; // Non-compliant
+----
+
+[source,js,data-diff-id="2",data-diff-type="compliant"]
+----
+// Example with lodash (uses submodules)
+import isEmpty from "lodash/isEmpty"; // Compliant
+import intersect from "lodash/intersect"; // Compliant
+
+// Example with underscore (uses esm modules)
+import map from "underscore/modules/map.js"; // Compliant
+----
+
+== Resources
+
+=== Documentation
+
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import[Mozilla Web Technology for Developers] - import
+
+=== Articles & blog posts
+
+- https://dev.to/dianjuar/importing-modules-in-javascript-are-we-doing-it-right-nc[Importing modules in JavaScript, are we doing it right?]

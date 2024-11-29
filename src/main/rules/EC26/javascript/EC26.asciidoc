@@ -1,0 +1,45 @@
+:!sectids:
+
+== Why is this an issue?
+
+By employing a shorthand property, you can create stylesheets that are more succinct and frequently easier to read, ultimately conserving time and energy.
+By reducing the number of CSS properties, you help to reduce the weight of your application bundle, and therefore its environmental footprint.
+
+For example, the `font` shorthand consolidates various font-related properties, and the `margin` shorthand streamlines the definition of margins around a box.
+
+[source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
+----
+<div style={{ marginTop: "1em", marginRight: 0, marginBottom: "2em", marginLeft: "0.5em" }}>
+    {/* Noncompliant: these properties can be grouped together in the "margin" property */}
+</div>
+----
+
+[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+----
+<div style={{ margin: "1em 0 2em 0.5em" }}>
+    {/* Compliant usage of shorthand property */}
+</div>
+----
+
+This optimization can't always be done, depending on the properties you're using.
+For example, if you only want to set the left margin, you must continue to use `margin-left`.
+
+[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+----
+<div style={{ marginLeft: "1em" }}>
+    {/* Compliant because we only want a left margin */}
+</div>
+----
+
+This optimization works for a number of properties https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#see_also[listed here].
+
+== Resources
+
+=== Documentation
+
+- https://github.com/cnumr/best-practices/blob/fc5a1f865bafb196e4775cce8835393751d40ed8/chapters/BP_026_en.md[CNUMR best practices] - Use abbreviated CSS notations
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties[Mozilla Web Technology for Developers] - Shorthand properties
+
+=== Articles & blog posts
+
+- https://dev.to/cscarpitta/6-css-shorthand-properties-to-improve-your-web-application-2dbj[6 CSS Shorthand properties to improve your web application]

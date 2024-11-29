@@ -1,0 +1,16 @@
+{
+  "title": "Avoid using double quote (\"), prefer using simple quote (')",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "bad-practice",
+    "eco-design",
+    "performance",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

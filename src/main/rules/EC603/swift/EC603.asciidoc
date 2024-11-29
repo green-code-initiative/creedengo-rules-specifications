@@ -1,0 +1,28 @@
+Animations play a crucial role in creating a dynamic and engaging user interface in iOS applications. Both UIKit and SwiftUI provide powerful tools to create smooth and appealing animations. Developers need to be familiar with various methods and properties to implement animations effectively.
+
+To ensure animations are used effectively without draining the device's battery, it's important to check for unnecessary animations and optimize them. This can be done by reviewing the use of functions like `withAnimation(::)`, the `animation(_:value:)` view modifier, and the binding’s `animation(_:)` method in SwiftUI, as well as checking the use of UIKit's animation methods.
+
+## Noncompliant Code Example UIKit
+
+```swift
+UIView.animate(withDuration:animations:)
+UIView.animate(withDuration:animations:completion:)
+UIView.animate(withDuration:delay:options:animations:completion:)
+UIView.animateKeyframes(withDuration:delay:options:animations:completion:)
+UIView.transition(with:duration:options:animations:completion:)
+CABasicAnimation
+CAKeyframeAnimation
+CATransition
+```
+
+## Noncompliant Code Example SwiftUI
+
+```swift
+withAnimation
+Animation
+AnyTransition
+.animation(Animation?)
+.transition(AnyTransition)
+.onAppear(perform:)
+.onDisappear(perform:)
+```

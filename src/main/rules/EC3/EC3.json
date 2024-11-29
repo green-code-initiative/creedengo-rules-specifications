@@ -1,0 +1,16 @@
+{
+  "title": "Avoid getting the size of the collection in the loop",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "bad-practice",
+    "eco-design",
+    "performance",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

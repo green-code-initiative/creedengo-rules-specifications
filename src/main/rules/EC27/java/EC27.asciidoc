@@ -1,0 +1,28 @@
+Using `System.arraycopy` to copy arrays
+
+Programs spend most of the time in loops. These can be resource consuming, especially when they integrate heavy processing (IO access). Moreover, the size of the data and processing inside the loops will not allow full use of hardware mechanisms such as the cache or compiler optimization mechanisms.
+
+For example, an array copy is potentially a non-performance source if it is poorly designed. Indeed, the use of a single copy loop can be twice as consuming as dedicated methods.
+Loops must be optimized to reduce processing time and make full use of hardware and processor mechanisms and optimizations.
+In the case of table copying (table), use the native `System.arraycopy`.
+We can also use `copyOf` or `clone` that are slightly less efficient.
+The looping method will be outlawed.
+
+## Noncompliant Code Example
+
+```java
+int len = array.length;
+boolean[] copy = new boolean[array.length];
+for (int i = 0; i < len; i++) {
+    copy[i] = array[i];  // Noncompliant
+}
+return copy;
+```
+
+## Compliant Solution
+
+```java
+int[] copy = new int[array.length];
+System.arraycopy(array, 0, copy, 0, array.length);
+return copy;
+```

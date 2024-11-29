@@ -1,0 +1,16 @@
+{
+  "title": "Specify struct layout",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "eco-design",
+    "creedengo",
+    "memory",
+    "performance"
+  ],
+  "defaultSeverity": "Minor"
+}

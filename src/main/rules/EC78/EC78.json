@@ -1,0 +1,17 @@
+{
+  "title": "Don't set const parameter in batch update => Put its in query",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "15min"
+  },
+  "tags": [
+    "eco-design",
+    "creedengo",
+    "sql",
+    "performance",
+    "memory"
+  ],
+  "defaultSeverity": "Minor"
+}

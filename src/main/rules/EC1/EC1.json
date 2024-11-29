@@ -1,0 +1,16 @@
+{
+  "title": "Avoid Spring repository call in loop or stream operations",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "50min"
+  },
+  "tags": [
+    "performance",
+    "spring",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

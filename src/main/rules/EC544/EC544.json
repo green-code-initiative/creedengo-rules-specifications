@@ -1,0 +1,17 @@
+{
+  "title": "Power: Ignore Battery Optimizations",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1h"
+  },
+  "tags": [
+    "power",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "defaultSeverity": "Major"
+}

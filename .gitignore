@@ -1,0 +1,15 @@
+# Ignore all files and folders starting with ".", except a few exceptions
+.*
+!.gitignore
+!.gitattributes
+!.github/
+!.mvn/
+
+# Ignore generated files
+target
+lib
+bin
+dependency-reduced-pom.xml
+
+# Ignore IDE files
+*.iml

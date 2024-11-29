@@ -1,0 +1,91 @@
+:!sectids:
+
+Make type sealed.
+
+## Why is this an issue ?
+
+A non-sealed type prevents the JIT compiler from applying strong optimizations such as devirtualization and inlining. If that type is intended to be inheritable then this is expected ; however if it doesn't, then it should be sealed explictly to bring the benefits from those optimizations.
+
+For a more in-depth explanation, see https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/#analyzers
+
+### How does the analyzer identify sealable classes ?
+
+The analyzer will consider a type for sealing when the following conditions are met :
+
+* The type is not static, abstract, sealed or special (ie. implicit, script, auto-generated, etc)
+* The type is currently not inherited from in the solution
+* The type is not public, or it is public and has no overridable member (except for the default ones like GetHashcode, Equals, etc)
+
+### When can it be ignored ?
+
+This rule can be ignored if you want a public type with no overridable member to still be inheritable from other assemblies.
+
+## Non-compliant examples
+
+[source, cs]
+----
+public class Class1 // Non-compliant if not inherited from, make type sealed
+{
+    public void Method();
+}
+
+public class Class2 // Non-compliant if not inherited from, make type sealed
+{
+    public sealed void Method();
+}
+
+internal class Class3 // Non-compliant if not inherited from because the type is not public, even with a virtual method
+{
+    public virtual void Method();
+}
+
+public class Class4 // Compliant even if not inherited from, the virtual method hints at being overridable from other assemblies
+{
+    public virtual void Method();
+}
+
+public class Class5 : Class4 // Non-compliant if not inherited from, make type sealed
+{
+    public sealed override void Method();
+}
+
+public class Class6 : Class4 // Compliant, Method() is still overridable
+{
+    public override void Method();
+}
+----
+
+## Compliant examples
+
+[source, cs]
+----
+public sealed class Class1
+{
+    public void Method();
+}
+
+public sealed class Class2
+{
+    public void Method();
+}
+
+internal sealed class Class3
+{
+    public void Method();
+}
+
+public class Class4
+{
+    public virtual void Method();
+}
+
+public sealed class Class5 : Class4
+{
+    public override void Method();
+}
+
+public class Class6 : Class4
+{
+    public override void Method();
+}
+----

@@ -1,0 +1,15 @@
+{
+  "title": "Avoid creating getter and setter methods in classes",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "eco-design",
+    "performance",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

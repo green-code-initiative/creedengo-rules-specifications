@@ -1,0 +1,21 @@
+If you know in advance how many characters would be appended, initialize builder/buffer with the appropriate size.
+They will thus never have to be resized.
+This saves CPU cycles and therefore consumes less energy.
+
+## Noncompliant Code Example
+
+```java
+StringBuilder sb = new StringBuilder(); // Noncompliant
+for (int i = 0; i < 100; i++) {
+    sb.append(...);
+}
+```
+
+## Compliant Solution
+
+```java
+StringBuilder sb = new StringBuilder(100);
+for (int i = 0; i < 100; i++) {
+    sb.append(...);
+}
+```

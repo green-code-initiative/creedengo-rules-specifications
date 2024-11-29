@@ -1,0 +1,14 @@
+Turning on the torch mode programmatically using `AVCaptureDevice#torchMode` or `AVCaptureDevice#setTorchModeOn(level:)` 
+methods must absolutely be avoided because the flashlight is one of the most energy-intensive component.
+
+## Non-Compliant Code Example
+
+```swift
+guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else { return }
+guard videoDevice.hasTorch else { return }
+
+videoDevice.lockForConfiguration()
+videoDevice.torchMode = .on // non-compliant
+videoDevice.setTorchModeOn(level: 1.0) // non-compliant
+videoDevice.unlockForConfiguration()
+```

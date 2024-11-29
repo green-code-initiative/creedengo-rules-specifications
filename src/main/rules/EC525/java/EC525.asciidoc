@@ -1,0 +1,17 @@
+With Bluetooth Low Energy technology, a Bluetooth Smart Ready device (the master) will establish a link with a Bluetooth Smart device (the slave). Most often, the slave is a GATT server and the master is a GATT client. GATT capable devices can be discovered using BLE scan process.
+
+The default and preferred advertising mode is `ADVERTISE_MODE_LOW_POWER` when calling `AdvertiseSettings.Builder#setAdvertiseMode(int advertiseMode).`
+
+## Noncompliant Code Example
+
+```java
+AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
+builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY);
+```
+
+## Compliant Code Example
+
+```java
+AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
+builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_POWER);
+```

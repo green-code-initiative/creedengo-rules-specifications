@@ -1,0 +1,10 @@
+To avoid draining the battery, an iOS device adapt its brightness to the environment .
+
+Hence, keeping forcing the screen brightness on should be avoided, unless it is absolutely necessary. If so, developers typically force the Brightness to 1 with `UIScreen.main.brightness = a float`.
+
+## Noncompliant Code Example
+
+```swift
+UIScreen.main.brightness = CGFloat(0.3)
+```
+

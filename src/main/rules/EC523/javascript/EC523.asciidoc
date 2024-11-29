@@ -1,0 +1,68 @@
+:!sectids:
+
+== Why is this an issue?
+
+High-precision geolocation typically requires more power from the device's GPS hardware.
+By requesting less accurate geolocation, you can reduce the power consumption, leading to extended battery life, which
+is crucial for mobile devices.
+
+Obtaining highly accurate geolocation often involves more complex calculations and processing, which can increase CPU
+usage.
+If the application or service does not critically require pinpoint accuracy, opting for a less accurate geolocation can
+help minimize the strain on the device's CPU.
+
+== Web
+
+[source,js]
+----
+var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }; // Non-compliant
+navigator.geolocation.getCurrentPosition(
+  (pos) => console.log(pos),
+  (err) => console.warn(err),
+  options
+);
+----
+
+In these examples, the enableHighAccuracy option is set to false (the default), indicating that the application prefers
+lower-accuracy geolocation to conserve resources:
+
+[source,js]
+----
+navigator.geolocation.getCurrentPosition((pos) => console.log(pos)); // Compliant by default
+----
+
+[source,js]
+----
+var options = { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 }; // Compliant
+navigator.geolocation.getCurrentPosition(
+  (pos) => console.log(pos),
+  (err) => console.warn(err),
+  options
+);
+----
+
+== React Native
+
+In this example, we ask the user to turn on high accuracy location mode which enables network provider that uses Google Play services to improve location accuracy and location-based services:
+
+[source,js]
+----
+import * as Location from 'expo-location';
+
+Location.enableNetworkProviderAsync(); // Non-compliant
+----
+
+Prefer to ask the user to turn on lower-accuracy geolocation to conserve resources:
+
+[source,js]
+----
+import * as Location from 'expo-location';
+
+Location.requestPermissionsAsync(); // Compliant
+----
+
+== Resources
+
+=== Documentation
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition[getCurrentPosition() method] - Mozilla Web Technology for Developers
