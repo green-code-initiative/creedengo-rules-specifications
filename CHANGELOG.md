@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- First official release of creedengo-rules-specifications component
+- First official release of creedengo-rules-specifications component : renaming ECxx rule ids to GCIxx rule ids.
 
 ### Changed
 

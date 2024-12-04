@@ -112,7 +112,7 @@ import static java.util.Optional.of;
             /**
              * Resources to include
              */
-            private static final Pattern TARGET_RESOURCES = Pattern.compile("^.*/(?<ruleKey>EC\\d+)/(?<language>[^/]*)/.*\\.html$");
+            private static final Pattern TARGET_RESOURCES = Pattern.compile("^.*/(?<ruleKey>GCI\\d+)/(?<language>[^/]*)/.*\\.html$");
 
             static Optional<Rule> createFromHtmlDescription(Path htmlDescription) {
                 final Matcher matcher = TARGET_RESOURCES.matcher(htmlDescription.toString().replace('\\', '/'));
