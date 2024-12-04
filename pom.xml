@@ -5,7 +5,6 @@
     <groupId>org.green-code-initiative</groupId>
     <artifactId>creedengo-rules-specifications</artifactId>
     <version>${revision}</version>
-    <packaging>pom</packaging>
 
     <name>creedengo rules specifications Project</name>
     <description>Provides rules definition to reduce the environmental footprint of your programs</description>
@@ -214,6 +213,182 @@
                 </executions>
             </plugin>
             -->
+            <plugin><!--
+					This plugin convert ASCIIDOC rule specification in HTML format
+					ASCIIDOC format is used with custom features such as :
+					- syntax highlighting (see code blocks on ASCIIDOC rules)
+					- inclusions (see: php/EC74.asciidoc)
+					- table data generation from CSV (see: php/EC69.asciidoc)
+				-->
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>convert-to-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/rules</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/rules-html</outputDirectory>
+                            <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                                <coderay-css>style</coderay-css>
+                            </attributes>
+                            <preserveDirectories>true</preserveDirectories>
+                            <embedAssets>true</embedAssets>
+                            <standalone>false</standalone>
+                            <relativeBaseDir>true</relativeBaseDir>
+                            <logHandler>
+                                <failIf>
+                                    <severity>ERROR</severity>
+                                </failIf>
+                            </logHandler>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin><!--
+					Prepare resources tree needed by language.
+					Each metadata JSON file must be in the same folder as the HTML description file for the corresponding language.
+				-->
+                <groupId>com.github.johnpoth</groupId>
+                <artifactId>jshell-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-rules-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scripts>
+                                <script>${project.basedir}/src/main/script/PrepareResources.jsh</script>
+                            </scripts>
+                            <options>
+                                <option>-R "-DsourceDir=${project.build.directory}/rules-html"</option>
+                                <option>-R "-DtargetDir=${project.build.outputDirectory}/org/green-code-initiative/rules"</option>
+                            </options>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin><!--
+					This module produce one artifact by language (with corresponding classifier)
+					For example, to add rule specifications for Python language, add following dependency in python sonarqube plugin:
+
+			        <dependency>
+			            <groupId>io.ecocode</groupId>
+			            <artifactId>ecocode-rules-specifications</artifactId>
+			            <version>${project.version}</version>
+			            <classifier>python</classifier>
+			        </dependency>
+				-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly-java</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/java.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-php</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/php.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-python</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/python.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-javascript</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/javascript.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-swift</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/swift.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-xml</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/xml.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-csharp</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/csharp.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assembly-html</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/html.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <appendAssemblyId>true</appendAssemblyId>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
