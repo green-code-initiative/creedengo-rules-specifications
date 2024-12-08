@@ -23,18 +23,18 @@ jobs:
     steps:
       # Checks out a copy of project's repository.
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Sets up the Java JDK, and also configures the Maven `settings.xml` file to add authentication for the
       # `ossrh` repository using the `OSSRH_USERNAME` and `OSSRH_TOKEN` environment variables.
       - name: Set up Maven Central Repository
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'adopt'
-          server-id: 'ossrh'  # must match the serverId configured for the nexus-staging-maven-plugin in `pom.xml`
-          server-username: OSSRH_USERNAME
-          server-password: OSSRH_TOKEN
+          server-id: 'central' # must match the serverId configured for the central-publishing-maven-plugin in `pom.xml`
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Substituted with the value stored in the referenced secret
           gpg-passphrase: MAVEN_GPG_PASSPHRASE # Env var that holds the key's passphrase
 
@@ -45,12 +45,12 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      # Runs the Maven command to publish to the `ossrh` repository.
-      # The `OSSRH_USERNAME` environment variable will be set with the contents of your `OSSRH_USERNAME` secret,
-      # and the `OSSRH_TOKEN` environment variable will be set with the contents of your `OSSRH_TOKEN` secret.
+      # Runs the Maven command to publish to the maven central repository.
+      # The `MAVEN_CENTRAL_USERNAME` environment variable will be set with the contents of your `MAVEN_CENTRAL_USERNAME` secret,
+      # and the `MAVEN_CENTRAL_TOKEN` environment variable will be set with the contents of your `MAVEN_CENTRAL_TOKEN` secret.
       - name: Publish package
         run: ./mvnw --batch-mode deploy -Pmaven-central-publishing
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_TOKEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_CENTRAL_TOKEN_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
