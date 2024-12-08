@@ -38,12 +38,12 @@ jobs:
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Substituted with the value stored in the referenced secret
           gpg-passphrase: MAVEN_GPG_PASSPHRASE # Env var that holds the key's passphrase
 
-      - name: Cache Maven packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+#      - name: Cache Maven packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.m2
+#          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: ${{ runner.os }}-m2
 
       # Runs the Maven command to publish to the maven central repository.
       # The `MAVEN_CENTRAL_USERNAME` environment variable will be set with the contents of your `MAVEN_CENTRAL_USERNAME` secret,
