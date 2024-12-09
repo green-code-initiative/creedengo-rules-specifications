@@ -2,19 +2,21 @@ Normally the Wi-Fi stack filters out packets not explicitly addressed to the dev
 
 Processing these extra packets can cause a noticeable battery drain and must be disabled when not needed with to a call to `WifiManager.MulticastLock.release()`.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 WifiManager.MulticastLock lock = wifiManager.createMulticastLock("tag");
 lock.acquire();
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 WifiManager.MulticastLock lock = wifiManager.createMulticastLock("tag");
 lock.acquire();
 lock.release()
-```
+----

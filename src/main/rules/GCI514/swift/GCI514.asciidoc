@@ -5,7 +5,7 @@ The common point of all these sensors is that they consume significant power whi
     Consequently, calls to start and stop sensor updates must be carefully managed for motion sensor: CMMotionManager#startAccelerometerUpdates()/CMMotionManager#stopAccelerometerUpdates().
     Failing to do so can drain the battery quickly.
 
-== Noncompliant Code Example
+== Non compliant Code Example
 
 [source,swift]
 ----

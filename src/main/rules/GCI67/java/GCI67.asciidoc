@@ -1,13 +1,15 @@
 The form `$i++` creates a temporary variable whereas `++$i` does not. It save CPU cycles.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 i++  // Noncompliant
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 ++i
-```
+----

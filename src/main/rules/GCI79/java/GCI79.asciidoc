@@ -1,8 +1,9 @@
 Use `try-with-resources` statement for any object that implements the `AutoCloseable` interface, it save computer resources.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 private static void printFileJava7() throws IOException {
     FileInputStream input = new FileInputStream("file.txt");
     int data = input.read();
@@ -11,11 +12,12 @@ private static void printFileJava7() throws IOException {
         data = input.read();
     }
 }
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 private static void printFileJava7() throws IOException {
     try(FileInputStream input = new FileInputStream("file.txt")) {
         int data = input.read();
@@ -25,4 +27,4 @@ private static void printFileJava7() throws IOException {
         }
     }
 }
-```
+----

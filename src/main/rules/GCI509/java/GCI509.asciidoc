@@ -4,28 +4,42 @@ For most apps prior to API 19, `setInexactRepeating()` is preferable over `setRe
 
 Similarly after API 19, `setExact()` and `setExactAndAllowWhileIdle()` can significantly impact the power use of the device when idle, so they should be used with care. High-frequency alarms are also bad for battery life but this is already checked by Android lint (ShortAlarm built-in check).
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setRepeating(alarmType, triggerAtMillis, intervalMillis, operation);
-``` or
-```java
+----
+
+or
+
+[source,java]
+----
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setExact(type,triggerAtMillis,operation);
-``` or
-```java
+----
+
+or
+
+[source,java]
+----
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setExact(type,triggerAtMillis,tag,listener,targetHandler);
-``` or
-```java
+----
+
+or
+
+[source,java]
+----
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setExactAndAllowWhileIdle(type,triggerAtMilllis,operation);
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setInexactRepeating(alarmType, triggerAtMillis, intervalMillis, operation);
-```
+----

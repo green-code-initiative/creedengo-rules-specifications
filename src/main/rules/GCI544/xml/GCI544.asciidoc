@@ -4,10 +4,11 @@ An app holding the permission `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` asks the us
 
 Most applications should not use this; there are many facilities provided by the platform for applications to operate correctly in the various power saving modes.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```xml
+[source,xml]
+----
 <manifest>
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 </manifest>
-```
+----

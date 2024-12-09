@@ -2,9 +2,10 @@ When iterating over any collection, fetch the size of the collection in advance 
 
 NB : note that we are using the `count()` method to get the size of an array but it would work the same with the `sizeof()` and `iterator_count()` methods.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```php
+[source,php]
+----
 $array = array('orange', 'banana', 'apple', 'carrot', 'collard', 'pea');
 
 // FOR STATEMENTS / Right operand
@@ -44,11 +45,12 @@ do {
 	var_dump($array[$i]);
 	++$i;
 } while (count($array) > $i);
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```php
+[source,php]
+----
 $array = array('orange', 'banana', 'apple', 'carrot', 'collard', 'pea');
 // FOR STATEMENTS / Right operand
 $size = sizeof($array);
@@ -93,4 +95,4 @@ do {
 	var_dump($array[$i]);
 	++$i;
 } while ($size > $i);
-```
+----

@@ -7,30 +7,34 @@ By default, lru_cache set the size of cache to 128 entries.
 
 In this case, the cache is unlimited which is suspect.
 
-## Noncompliant Code Examples
+== Non compliant Code Examples
 
-```python
+[source,python]
+----
  @cache # Noncompliant
  def cached_function():
    ...
-```
+----
 
-```python
+[source,python]
+----
  @lru_cache(maxsize=None) # Noncompliant
  def cached_function():
    ...
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```python
+[source,python]
+----
  @lru_cache() # By default, the max size of the cache is 128
  def cached_function():
     ...
-```
+----
 
-```python
+[source,python]
+----
  @lru_cache(maxsize=16) # Define a max size to the cache
  def cached_function():
     ...
-```
+----

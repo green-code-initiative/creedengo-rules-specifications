@@ -4,18 +4,21 @@ Supplier method of orElseGet passed as an argument is only executed when an Opti
 
 Therefore, using orElseGet() will save computing time.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 Optional.of("creedengo").orElse(getUnpredictedMethod());
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 Optional.of("creedengo").orElseGet(() -> getUnpredictedMethod());
-```
+----
 
-```java
+[source,java]
+----
 randomClass.orElse(getUnpredictedMethod());
-```
+----

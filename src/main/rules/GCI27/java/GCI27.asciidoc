@@ -8,21 +8,23 @@ In the case of table copying (table), use the native `System.arraycopy`.
 We can also use `copyOf` or `clone` that are slightly less efficient.
 The looping method will be outlawed.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 int len = array.length;
 boolean[] copy = new boolean[array.length];
 for (int i = 0; i < len; i++) {
     copy[i] = array[i];  // Noncompliant
 }
 return copy;
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 int[] copy = new int[array.length];
 System.arraycopy(array, 0, copy, 0, array.length);
 return copy;
-```
+----

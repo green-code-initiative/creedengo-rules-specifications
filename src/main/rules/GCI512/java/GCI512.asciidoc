@@ -6,15 +6,17 @@ The common point of all these sensors is that they are expensive while in use. T
     Consequently, calls must be carefully pairwised: `Camera.open()/Camera.release()`.
     Failing to do so can drain the battery in just a few hours.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 Camera camera = Camera.open();
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 Camera camera = Camera.open();
 camera.release();
-```
+----

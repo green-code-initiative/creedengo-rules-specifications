@@ -2,14 +2,16 @@ In contrast to classic Bluetooth, Bluetooth Low Energy (BLE) is designed to prov
 
 From the Android client side, it means append `android.bluetooth.le.\*` imports to `android.bluetooth.*` imports in order to benefits from low-energy features.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 import android.bluetooth.*
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 import android.bluetooth.le.*
-```
+----

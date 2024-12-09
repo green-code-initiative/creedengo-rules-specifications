@@ -6,7 +6,7 @@ The common point of all these sensors is that they are power-intensive while in 
     Consequently, calls must be carefully paired: `CLLocationManager.startUpdatingLocation()` and `CLLocationManager.stopUpdatingLocation()`.
     Failing to do so can drain the battery in just a few hours.
 
-== Noncompliant Code Example
+== Non compliant Code Example
 
 [source,swift]
 ----

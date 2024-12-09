@@ -2,9 +2,10 @@ Animations play a crucial role in creating a dynamic and engaging user interface
 
 To ensure animations are used effectively without draining the device's battery, it's important to check for unnecessary animations and optimize them. This can be done by reviewing the use of functions like `withAnimation(::)`, the `animation(_:value:)` view modifier, and the binding’s `animation(_:)` method in SwiftUI, as well as checking the use of UIKit's animation methods.
 
-## Noncompliant Code Example UIKit
+== Non compliant Code Example UIKit
 
-```swift
+[source,swift]
+----
 UIView.animate(withDuration:animations:)
 UIView.animate(withDuration:animations:completion:)
 UIView.animate(withDuration:delay:options:animations:completion:)
@@ -13,11 +14,12 @@ UIView.transition(with:duration:options:animations:completion:)
 CABasicAnimation
 CAKeyframeAnimation
 CATransition
-```
+----
 
-## Noncompliant Code Example SwiftUI
+== Non compliant Code Example SwiftUI
 
-```swift
+[source,swift]
+----
 withAnimation
 Animation
 AnyTransition
@@ -25,4 +27,4 @@ AnyTransition
 .transition(AnyTransition)
 .onAppear(perform:)
 .onDisappear(perform:)
-```
+----

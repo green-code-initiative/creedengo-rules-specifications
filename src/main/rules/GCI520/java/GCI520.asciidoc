@@ -2,26 +2,30 @@ Taking into account when the device is entering or exiting the power save mode i
 
 It implies the existence of a broadcast receiver registered on the action `ACTION_POWER_SAVE_MODE_CHANGED`, or programmaticaly with a call to `PowerManager#isPowerSaveMode().`
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 new IntentFilter(Intent.ACTION_POWER_SAVE_MODE_CHANGED)
-```
+----
 
 Or
 
-```java
+[source,java]
+----
 intentFilter.addAction(ACTION_POWER_SAVE_MODE_CHANGED)
-```
+----
 
 Or
 
-```java
+[source,java]
+----
 IntentFilter.create(ACTION_POWER_SAVE_MODE_CHANGED,"")
-```
+----
 
 Or
 
-```java
+[source,java]
+----
 powerManager.isPowerSaveMode()
-```
+----

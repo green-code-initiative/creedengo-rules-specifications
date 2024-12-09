@@ -15,64 +15,66 @@ Some advantages of using SVG:
 - SVGs can be embedded into the HTML which means they can be cached, edited directly using CSS and indexed for greater accessibility.
 - SVGs can be animated directly or by using CSS or JavaScript making it easy for web designers to add interactivity to a site.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```
+[source,python]
+----
 img_jpg = "image.jpg"
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```
+[source,python]
 img_svg = "image.svg"
-```
+----
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```
+[source,python]
 public void foo() {
     // ...
     image_format = testImage("image.jpg")
     // ...
 }
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```
+[source,python]
 public void foo() {
     // ...
     image_format = testImage("image.svg")
     // ...
 }
-```
+----
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```
+[source,python]
 public void foo() {
     // ...
     return '<html><img src="xx/xx/image.bmp"></html>'
     // ...
 }
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```
+[source,python]
 public void foo() {
     // ...
     return '<html><img src="xx/xx/image.svg"></html>'
     // ...
 }
-```
+----
 
 Or
 
-```
+[source,python]
+----
  public void foo() {
     // ...
     return ('<html><svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow"/></svg></html>')
     // ...
 }
-```
+----

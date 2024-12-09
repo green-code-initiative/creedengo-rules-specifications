@@ -2,15 +2,17 @@ Creation of a Media Player object with `new MediaPlayer()` can be used to contro
 
 In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to call this method immediately if a media object is no longer needed may also lead to continuous battery consumption for mobile devices.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 MediaPlayer mp = new MediaPlayer();
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 MediaPlayer mp = new MediaPlayer();
 mp.release();
-```
+----

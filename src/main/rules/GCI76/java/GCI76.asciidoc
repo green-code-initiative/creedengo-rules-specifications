@@ -4,9 +4,10 @@ If you want to use static collections make them final and create for example a s
 
 The static fields are more complicated for the Garbage Collector to manage and can lead to memory leaks.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 /**
  * Not compliant
  */
@@ -15,11 +16,12 @@ public class AvoidUsageOfStaticCollections {
     public static final Set<> SET = new HashSet<>();
     public static final Map<> MAP = new HashMap<>();
 }
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 /**
  * Compliant
  */
@@ -33,4 +35,4 @@ public class GoodUsageOfStaticCollections {
     private GoodUsageOfStaticCollections() {
     }
 }
-```
+----

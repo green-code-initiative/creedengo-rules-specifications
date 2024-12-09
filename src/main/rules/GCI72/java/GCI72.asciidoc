@@ -1,8 +1,9 @@
 Executing SQL queries in loop induced unnecessary calculation by the CPU, RAM usage and network transfer.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 public void foo() {
     // ...
     String baseQuery = "SELECT name FROM users where id = ";
@@ -22,11 +23,12 @@ public void foo() {
     }
     // ...
 }
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 public void foo() {
     // ...
     String query = "SELECT name FROM users where id in (0 ";
@@ -47,4 +49,4 @@ public void foo() {
     st.close();
     // ...
 }
-```
+----

@@ -4,8 +4,9 @@ For some reasons, developers may disable this feature programmatically, setting 
 
 This feature was introduced to improve battery life, be careful when deactivating it.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 getWindow().getAttributes().screenBrightness = BRIGHTNESS_OVERRIDE_FULL;
-```
+----

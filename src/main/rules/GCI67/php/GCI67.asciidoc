@@ -1,20 +1,22 @@
 The form `$i++` creates a temporary variable whereas `++$i` does not. It save CPU cycles.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```php
+[source,php]
+----
 $i++
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```php
+[source,php]
+----
 ++$i
-```
+----
 
 include::../../etsdiff-methodology.asciidoc[]
 
-## Case for a 1GB database:
+== Case for a 1GB database:
 
 image::https://live.staticflickr.com/65535/52622379586_f84c767111_o.png[ETSdiff percent comparison]
 

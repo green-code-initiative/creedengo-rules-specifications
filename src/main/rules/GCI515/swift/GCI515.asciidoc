@@ -3,7 +3,7 @@ Creation of an `AVAudioRecorder` object is used to record audio. These class has
 In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to properly stop and release these object if it is no longer needed may also lead to continuous battery consumption for mobile devices.
 
 
-== Noncompliant Code Example
+== Non compliant Code Example
 
 [source,swift]
 ----

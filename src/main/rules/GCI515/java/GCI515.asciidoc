@@ -2,15 +2,17 @@ Creation of a Media Recorder object with `new MediaRecorder()` is used to record
 
 In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to call this method immediately if a media object is no longer needed may also lead to continuous battery consumption for mobile devices.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 MediaRecorder mr = new MediaRecorder();
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 MediaRecorder mr = new MediaRecorder();
 mr.release();
-```
+----

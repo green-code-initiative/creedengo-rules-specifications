@@ -2,16 +2,16 @@
 
 Use collection indexer.
 
-## Why is this an issue ?
+== Why is this an issue ?
 
 Linq methods like `First()`, `Last()` and `ElementAt()` can be necessary on enumerable types that don't have an indexer.
 But for those that implement `IReadOnlyList<T>`, `IList<T>` or `IList`, direct index access is cheaper at runtime and should be used instead.
 
-### When can it be ignored ?
+=== When can it be ignored ?
 
 This rule shouldn't be ignored.
 
-## Non-compliant examples
+== Non compliant examples
 
 [source, cs]
 ----
@@ -23,7 +23,7 @@ public static void Test(int[] arr)
 }
 ----
 
-## Compliant examples
+== Compliant examples
 
 [source, cs]
 ----

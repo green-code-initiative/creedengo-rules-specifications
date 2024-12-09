@@ -6,10 +6,11 @@ Requesting higher accuracy than you need causes the system to power up additiona
 
 Also, setting the `CLLocationManager#activityType` property will let the system knows what type of location activity your app is performing and helps it determine the most appropriate time to perform location updates. Finally, if your app just needs a quick fix on the user’s location, it’s best to call the `CLLocationManager#requestLocation` method, that will deliver a single location update.
 
-## Compliant Code Example
+== Compliant Code Example
 
-```swift
+[source,swift]
+----
 let manager = CLLocationManager()
 manager.desiredAccuracy = 2
-```
+----
 

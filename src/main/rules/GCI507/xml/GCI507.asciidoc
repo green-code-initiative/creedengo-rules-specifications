@@ -8,10 +8,11 @@ If so, developers typically use a Power Manager system service feature called wa
 by invoking `PowerManager.WakeLock#newWakeLock(int levelAndFlags, String tag)`,
 along with the specific permission `WAKE_LOCK` in their manifest.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```xml
+[source,xml]
+----
 <manifest>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest>
-```
+----

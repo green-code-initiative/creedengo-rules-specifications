@@ -1,17 +1,19 @@
 Transmitting a file over a network infrastructure without compressing it consumes more energy than with compression. More precisely, energy efficiency is improved in case the data is compressed at least by 10%, transmitted and decompressed at the other network node. From the Android client side, it means making a post HTTP request using a `GZIPOutputStream` instead of the classical OutputStream, along with the `HttpURLConnection` object.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 Url url = new Url("https://www.creedengo.io/");
 HttpsUrlConnection con = (HttpsURLConnection) url.openConnection();
 OutputStream stream = con.getOutputStream();
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 Url url = new Url("https://www.creedengo.io/");
 HttpsUrlConnection con = (HttpsURLConnection) url.openConnection();
 OutputStream stream = new GZIPOutputStream(con.getOutputStream());
-```
+----

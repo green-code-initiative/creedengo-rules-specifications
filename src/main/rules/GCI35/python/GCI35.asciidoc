@@ -3,9 +3,10 @@ For the moment, this rule only deals with "file open" use case in try...catch bl
 
 When an exception is thrown, a variable (the exception itself) is created in a catch block, and it's destruction consumes unnecessary CPU cycles and RAM. Prefer using logical tests in this cases.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```python
+[source,python]
+----
 try:
     f = open(path)
     print(fh.read())
@@ -13,14 +14,15 @@ except:
     print('No such file '+path
 finally:
     f.close()
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```python
+[source,python]
+----
 if os.path.isfile(path):
   fh = open(path, 'r')
   print(fh.read())
   fh.close
-```
+----
 

@@ -4,14 +4,16 @@ Hence, the challenge here is to release the lock as soon as possible to avoid ru
 
 This can be avoided by a call to `PowerManager#acquire(long timeout)` instead of `PowerManager#acquire()`, because the lock will be released for sure after the given timeout expires.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 PowerManager.acquire()
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 PowerManager.acquire(long timeout)
-```
+----

@@ -4,26 +4,30 @@ Developers are allowed to apply native themes for their app, or derive new ones 
 
 By default, Android will set Holo to the Dark theme (parent style `Theme.Holo`) and hence switching to the light theme (parent style `Theme.Holo.Light`) within the manifest or in xml themes should be avoided.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```xml
+[source,xml]
+----
 <style name="Theme.MyTheme" parent="@android:style/Theme.Holo.Light"/>
-```
+----
 
 or
 
-```xml
+[source,xml]
+----
 <application android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light"/>
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```xml
+[source,xml]
+----
 <style name="Theme.MyTheme" parent="@android:style/Theme.Holo"/>
-```
+----
 
 or
 
-```xml
+[source,xml]
+----
 <application android:label="@string/app_name" android:theme="@android:style/Theme.Holo"/>
-```
+----

@@ -3,7 +3,7 @@ We can think of using a switch statement instead of multiple if-else if possible
 to reduce number of IF, ELSEIF and ELSE statements. Sometimes called "complexity cyclomatic".
 MATCH-CASE statement has a performance advantage over if – else.
 
-## Functional rules
+== Functional rules
 - one variable must be used maximum twice in IF / ELSEIF / ELSE statements at the same level - WARNINGs :
 - IF and ELSEIF statements use explicitly variable names !
 - ELSE statements use implicity variable names !
@@ -12,13 +12,14 @@ MATCH-CASE statement has a performance advantage over if – else.
 - use a MATCH-CASE statement instead
 - or refactor the code if possible
 
-## Non-compliant Code Example
+== Non compliant Code Example
 
 Non-compliant, because `nb` is used 4 times :
 - 2 explicit times in IF statements
 - 2 implicit times in ELSE statements
 
-```python
+[source,python]
+----
 index = 1
 nb = 2
 ...
@@ -31,13 +32,14 @@ elif nb == 2:
 else:
     nb = -1
 return nb
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
 MATCH-CASE statement solution + refactor solution
 
-```python
+[source,python]
+----
 index = 1
 nb = 2
 ...
@@ -51,4 +53,4 @@ match nb:
     case _:
         nb = -1
 return nb
-```
+----

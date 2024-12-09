@@ -4,20 +4,23 @@ For example, you can reduce frequency of data update if low power mode is enable
 
 Your app can query the `ProcessInfo.processInfo.isLowPowerModeEnabled` property at any time to determine whether Low Power Mode is active. Your app can also register to receive notifications when the Low Power Mode state of a device changes, using `NSProcessInfoPowerStateDidChange`.
 
-## Compliant Code Example
+== Compliant Code Example
 
-```swift
+[source,swift]
+----
 let isLowPowerModeEnabled = ProcessInfo.processInfo.isLowPowerModeEnabled
-```
+----
 
 or
 
-```swift
+[source,swift]
+----
 NotificationCenter.default.addObserver(forName: .NSProcessInfoPowerStateDidChange, object: nil, queue: nil) { _ in }
-```
+----
 
 or
 
-```swift
+[source,swift]
+----
 NotificationCenter.default.addObserver(forName: Notification.Name.NSProcessInfoPowerStateDidChange, object: nil, queue: nil) { _ in }
-```
+----

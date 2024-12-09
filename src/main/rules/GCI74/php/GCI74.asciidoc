@@ -1,28 +1,30 @@
 Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```php
+[source,php]
+----
 public function foo() {
     ...
     $baseQuery = "SELECT * FROM users"; // Noncompliant
     ...
 }
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```php
+[source,php]
+----
 public function foo() {
     ...
     $baseQuery = "SELECT id,name, address FROM users ";
     ...
 }
-```
+----
 
 include::../../etsdiff-methodology.asciidoc[]
 
-## Case for a 1GB database:
+== Case for a 1GB database:
 
 image::https://live.staticflickr.com/65535/52622636584_52938fcf7e_o.png[ETSdiff percent comparison]
 

@@ -2,20 +2,22 @@ With a call to `LocationManager#requestLocationUpdates(String provider, long min
 
 These two must imperatively be greater than 0.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
     0,
     0,
     this);
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
     60000L,  // refresh location at least each 60000ms
     10.0f,   // refresh location at least each 10 meters
     this);
-```
+----

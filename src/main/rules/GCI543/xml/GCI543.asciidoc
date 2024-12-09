@@ -2,10 +2,11 @@ Score creedengo: 2sur5
 
 A negative effect on the device s battery is when an app is paired with a companion device (over Bluetooth, BLE, or Wi-Fi) and that it has been excluded from battery optimizations (run in the background) using the declaration `Manifest.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND`.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```xml
+[source,xml]
+----
 <manifest>
    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND">
 </manifest>
-```
+----

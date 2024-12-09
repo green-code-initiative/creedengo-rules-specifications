@@ -2,15 +2,15 @@
 
 Use Where before OrderBy.
 
-## Why is this an issue ?
+== Why is this an issue ?
 
 When `Orderby` is called right before `Where`, LINQ sorts all the elements before filtering them. Doing the opposite is more efficient, first filter the items then sort the remaining ones only.
 
-### When can it be ignored ?
+=== When can it be ignored ?
 
 This rule shouldn't be ignored.
 
-## Non-compliant examples
+== Non compliant examples
 
 [source, cs]
 ----
@@ -55,7 +55,7 @@ public static async Task Test()
 }
 ----
 
-## Compliant examples
+== Compliant examples
 
 [source, cs]
 ----

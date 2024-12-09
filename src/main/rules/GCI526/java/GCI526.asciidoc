@@ -4,16 +4,18 @@ Most often, the slave is a GATT server and the master is a GATT client. GATT cap
 
 Invoking `BluetoothGatt#requestConnectionPriority(int connectionPriority)` with the value `CONNECTION_PRIORITY_LOW_POWER`, is recommended to reduce power consumption.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 BluetoothGatt gatt = new BluetoothGatt();
 gatt.requestConnectionPriority(CONNECTION_PRIORITY_HIGH);
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 BluetoothGatt gatt = new BluetoothGatt();
 gatt.requestConnectionPriority(CONNECTION_PRIORITY_LOW_POWER);
-```
+----

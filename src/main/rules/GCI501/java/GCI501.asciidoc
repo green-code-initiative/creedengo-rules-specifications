@@ -4,9 +4,10 @@ Compared to a custom Sync Adapter or the alarm manager, the Job Scheduler suppor
 
 The Android system can combine jobs so that battery consumption is reduced.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 void setAlarm(Context context) {
     AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
     Intent intent = new Intent(context, Alarm.class);
@@ -16,11 +17,12 @@ void setAlarm(Context context) {
 
 Alarm alarm = new Alarm();
 alarm.setAlarm(this);
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 JobInfo info = new JobInfo.Builder(123, COMPONENT_NAME)
                           .setRequiresCharging(true)
                           .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
@@ -29,4 +31,4 @@ JobInfo info = new JobInfo.Builder(123, COMPONENT_NAME)
                           .build();
 JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
 scheduler.schedule(info);
-```
+----

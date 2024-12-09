@@ -2,17 +2,17 @@
 
 Don't execute SQL queries in loops.
 
-## Why is this an issue ?
+== Why is this an issue ?
 
 Executing SQL queries in loops induces unnecessary calculation by the CPU, RAM usage and network transfer.
 This can potentially lead to severe performance issues, especially when the loop is executed a large number of times.
 Instead, consider using a single bulk query to massify the call.
 
-### When can it be ignored ?
+=== When can it be ignored ?
 
 This warning shouldn't be ignored.
 
-## Non-compliant example
+== Non compliant example
 
 [source, cs]
 ----
@@ -29,7 +29,7 @@ for (int i = 0; i < 20; i++) {
 }
 ----
 
-## Compliant example
+== Compliant example
 
 [source, cs]
 ----

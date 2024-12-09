@@ -2,14 +2,16 @@ The fused location provider is one of the location APIs in Google Play services 
 
 Thus, developer has to set up Google Play Service in her gradle file with a dependency to `com.google.android.gms:play-services-location:x.y.z`, and then to import from `com.google.android.gms.location` instead of the `android.location` package of the SDK.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 import android.location.*;
-```
+----
 
-## Compliant Solution
+== Compliant Solution
 
-```java
+[source,java]
+----
 import com.google.android.gms.location.*;
-```
+----

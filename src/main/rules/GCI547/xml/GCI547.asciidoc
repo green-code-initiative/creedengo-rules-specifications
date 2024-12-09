@@ -4,13 +4,14 @@ Displaying dark colors is particularly beneficial for mobile devices with (AM)OL
 
 Consequently, custom resources like bright colors values and bitmap images with too high luminance should be avoided.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```xml
+[source,xml]
+----
 <TextView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="#FFFFFF"
     android:foregroundTint="#FFFFFF">
 </TextView>
-```
+----

@@ -8,12 +8,13 @@ In addition, end-users know how to kill applications, but more rarely how to kil
 
 Thus, any developer should avoid having a call to `Context#startService()` from a Broadcast Receiver component that has specified an intent-filter for the `BOOT_COMPLETED` action in the manifest.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```xml
+[source,xml]
+----
 <receiver>
     <intent-filter>
         <action android:name= "android.intent.action.BOOT_COMPLETED"/>
     </intent-filter>
 </receiver>
-```
+----

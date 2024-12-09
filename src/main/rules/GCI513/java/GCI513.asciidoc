@@ -7,17 +7,19 @@ The common point of all these sensors is that they are expensive while in use. T
 
     Failing to do so can drain the battery in just a few hours.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 1.0f, this);
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 1.0f, this);
 locationManager.removeUpdates(this);
-```
+----

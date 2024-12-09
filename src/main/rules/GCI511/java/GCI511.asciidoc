@@ -2,22 +2,25 @@ During a voice interaction session, `VoiceInteractionSession#setKeepAwake(boolea
 
 By default, the system holds a wake lock for it while in this state, so that it can work even if the screen is off. Setting this to `false` removes that wake lock, allowing the CPU to go to sleep and hence does not let this continue to drain the battery.
 
-## Noncompliant Code Example
+== Non compliant Code Example
 
-```java
+[source,java]
+----
 VoiceInteractionSession voiceSession = new VoiceInteractionSession(this);
-```
+----
 
 or
 
-```java
+[source,java]
+----
 VoiceInteractionSession voiceSession = new VoiceInteractionSession(this);
 voiceSession.setKeepAwake(true);
-```
+----
 
-## Compliant Code Example
+== Compliant Code Example
 
-```java
+[source,java]
+----
 VoiceInteractionSession voiceSession = new VoiceInteractionSession(this);
 voiceSession.setKeepAwake(false);
-```
+----
