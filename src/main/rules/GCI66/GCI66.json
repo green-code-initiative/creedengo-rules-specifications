@@ -1,5 +1,5 @@
 {
-  "title": "Avoid using double quote (\"), prefer using simple quote (')",
+  "title": "Double quotes (\") should be used instead of using simple quotes (')",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,9 +8,15 @@
   },
   "tags": [
     "bad-practice",
-    "eco-design",
+    "sustainability",
     "performance",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

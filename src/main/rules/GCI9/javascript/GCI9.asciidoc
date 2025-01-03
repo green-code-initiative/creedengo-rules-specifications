@@ -9,6 +9,10 @@ This is especially critical in environments with limited resources, such as on m
 Smaller programs generally have better runtime performance.
 Reducing the number of unnecessary modules minimizes the amount of code that needs to be interpreted or compiled, leading to faster execution and improved overall performance.
 
+
+== How to fix it
+=== Noncompliant code example
+
 *Example with the well-known https://lodash.com/[lodash] library, if you only need
 `isEmpty` method.*
 
@@ -33,13 +37,15 @@ a|index.js - 24.42 KB
 [source,js,data-diff-id="2",data-diff-type="noncompliant"]
 ----
 // Example with lodash
-import lodash from "lodash"; // Non-compliant
-import { isEmpty } from "lodash"; // Non-compliant
-import * as lodash from "lodash"; // Non-compliant
+import lodash from "lodash"; // Noncompliant
+import { isEmpty } from "lodash"; // Noncompliant
+import * as lodash from "lodash"; // Noncompliant
 
 // Example with underscore
-import _ from "underscore"; // Non-compliant
+import _ from "underscore"; // Noncompliant
 ----
+
+=== Compliant solution
 
 [source,js,data-diff-id="2",data-diff-type="compliant"]
 ----

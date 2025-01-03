@@ -1,9 +1,9 @@
 {
-  "title": "Prefer API collections with pagination.",
+  "title": "API collections should be preferred with pagination",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "MEDIUM"
+      "RELIABILITY": "MEDIUM"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "nestjs",
     "performance"
   ],

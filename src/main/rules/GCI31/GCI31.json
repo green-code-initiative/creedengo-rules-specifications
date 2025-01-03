@@ -1,9 +1,9 @@
 {
-  "title": "Prefer lighter formats for image files",
+  "title": "Lighter formats should be used for image files",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "LOW"
+      "RELIABILITY": "LOW"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "performance",
     "image"
   ],

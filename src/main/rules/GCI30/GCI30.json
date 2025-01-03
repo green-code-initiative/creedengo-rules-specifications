@@ -1,9 +1,9 @@
 {
-  "title": "Provide a print stylesheet",
+  "title": "Print stylesheet should be provided",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "LOW"
+      "RELIABILITY": "LOW"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "jsx",
     "performance",
     "react"

@@ -1,9 +1,9 @@
 {
-  "title": "Should not import all from library",
+  "title": "Importing everything from library should be avoided",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "MEDIUM"
+      "RELIABILITY": "MEDIUM"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "performance"
   ],
   "defaultSeverity": "Major",

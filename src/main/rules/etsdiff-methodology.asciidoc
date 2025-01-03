@@ -1,4 +1,4 @@
-== The three sources of impacts of a code identified are:
+The three sources of impacts of a code identified are:
 
 - Energy: measured in joules (J)
 - Transfer: measured in Bytes (B)

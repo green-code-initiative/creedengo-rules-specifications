@@ -1,13 +1,17 @@
-Score creedengo: 2sur5
+:!sectids:
+
+== Why is this an issue?
 
 Displaying dark colors is particularly beneficial for mobile devices with (AM)OLED screens.
 
 Consequently, custom resources like bright colors values and bitmap images with too high luminance should be avoided.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,xml]
 ----
+<!-- Noncompliant -->
 <TextView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,3 +19,13 @@ Consequently, custom resources like bright colors values and bitmap images with 
     android:foregroundTint="#FFFFFF">
 </TextView>
 ----
+
+=== Compliant solution
+
+Use darker colors.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

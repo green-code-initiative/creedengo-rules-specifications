@@ -1,40 +1,36 @@
 :!sectids:
 
-Make type sealed.
-
-== Why is this an issue ?
-
-A non-sealed type prevents the JIT compiler from applying strong optimizations such as devirtualization and inlining. If that type is intended to be inheritable then this is expected ; however if it doesn't, then it should be sealed explictly to bring the benefits from those optimizations.
-
-For a more in-depth explanation, see https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/#analyzers
-
-=== How does the analyzer identify sealable classes ?
-
-The analyzer will consider a type for sealing when the following conditions are met :
+The analyzer will consider a type for sealing when the following conditions are met:
 
 * The type is not static, abstract, sealed or special (ie. implicit, script, auto-generated, etc)
 * The type is currently not inherited from in the solution
 * The type is not public, or it is public and has no overridable member (except for the default ones like GetHashcode, Equals, etc)
 
-=== When can it be ignored ?
+== Why is this an issue?
+
+A non-sealed type prevents the JIT compiler from applying strong optimizations such as devirtualization and inlining. If that type is intended to be inheritable then this is expected ; however if it doesn't, then it should be sealed explictly to bring the benefits from those optimizations.
+
+=== When can it be ignored?
 
 This rule can be ignored if you want a public type with no overridable member to still be inheritable from other assemblies.
 
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
-public class Class1 // Non-compliant if not inherited from, make type sealed
+// Noncompliant
+public class Class1 // Noncompliant if not inherited from, make type sealed
 {
     public void Method();
 }
 
-public class Class2 // Non-compliant if not inherited from, make type sealed
+public class Class2 // Noncompliant if not inherited from, make type sealed
 {
     public sealed void Method();
 }
 
-internal class Class3 // Non-compliant if not inherited from because the type is not public, even with a virtual method
+internal class Class3 // Noncompliant if not inherited from because the type is not public, even with a virtual method
 {
     public virtual void Method();
 }
@@ -44,7 +40,7 @@ public class Class4 // Compliant even if not inherited from, the virtual method 
     public virtual void Method();
 }
 
-public class Class5 : Class4 // Non-compliant if not inherited from, make type sealed
+public class Class5 : Class4 // Noncompliant if not inherited from, make type sealed
 {
     public sealed override void Method();
 }
@@ -55,7 +51,7 @@ public class Class6 : Class4 // Compliant, Method() is still overridable
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -89,3 +85,7 @@ public class Class6 : Class4
     public override void Method();
 }
 ----
+
+== Resources
+
+For a more in-depth explanation, see https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/#analyzers

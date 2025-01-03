@@ -1,5 +1,5 @@
 {
-  "title": "Use generator comprehension instead of list comprehension in for loop declaration",
+  "title": "Generators should be used instead of list comprehensions in for loops",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,8 +8,14 @@
   },
   "tags": [
     "performance",
-    "eco-design",
+    "sustainability",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

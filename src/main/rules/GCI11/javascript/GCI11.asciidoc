@@ -10,13 +10,18 @@ Assigning the DOM object to a variable not only improves performance but also en
 It makes the code more concise and self-explanatory.
 Developers reading the code can understand that the variable holds a reference to a specific DOM element, and its subsequent use is likely for multiple operations.
 
+== How to fix it
+=== Noncompliant code example
+
 Here's an example in JavaScript to illustrate this rule:
 
 [source,js,data-diff-id="2",data-diff-type="noncompliant"]
 ----
 const width = document.getElementById('block').clientWidth;
-const height = document.getElementById('block').clientHeight; // Non-compliant
+const height = document.getElementById('block').clientHeight; // Noncompliant
 ----
+
+=== Compliant solution
 
 [source,js,data-diff-id="1",data-diff-type="noncompliant"]
 ----
@@ -32,5 +37,5 @@ In the second example, the DOM element reference is cached in the `blockElement`
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_054_en.md[CNUMR best practices] - Reduce DOM access via JavaScript
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_054_en.md[CNumR best practices] - Reduce DOM access via JavaScript
 - https://developer.mozilla.org/en-US/docs/Learn/Performance/JavaScript#tips_for_writing_more_efficient_code[Mozilla Web Technology for Developers] - Tips for writing more efficient code

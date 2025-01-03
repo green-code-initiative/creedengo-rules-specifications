@@ -1,10 +1,11 @@
 {
+  "title": "High accuracy geolocation should be avoided",
   "tags": [
     "sobriety",
-    "environment",
     "creedengo",
-    "react-native",
-    "eco-design"
+    "sustainability",
+    "performance",
+    "react-native"
   ],
   "compatibleLanguages": [
     "JAVASCRIPT",

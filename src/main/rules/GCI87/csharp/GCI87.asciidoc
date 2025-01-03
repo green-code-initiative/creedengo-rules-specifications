@@ -1,29 +1,24 @@
 :!sectids:
 
-Use collection indexer.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Linq methods like `First()`, `Last()` and `ElementAt()` can be necessary on enumerable types that don't have an indexer.
 But for those that implement `IReadOnlyList<T>`, `IList<T>` or `IList`, direct index access is cheaper at runtime and should be used instead.
 
-=== When can it be ignored ?
-
-This rule shouldn't be ignored.
-
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
 public static void Test(int[] arr)
 {
-    int first = arr.First(); // Non-compliant, use arr[0]
-    int last = arr.Last(); // Non-compliant, use arr[^1], or arr[arr.Length - 1] if C# < 8
-    int third = arr.ElementAt(2); // Non-compliant, use arr[2]
+    int first = arr.First(); // Noncompliant, use arr[0]
+    int last = arr.Last(); // Noncompliant, use arr[^1], or arr[arr.Length - 1] if C# < 8
+    int third = arr.ElementAt(2); // Noncompliant, use arr[2]
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -34,3 +29,7 @@ public static void Test(List<int> list)
     int third = list[2];
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

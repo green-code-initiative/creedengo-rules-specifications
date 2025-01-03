@@ -1,5 +1,5 @@
 {
-  "title": "Power: Ignore Battery Optimizations",
+  "title": "Battery optimizations should not be ignored",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,10 +8,16 @@
   },
   "tags": [
     "power",
-    "environment",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

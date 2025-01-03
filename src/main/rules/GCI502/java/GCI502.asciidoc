@@ -1,12 +1,26 @@
+:!sectids:
+
+== Why is this an issue?
+
 Opening and closing internet connection continuously is extremely battery-inefficient since HTTP exchange is the most consuming operation of the network. This bug typically occurs when one obtain a new `HttpURLConnection` by calling `URL#openConnection()`  within a loop control structure (while, for, do-while, for-each).
 
 Also, this bad practice must be early prevented because it is the root of another evil that consists in polling data at regular intervals, instead of using push notifications to save a lot of battery power.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 for (int val : myArray) {
     URL.openConnection();
 }
 ----
+
+=== Compliant solution
+
+Do not open connections continuously.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

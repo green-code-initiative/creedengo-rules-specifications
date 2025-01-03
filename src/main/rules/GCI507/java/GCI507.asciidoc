@@ -1,11 +1,25 @@
+:!sectids:
+
+== Why is this an issue?
+
 To avoid draining the battery, an Android device that is left idle quickly falls asleep. Hence, keeping the CPU on should be avoided, unless it is absolutely necessary.
 
-If so, developers typically use a Power Manager system service feature called wake locks by invoking `PowerManager.WakeLock#newWakeLock(int levelAndFlags, String tag)`, along with the specific permission `WAKE_LOCK` in their manifest.
+The bad practise includes using a Power Manager system service feature called wake locks by invoking `PowerManager.WakeLock#newWakeLock(int levelAndFlags, String tag)`, along with the specific permission `WAKE_LOCK` in their manifest.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 WakeLock manager = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TAG");
 ----
+
+=== Compliant solution
+
+Do not use wake lock.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

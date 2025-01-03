@@ -11,14 +11,19 @@ Pagination ensures that only the relevant data is transferred, conserving bandwi
 
 This rule is built for the https://nestjs.com[NestJS framework] but can work with a controller `@Controller()` and a decorated method `@Get()`.
 
+== How to fix it
+=== Noncompliant code example
+
 [source,typescript,data-diff-id="4",data-diff-type="noncompliant"]
 ----
 @Controller()
 class Test {
   @Get()
-  public find(): Promise<string[]> {} // Non-compliant
+  public find(): Promise<string[]> {} // Noncompliant
 }
 ----
+
+=== Compliant solution
 
 [source,typescript,data-diff-id="10",data-diff-type="compliant"]
 ----
@@ -39,7 +44,7 @@ class Test {
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_076_en.md[CNUMR best practices] - Avoid transferring large amounts of data for processing tasks
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_076_en.md[CNumR best practices] - Avoid transferring large amounts of data for processing tasks
 - https://github.com/ppetzold/nestjs-paginate[nestjs-paginate] - Pagination and filtering helper method using Nest.js framework
 
 === Articles & blog posts

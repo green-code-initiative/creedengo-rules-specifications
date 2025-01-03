@@ -1,9 +1,9 @@
 {
-  "title": "Avoid usage of CSS animations",
+  "title": "CSS animations should be avoided",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "MEDIUM"
+      "RELIABILITY": "MEDIUM"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "jsx",
     "performance",
     "react"

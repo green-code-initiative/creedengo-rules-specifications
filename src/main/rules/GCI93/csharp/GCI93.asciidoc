@@ -1,31 +1,30 @@
 :!sectids:
 
-Return Task directly.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Asynchronous methods that contain a single awaited statement can be optimized by removing the `async` modifier and returning the awaited `Task` directly. Doing so reduces the overhead of the state machine generated for the asynchronous method, leading to more efficient code and improving the resource efficiency of the application.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 When this rule is applied, exception handling is deferred to the main caller instead, which may or may not be desirable. The decision should be done with consideration to the context in which the method is used.
 
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
 public static async Task Test1()
 {
-	await Task.Delay(1000); // Non-compliant, return the Task directly.
+	await Task.Delay(1000); // Noncompliant, return the Task directly.
 }
 
 public static async Task Test2()
 {
-	await MyAsyncMethod(); // Non-compliant, exceptions within MyAsyncMethod are handled by the method itself.
+	await MyAsyncMethod(); // Noncompliant, exceptions within MyAsyncMethod are handled by the method itself.
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -39,3 +38,7 @@ public static Task Test2()
 	return MyAsyncMethod(); // Compliant, exceptions within MyAsyncMethod are handled by the caller of Test2.
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

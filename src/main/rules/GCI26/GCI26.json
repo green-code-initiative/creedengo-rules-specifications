@@ -1,9 +1,9 @@
 {
-  "title": "Prefer shorthand CSS notations to reduce stylesheets size",
+  "title": "Shorthand CSS notations should be used to reduce stylesheets size",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "LOW"
+      "RELIABILITY": "LOW"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "jsx",
     "performance",
     "react"

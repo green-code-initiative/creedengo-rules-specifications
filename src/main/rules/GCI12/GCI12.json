@@ -1,12 +1,6 @@
 {
-  "title": "Disallow multiple style changes at once.",
+  "title": "Multiple style changes should be batched",
   "type": "CODE_SMELL",
-  "code": {
-    "impacts": {
-      "MAINTAINABILITY": "MEDIUM"
-    },
-    "attribute": "EFFICIENT"
-  },
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
@@ -14,10 +8,16 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "performance"
   ],
   "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  },
   "compatibleLanguages": [
     "JAVASCRIPT",
     "TYPESCRIPT"

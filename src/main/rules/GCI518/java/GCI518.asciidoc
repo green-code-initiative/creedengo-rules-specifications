@@ -1,17 +1,27 @@
+:!sectids:
+
+== Why is this an issue?
+
 In contrast to classic Bluetooth, Bluetooth Low Energy (BLE) is designed to provide significantly lower power consumption. Its purpose is to save energy on both paired devices but very few developers are aware of this alternative API.
 
 From the Android client side, it means append `android.bluetooth.le.\*` imports to `android.bluetooth.*` imports in order to benefits from low-energy features.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 import android.bluetooth.*
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
 import android.bluetooth.le.*
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

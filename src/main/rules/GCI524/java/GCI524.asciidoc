@@ -1,18 +1,24 @@
+:!sectids:
+
+== Why is this an issue?
+
 Location awareness is one of the most popular features used by apps.
 
 An important point is to try to get the best possible provider (`LocationManager#getBestProvider()`) based on an energy criteria thanks to `Criteria#setPowerRequirement(int level)`, using constant `POWER_LOW` instead of `POWER_HIGH` or `POWER_MEDIUM`.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
     1000L,
     1.0f,
     this);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
@@ -23,3 +29,7 @@ locationManager.requestLocationUpdates(locationManager.getBestProvider(criteria,
     1.0f,
     this);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices]

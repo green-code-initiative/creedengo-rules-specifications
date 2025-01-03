@@ -1,5 +1,5 @@
 {
-  "title": "Avoid suspect unlimited cache size",
+  "title": "Unlimited cache size should not be used",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,11 +7,17 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "performance",
     "network",
     "cache",
     "creedengo"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

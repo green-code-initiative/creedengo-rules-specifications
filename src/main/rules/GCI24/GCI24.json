@@ -1,9 +1,9 @@
 {
-  "title": "Limit the number of returns for a SQL query",
+  "title": "Returned SQL results should be limited",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {
-      "MAINTAINABILITY": "MEDIUM"
+      "RELIABILITY": "MEDIUM"
     },
     "attribute": "EFFICIENT"
   },
@@ -14,7 +14,7 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "performance",
     "sql"
   ],

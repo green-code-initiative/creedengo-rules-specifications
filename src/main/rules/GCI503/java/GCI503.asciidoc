@@ -1,17 +1,23 @@
+:!sectids:
+
+== Why is this an issue?
+
 Normally the Wi-Fi stack filters out packets not explicitly addressed to the device. Acquiring a Multicast Lock with `WifiManager.MulticastLock.acquire()` will cause the stack to receive packets addressed to multicast addresses.
 
 Processing these extra packets can cause a noticeable battery drain and must be disabled when not needed with to a call to `WifiManager.MulticastLock.release()`.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 WifiManager.MulticastLock lock = wifiManager.createMulticastLock("tag");
 lock.acquire();
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
@@ -20,3 +26,7 @@ WifiManager.MulticastLock lock = wifiManager.createMulticastLock("tag");
 lock.acquire();
 lock.release()
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
