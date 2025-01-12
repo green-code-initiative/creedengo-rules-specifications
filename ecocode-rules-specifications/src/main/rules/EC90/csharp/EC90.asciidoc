@@ -1,0 +1,27 @@
+:!sectids:
+
+Use Cast instead of Select to cast.
+
+## Why is this an issue ?
+
+Using the 'Select' method for casting operations can lead to performance issues. The 'Cast' method is more efficient and should be used instead.
+
+### When can it be ignored ?
+
+This warning should not be ignored as it can lead to performance degradation.
+
+## Non-compliant example
+
+[source, cs]
+----
+System.Linq.Enumerable<string> strings = GetStrings();
+var stringsAsObjects = strings.Select(str => (object)str); // Noncompliant
+----
+
+## Compliant example
+
+[source, cs]
+----
+System.Linq.Enumerable<string> strings = GetStrings();
+var stringsAsObjects = strings.Cast<object>(str); // Compliant
+----
