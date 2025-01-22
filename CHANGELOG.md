@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - GCI90 C#: Use `Cast` instead of `Select` to cast.
+- [#370](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/370) Add new JS rule GCI36 - Avoid autoplay for videos and audio content
 
 ### Changed
 
@@ -310,7 +311,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [#40](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/40) Refactoring of package names (`cnumr` to  `greencodeinitiative`)
+- [#40](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/40) Refactoring of package names (`cnumr` to `greencodeinitiative`)
 - [#55](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/55) rename `eco-conception` tag of rules to `eco-design`
 - [#58](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/58) check and upgrade compatibility to SonarQube 9.9
 - move common init scripts to `ecoCode-common` repository
