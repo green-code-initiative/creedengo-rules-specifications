@@ -37,5 +37,5 @@ In the second example, the DOM element reference is cached in the `blockElement`
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_054_en.md[CNumR best practices] - Reduce DOM access via JavaScript
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_054_en.md[CnumR best practices] - Reduce DOM access via JavaScript
 - https://developer.mozilla.org/en-US/docs/Learn/Performance/JavaScript#tips_for_writing_more_efficient_code[Mozilla Web Technology for Developers] - Tips for writing more efficient code

@@ -1,5 +1,5 @@
 {
-  "title": "Image with empty source attribute should not be used",
+  "title": "Images should not have an empty source attribute",
   "type": "CODE_SMELL",
   "code": {
     "impacts": {

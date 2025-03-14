@@ -245,7 +245,7 @@ class RulesTest {
             RuleDescriptionSectionKeys.RESOURCES_SECTION_KEY),
         // Using set since "how to fix" sections might be repeated
         new LinkedHashSet<String>(sections),
-        ruleKey + " should have standard description sections");
+        ruleKey + " should have standard description sections but got " + sections);
     String howToFix =
         ruleDescriptionSections.stream()
             .filter(s -> RuleDescriptionSectionKeys.HOW_TO_FIX_SECTION_KEY.equals(s.getKey()))

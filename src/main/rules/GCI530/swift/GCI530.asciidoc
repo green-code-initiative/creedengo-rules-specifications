@@ -15,7 +15,7 @@ guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .v
 guard videoDevice.hasTorch else { return }
 
 videoDevice.lockForConfiguration()
-videoDevice.torchMode = .on // non-compliant
+videoDevice.torchMode = .on // Noncompliant
 videoDevice.setTorchModeOn(level: 1.0) // Noncompliant
 videoDevice.unlockForConfiguration()
 ----

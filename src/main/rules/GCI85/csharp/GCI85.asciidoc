@@ -10,16 +10,11 @@ The analyzer will consider a type for sealing when the following conditions are 
 
 A non-sealed type prevents the JIT compiler from applying strong optimizations such as devirtualization and inlining. If that type is intended to be inheritable then this is expected ; however if it doesn't, then it should be sealed explictly to bring the benefits from those optimizations.
 
-=== When can it be ignored?
-
-This rule can be ignored if you want a public type with no overridable member to still be inheritable from other assemblies.
-
 == How to fix it
 === Noncompliant code example
 
 [source, cs]
 ----
-// Noncompliant
 public class Class1 // Noncompliant if not inherited from, make type sealed
 {
     public void Method();
@@ -85,6 +80,10 @@ public class Class6 : Class4
     public override void Method();
 }
 ----
+
+=== Exceptions
+
+This rule can be ignored if you want a public type with no overridable member to still be inheritable from other assemblies.
 
 == Resources
 

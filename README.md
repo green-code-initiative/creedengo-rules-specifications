@@ -72,15 +72,15 @@ Here is an example:
 
 ```text
 src/main/rules
-├── EC104
+├── GCI104
 │   ├── java
-│   │   ├── EC104.asciidoc
-│   │   ├── EC104.json
+│   │   ├── GCI104.asciidoc
+│   │   ├── GCI104.json
 │   ├── php
-│   │   ├── EC104.asciidoc
+│   │   ├── GCI104.asciidoc
 │   ├── python
-│   │   ├── EC104.asciidoc
-│   └── EC104.json
+│   │   ├── GCI104.asciidoc
+│   └── GCI104.json
 ├── ...
 ```
 
@@ -136,7 +136,7 @@ Thus, plugin versions are available on 2 repositories depending on version you w
 - Android plugin : [creedengo-android repository](https://github.com/green-code-initiative/creedengo-android/releases)
 - iOS plugin : [creedengo-ios repository](https://github.com/green-code-initiative/creedengo-ios/releases)
 
-🧩 Plugins version compatibility
+🧩 Plugins version compatibility (OLD `ecocode` plugin)
 ------------------
 
 | Plugins Version  | SonarQube version           |
@@ -149,7 +149,7 @@ Thus, plugin versions are available on 2 repositories depending on version you w
 | 0.2.+            | SonarQube 9.4.+ LTS to 9.9  |
 | 0.1.+            | SonarQube 8.9.+ LTS to 9.3  |
 
-☕ Plugin Java part compatibility
+☕ Plugin Java part compatibility (OLD `ecocode` plugin)
 ------------------
 
 | Plugins Version  | Java version |

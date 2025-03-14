@@ -25,6 +25,7 @@ Limiting the usage of CSS animations helps in creating a more energy-efficient a
 
 It's important to note that while limiting animations is generally advisable for certain scenarios, there are cases where animations contribute positively to the user experience and overall design.
 In this case they should be limited to the CSS properties `opacity` and `transform` with it's associated functions: `translate`, `rotate` and `scale`.
+In this case they should be limited to the CSS properties `opacity` and `transform` with it's associated functions: `translate`, `rotate` and `scale`.
 You can also inform the navigator of upcoming changes with the `will-change` instruction for more optimization.
 
 == Resources

@@ -11,7 +11,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Correction of various typos in rules documentations
+
 ### Deleted
+
+## [2.2.2] - 2025-03-13
+
+### Added
+
+- [#333](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/333) Add JS variant of rule GCI505 - Idleness: Keep Screen On (addFlags)
+
+### Changed
+
+- [#320](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/320) Doc improvement : some method calls are legitimate in a for loop expression.
+
+## [2.2.1] - 2025-01-27
+
+### Changed
+
+- Move JavaScript rule GCI36 to appropriate folder
+
+## [2.2.0] - 2025-01-26
+
+### Added
+
+- GCI90 C#: Use `Cast` instead of `Select` to cast.
+- [#361](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/361) correction of GCI72 Java rule example
+- [#370](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/370) Add new JS rule GCI36 - Avoid autoplay for videos and audio content
 
 ## [2.1.0] - 2025-01-03
 
@@ -308,7 +334,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [#40](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/40) Refactoring of package names (`cnumr` to  `greencodeinitiative`)
+- [#40](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/40) Refactoring of package names (`cnumr` to `greencodeinitiative`)
 - [#55](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/55) rename `eco-conception` tag of rules to `eco-design`
 - [#58](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/58) check and upgrade compatibility to SonarQube 9.9
 - move common init scripts to `ecoCode-common` repository
@@ -377,7 +403,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.1.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.1...HEAD)
+[2.2.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.0...2.2.1)
+[2.2.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.1.0...2.2.0)
 [2.1.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.0.0...2.1.0)
 [2.0.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/1.6.5...2.0.0)
 [1.6.5](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/1.6.4...1.6.5)

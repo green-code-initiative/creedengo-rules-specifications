@@ -1,0 +1,30 @@
+:!sectids:
+
+== Why is this an issue?
+
+Cast is more efficient than Select for casting operations, its usage leads to better performance.
+
+== How to fix it
+=== Noncompliant code example
+
+[source, cs]
+----
+void Test(IEnumerable<string> items)
+{
+    var asObjects = items.Select(x => (object)x); // Noncompliant
+}
+----
+
+=== Compliant solution
+
+[source, cs]
+----
+void Test(IEnumerable<string> items)
+{
+    var asObjects = items.Cast<object>();
+}
+----
+
+== Resources
+
+Reference/Validation is unknown.

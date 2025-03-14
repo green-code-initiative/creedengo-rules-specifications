@@ -1,0 +1,36 @@
+:!sectids:
+
+== Why is this an issue?
+
+To avoid draining the battery, an Android device that is left idle quickly falls asleep.
+Hence, keeping the screen on should be avoided, unless it is absolutely necessary.
+
+== How to fix it
+
+=== Noncompliant code example
+
+```js
+export default function KeepAwakeExample() {
+  useKeepAwake(); // Non compliant
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>This screen will never sleep!</Text>
+    </View>
+  );
+}
+```
+
+```js
+_activate = () => {
+    activateKeepAwake(); // Noncompliant
+    alert('Activated!');
+  };
+```
+
+=== Compliant solution
+
+Do not activate the keep awake feature.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
