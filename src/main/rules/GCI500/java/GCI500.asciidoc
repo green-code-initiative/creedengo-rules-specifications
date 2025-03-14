@@ -1,13 +1,19 @@
+:!sectids:
+
+== Why is this an issue?
+
 With `SensorManager#registerListener(SensorEventListener, Sensor, int)` the events are delivered as soon as possible.
 
 Instead, `SensorManager#registerListener(SensorEventListener, Sensor, int, int maxReportLatencyUs)` allows events to stay temporarily in the hardware FIFO (queue) before being delivered. The events can be stored in the hardware FIFO up to `maxReportLatencyUs` microseconds.
 
 Once one of the events in the FIFO needs to be reported, all the events in the FIFO are reported sequentially. Setting `maxReportLatencyUs` to a positive value allows to reduce the number of interrupts the AP (Application Processor) receives, hence reducing power consumption, as the AP can switch to a lower power state while the sensor is capturing the data.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 SensorEventListener sensorEventListener;
 SensorManager sensorManager;
 Sensor sensor;
@@ -15,7 +21,7 @@ Sensor sensor;
 sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
@@ -25,3 +31,7 @@ Sensor sensor;
 
 sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL, 200000);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

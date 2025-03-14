@@ -1,14 +1,28 @@
-Score creedengo: 2sur5
+:!sectids:
+
+== Why is this an issue?
 
 An app holding the permission `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` asks the user to allow it to ignore battery optimizations (that is, put them on the whitelist of apps).
 
 Most applications should not use this; there are many facilities provided by the platform for applications to operate correctly in the various power saving modes.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,xml]
 ----
+<!-- Noncompliant -->
 <manifest>
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 </manifest>
 ----
+
+=== Compliant solution
+
+Do not use `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS`.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

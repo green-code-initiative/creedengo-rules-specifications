@@ -1,5 +1,5 @@
 {
-  "title": "Sobriety: Brightness Override",
+  "title": "Brightness should not be forced",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,5 +7,11 @@
     "constantCost": "20min"
   },
   "ecoScore": "0.4",
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

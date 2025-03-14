@@ -1,5 +1,5 @@
 {
-  "title": "Batch: Service Boot Time",
+  "title": "Boot time service should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,10 +8,16 @@
   },
   "tags": [
     "batch",
-    "environment",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

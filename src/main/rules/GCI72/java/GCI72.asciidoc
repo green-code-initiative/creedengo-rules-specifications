@@ -1,6 +1,11 @@
+:!sectids:
+
+== Why is this an issue?
+
 Executing SQL queries in loop induced unnecessary calculation by the CPU, RAM usage and network transfer.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
@@ -25,7 +30,7 @@ public void foo() {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -59,3 +64,7 @@ public void foo() {
     }
 }
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_072_fr.md[CNumR best practices (3rd edition) BP_072]

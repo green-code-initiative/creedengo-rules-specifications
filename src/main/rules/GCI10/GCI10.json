@@ -1,5 +1,5 @@
 {
-  "title": "Avoid using unoptimized vector images",
+  "title": "Unoptimized vector images should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,8 +7,15 @@
     "constantCost": "60min"
   },
   "tags": [
-    "eco-design",
-    "creedengo"
+    "sustainability",
+    "creedengo",
+    "performance"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

@@ -1,11 +1,18 @@
+:!sectids:
+
+== Why is this an issue?
+
 When iterating over any collection, fetch the size of the collection in advance to avoid fetching it on each iteration, this saves CPU cycles, and therefore consumes less power.
 
-NB : note that we are using the `count()` method to get the size of an array but it would work the same with the `sizeof()` and `iterator_count()` methods.
+Note: the `count()` method is used to get the size of an array, but it would be the same with the `sizeof()` and `iterator_count()` methods.
 
-== Non compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
 
 [source,php]
 ----
+// Noncompliant
 $array = array('orange', 'banana', 'apple', 'carrot', 'collard', 'pea');
 
 // FOR STATEMENTS / Right operand
@@ -47,7 +54,7 @@ do {
 } while (count($array) > $i);
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,php]
 ----
@@ -96,3 +103,7 @@ do {
 	++$i;
 } while ($size > $i);
 ----
+
+== Resources
+
+Reference/Validation is unknown.

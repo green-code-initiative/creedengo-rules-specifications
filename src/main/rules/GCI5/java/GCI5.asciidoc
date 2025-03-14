@@ -1,6 +1,11 @@
-Use `PreparedStatement` instead of `Statement`, because SQL will only commit the query once, whereas if you used only one statement, it would commit the query every time and thus induce unnecessary calculations by the CPU and therefore superfluous energy consumption.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
+
+Use `PreparedStatement` instead of `Statement`, because SQL will only commit the query once, whereas if only one statement is used, it would commit the query every time and thus induce unnecessary calculations by the CPU and therefore superfluous energy consumption.
+
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
@@ -10,7 +15,7 @@ public void select() {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -22,3 +27,7 @@ public void select() {
     statement.executeQuery();
 }
 ----
+
+== Resources
+
+- https://www.baeldung.com/java-statement-preparedstatement[Difference Between Statement and PreparedStatement]

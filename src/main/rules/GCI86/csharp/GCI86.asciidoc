@@ -1,20 +1,19 @@
 :!sectids:
 
-`GC.Collect` should not be called.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Calling `GC.Collect` forces a garbage collection to occur. This can be a very expensive operation, as it is fully blocking and can take a significant amount of time to complete.
 In most cases, the garbage collector is able to determine when it is appropriate to run a collection, and calling `GC.Collect` is not only unnecessary but also not advisable.
 
 Calling `GC.Collect` on generation 0 (ephemeral objects) is excluded from this rule, as it is very lightweight in comparison to the other generations.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 In general, it is not recommended to call GC.Collect as the cost far outweighs the benefits.
 In some cases however, typically if you know you have a lot of long-lived objects whose memory you need reclaimed immediately, calling `GC.Collect` can make sense.
 
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
@@ -25,7 +24,7 @@ public void Method();
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -35,3 +34,7 @@ public void Method();
     GC.Collect(generation: 0, mode: GCCollectionMode.Optimized); // Compliant
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

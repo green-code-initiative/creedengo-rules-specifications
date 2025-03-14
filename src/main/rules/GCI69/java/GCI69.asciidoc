@@ -1,6 +1,11 @@
+:!sectids:
+
+== Why is this an issue?
+
 Do not call a function when declaring a for-type loop in order to avoid function calls each iterations. It saves CPU cycles.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
@@ -12,7 +17,7 @@ public void foo() {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -28,3 +33,7 @@ public void foo() {
 == Exceptions
 Iterator methods such as next() and hasNext() are allowed.
 Function calls inside the instanciation of the for loop are allowed.
+
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_069 (no longer exists in edition 4)]
