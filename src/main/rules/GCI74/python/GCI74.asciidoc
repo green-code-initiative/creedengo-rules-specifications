@@ -1,33 +1,40 @@
-Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer.
+Executing SQL queries in loop induced unnecessary calculation by the CPU, RAM usage and network transfer.
 
 == Non compliant Code Example
 
 [source,python]
 ----
-public void foo() {
+def foo():
     ...
-    String baseQuery = "SELECT * FROM users"; // Noncompliant
+    results = []
+    for id in range(20):
+      results.append(cursor.execute("SELECT name FROM users where id = ?", (id)).fetchone()) # Noncompliant {{Avoid performing SQL queries within a loop}}
     ...
-}
 ----
 
 == Compliant Solution
 
 [source,python]
 ----
-public void foo() {
+def foo():
     ...
-        String query = "SELECT id, name, address FROM users ";
+    ids = range(20)
+    results = cursor.execute("SELECT name FROM users where id IN ({0})".format(', '.join("?" * len(ids))), ids).fetchmany() # Compliant
     ...
 }
 ----
-== Interesting Sources
+
+== Our analysis
+
+_The following results have been obtained through local experiments._
+
+=== Interesting Sources
 
 * https://www.kdnuggets.com/the-essential-guide-to-sql-execution-order[The Essential Guide to SQL Execution Order]
 * https://minervadb.xyz/why-select-from-is-bad-for-sql-performance[Why SELECT * FROM is Bad for SQL Performance]
 * https://www.baeldung.com/sql/select-all-columns-best-practice[Best Practices for Selecting All Columns in SQL]
 
-== Configuration
+=== Configuration
 
 * SQLite database: 5-6 GB
 * Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
@@ -35,7 +42,7 @@ public void foo() {
 * CO2 Emission measurement: Using https://codecarbon.io/[CodeCarbon]
 * Memory usage measurement: Using https://psutil.readthedocs.io/en/latest/[psutil]
 
-== Impact Analysis
+=== Impact Analysis
 
 We investigated the correlation between column selection and carbon emissions. 
 
@@ -58,7 +65,7 @@ Similar trends were observed for execution time and memory usage:
 
 image::Memory_time_SQL_measurement.png[Memory and Time Measurements]
 
-== Conclusion
+=== Conclusion
 
 The number of selected columns has a direct impact on:
 
