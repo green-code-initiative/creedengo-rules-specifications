@@ -21,3 +21,56 @@ public void foo() {
     ...
 }
 ----
+
+== Our analysis
+
+_The following results have been obtained through local experiments._
+
+=== Interesting Sources
+
+* https://www.kdnuggets.com/the-essential-guide-to-sql-execution-order[The Essential Guide to SQL Execution Order]
+* https://minervadb.xyz/why-select-from-is-bad-for-sql-performance[Why SELECT * FROM is Bad for SQL Performance]
+* https://www.baeldung.com/sql/select-all-columns-best-practice[Best Practices for Selecting All Columns in SQL]
+
+=== Configuration
+
+* SQLite database: 5-6 GB
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emission measurement: Using https://codecarbon.io/[CodeCarbon]
+* Memory usage measurement: Using https://psutil.readthedocs.io/en/latest/[psutil]
+
+=== Impact Analysis
+
+We investigated the correlation between column selection and carbon emissions. 
+
+The query structure used was:
+
+[source,sql]
+----
+SELECT {selected_cols} FROM my_table WHERE col10 = random_word
+----
+
+The WHERE clause was included to increase query complexity and yield more meaningful results. 
+
+We observed carbon emission trends as we manipulated the number of selected columns.
+
+image::carbon_emissions_graph.png[Carbon Emissions Graph]
+
+After the first query, carbon emissions decreased slightly due to SQL indexing. Subsequently, emissions remained relatively stable. However, for the last query using `SELECT *`, carbon emissions increased as the query no longer utilized the index.
+
+Similar trends were observed for execution time and memory usage:
+
+image::Memory_time_SQL_measurement.png[Memory and Time Measurements]
+
+=== Conclusion
+
+The number of selected columns has a direct impact on:
+
+1. Carbon emissions
+2. Execution time
+3. Memory usage
+
+Additionally, for security and readability reasons, it's preferable to specify column names rather than using `SELECT *`.
+
+Selecting only necessary columns also results in lighter network traffic.
