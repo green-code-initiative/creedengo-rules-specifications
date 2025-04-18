@@ -1,6 +1,6 @@
 /*
- * ecoCode Rule Exporter - Export all rules to JSON files usable by the website
- * Copyright © 2024 Green Code Initiative (https://www.ecocode.io)
+ * Creedengo Rule Exporter - Export all rules to JSON files usable by the website
+ * Copyright © 2024 Green Code Initiative (https://green-code-initiative.org)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

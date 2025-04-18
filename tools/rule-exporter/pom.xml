@@ -7,7 +7,7 @@
     <artifactId>rule-exporter</artifactId>
     <version>${revision}</version>
 
-    <name>GCI Rule Exporter</name>
+    <name>creedengo Rules Specifications Exporter</name>
     <description>Export all rules to JSON files usable by the website</description>
     <url>https://github.com/green-code-initiative/creedengo-rules-specifications/tree/main/tools/rule-exporter</url>
     <inceptionYear>2024</inceptionYear>
@@ -69,7 +69,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>io.ecocode.tools.exporter.RuleExporter</mainClass>
+                            <mainClass>org.greencodeinitiative.tools.exporter.RuleExporter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
