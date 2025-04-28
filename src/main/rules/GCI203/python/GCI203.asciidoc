@@ -83,3 +83,29 @@ Or
     // ...
 }
 ----
+
+
+==== Our Analysis
+
+The following results were obtained through local experiments.
+===== Configuration
+* SQLite Database: 5-6 GB
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+===== Context
+
+This rule depends heavily on the context. For simple icon, the use of SVG is relevant because they will be lighter than their JPG counterparts. However, for more complex images, such as photographs, SVG will be heavier.
+
+Example: for the same photo in JPG, it will be 370 KB and in SVG, it will be 830 KB.
+
+image::photo.png[]
+
+This is because the vector format is not suitable for details, it is suitable for simple shapes (circle, line, icon, etc.). It has advantages in this area because it is not composed of pixels, it is extremely scalable. In the following cases: data science, convolutional neural networks, multimodal models, OCR, the SVG format is not suitable, it is preferable to use JPG or PNG. And this, because the models were trained on JPG and PNG formats and this is the input format of the CNNs, the use of SVG would involve additional preprocessing of the image. For example, the well-known CIFAR-10 dataset is in JPG format as can be seen in the following image, representing the architecture of a CNN.
+
+image::CNN_architecture.png[]
+
+==== References
+https://www.tensorflow.org/tutorials/images/cnn?hl=fr
+https://www.researchgate.net/publication/373715986_Convolutional_Neural_Network_CNN_The_architecture_and_applications
