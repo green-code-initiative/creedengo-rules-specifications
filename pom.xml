@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.green-code-initiative</groupId>
@@ -7,9 +8,10 @@
     <version>${revision}</version>
 
     <name>creedengo Rules Specifications repository</name>
-    <description>Repository that contains the specifications of every static-analysis rules available in creedengo plugins.</description>
+    <description>Repository that contains the specifications of every static-analysis rules available in creedengo
+        plugins.
+    </description>
     <url>https://github.com/green-code-initiative/creedengo-rules-specifications</url>
-
     <inceptionYear>2024</inceptionYear>
     <organization>
         <name>green-code-initiative</name>
@@ -106,7 +108,8 @@
 
     <scm>
         <connection>scm:git:https://github.com/green-code-initiative/creedengo-rules-specifications</connection>
-        <developerConnection>scm:git:https://github.com/green-code-initiative/creedengo-rules-specifications</developerConnection>
+        <developerConnection>scm:git:https://github.com/green-code-initiative/creedengo-rules-specifications
+        </developerConnection>
         <url>https://github.com/green-code-initiative/creedengo-rules-specifications</url>
         <tag>HEAD</tag>
     </scm>
@@ -135,6 +138,39 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.12.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- dependencies used by build code (cf. ${project.basedir}/build/java} -->
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <version>2.1.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>2.0.1</version>
+            <classifier>module</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -165,6 +201,42 @@
                                     <version>3.8.5</version>
                                 </requireMavenVersion>
                             </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <executions>
+                    <execution>
+                        <id>compile-build-code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                            <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/build/main/java</compileSourceRoot>
+                            </compileSourceRoots>
+                            <outputDirectory>${project.build.directory}/build-classes</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-build-test-code</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/build/main/java</compileSourceRoot>
+                                <compileSourceRoot>${project.basedir}/build/test/java</compileSourceRoot>
+                            </compileSourceRoots>
+                            <outputDirectory>${project.build.directory}/build-test-classes</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -207,48 +279,36 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <!--
+            <plugin><!--
 					Prepare resources tree needed by language.
 					Each metadata JSON file must be in the same folder as the HTML description file for the corresponding language.
 				-->
-                <groupId>com.github.johnpoth</groupId>
-                <artifactId>jshell-maven-plugin</artifactId>
-                <version>1.4</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>jakarta.json</groupId>
-                        <artifactId>jakarta.json-api</artifactId>
-                        <version>2.1.3</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.glassfish</groupId>
-                        <artifactId>jakarta.json</artifactId>
-                        <version>2.0.1</version>
-                        <classifier>module</classifier>
-                    </dependency>
-                </dependencies>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
-                        <id>prepare-rules-resources</id>
+                        <id>run-build-code</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>java</goal>
                         </goals>
                         <configuration>
-                            <scripts>
-                                <script>${project.basedir}/src/main/script/PrepareResources.jsh</script>
-                            </scripts>
-                            <options>
-                                <option>-R "-DsourceDir=${project.build.directory}/rules-html"</option>
-                                <option>-R "-DtargetDir=${project.build.outputDirectory}/org/green-code-initiative/rules"</option>
-                            </options>
+                            <mainClass>org.greencodeinitiative.tools.exporter.Main</mainClass>
+                            <arguments>
+                                <argument>${project.build.directory}/rules-html</argument>
+                                <argument>${project.build.outputDirectory}/org/green-code-initiative/rules</argument>
+                            </arguments>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/build-classes
+                                </additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <classpathScope>provided</classpathScope>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <!--
+            <plugin><!--
 					This module produce one artifact by language (with corresponding classifier)
 				-->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -356,8 +416,7 @@
                     <appendAssemblyId>true</appendAssemblyId>
                 </configuration>
             </plugin>
-            <plugin>
-                <!--
+            <plugin><!--
                 Plugin to configure reading sonar-project.properties (via Maven Properties Plugin)
                 because SonarQube Scanner for Maven does not support reading sonar-project.properties
                 -->
@@ -424,8 +483,7 @@
                             <doclint>none</doclint>
                         </configuration>
                     </plugin>
-                    <plugin>
-                        <!--
+                    <plugin><!--
                             For publishing in Maven Central, GPG key must be published to one of following servers:
                             - keyserver.ubuntu.com
                             - keys.openpgp.org
