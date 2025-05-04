@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Correction of various typos in rules documentations
+- Changes the file post-processing process to use Java code instead of a JShell script. This reduces build times and also allows for testing the process.
 
 ### Deleted
 
