@@ -1,5 +1,5 @@
 {
-  "title": "Sobriety: Dark UI (Bright Colors)",
+  "title": "Bright Colors should not be used",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,11 +8,17 @@
   },
   "tags": [
     "sobriety",
-    "environment",
     "creedengo",
     "android",
     "ios",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

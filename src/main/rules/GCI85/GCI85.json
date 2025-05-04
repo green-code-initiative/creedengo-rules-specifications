@@ -1,5 +1,5 @@
 {
-  "title": "Make type sealed",
+  "title": "Type should be sealed",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,9 +7,15 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "creedengo",
     "performance"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

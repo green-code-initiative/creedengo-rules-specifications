@@ -1,17 +1,12 @@
 :!sectids:
 
-Variable can be made constant.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Unlike variables, constant values are known at compile time and are injected as is in the code, requiring no runtime processing and therefore reducing the environmental footprint.
 Although good compilers will const eligible variables by themselves, it is still good practice to declare them constant, as it makes the code intent clearer.
 
-=== When can it be ignored ?
-
-This rule should not be ignored.
-
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, java]
 ----
@@ -33,7 +28,7 @@ public class MyClass {
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, java]
 ----
@@ -94,3 +89,7 @@ public class MyClass {
 
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

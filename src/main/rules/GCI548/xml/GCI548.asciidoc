@@ -1,13 +1,17 @@
-Score creedengo: 2sur5
+:!sectids:
+
+== Why is this an issue?
 
 Developers are allowed to apply native themes for their app, or derive new ones through inheritance. This decision has a significant impact on energy consumption since displaying dark colors is particularly beneficial for mobile devices with (AM)OLED screens.
 
 By default, Android will set Holo to the Dark theme (parent style `Theme.Holo`) and hence switching to the light theme (parent style `Theme.Holo.Light`) within the manifest or in xml themes should be avoided.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,xml]
 ----
+<!-- Noncompliant -->
 <style name="Theme.MyTheme" parent="@android:style/Theme.Holo.Light"/>
 ----
 
@@ -15,10 +19,11 @@ or
 
 [source,xml]
 ----
+<!-- Noncompliant -->
 <application android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light"/>
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,xml]
 ----
@@ -31,3 +36,7 @@ or
 ----
 <application android:label="@string/app_name" android:theme="@android:style/Theme.Holo"/>
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

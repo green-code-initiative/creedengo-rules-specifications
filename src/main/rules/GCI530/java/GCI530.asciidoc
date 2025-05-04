@@ -1,10 +1,17 @@
+:!sectids:
+
+== Why is this an issue?
+
 Turning on the torch mode programmatically with `CameraManager#setTorchMode(..., true)` must absolutely be avoided because the flashlight is one of the most energy-intensive component.
 
-== Non compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
 
 [source,java]
 ----
- CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+// Noncompliant
+CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 String cameraId = null;
 try {
     cameraId = camManager.getCameraIdList()[0];
@@ -13,3 +20,13 @@ try {
     e.printStackTrace();
 }
 ----
+
+=== Compliant solution
+
+Do not set the torch programmatically.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

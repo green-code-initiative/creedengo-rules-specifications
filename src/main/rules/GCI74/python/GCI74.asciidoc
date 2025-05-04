@@ -1,6 +1,11 @@
+:!sectids:
+
+== Why is this an issue?
+
 Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,python]
 ----
@@ -11,7 +16,7 @@ public void foo() {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,python]
 ----
@@ -21,3 +26,7 @@ public void foo() {
     ...
 }
 ----
+
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_074 (no longer exists in edition 4)]

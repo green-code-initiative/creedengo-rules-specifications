@@ -1,7 +1,11 @@
-Avoid using `Pattern.compile()` in a non-static context.
-This operation requires a significant amount of computational power, Using a single match saves CPU cycles and RAM consumption.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
+
+This operation requires a significant amount of computational power. Using a single match saves CPU cycles and RAM consumption.
+
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
@@ -13,7 +17,7 @@ public class AvoidRegexPatternNotStatic {
 }
 ----
 
-== Compliant Solution N°1
+=== Compliant solution
 
 [source,java]
 ----
@@ -26,7 +30,7 @@ public class ValidRegexPattern {
 }
 ----
 
-== Compliant Solution N°2
+or
 
 [source,java]
 ----
@@ -39,7 +43,7 @@ public class ValidRegexPattern2 {
 }
 ----
 
-== Compliant Solution N°3
+or
 
 [source,java]
 ----
@@ -55,3 +59,7 @@ public class ValidRegexPattern3 {
     }
 }
 ----
+
+== Resources
+
+- See also https://rules.sonarsource.com/java/tag/performance/RSPEC-4248/[RSPEC-4248 rule]

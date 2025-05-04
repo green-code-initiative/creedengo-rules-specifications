@@ -1,5 +1,5 @@
 {
-  "title": "Don't set const parameter in batch update => Put its in query",
+  "title": "Const parameter should be set in queries instead of batch updates",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,11 +7,17 @@
     "constantCost": "15min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "creedengo",
     "sql",
     "performance",
     "memory"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

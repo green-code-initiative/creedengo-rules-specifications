@@ -1,8 +1,22 @@
-It's always good that an app has different behavior when device is connected/disconnected to a power station, or has different battery levels.
+:!sectids:
+
+== Why is this an issue?
+
+An app should have a different behavior when device is connected/disconnected to a power station, or has different battery levels.
 
 One can monitor the changes in charging state with a broadcast receiver registered on the actions `ACTION_POWER_CONNECTED` and `ACTION_POWER_DISCONNECTED`, or monitor significant changes in battery level with a broadcast receiver registered on the actions `BATTERY_LOW` and `BATTERY_OKAY`.
 
-== Compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
+
+[source,java]
+----
+// Noncompliant
+// No IntentFilter for power charge status
+----
+
+=== Compliant solution
 
 [source,java]
 ----
@@ -29,3 +43,9 @@ Or
 ----
 new IntentFilter(Intent.ACTION_POWER_BATTERY_LOW)
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

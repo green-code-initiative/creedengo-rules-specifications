@@ -1,17 +1,27 @@
+:!sectids:
+
+== Why is this an issue?
+
 The fused location provider is one of the location APIs in Google Play services which combines signals from GPS, Wi-Fi, and cell networks, as well as accelerometer, gyroscope, magnetometer and other sensors. It is officially recommended to maximize battery life.
 
 Thus, developer has to set up Google Play Service in her gradle file with a dependency to `com.google.android.gms:play-services-location:x.y.z`, and then to import from `com.google.android.gms.location` instead of the `android.location` package of the SDK.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 import android.location.*;
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
 import com.google.android.gms.location.*;
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

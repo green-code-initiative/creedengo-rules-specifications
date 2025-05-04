@@ -1,21 +1,30 @@
-With Bluetooth Low Energy technology (see BLE API smell), a Bluetooth Smart Ready device (the master) will establish a link with a Bluetooth Smart device (the slave).
+:!sectids:
+
+== Why is this an issue?
+
+With Bluetooth Low Energy technology, a Bluetooth Smart Ready device (the master) will establish a link with a Bluetooth Smart device (the slave).
 
 Most often, the slave is a GATT server and the master is a GATT client. GATT capable devices can be discovered using BLE scan process.
 
 Invoking `BluetoothGatt#requestConnectionPriority(int connectionPriority)` with the value `CONNECTION_PRIORITY_LOW_POWER`, is recommended to reduce power consumption.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 BluetoothGatt gatt = new BluetoothGatt();
 gatt.requestConnectionPriority(CONNECTION_PRIORITY_HIGH);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
 BluetoothGatt gatt = new BluetoothGatt();
 gatt.requestConnectionPriority(CONNECTION_PRIORITY_LOW_POWER);
 ----
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

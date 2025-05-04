@@ -1,18 +1,28 @@
+:!sectids:
+
+== Why is this an issue?
+
 Creation of a Media Recorder object with `new MediaRecorder()` is used to record audio and video. Class own a `release()` method.
 
 In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to call this method immediately if a media object is no longer needed may also lead to continuous battery consumption for mobile devices.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 MediaRecorder mr = new MediaRecorder();
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
 MediaRecorder mr = new MediaRecorder();
 mr.release();
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

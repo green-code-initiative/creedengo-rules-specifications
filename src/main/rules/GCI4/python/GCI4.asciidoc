@@ -1,9 +1,16 @@
+:!sectids:
+
+== Why is this an issue?
+
 When function calls global variables, a lot a CPU cycles is consumed.
 
-== Non compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
 
 [source,python]
 ----
+# Noncompliant
 global_var = 'foo'
 def print_global_var_details():
     print(len(global_var)) # Noncompliant
@@ -12,15 +19,19 @@ def print_global_var_details():
 print_global_var_details()
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,python]
 ----
-global_var = 'foo';
+global_var = 'foo'
 def print_var_details(local_var) {
-    print(len(local_var));
+    print(len(local_var))
     print('Var : ', local_var)
     print('Var : ' + local_var)
 }
-print_length(global_var);
+print_length(global_var)
 ----
+
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_050 (no longer exists in edition 4)]

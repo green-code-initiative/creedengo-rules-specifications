@@ -1,3 +1,7 @@
+:!sectids:
+
+== Why is this an issue?
+
 Most iOS devices come equipped with a variety of sensors that measure motion, orientation, and various environmental conditions.
 In addition to these, the devices include advanced sensors such as the image sensor (commonly referred to as the Camera) and the geo-positioning sensor (commonly referred to as GPS).
 
@@ -6,10 +10,12 @@ The common point of all these sensors is that they are power-intensive while in 
     Consequently, calls must be carefully paired: `CLLocationManager.startUpdatingLocation()` and `CLLocationManager.stopUpdatingLocation()`.
     Failing to do so can drain the battery in just a few hours.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 import CoreLocation
 
 class LocationTracker: NSObject, CLLocationManagerDelegate {
@@ -30,7 +36,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
 }
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,swift]
 ----
@@ -55,3 +61,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     }
 }
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

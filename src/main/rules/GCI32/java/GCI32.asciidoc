@@ -1,8 +1,13 @@
+:!sectids:
+
+== Why is this an issue?
+
 If you know in advance how many characters would be appended, initialize builder/buffer with the appropriate size.
 They will thus never have to be resized.
 This saves CPU cycles and therefore consumes less energy.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
@@ -12,7 +17,7 @@ for (int i = 0; i < 100; i++) {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -21,3 +26,7 @@ for (int i = 0; i < 100; i++) {
     sb.append(...);
 }
 ----
+
+== Resources
+
+- https://docs.oracle.com/en%2Fjava%2Fjavase%2F22%2Fdocs%2Fapi%2F%2F/java.base/java/lang/StringBuilder.html#%3Cinit%3E(int)[StringBuilder javadoc]

@@ -1,17 +1,12 @@
 :!sectids:
 
-Use collection indexer.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Linq methods like `First()`, `Last()` and `ElementAt()` can be necessary on enumerable types that don't have an indexer.
 But for those that implement `IReadOnlyList<T>`, `IList<T>` or `IList`, direct index access is cheaper at runtime and should be used instead.
 
-=== When can it be ignored ?
-
-This rule shouldn't be ignored.
-
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
@@ -23,7 +18,7 @@ public static void Test(int[] arr)
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -34,3 +29,7 @@ public static void Test(List<int> list)
     int third = list[2];
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.
