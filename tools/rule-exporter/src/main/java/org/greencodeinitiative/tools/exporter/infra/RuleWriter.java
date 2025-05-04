@@ -17,12 +17,12 @@
  */
 package org.greencodeinitiative.tools.exporter.infra;
 
-import org.greencodeinitiative.tools.exporter.domain.RuleId;
-import org.greencodeinitiative.tools.exporter.domain.RuleMetadata;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonWriter;
+import org.greencodeinitiative.tools.exporter.domain.RuleId;
+import org.greencodeinitiative.tools.exporter.domain.RuleMetadata;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +44,7 @@ public class RuleWriter {
 
     public void writeRules(Collection<RuleMetadata> rules) throws IOException {
         Path path = new File(outputFilename).toPath();
+        Files.createDirectories(path.getParent());
         try (JsonWriter resultJsonWriter = Json.createWriter(Files.newBufferedWriter(path))) {
             resultJsonWriter.writeObject(
                     Json.createObjectBuilder()
@@ -56,10 +57,10 @@ public class RuleWriter {
     private JsonArray buildItems(Collection<RuleMetadata> rules) {
         Map<RuleId, List<RuleMetadata>> rulesById = rules.stream().collect(Collectors.groupingBy(RuleMetadata::getId));
         return Json.createArrayBuilder(
-                rulesById.entrySet().stream()
-                        .sorted(Map.Entry.comparingByKey())
-                        .map(e -> this.buildItem(e.getValue()))
-                        .collect(Collectors.toList()))
+                        rulesById.entrySet().stream()
+                                .sorted(Map.Entry.comparingByKey())
+                                .map(e -> this.buildItem(e.getValue()))
+                                .collect(Collectors.toList()))
                 .build();
     }
 
@@ -84,11 +85,11 @@ public class RuleWriter {
 
     private JsonArray extractAllProperties(Collection<RuleMetadata> rules, Function<RuleMetadata, String> mapper) {
         return Json.createArrayBuilder(
-                rules.stream()
-                        .map(mapper)
-                        .distinct()
-                        .sorted()
-                        .collect(Collectors.toList()))
+                        rules.stream()
+                                .map(mapper)
+                                .distinct()
+                                .sorted()
+                                .collect(Collectors.toList()))
                 .build();
     }
 

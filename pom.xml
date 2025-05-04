@@ -145,6 +145,11 @@
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>5.0.0.4389</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.green-code-initiative</groupId>
+                    <artifactId>creedengo-rules-exporter</artifactId>
+                    <version>${project.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -244,6 +249,18 @@
                                 <option>-R "-DtargetDir=${project.build.outputDirectory}/org/green-code-initiative/rules"</option>
                             </options>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.green-code-initiative</groupId>
+                <artifactId>creedengo-rules-exporter-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>export</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
