@@ -30,6 +30,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
+          cache: 'maven'
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -38,15 +39,32 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+      # to be removed when plugin will be available as a standalone artifact
+      - name: Build Rule Exporter Maven plugin
+        run: ./mvnw -B install -f tools/rule-exporter/pom.xml
 
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: ./mvnw -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Archive rules file
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/rules-json/
+
+  deploy:
+    needs: build
+#    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    environment:
+      name: rules
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
