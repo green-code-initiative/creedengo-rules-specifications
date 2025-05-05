@@ -23,6 +23,8 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static jakarta.json.Json.createArrayBuilder;
+import static jakarta.json.Json.createObjectBuilder;
 import static java.lang.System.Logger.Level.DEBUG;
 
 public class MetadataWriter implements Runnable {
@@ -53,18 +55,46 @@ public class MetadataWriter implements Runnable {
         var rulesMap = new TreeMap<String, JsonObjectBuilder>();
 
         getResourcesToCopy().forEach(rule -> {
-            var rulesByLanguage = rulesMap.computeIfAbsent(rule.ruleKey(), k -> Json.createObjectBuilder());
+            var rulesByLanguage = rulesMap.computeIfAbsent(rule.ruleKey(), k -> createObjectBuilder());
             var resultMetadata = mergeOrCopyJsonMetadata(rule.metadata(), rule.specificMetadata(), rule.getMetadataTargetPath(targetDir));
 
             var htmlDescriptionRelativePath = this.indexFilepath.getParent()
                     .relativize(rule.getHtmlDescriptionTargetPath(targetDir))
                     .toString();
-            var resultMetadataBuilder = Json.createObjectBuilder(resultMetadata);
-            resultMetadataBuilder.add("key", rule.ruleKey());
-            resultMetadataBuilder.add("language", rule.language());
-            resultMetadataBuilder.add("severity", resultMetadata.getString("defaultSeverity").toUpperCase(Locale.ENGLISH));
-            resultMetadataBuilder.add("htmlDescription", htmlDescriptionRelativePath);
-            resultMetadataBuilder.add("terms", extractTermsFromHtmlFile(rule.htmlDescription()));
+
+            var metadataRelativePath = this.indexFilepath.getParent()
+                    .relativize(rule.getMetadataTargetPath(targetDir))
+                    .toString();
+
+            var resultMetadataBuilder = createObjectBuilder()
+                    .add("key", rule.ruleKey())
+                    .add("language", rule.language())
+                    .add(
+                            "links",
+                            createArrayBuilder()
+                                    .add(createObjectBuilder()
+                                            .add("rel", "description")
+                                            .add("title", resultMetadata.get("title"))
+                                            .add("hreflang", "en")
+                                            .add("href", htmlDescriptionRelativePath))
+                                    .add(createObjectBuilder()
+                                            .add("rel", "metadata")
+                                            .add("href", metadataRelativePath))
+                    )
+                    .add(
+                            "terms",
+                            createObjectBuilder()
+                                    .add("en", extractTermsFromHtmlFile(rule.htmlDescription()))
+                    );
+
+            List
+                    .of(
+                            "type",
+                            "status",
+                            "tags",
+                            "defaultSeverity"
+                    )
+                    .forEach(key -> resultMetadataBuilder.add(key, resultMetadata.get(key)));
 
             rulesByLanguage.add(rule.language(), resultMetadataBuilder);
             copyFile(rule.htmlDescription(), rule.getHtmlDescriptionTargetPath(targetDir));
@@ -82,7 +112,7 @@ public class MetadataWriter implements Runnable {
                                     .toLowerCase(Locale.ENGLISH)
                                     .replaceAll("[^a-zA-Z0-9]", " ")
                                     .trim()
-                                    .split("[\\s\\n\\r]+")
+                                    .split("\\s+")
                     )
                     .filter(term -> term.length() >= minTermLength)
                     .distinct()
@@ -94,19 +124,21 @@ public class MetadataWriter implements Runnable {
     }
 
     private String removeDiacritics(String text) {
-        Normalizer.normalize(text, Normalizer.Form.NFKD);
-        return text.replaceAll("[^\\p{ASCII}]", "").replaceAll("\\p{M}", "");
+        return Normalizer
+                .normalize(text, Normalizer.Form.NFKD)
+                .replaceAll("[^\\p{ASCII}]", "")
+                .replaceAll("\\p{M}", "");
     }
 
     private void writeIndexFile(TreeMap<String, JsonObjectBuilder> rulesMap) {
         if (indexFilepath == null) {
             return;
         }
-        var rules = Json.createObjectBuilder();
+        var rules = createObjectBuilder();
         rulesMap.forEach(rules::add);
-        var result = Json.createObjectBuilder();
+        var result = createObjectBuilder();
 
-        var specification = Json.createObjectBuilder();
+        var specification = createObjectBuilder();
         this.specificationInfo.forEach(specification::add);
         result.add("specification", specification);
 
@@ -124,8 +156,7 @@ public class MetadataWriter implements Runnable {
             return stream
                     .filter(Files::isRegularFile)
                     .map(Rule::createFromHtmlDescription)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
+                    .flatMap(Optional::stream)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new IllegalStateException(e);
@@ -178,7 +209,7 @@ public class MetadataWriter implements Runnable {
             LOGGER.log(DEBUG, "Copy: {0} -> {1}", source, target);
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new ProcessException("unable to copy '" + source + "' to '" + target + "'", e);
+            throw new ProcessException("Unable to copy '" + source + "' to '" + target + "'", e);
         }
     }
 }
