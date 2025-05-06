@@ -13,3 +13,6 @@ dependency-reduced-pom.xml
 
 # Ignore IDE files
 *.iml
+
+# Data directory is only for `gh-pages` branch
+/data/
