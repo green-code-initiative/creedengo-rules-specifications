@@ -34,7 +34,7 @@ client.age # Récupérer l'attribut age
 client.age = 26 # Modifier l'attribut age
 ----
 
-== Our Analysis
+== Relevance Analysis
 
 The following results were obtained through local experiments.
 
@@ -67,9 +67,7 @@ class WithGetter():
 
 === Results
 image::tracking_1.png[]  
-Another representation of the results is shown below:
 
-image::tracking_2.png[]
 
 For 100,000,000 iterations, the difference in CO2 equivalent emissions is 3.7*10^-6, which corresponds to 17 mm in equivalent emissions of a thermal car (see converter).
 
@@ -82,6 +80,6 @@ Based on the results, we can conclude that using getters and setters in a class 
 
 It is important to keep in mind that for security or control reasons, the use of getters and setters may be necessary. In such cases, using the @property decorator can be a good alternative to traditional getters and setters. It allows restricting access to the attribute and adding logic when the attribute is accessed or modified. Performance is better than recreating getter and setter methods but not as good as direct attribute access.
 
-== References
+=== References
 :hide-uri-scheme: 
 https://www.datacamp.com/tutorial/property-getters-setters
