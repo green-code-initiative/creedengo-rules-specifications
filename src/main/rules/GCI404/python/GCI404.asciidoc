@@ -61,6 +61,20 @@ image::carbone.png[]
 
 For both metrics, the bigger the list, the greater is the gain is.
 
+=== Additional Study
+
+A complementary benchmark from the Creedengo Challenge Issue #113 further supports the recommendation to avoid list comprehensions in loop declarations.
+
+In a controlled containerized test:
+
+The "bad" implementation using a list comprehension consumed: 4,493,365,500 bytes (~4.19 GB)
+
+The "good" implementation using a generator expression consumed: 4,478,423,217 bytes (~4.17 GB)
+
+Memory savings: 14,942,283 bytes (~14.24 MB)
+
+Credit: https://github.com/green-code-initiative/creedengo-challenge/issues/113
+
 === Conclusion
 
 Our analysis clearly demonstrates that replacing list comprehensions with generator expressions in Python for-loops offers substantial benefits in terms of both memory efficiency and environmental impact. As the data size increases, the advantages become increasingly significant.
