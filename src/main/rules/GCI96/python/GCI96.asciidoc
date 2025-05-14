@@ -1,0 +1,115 @@
+Before going into more detail, it's important to understand how vectorization works in Python. When performing a calculation on an array/matrix, there are several possible methods:
+
+The first is to go through the list and perform the calculation element by element, known as an iterative approach.
+The second method consists of applying the calculation to the entire array/matrix at once, which is known as vectorization.
+
+Although it's not possible to do this in all cases without applying real parallelism using a GPU, for example, we speak of vectorization when we use the built-in functions of TensorFlow, NumPy or Pandas.
+
+We'll also have a iterative loop, but it will be executed in lower-level code (C). As with the use of built-in functions in general, since low-level languages like C are optimized, execution will be much faster and therefore emit less CO2.
+
+== Non compliant Code Example
+
+[source,python]
+----
+for i in range(len(A)):
+    for j in range(len(B[0])):
+        for k in range(len(B)):
+            results[i][j] += A[i][k] * B[k][j]
+----
+
+== Compliant Solution
+
+[source,python]
+----
+results = np.dot(A, B)
+----
+
+== Relevance Analysis
+
+The following results were obtained through local experiments.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+=== Context
+
+This study is divided into 3 parts, comparing a vectorized and an iterative method: 
+measuring the impact on a dot product between two vectors,
+measuring the impact on an outer product between two vectors,
+measuring the impact on a matrix calculation.
+
+=== Impact Analysis
+
+*1. dot product:*
+
+*Non compliant*
+[source,python]
+----
+def iterative_dot_product(x,y):
+    total = 0
+    for i in range(len(x)):
+        total += x[i] * y[i]
+    return total
+----
+*Compliant* 
+[source,python]
+----
+def vectorized_dot_product(x,y):
+    return np.dot(x,y)
+----
+image::dot.png[]
+
+*2. Outer product:*
+
+*Non compliant*
+[source,python]
+----
+def iterative_outer_product(x, y):
+    o = np.zeros((len(x), len(y)))
+    for i in range(len(x)):
+        for j in range(len(y)):
+            o[i][j] = x[i] * y[j]
+    return o
+----
+*Compliant* 
+[source,python]
+----
+def vectorized_outer_product(x, y):
+    return np.outer(x, y)
+----
+image::outer.png[]
+
+*3. Matrix product:*
+
+*Non compliant*
+[source,python]
+----
+def iterative_matrix_product(A, B):
+    for i in range(len(A)):
+        for j in range(len(B[0])):
+            for k in range(len(B)):
+                results[i][j] += A[i][k] * B[k][j]
+    return results
+----
+*Compliant* 
+[source,python]
+----
+def vectorized_outer_product(A, B):
+    return np.dot(A, B)
+----
+image::matrix.png[]
+
+=== Conclusion
+
+The results show that the vectorized method is significantly faster than the iterative method. The CO2 emissions are also lower. This is a clear example of how using built-in functions can lead to more efficient code, both in terms of performance and environmental impact.
+
+=== References
+
+https://sciresol.s3.us-east-2.amazonaws.com/IJST/Articles/2024/Issue-24/IJST-2024-914.pdf
+
+https://arxiv.org/pdf/2308.01269
+
+https://www.db-thueringen.de/servlets/MCRFileNodeServlet/dbt_derivate_00062165/ilm1-2024200012.pdf
