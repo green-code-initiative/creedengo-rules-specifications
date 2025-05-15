@@ -1,8 +1,21 @@
-It's always good that an app has different behavior when device is connected/disconnected to a power station, or has different battery levels. Your app can query the `UIDevice#batteryLevel` and `UIDevice#batteryState` properties at any time to determine the level of charge and the state of the battery.
+:!sectids:
+
+== Why is this an issue?
+
+An app should have a different behavior when device is connected/disconnected to a power station, or has different battery levels. Your app can query the `UIDevice#batteryLevel` and `UIDevice#batteryState` properties at any time to determine the level of charge and the state of the battery.
 
 Your app can also register to receive notifications when the battery level or state changes, using `batteryLevelDidChangeNotification` and `batteryStateDidChangeNotification`.
 
-== Compliant Code Example
+== How to fix it
+=== Noncompliant code example
+
+[source,swift]
+----
+// Noncompliant
+// No handling of power charge status
+----
+
+=== Compliant solution
 
 [source,swift]
 ----
@@ -29,3 +42,10 @@ or
 ----
 NotificationCenter.default.addObserver(forName: UIDevice.batteryStateDidChangeNotification, object: nil, queue: nil) { _ in }
 ----
+
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

@@ -1,10 +1,16 @@
+:!sectids:
+
+== Why is this an issue?
+
 The use of Spring repository in a loop induces unnecessary calculations by the CPU and therefore superfluous energy consumption.
 Also, the use of Spring repository in a stream operation like "peek, forEach, forEachOrdered, map" induces unnecessary multiple access to the database instead of single batch call.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 private final List<Integer> ids = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 List<Employee> employees = new ArrayList<>();
@@ -19,6 +25,7 @@ for (Integer id: ids) {
 
 [source,java]
 ----
+// Noncompliant
 List<Employee> employees = new ArrayList<>();
 Stream stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 stream.forEach(id -> {
@@ -29,7 +36,7 @@ stream.forEach(id -> {
 });
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -42,3 +49,7 @@ List<Employee> employees = employeeRepository.findAllById(ids);
 private final List<Integer> ids = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toList();
 List<Employee> employees = employeeRepository.findAllById(ids);
 ----
+
+== Resources
+
+Reference/Validation is unknown.

@@ -1,12 +1,24 @@
-Score creedengo: 5sur5
+:!sectids:
 
-It's always good that an app has different behavior when device is connected/disconnected to a power station, or has different battery levels. One can monitor the changes in charging state with a broadcast receiver registered on the actions `ACTION_POWER_CONNECTED` and `ACTION_POWER_DISCONNECTED`, or monitor significant changes in battery level with a broadcast receiver registered on the actions `BATTERY_LOW` and `BATTERY_OKAY`.
+== Why is this an issue?
 
-== Compliant Code Example
+An app should have a different behavior when device is connected/disconnected to a power station, or has different battery levels. One can monitor the changes in charging state with a broadcast receiver registered on the actions `ACTION_POWER_CONNECTED` and `ACTION_POWER_DISCONNECTED`, or monitor significant changes in battery level with a broadcast receiver registered on the actions `BATTERY_LOW` and `BATTERY_OKAY`.
+
+== How to fix it
+
+=== Noncompliant code example
 
 [source,xml]
 ----
-<receiver android:name="org.greencodeinitiative.testapp.core.service.MyReceiver">
+// Noncompliant
+// No intent for power charge status
+----
+
+=== Compliant solution
+
+[source,xml]
+----
+<receiver android:name="io.ecocode.testapp.core.service.MyReceiver">
     <intent-filter>
         <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
     </intent-filter>
@@ -17,7 +29,7 @@ or
 
 [source,xml]
 ----
-<receiver android:name="org.greencodeinitiative.testapp.core.service.MyReceiver">
+<receiver android:name="io.ecocode.testapp.core.service.MyReceiver">
     <intent-filter>
         <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
     </intent-filter>
@@ -28,7 +40,7 @@ or
 
 [source,xml]
 ----
-<receiver android:name="org.greencodeinitiative.testapp.core.service.MyReceiver">
+<receiver android:name="io.ecocode.testapp.core.service.MyReceiver">
     <intent-filter>
         <action android:name="android.intent.action.ACTION_POWER_BATTERY_OKAY"/>
     </intent-filter>
@@ -39,9 +51,15 @@ or
 
 [source,xml]
 ----
-<receiver android:name="org.greencodeinitiative.testapp.core.service.MyReceiver">
+<receiver android:name="io.ecocode.testapp.core.service.MyReceiver">
     <intent-filter>
         <action android:name="android.intent.action.ACTION_POWER_BATTERY_LOW"/>
     </intent-filter>
 </receiver>
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

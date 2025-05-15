@@ -1,5 +1,5 @@
 {
-  "title": "Variable can be made constant",
+  "title": "Non reassigned variables should be made constant",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,8 +7,15 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
+    "performance",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

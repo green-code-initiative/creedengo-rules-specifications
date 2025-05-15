@@ -13,10 +13,16 @@ We recommend using the following formats:
 - *SVG* (Scalable Vector Graphics) is a vector image format that is based on XML.
 Files are lightweight and can be scaled without loss of quality.
 
+== How to fix it
+
+=== Noncompliant code example
+
 [source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <img src="./assets/images/cat.jpg" alt="Unoptimized image of a cat"/> // Noncompliant
 ----
+
+=== Compliant solution
 
 [source,html,data-diff-id="1",data-diff-type="compliant"]
 ----
@@ -34,7 +40,7 @@ To address this issue, you can supply multiple formats for the same image.
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_080_en.md[CnumR best practices] - Optimize images
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_080_en.md[CNumR best practices] - Optimize images
 
 === Articles & blog posts
 

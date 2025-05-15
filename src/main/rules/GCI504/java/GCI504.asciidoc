@@ -1,19 +1,29 @@
+:!sectids:
+
+== Why is this an issue?
+
 Transmitting a file over a network infrastructure without compressing it consumes more energy than with compression. More precisely, energy efficiency is improved in case the data is compressed at least by 10%, transmitted and decompressed at the other network node. From the Android client side, it means making a post HTTP request using a `GZIPOutputStream` instead of the classical OutputStream, along with the `HttpURLConnection` object.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
-Url url = new Url("https://www.green-code-initiative.io/");
+// Noncompliant
+Url url = new Url("https://www.ecocode.io/");
 HttpsUrlConnection con = (HttpsURLConnection) url.openConnection();
 OutputStream stream = con.getOutputStream();
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
-Url url = new Url("https://www.green-code-initiative.io/");
+Url url = new Url("https://www.ecocode.io/");
 HttpsUrlConnection con = (HttpsURLConnection) url.openConnection();
 OutputStream stream = new GZIPOutputStream(con.getOutputStream());
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

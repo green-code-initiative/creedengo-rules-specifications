@@ -1,11 +1,18 @@
+:!sectids:
+
+== Why is this an issue?
+
+
 Inside complex code parts (for exemple multiple loops, complex data constructions...), avoid using try...catch.
 
 When an exception is thrown, a variable (the exception itself) is created in a catch block and it's destruction consumes unnecessary CPU cycles and RAM. Prefer using logical tests in this cases.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,php]
 ----
+// Noncompliant
 try
 {
   $picture = PDF_open_image_file($PDF, "jpeg", $imgFile, "", 0); // This is the original statement, this works on PHP4
@@ -17,7 +24,7 @@ catch(Exception $ex)
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,php]
 ----
@@ -33,15 +40,19 @@ if (!$picture) {
 }
 ----
 
+== Resources
+
+=== Impact
+
 include::../../etsdiff-methodology.asciidoc[]
 
-== Case for a 1GB database:
+==== Case for a 1GB database
 
 image::https://live.staticflickr.com/65535/52622382871_f19da08db4_o.png[ETSdiff percent comparison]
 
 [format=csv,cols="1h,1,1"]
 |===
-Source of impacts,Compliant,Non-compliant
+Source of impacts,Compliant,Noncompliant
 
 include::1GB.etsdiff.csv[]
 |===

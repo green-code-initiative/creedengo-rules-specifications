@@ -1,5 +1,5 @@
 {
-  "title": "Don't use the query SELECT * FROM",
+  "title": "SELECT * should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,11 +7,17 @@
     "constantCost": "20min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "performance",
     "network",
     "sql",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

@@ -1,39 +1,60 @@
+:!sectids:
+
+== Why is this an issue?
+
 Applications are strongly discouraged from using exact alarms unnecessarily as they reduce the OS's ability to minimize battery use (i.e. Doze Mode).
 
 For most apps prior to API 19, `setInexactRepeating()` is preferable over `setRepeating()`. When you use this method, Android synchronizes multiple inexact repeating alarms and fires them at the same time, thus reducing the battery drain.
 
 Similarly after API 19, `setExact()` and `setExactAndAllowWhileIdle()` can significantly impact the power use of the device when idle, so they should be used with care. High-frequency alarms are also bad for battery life but this is already checked by Android lint (ShortAlarm built-in check).
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setRepeating(alarmType, triggerAtMillis, intervalMillis, operation);
 ----
+
 or
+
 [source,java]
 ----
+// Noncompliant
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setExact(type,triggerAtMillis,operation);
 ----
+
 or
+
 [source,java]
 ----
+// Noncompliant
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setExact(type,triggerAtMillis,tag,listener,targetHandler);
 ----
+
 or
+
 [source,java]
 ----
+// Noncompliant
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setExactAndAllowWhileIdle(type,triggerAtMilllis,operation);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
 AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 alarmManager.setInexactRepeating(alarmType, triggerAtMillis, intervalMillis, operation);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

@@ -1,10 +1,29 @@
+:!sectids:
+
+Bad practise includes:
+
+- using `FLAG_KEEP_SCREEN_ON` in activity
+- using the `android:keepScreenOn` attribute in application's layout XML file
+
+== Why is this an issue?
+
 To avoid draining the battery, an Android device that is left idle quickly falls asleep.
 
-Hence, keeping the screen on should be avoided, unless it is absolutely necessary. If so, developers typically use the `FLAG_KEEP_SCREEN_ON` in their activity. Another way to implement this is in their application's layout XML file, by using the `android:keepScreenOn` attribute.
+Hence, keeping the screen on should be avoided, unless it is absolutely necessary.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 getWindow().addFlags(FLAG_KEEP_SCREEN_ON);
 ----
+
+=== Compliant solution
+
+Do not use `FLAG_KEEP_SCREEN_ON` in activity or `android:keepScreenOn` in XML.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

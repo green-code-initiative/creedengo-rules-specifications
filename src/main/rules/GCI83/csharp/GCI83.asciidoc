@@ -1,17 +1,12 @@
 :!sectids:
 
-Replace Enum ToString() with nameof.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 When using the Enum ToString() syntax to convert an enum value to a string, without any specific format, the result will be the same as using the nameof(value) syntax.
 While the first one is resolved at runtime and requires some work, the latter is resolved at compile time and is much more efficient.
 
-=== When can it be ignored ?
-
-This rule should not be ignored.
-
-== Non compliant example
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
@@ -23,7 +18,7 @@ public void Main()
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -42,3 +37,7 @@ public void Main()
     Console.WriteLine(nameof(Letter.A)); // Compliant
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

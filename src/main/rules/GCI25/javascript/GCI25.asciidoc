@@ -9,6 +9,9 @@ Proper use of the src attribute is essential for web accessibility.
 Screen readers and other assistive technologies rely on valid image sources to provide meaningful information to users with disabilities.
 A missing src attribute can result in confusion and hinder accessibility.
 
+== How to fix it
+=== Noncompliant code example
+
 [source,typescriptjsx,data-diff-id="3",data-diff-type="noncompliant"]
 ----
 return (
@@ -20,6 +23,8 @@ return (
 ----
 
 The HTML specification requires the src attribute for the <img> element, and not including it may lead to non-compliance with standards.
+
+=== Compliant solution
 
 [source,typescriptjsx,data-diff-id="4",data-diff-type="compliant"]
 ----

@@ -1,19 +1,29 @@
+:!sectids:
+
+== Why is this an issue?
+
 With Bluetooth Low Energy technology, a Bluetooth Smart Ready device (the master) will establish a link with a Bluetooth Smart device (the slave). Most often, the slave is a GATT server and the master is a GATT client. GATT capable devices can be discovered using BLE scan process.
 
 The default and preferred advertising mode is `ADVERTISE_MODE_LOW_POWER` when calling `AdvertiseSettings.Builder#setAdvertiseMode(int advertiseMode).`
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
 builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
 AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
 builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_POWER);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices]

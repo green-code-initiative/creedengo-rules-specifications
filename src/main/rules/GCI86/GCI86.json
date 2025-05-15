@@ -7,9 +7,16 @@
     "constantCost": "10min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
+    "performance",
     "creedengo",
     "bad-practice"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

@@ -3,16 +3,22 @@
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
-    "func": "Constant/Issue",
+    "func": "Constant\/Issue",
     "constantCost": "0min"
   },
   "tags": [
     "sobriety",
     "creedengo",
-    "environment",
     "power",
     "ios",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
-  "defaultSeverity": "Info"
+  "defaultSeverity": "Info",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

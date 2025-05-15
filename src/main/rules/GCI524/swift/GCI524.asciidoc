@@ -1,3 +1,7 @@
+:!sectids:
+
+== Why is this an issue?
+
 Location awareness is one of the most popular features used by apps.
 
 By default, standard location updates run with the best accuracy level, but unless your app really needs to know the user’s position within a few meters, this level of accuracy isn't needed.
@@ -6,7 +10,17 @@ Requesting higher accuracy than you need causes the system to power up additiona
 
 Also, setting the `CLLocationManager#activityType` property will let the system knows what type of location activity your app is performing and helps it determine the most appropriate time to perform location updates. Finally, if your app just needs a quick fix on the user’s location, it’s best to call the `CLLocationManager#requestLocation` method, that will deliver a single location update.
 
-== Compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
+
+[source,swift]
+----
+// Noncompliant
+let manager = CLLocationManager()
+----
+
+=== Compliant solution
 
 [source,swift]
 ----
@@ -14,3 +28,6 @@ let manager = CLLocationManager()
 manager.desiredAccuracy = 2
 ----
 
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

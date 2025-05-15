@@ -1,6 +1,12 @@
+:!sectids:
+
+== Why is this an issue?
+
+
 Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,php]
 ----
@@ -11,7 +17,7 @@ public function foo() {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,php]
 ----
@@ -22,15 +28,23 @@ public function foo() {
 }
 ----
 
+== Resources
+
+=== Best practises
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_074 (no longer exists in edition 4)]
+
+=== Impact
+
 include::../../etsdiff-methodology.asciidoc[]
 
-== Case for a 1GB database:
+==== Case for a 1GB database
 
 image::https://live.staticflickr.com/65535/52622636584_52938fcf7e_o.png[ETSdiff percent comparison]
 
 [format=csv,cols="1h,1,1"]
 |===
-Source of impacts,Compliant,Non-compliant
+Source of impacts,Compliant,Noncompliant
 
 include::1GB.etsdiff.csv[]
 |===
