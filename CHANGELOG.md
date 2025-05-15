@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add specifications for rule GCI100, this rule is specific to Python because it's based on the `PyTorch` library, a library used for Deep Learning.
+
 ### Changed
 
 - Correction of various typos in rules documentations
