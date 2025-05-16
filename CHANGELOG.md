@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add rule GCI102, recommending the use of pinned memory for the dataloader when transferring data from the CPU to the GPU.
+
 ### Changed
 
 - Correction of various typos in rules documentations

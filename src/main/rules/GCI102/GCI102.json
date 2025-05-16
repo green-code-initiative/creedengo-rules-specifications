@@ -1,0 +1,17 @@
+{
+  "title": "AI Use pinned memory on DataLoader when using GPU",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "memory",
+    "ai"
+  ],
+  "defaultSeverity": "Minor"
+}
