@@ -1,0 +1,68 @@
+With Python, concatenating strings with `+=` in a loop creates many intermediate strings, leading to high memory usage and performance degradation. Prefer using f-strings (formatted string literals) or `str.join()` for better performance and lower environmental impact.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+city = "New York"
+street = "5th Avenue"
+zip_code = "10001"
+address = ""
+address += city + ", " + street + zip_code  # Noncompliant: inefficient string concatenation
+----
+
+In this example, the `+=` operation creates a new string object for each concatenation. When done repeatedly (e.g., in loops), this leads to excessive memory allocations and slower performance.
+
+== Compliant Solution
+
+[source,python]
+----
+# Using f-string for readability and performance
+city = "New York"
+street = "5th Avenue"
+address = f"{city}, {street}"
+# or using str.join() for multiple string concatenations
+parts = ["New York", "5th Avenue", "10001"]
+address = ", ".join(parts)
+----
+
+These approaches avoid the repeated creation of new string objects. `str.join()` builds the final string in a single operation, and f-strings are compiled into efficient bytecode.
+
+== Relevance Analysis
+
+This rule applies to any Python application performing repeated or large-scale string concatenation (e.g., log generation, data serialization, HTML template generation).
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+=== Context
+
+Two string-building techniques were benchmarked:
+- **Non-compliant:** `+=` string concatenation in a loop
+- **Compliant:** `str.join()` or f-string formatting
+
+Metrics assessed:
+- Execution time
+- Carbon emissions
+
+=== Impact Analysis
+
+image::concat.png[]
+
+- *CO₂ Emissions:* Reduced by over **10×** when using `str.join()` instead of `+=`
+- *Energy Efficiency:* Significantly improved due to lower memory allocations and faster execution
+
+These results demonstrate that even small code patterns, like string concatenation, can have a measurable impact when scaled in production environments.
+
+== Conclusion
+
+Replacing `+=` in string concatenation with `f-strings` or `str.join()`:
+- Reduces memory overhead
+- Improves runtime performance
+- Decreases CO₂ emissions
+
+== References
+- https://wiki.python.org/moin/PythonSpeed/PerformanceTips
