@@ -1,5 +1,5 @@
 {
-  "title": "DATA/AI Pandas - Wrap PyTorch Inference in `torch.no_grad()`",
+  "title": "DATA/AI PyTorch - Wrap PyTorch Inference in `torch.no_grad()`",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
