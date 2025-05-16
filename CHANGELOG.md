@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added rule GCI104 on Torch Tensor types
+
 ### Changed
 
 - Correction of various typos in rules documentations
