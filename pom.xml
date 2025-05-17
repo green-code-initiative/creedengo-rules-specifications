@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.green-code-initiative</groupId>
@@ -133,7 +134,6 @@
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
-
     </properties>
 
     <build>
@@ -374,6 +374,33 @@
                             <files>
                                 <file>sonar-project.properties</file>
                             </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>run-rule-exporter</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <pom>tools/rule-exporter/pom.xml</pom>
+                            <streamLogs>true</streamLogs>
+                            <noLog>true</noLog>
+                            <goals>
+                                <goal>clean</goal>
+                                <goal>compile</goal>
+                                <goal>test</goal>
+                                <goal>exec:java</goal>
+                            </goals>
+                            <properties>
+                                <artifact-file>${project.build.directory}/${project.build.finalName}.jar</artifact-file>
+                            </properties>
                         </configuration>
                     </execution>
                 </executions>

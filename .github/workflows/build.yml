@@ -1,17 +1,8 @@
 name: Build and Tests
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '*.md'
-      - '.github/**/*.yml'
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
   pull_request:
     types: [ opened, synchronize, reopened ]
-  workflow_dispatch:
 
 jobs:
   build:
@@ -30,6 +21,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
+          cache: 'maven'
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -38,15 +30,14 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: ./mvnw -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Upload rules file
+        uses: actions/upload-artifact@v4
+        with:
+          name: rules.json
+          path: tools/rule-exporter/target/json-file/rules.json
