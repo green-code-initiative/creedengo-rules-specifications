@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added rule GCI106: Detect scalar sqrt usage in loops and suggest vectorized alternatives
+
+
 ### Changed
 
 - Correction of various typos in rules documentations
