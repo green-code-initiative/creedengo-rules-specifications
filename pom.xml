@@ -136,6 +136,45 @@
 
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.12.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- dependencies used by build code (cf. ${project.basedir}/build/java} -->
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <version>2.1.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>2.0.1</version>
+            <classifier>module</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.19.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -143,7 +182,35 @@
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>5.0.0.4389</version>
+                    <version>5.1.0.4751</version>
+                </plugin>
+                <!-- Add metadata to the JAR file -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Specification-Title>${project.name}</Specification-Title>
+                                <Specification-Version>${project.version}</Specification-Version>
+                                <!--suppress
+                                UnresolvedMavenProperty -->
+                                <Specification-SCM-Revision-Number>${git.commit}</Specification-SCM-Revision-Number>
+                                <!--suppress
+                                UnresolvedMavenProperty -->
+                                <Specification-SCM-Revision-Date>${git.commit.timestamp.datetime}</Specification-SCM-Revision-Date>
+                                <!--suppress
+                                UnresolvedMavenProperty -->
+                                <Specification-Full-Version>${project.version}-${git.commit}</Specification-Full-Version>
+                                <Java-Version>${java.version}</Java-Version>
+                                <Java-Vendor>${java.vendor}</Java-Vendor>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -162,9 +229,45 @@
                             <rules>
                                 <requireMavenVersion>
                                     <!-- Do not specify version upper maven wrapper (cf. ./.mvn/wrapper/maven-wrapper.properties#line=19 -->
-                                    <version>3.8.5</version>
+                                    <version>3.8.8</version>
                                 </requireMavenVersion>
                             </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <executions>
+                    <execution>
+                        <id>compile-build-code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                            <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/build/main/java</compileSourceRoot>
+                            </compileSourceRoots>
+                            <outputDirectory>${project.build.directory}/build-classes</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-build-test-code</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/build/main/java</compileSourceRoot>
+                                <compileSourceRoot>${project.basedir}/build/test/java</compileSourceRoot>
+                            </compileSourceRoots>
+                            <outputDirectory>${project.build.directory}/build-test-classes</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -179,7 +282,7 @@
 				-->
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>convert-to-html</id>
@@ -212,37 +315,33 @@
 					Prepare resources tree needed by language.
 					Each metadata JSON file must be in the same folder as the HTML description file for the corresponding language.
 				-->
-                <groupId>com.github.johnpoth</groupId>
-                <artifactId>jshell-maven-plugin</artifactId>
-                <version>1.4</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>jakarta.json</groupId>
-                        <artifactId>jakarta.json-api</artifactId>
-                        <version>2.1.3</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.glassfish</groupId>
-                        <artifactId>jakarta.json</artifactId>
-                        <version>2.0.1</version>
-                        <classifier>module</classifier>
-                    </dependency>
-                </dependencies>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
-                        <id>prepare-rules-resources</id>
+                        <id>run-build-code</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>java</goal>
                         </goals>
                         <configuration>
-                            <scripts>
-                                <script>${project.basedir}/src/main/script/PrepareResources.jsh</script>
-                            </scripts>
-                            <options>
-                                <option>-R "-DsourceDir=${project.build.directory}/rules-html"</option>
-                                <option>-R "-DtargetDir=${project.build.outputDirectory}/org/green-code-initiative/rules"</option>
-                            </options>
+                            <mainClass>org.greencodeinitiative.tools.exporter.Main</mainClass>
+                            <arguments>
+                                <argument>${project.build.directory}/rules-html</argument>
+                                <argument>${project.build.outputDirectory}/org/green-code-initiative/rules</argument>
+
+                                <argument>${project.name}</argument>
+                                <argument>${project.version}</argument>
+                                <argument>${git.commit}</argument>
+                                <argument>${git.commit.timestamp.datetime}</argument>
+                                <argument>${project.build.outputDirectory}/index.json</argument>
+                            </arguments>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/build-classes
+                                </additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <classpathScope>provided</classpathScope>
                         </configuration>
                     </execution>
                 </executions>
@@ -265,6 +364,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/java.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for Java</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -277,6 +381,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/php.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for PHP</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -289,6 +398,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/python.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for Python</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -301,6 +415,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/javascript.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for JavaScript</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -313,6 +432,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/swift.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for SWIFT</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -325,6 +449,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/xml.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for XML</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -337,6 +466,11 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/csharp.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for C#</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                     <execution>
@@ -349,11 +483,26 @@
                             <descriptors>
                                 <descriptor>${project.basedir}/src/main/assembly/html.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifestEntries>
+                                    <Specification-Title>${project.name} for HTML</Specification-Title>
+                                </manifestEntries>
+                            </archive>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <appendAssemblyId>true</appendAssemblyId>
+                    <archive>
+                        <manifestEntries>
+                            <Specification-Title>${project.name}</Specification-Title>
+                            <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                            <Specification-Version>${project.version}</Specification-Version>
+                            <Specification-Full-Version>${project.version}-${git.commit}</Specification-Full-Version>
+                            <Specification-SCM-Revision-Number>${git.commit}</Specification-SCM-Revision-Number>
+                            <Specification-SCM-Revision-Date>${git.commit.timestamp.datetime}</Specification-SCM-Revision-Date>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
             <plugin>
@@ -455,7 +604,7 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.6.0</version>
+                        <version>0.7.0</version>
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
