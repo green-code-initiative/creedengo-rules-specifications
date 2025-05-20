@@ -1,0 +1,62 @@
+Evaluating expressions that remain constant across loop iterations leads to redundant computations, increasing execution time and energy consumption. 
+Such computations should be moved outside the loop to improve code performance and reduce environmental impact.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+def process_data(data):
+    x = (1, 2, 3, 4)
+    
+    results = []
+    for i in range(10_000):
+        n = len(x)  # Noncompliant: invariant expression computed in the loop
+        results.append(n * i)
+    
+    return results
+----
+
+== Compliant Solution
+
+[source,python]
+----
+def process_data(data):
+    x = (1, 2, 3, 4)
+    n = len(x)  # Compliant: computed once outside the loop
+
+    results = []
+    for i in range(10_000):
+        results.append(n * i)
+
+    return results
+----
+
+== Relevance Analysis
+
+This rule applies to all Python code where loops perform repeated evaluations of expressions that yield the same result in every iteration.
+These include calls to functions like `len()`, `math.pi`, or repeated property lookups. 
+Avoiding such redundant operations improves both **runtime efficiency** and **carbon footprint**, especially in large-scale or iterative workloads.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, 2800 MHz, 4 cores, 8 logical processors  
+* RAM: 8 GB  
+* CO2 Emissions Measurement: Using https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+Two approaches were benchmarked:
+- *Non-compliant:* The function `len(x)` is recomputed at every iteration.
+- *Compliant:* The result of `len(x)` is stored once before the loop and reused.
+
+=== Impact Analysis
+
+image::results.png[]
+
+== Conclusion
+
+Avoiding invariant computations inside loops leads to better code efficiency and a measurable reduction in energy usage. This pattern is simple to detect and correct, and contributes meaningfully to greener Python practices.
+
+== References
+
+- https://en.wikipedia.org/wiki/Loop-invariant_code_motion
