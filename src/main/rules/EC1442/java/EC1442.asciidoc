@@ -1,0 +1,44 @@
+The use of Spring repository in a loop induces unnecessary calculations by the CPU and therefore superfluous energy consumption.
+Also, the use of Spring repository in a stream operation like "peek, forEach, forEachOrdered, map" induces unnecessary multiple access to the database instead of single batch call.
+
+== Non compliant Code Example
+
+[source,java]
+----
+private final List<Integer> ids = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+List<Employee> employees = new ArrayList<>();
+
+for (Integer id: ids) {
+    Optional<Employee> employee = employeeRepository.findById(id); // Noncompliant
+    if (employee.isPresent()) {
+        employees.add(employee.get());
+    }
+}
+----
+
+[source,java]
+----
+List<Employee> employees = new ArrayList<>();
+Stream stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+stream.forEach(id -> {
+    Optional<Employee> employee = employeeRepository.findById(id); // Noncompliant
+    if (employee.isPresent()) {
+        employees.add(employee.get());
+    }
+});
+----
+
+== Compliant Solution
+
+[source,java]
+----
+private final List<Integer> ids = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+List<Employee> employees = employeeRepository.findAllById(ids);
+----
+
+[source,java]
+----
+private final List<Integer> ids = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toList();
+List<Employee> employees = employeeRepository.findAllById(ids);
+----

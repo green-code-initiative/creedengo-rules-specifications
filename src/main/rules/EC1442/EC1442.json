@@ -1,0 +1,16 @@
+{
+  "title": "Reduce memory footprint of dataclass",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1min"
+  },
+  "tags": [
+    "memory",
+    "python",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}
