@@ -1,0 +1,31 @@
+Spring Retry: Inconsistent configuration
+= Inconsistent Spring Retry Configuration
+
+An inconsistent configuration of Spring Retry can lead to blocking threads and increased energy usage.
+
+With Spring Retry, you can mark operations as retryable using `@Retryable`. However, misconfiguration (e.g., too many retries or long backoff periods) can block threads unnecessarily — consuming CPU cycles and energy.
+
+This rule applies to usages of `@Retryable` only.
+A threshold `max.timeout` defines the maximum acceptable blocking time (in milliseconds).
+
+`max.timeout=50000`
+
+== Noncompliant Code Example
+
+[source,java]
+----
+@Retryable(maxAttempts = 4, backoff = @Backoff(delay = 10, multiplier = 100))
+void retryService(String sql);
+----
+
+In this example, retry delays compound to a total retry time of over 10,000,000 ms (10,000 seconds), which exceeds the `max.timeout` threshold.
+
+== Compliant Solution
+
+[source,java]
+----
+@Retryable(maxAttempts = 5, backoff = @Backoff(delay = 10))
+void retryService(String sql);
+----
+
+This configuration limits the total blocking time to 50 ms (5 attempts × 10 ms), keeping energy usage efficient and thread usage minimal.

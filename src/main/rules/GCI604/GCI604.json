@@ -1,0 +1,17 @@
+{
+  "title": "limit retry",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "sobriety",
+    "environment",
+    "creedengo",
+    "spring-boot",
+    "eco-design"
+  ],
+  "defaultSeverity": "Major"
+}
