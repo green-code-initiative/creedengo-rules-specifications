@@ -4,7 +4,7 @@
 
     <groupId>org.green-code-initiative</groupId>
     <artifactId>creedengo-rules-specifications</artifactId>
-    <version>${revision}</version>
+    <version>GCC2025-SNAPSHOT</version>
 
     <name>creedengo Rules Specifications repository</name>
     <description>Repository that contains the specifications of every static-analysis rules available in creedengo plugins.</description>
