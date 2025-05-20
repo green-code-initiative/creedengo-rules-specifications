@@ -1,0 +1,40 @@
+# You should not format number with an external library (`@creedengo/no-imported-number-format-library`)
+
+⚠️ This rule _warns_ in the following configs: ✅ `flat/recommended`, ✅ `recommended`.
+
+<!-- end auto-generated rule header -->
+
+## Why is this an issue?
+
+Importing an external library for lightweight operations increases overall size of the program.
+Using native methods instead reduces the amount of memory and storage to run and store the application.
+This is especially critical in environments with limited resources, such as on mobile devices or in web applications
+where bandwidth and download times matter.
+
+Smaller programs generally have better runtime performance.
+Reducing the number of unnecessary modules minimizes the amount of code that needs to be interpreted or compiled,
+leading to faster execution and improved overall performance.
+
+## Examples
+
+**Example with the [numbro](https://numbrojs.com/) library, when you use
+`format` method.**
+
+```js
+// Example with numbro
+import numbro from "numbro";
+
+numbro.setLanguage('en-GB');
+var string = numbro(1000).format({
+  thousandSeparated: true,
+}); // '1,000'
+
+// Example with Intl
+new Intl.NumberFormat("en-GB").format(1000); // '1,000'
+```
+
+## Resources
+
+### Documentation
+
+- [Mozilla Web Technology for Developers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) -
