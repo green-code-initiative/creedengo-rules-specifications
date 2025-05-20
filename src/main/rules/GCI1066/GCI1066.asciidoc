@@ -1,0 +1,51 @@
+When logging with formatted string, prefer using `%s` and logging kwargs which will be deferred until it cannot be avoided, instead of immediate `.format()` of `f""` interpolation.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+import logging
+logging.basicConfig(level=logging.INFO)
+name = "world"
+logging.debug(f"hello {world}")  # Non Compliant: the replacement will be done immediately but will not be printed because current level is INFO
+----
+
+== Compliant Solution
+
+[source,python]
+----
+import logging
+logging.basicConfig(level=logging.INFO)
+name = "world"
+logging.debug("hello %s", name)  # Compliant: the replacement will be avoided by logging module because it is not necessary
+----
+
+
+== Relevance Analysis
+
+This rule is relevant to logging formatting. Using logging kwargs is more efficient than immediate builtin formatting.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) i5-2520M CPU @ 2.50GHz, 4 cores
+* RAM: 8 GB  
+* CO2 Emissions Measurement: Using https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+Two approaches were benchmarked:
+- *Non-compliant:* Using logging with `.format()`
+- *Compliant:* Using logging with `%s` and kwargs
+
+=== Impact Analysis
+
+image::results.png[]
+
+== Conclusion
+
+Replacing `f""` and `"".format()` with `%s` and logging kwargs permits to defer template replacement when the log is not displayed.
+
+== References
+
+- https://docs.python.org/3/howto/logging.html#optimization
+- https://pylint.pycqa.org/en/latest/user_guide/messages/warning/logging-format-interpolation.html  
