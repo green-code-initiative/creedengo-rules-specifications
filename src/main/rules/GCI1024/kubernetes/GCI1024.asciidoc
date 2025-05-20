@@ -1,0 +1,54 @@
+Chaque conteneur défini dans un Pod, un Deployment, ou un StatefulSet Kubernetes doit obligatoirement déclarer une readinessProbe et une livenessProbe.
+
+L’absence de ces probes entraîne une gestion approximative de l’état du pod :
+
+Les pods peuvent être considérés comme "Ready" alors qu’ils ne le sont pas.
+
+Un conteneur en panne peut rester actif sans redémarrage.
+
+Cela peut provoquer des erreurs clients, du trafic inutile, ou des ressources CPU/RAM consommées inutilement.
+
+## Impact sur l'empreinte carbone
+Evite le trafic inutile vers des pods non opérationnels.
+
+Réduit le nombre de redémarrages manqués ou mal gérés.
+
+Participe à une orchestration plus efficace et économe.
+
+== Compliant Code Example
+
+[source,yml]
+----
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        image: myapp:1.0
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+
+----

@@ -1,0 +1,16 @@
+{
+  "title": "Avoid Spring repository call in loop or stream operations",
+  "type": "ECO_CODE",
+  "status": "todo",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "? min"
+  },
+  "tags": [
+    "performance",
+    "iac",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}
