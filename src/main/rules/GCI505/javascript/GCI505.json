@@ -1,10 +1,13 @@
 {
   "tags": [
     "idleness",
-    "environment",
+    "sustainability",
+    "performance",
     "creedengo",
-    "react-native",
-    "eco-design"
+    "react-native"
   ],
-  "compatibleLanguages": ["JAVASCRIPT", "TYPESCRIPT"]
+  "compatibleLanguages": [
+    "JAVASCRIPT",
+    "TYPESCRIPT"
+  ]
 }

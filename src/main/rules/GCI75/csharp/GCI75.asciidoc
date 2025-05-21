@@ -1,27 +1,26 @@
 :!sectids:
 
-Don't concatenate `strings` in loops, use a `StringBuilder` instead.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 `strings` are immutable so each time they are concatenated, a new one is created. When in a loop, this can lead to a waste of memory and CPU time.
 
 In comparison, a `StringBuilder` works with a single mutable buffer, from which a resulting `string` can be allocated when needed.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 If the number of concatenations is very small, typically 5 or less, then the overhead cost is either marginal or non-existent, and can be ignored.
 
-== Non compliant example
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
 string myString = string.Empty;
 for (int i = 0; i < 100; i++)
-    myString += i; // Non compliant : this requires a new string allocation on each iteration
+    myString += i; // Noncompliant: this requires a new string allocation on each iteration
 ----
 
-== Compliant example
+=== Compliant solution
 
 [source, cs]
 ----
@@ -31,3 +30,7 @@ for (int i = 0; i < 100; i++)
 
 string myString = builder.ToString(); // Triggers a string allocation, but only once
 ----
+
+== Resources
+
+Reference/Validation is unknown.

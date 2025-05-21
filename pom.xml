@@ -129,13 +129,54 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- to prevent message: system modules path not set in conjunction with -source 11 -->
+        <maven.compiler.release>${java.version}</maven.compiler.release>
 
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 
-    </properties>
+        <sonar.organization>green-code-initiative</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <assertJ.version>3.23.1</assertJ.version>
+        <mockito.version>5.3.1</mockito.version>
+        <sonarqube.version>10.10.0.2391</sonarqube.version>
+        <sonar-analyzer-commons.version>2.12.0.2964</sonar-analyzer-commons.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sonarsource.api.plugin</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>${sonarqube.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sonarsource.analyzer-commons</groupId>
+            <artifactId>sonar-analyzer-commons</artifactId>
+            <version>${sonar-analyzer-commons.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertJ.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <build>
         <pluginManagement>
             <plugins>
@@ -148,6 +189,75 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>4.5</version>
+                <configuration>
+                    <properties>
+                        <owner>Green Code Initiative</owner>
+                        <email>https://green-code-initiative.org</email>
+                    </properties>
+                    <licenseSets>
+                        <licenseSet>
+                            <header>
+                                com/mycila/maven/plugin/license/templates/GPL-3.txt</header>
+                            <includes>
+                                <include>**/*.java</include>
+                            </includes>
+                        </licenseSet>
+                    </licenseSets>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.43.0</version>
+                <configuration>
+                    <java>
+                        <googleJavaFormat>
+                            <version>1.23.0</version>
+                        </googleJavaFormat>
+                    </java>
+                    <formats>
+                        <format>
+                            <includes>
+                                <include>src/**/*.json</include>
+                            </includes>
+                            <eclipseWtp>
+                                <type>JSON</type>
+                            </eclipseWtp>
+                            <endWithNewline></endWithNewline>
+                            <indent>
+                                <spaces>true</spaces>
+                                <spacesPerTab>2</spacesPerTab>
+                            </indent>
+                        </format>
+                    </formats>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>

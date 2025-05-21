@@ -1,5 +1,5 @@
 {
-  "title": "orElseGet instead of orElse",
+  "title": "orElseGet should be used instead of orElse",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,8 +8,14 @@
   },
   "tags": [
     "creedengo",
-    "eco-design",
+    "sustainability",
     "performance"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

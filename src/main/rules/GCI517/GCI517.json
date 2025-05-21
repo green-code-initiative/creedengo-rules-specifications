@@ -1,5 +1,5 @@
 {
-  "title": "Optimized API: Fused Location",
+  "title": "Fused Location should be used",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,11 +8,17 @@
   },
   "tags": [
     "optimized-api",
-    "environment",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "0.6",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

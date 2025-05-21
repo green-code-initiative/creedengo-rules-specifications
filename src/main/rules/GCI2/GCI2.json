@@ -1,5 +1,5 @@
 {
-  "title": "Avoid multiple if-else statement",
+  "title": "Variables should not be used in multiple if...else statements",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,9 +7,15 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "performance",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

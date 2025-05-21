@@ -9,13 +9,19 @@ This includes adjusting font sizes, hiding unnecessary elements, and optimizing 
 Limiting the number of printed pages helps in reducing paper and ink consumption.
 By optimizing the print layout, you can ensure that only essential content is printed, saving resources and contributing to environmental sustainability.
 
+== How to fix it
+
+=== Noncompliant code example
+
 [source,html,data-diff-id="3",data-diff-type="noncompliant"]
 ----
 <head>
   <title>Web Page</title>
-  <link rel="stylesheet" type="text/css" href="styles.css" /> <!-- Non-compliant -->
+  <link rel="stylesheet" type="text/css" href="styles.css" /> <!-- Noncompliant -->
 </head>
 ----
+
+=== Compliant solution
 
 In your HTML file, you can include a link to the print stylesheet inside the <head> section.
 Use the media attribute with a value of "print" to indicate that this stylesheet is specifically for print.
@@ -47,7 +53,7 @@ Adjust font sizes, hide unnecessary elements, or make any other modifications su
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_027_en.md[CnumR best practices] - Provide a print CSS
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_027_en.md[CNumR best practices] - Provide a print CSS
 
 === Articles & blog posts
 

@@ -1,5 +1,5 @@
 {
-  "title": "Location updates pause disabled",
+  "title": "Location updates pause should not be disabled",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,12 +7,18 @@
     "constantCost": "5min"
   },
   "tags": [
-    "creedengo",
-    "environment",
     "sobriety",
-    "eco-design",
+    "creedengo",
+    "sustainability",
+    "performance",
     "ios"
   ],
   "ecoScore": "0.4",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

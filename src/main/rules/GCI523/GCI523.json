@@ -1,5 +1,4 @@
 {
-  "title": "Sobriety: Thrifty Geolocation (minTime)",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,5 +6,11 @@
     "constantCost": "10min"
   },
   "ecoScore": "0.4",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

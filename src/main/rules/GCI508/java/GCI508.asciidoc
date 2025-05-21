@@ -1,19 +1,31 @@
+:!sectids:
+
+== Why is this an issue?
+
 A wake lock is a mechanism to indicate that your application needs to have the device stay on. The general principle is to obtain a wake lock, acquire it and finally release it.
 
 Hence, the challenge here is to release the lock as soon as possible to avoid running down the device's battery excessively. Missing call to `PowerManager#release()` is a built-in check of Android lint (_Wakelock_ check) but that does not prevent abuse of the lock over too long a period of time.
 
 This can be avoided by a call to `PowerManager#acquire(long timeout)` instead of `PowerManager#acquire()`, because the lock will be released for sure after the given timeout expires.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 PowerManager.acquire()
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
 PowerManager.acquire(long timeout)
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

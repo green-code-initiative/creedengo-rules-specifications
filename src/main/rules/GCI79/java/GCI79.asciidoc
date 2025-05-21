@@ -1,9 +1,15 @@
+:!sectids:
+
+== Why is this an issue?
+
 Use `try-with-resources` statement for any object that implements the `AutoCloseable` interface, it save computer resources.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 private static void printFileJava7() throws IOException {
     FileInputStream input = new FileInputStream("file.txt");
     int data = input.read();
@@ -14,7 +20,7 @@ private static void printFileJava7() throws IOException {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -28,3 +34,7 @@ private static void printFileJava7() throws IOException {
     }
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

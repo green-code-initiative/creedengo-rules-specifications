@@ -1,7 +1,13 @@
-Turning on the torch mode programmatically using `AVCaptureDevice#torchMode` or `AVCaptureDevice#setTorchModeOn(level:)` 
+:!sectids:
+
+== Why is this an issue?
+
+Turning on the torch mode programmatically using `AVCaptureDevice#torchMode` or `AVCaptureDevice#setTorchModeOn(level:)`
 methods must absolutely be avoided because the flashlight is one of the most energy-intensive component.
 
-== Non compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
 
 [source,swift]
 ----
@@ -13,3 +19,13 @@ videoDevice.torchMode = .on // Noncompliant
 videoDevice.setTorchModeOn(level: 1.0) // Noncompliant
 videoDevice.unlockForConfiguration()
 ----
+
+=== Compliant solution
+
+Do not set the torch programmatically.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

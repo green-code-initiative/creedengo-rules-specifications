@@ -1,3 +1,7 @@
+:!sectids:
+
+== Why is this an issue?
+
 Most iOS devices have built-in sensors that measure motion, orientation, and various environmental conditions. Additionally, they have image sensors (a.k.a. Camera) and geo-positioning sensors (a.k.a. GPS).
 
 The common point of all these sensors is that they consume significant power while in use. Their common issue is processing data unnecessarily when the app is in an idle state, typically when it enters the background or becomes inactive.
@@ -5,10 +9,12 @@ The common point of all these sensors is that they consume significant power whi
     Consequently, calls to start and stop sensor updates must be carefully managed for motion sensor: CMMotionManager#startAccelerometerUpdates()/CMMotionManager#stopAccelerometerUpdates().
     Failing to do so can drain the battery quickly.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 import CoreMotion
 
 let motionManager = CMMotionManager()
@@ -22,7 +28,7 @@ func startMotionUpdates() {
 }
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,swift]
 ----
@@ -44,3 +50,7 @@ func stopMotionUpdates() {
     }
 }
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

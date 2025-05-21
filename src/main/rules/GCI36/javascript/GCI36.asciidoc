@@ -11,7 +11,9 @@ However, even without autoplay, segments of video or audio files might still dow
 This leads to unnecessary data usage, especially if users don't commence playback.
 To mitigate this, it's crucial to prevent browsers from preloading any content by configuring the appropriate settings.
 
-Video:
+== How to fix it in a video element
+
+=== Noncompliant code example
 
 [source,typescriptjsx,data-diff-id="3",data-diff-type="noncompliant"]
 ----
@@ -24,6 +26,8 @@ return (
 )
 ----
 
+=== Compliant solution
+
 [source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
 ----
 return (
@@ -31,7 +35,9 @@ return (
 )
 ----
 
-Audio:
+== How to fix it in an audio element
+
+=== Noncompliant code example
 
 [source,typescriptjsx,data-diff-id="2",data-diff-type="noncompliant"]
 ----
@@ -39,6 +45,8 @@ return (
   <audio controls src="audiofile.mp3" autoplay></audio> // Noncompliant
 )
 ----
+
+=== Compliant solution
 
 [source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
 ----
@@ -51,7 +59,7 @@ return (
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_4003_en.md[CnumR best practices] - Avoid autoplay for videos and audio content
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_4003_en.md[CNumR best practices] - Avoid autoplay for videos and audio content
 
 === Articles & blog posts
 

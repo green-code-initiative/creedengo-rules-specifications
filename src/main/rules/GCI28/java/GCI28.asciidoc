@@ -1,9 +1,15 @@
-Optimize read file exception
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
+
+Throwing and handling exceptions is expensive and should not be used for normal program flows.
+
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 public void readPreferences(String filename) {
     //...
     InputStream in = null;
@@ -17,7 +23,7 @@ public void readPreferences(String filename) {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
@@ -30,3 +36,7 @@ public void readPreferences(String filename) throws IllegalArgumentException, Fi
     //...
 }
 ----
+
+== Resources
+
+Reference/Validation for this rule is unknown.

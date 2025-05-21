@@ -1,11 +1,17 @@
+:!sectids:
+
+== Why is this an issue?
+
 Animations play a crucial role in creating a dynamic and engaging user interface in iOS applications. Both UIKit and SwiftUI provide powerful tools to create smooth and appealing animations. Developers need to be familiar with various methods and properties to implement animations effectively.
 
 To ensure animations are used effectively without draining the device's battery, it's important to check for unnecessary animations and optimize them. This can be done by reviewing the use of functions like `withAnimation(::)`, the `animation(_:value:)` view modifier, and the binding’s `animation(_:)` method in SwiftUI, as well as checking the use of UIKit's animation methods.
 
-== Non compliant Code Example UIKit
+== How to fix it in UIKit
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 UIView.animate(withDuration:animations:)
 UIView.animate(withDuration:animations:completion:)
 UIView.animate(withDuration:delay:options:animations:completion:)
@@ -16,10 +22,16 @@ CAKeyframeAnimation
 CATransition
 ----
 
-== Non compliant Code Example SwiftUI
+=== Compliant solution
+
+Avoid animations.
+
+== How to fix it in SwiftUI
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 withAnimation
 Animation
 AnyTransition
@@ -28,3 +40,11 @@ AnyTransition
 .onAppear(perform:)
 .onDisappear(perform:)
 ----
+
+=== Compliant solution
+
+Avoid animations.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

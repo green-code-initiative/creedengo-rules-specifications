@@ -1,5 +1,5 @@
 {
-  "title": "Detect unoptimized image format",
+  "title": "Image format should be optimized",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -9,8 +9,14 @@
   "tags": [
     "performance",
     "user-experience",
-    "eco-design",
+    "sustainability",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

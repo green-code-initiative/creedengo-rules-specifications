@@ -1,17 +1,34 @@
-Importing the `com.google.android.gms.analytics.Tracker` or `com.google.firebase.analytics.FirebaseAnalytics` classes means that the app sends hits to Google Analytics. It is not necessarily sensitive information, but it is a first step towards Google Ads and hence this practice should be discouraged at early stage.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-Import of Google Analytics :
+Importing the `com.google.android.gms.analytics.Tracker` or `com.google.firebase.analytics.FirebaseAnalytics` classes means that the app sends hits to Google Analytics.
+It is not necessarily sensitive information, but it is a first step towards Google Ads and hence this practice should be discouraged at early stage.
+
+== How to fix it
+
+=== Noncompliant code example
+
+Import of Google Analytics:
 
 [source,java]
 ----
-import com.google.android.gms.analytics.Tracker
+// Noncompliant
+import com.google.android.gms.analytics.Tracker;
 ----
 
-Import of Firebase Analytics :
+Import of Firebase Analytics:
 
 [source,java]
 ----
-import com.google.firebase.analytics
+// Noncompliant
+import com.google.firebase.analytics;
 ----
+
+=== Compliant solution
+
+Do not use Google Analytics.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

@@ -1,5 +1,5 @@
 {
-  "title": "Leakage: Camera Leak",
+  "title": "Camera should be released",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,11 +8,17 @@
   },
   "tags": [
     "leakage",
-    "environment",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "0.2",
-  "defaultSeverity": "Critical"
+  "defaultSeverity": "Critical",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "HIGH"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

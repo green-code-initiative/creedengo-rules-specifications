@@ -1,13 +1,19 @@
+:!sectids:
+
+== Why is this an issue?
+
 Giving information to the end-user through notifications is an important aspect of a modern app.
 
 However, a notification does not necessarily need to be loud and vibrant to achieve its purpose. Default mode is enough. That is why when building a notification with `NotificationManager` there should be no extra calls to the methods `setSound()` nor `setVibrate()` (API26) nor `setVibrationPattern()` (API31) on the builder object.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 API 26:
 
 [source,java]
 ----
+// Noncompliant
 Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext(), "42");
 notificationBuilder.setVibrate(new long[] {1000, 1000, 1000, 1000, 1000});
 notificationBuilder.setSound(
@@ -20,6 +26,7 @@ API 31:
 
 [source,java]
 ----
+// Noncompliant
 NotificationChannel notification = new NotificationChannel("42",
     "test",
     NotificationManager.IMPORTANCE_DEFAULT
@@ -30,3 +37,28 @@ notification.setSound(
     Notification.AUDIO_ATTRIBUTES_DEFAULT
 );
 ----
+
+=== Compliant solution
+
+API 26:
+
+[source,java]
+----
+Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext(), "42");
+----
+
+API 31:
+
+[source,java]
+----
+NotificationChannel notification = new NotificationChannel("42",
+    "test",
+    NotificationManager.IMPORTANCE_DEFAULT
+);
+----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

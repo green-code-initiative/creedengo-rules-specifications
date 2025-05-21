@@ -1,5 +1,5 @@
 {
-  "title": "Sobriety: Torch Free",
+  "title": "Torch should not be turned on",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,5 +7,11 @@
     "constantCost": "5min"
   },
   "ecoScore": "0.4",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

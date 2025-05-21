@@ -1,5 +1,5 @@
 {
-  "title": "Bottleneck: Internet In The Loop",
+  "title": "Internet connections should not be opened continuously ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,12 +7,18 @@
     "constantCost": "3h"
   },
   "tags": [
-    "optimized-api",
-    "environment",
+    "bottleneck",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "0.2",
-  "defaultSeverity": "Critical"
+  "defaultSeverity": "Critical",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "HIGH"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

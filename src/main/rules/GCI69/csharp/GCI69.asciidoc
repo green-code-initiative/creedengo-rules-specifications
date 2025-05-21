@@ -1,8 +1,6 @@
 :!sectids:
 
-Don't call loop invariant functions in loop conditions.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Loop invariant functions do not depend on the current loop iteration, yet they are still evaluated each time.
 This can lead to performance issues, especially when the loop is executed a large number of times, and/or if the function requires a lot of processing.
@@ -10,11 +8,12 @@ Instead, consider calling the function once before the loop and caching the resu
 
 Note that property getters are not included in this rule, as they are expected to be fast and side-effect free.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 The analyzer may return false positives when the function call actually has a side effect, despite being syntactically loop invariant. In which case this warning should be ignored.
 
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
@@ -33,7 +32,7 @@ for (int i = 0; i < getValue(j); i++) // Noncompliant: getValue(j) is loop invar
     Console.WriteLine(i);
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -54,3 +53,7 @@ for (int i = 0; i < getValue(j); i++) { // Compliant: j is mutated in the loop, 
     Console.WriteLine(i);
 }
 ----
+
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_069 (no longer exists in edition 4)]

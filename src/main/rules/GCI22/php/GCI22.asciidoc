@@ -1,15 +1,24 @@
-Use of methods for basic operations
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
+
+Using methods for basic operations consumes additional system resources. The interpreter must in effect and solve the objects and then the methods, just to carry out these simple operations of the language.
+
+== How to fix it
+=== Noncompliant code example
 
 [source,php]
 ----
 $min = min($a, $b);  // Noncompliant
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,php]
 ----
 $min = $a < $b ? $a : $b;
 ----
+
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_048 (no longer exists in edition 4)]

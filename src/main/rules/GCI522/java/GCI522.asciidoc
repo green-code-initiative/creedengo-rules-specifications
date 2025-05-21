@@ -1,12 +1,28 @@
+:!sectids:
+
+== Why is this an issue?
+
 Introduced in Android 9, the adaptive brightness feature raises or lower the brightness of the screen depending on the light in the current environment.
 
 For some reasons, developers may disable this feature programmatically, setting the field `WindowManager.LayoutParams#screenBrightness` with the constant `BRIGHTNESS_OVERRIDE_FULL`.
 
 This feature was introduced to improve battery life, be careful when deactivating it.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 getWindow().getAttributes().screenBrightness = BRIGHTNESS_OVERRIDE_FULL;
 ----
+
+=== Compliant solution
+
+Do not use `BRIGHTNESS_OVERRIDE_FULL`.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

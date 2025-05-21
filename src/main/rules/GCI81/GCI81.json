@@ -1,5 +1,5 @@
 {
-  "title": "Specify struct layout",
+  "title": "Struct layout should be specified",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,10 +7,16 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "creedengo",
     "memory",
     "performance"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

@@ -1,3 +1,7 @@
+:!sectids:
+
+== Why is this an issue?
+
 Most Android-powered devices have built-in sensors that measure motion, orientation, and various environmental conditions.
     In addition to these are the image sensor (a.k.a. Camera) and the geo-positioning sensor (a.k.a. GPS).
 
@@ -6,16 +10,18 @@ The common point of all these sensors is that they are expensive while in use. T
     Consequently, calls must be carefully pairwised: `SensorManager#registerListener()/unregisterListener()`.
     Failing to do so can drain the battery in just a few hours.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 SensorManager sManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 Sensor accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 sManager.registerListener(this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
@@ -24,3 +30,7 @@ Sensor accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 sManager.registerListener(this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
 sManager.unregisterListener(this);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

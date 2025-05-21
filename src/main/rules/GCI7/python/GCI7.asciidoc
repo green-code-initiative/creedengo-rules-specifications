@@ -1,9 +1,15 @@
+:!sectids:
+
+== Why is this an issue?
+
 Avoid using getters and setters in a class, as they increase unnecessary RAM memory usage.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,python]
 ----
+# Noncompliant
 class Client():
 
     def __init__(self, age):
@@ -16,11 +22,11 @@ class Client():
         self.age = age
 
 client = Client(25)
-client.get_age() # Getter inutile
-client.set_age(25) # Setter inutile
+client.get_age() # Useless getter
+client.set_age(26) # Useless setter
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,python]
 ----
@@ -30,7 +36,10 @@ class Client():
         self.age = age
 
 client = Client(25)
-client.age # Récupérer l'attribut age
-client.age = 26 # Modifier l'attribut age
+client.age
+client.age = 26
 ----
 
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_062 (no longer exists in edition 4)]

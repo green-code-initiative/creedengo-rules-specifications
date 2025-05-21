@@ -1,11 +1,24 @@
+:!sectids:
+
+== Why is this an issue?
+
 To avoid draining the battery, an iOS device adapt its brightness to the environment .
 
-Hence, keeping forcing the screen brightness on should be avoided, unless it is absolutely necessary. If so, developers typically force the Brightness to 1 with `UIScreen.main.brightness = a float`.
+Hence, keeping forcing the screen brightness on should be avoided, unless it is absolutely necessary. Developers typically force the Brightness with `UIScreen.main.brightness = a float`.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 UIScreen.main.brightness = CGFloat(0.3)
 ----
 
+=== Compliant solution
+
+Do not set screen brightness.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

@@ -1,5 +1,5 @@
 {
-  "title": "Idleness: Rigid Alarm",
+  "title": "Rigid alarms should not be used",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,12 +8,18 @@
   },
   "tags": [
     "idleness",
-    "environment",
     "creedengo",
     "android",
     "ios",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "0.4",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

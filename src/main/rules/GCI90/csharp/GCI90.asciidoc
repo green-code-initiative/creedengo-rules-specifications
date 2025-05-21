@@ -1,26 +1,21 @@
 :!sectids:
 
-Use Cast instead of Select to cast.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Cast is more efficient than Select for casting operations, its usage leads to better performance.
 
-=== When can it be ignored ?
-
-This rule shouldn't be ignored.
-
-== Non compliant example
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
 void Test(IEnumerable<string> items)
 {
-    var asObjects = items.Select(x => (object)x);
+    var asObjects = items.Select(x => (object)x); // Noncompliant
 }
 ----
 
-== Compliant example
+=== Compliant solution
 
 [source, cs]
 ----
@@ -29,3 +24,7 @@ void Test(IEnumerable<string> items)
     var asObjects = items.Cast<object>();
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

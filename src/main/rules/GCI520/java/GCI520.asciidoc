@@ -1,8 +1,28 @@
+:!sectids:
+
+== Why is this an issue?
+
 Taking into account when the device is entering or exiting the power save mode is higly desirable for the battery life.
 
 It implies the existence of a broadcast receiver registered on the action `ACTION_POWER_SAVE_MODE_CHANGED`, or programmaticaly with a call to `PowerManager#isPowerSaveMode().`
 
-== Compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
+
+[source,java]
+----
+IntentFilter filter3 = new IntentFilter(ACTION_BATTERY_CHANGED); // Noncompliant
+IntentFilter filter4 = new IntentFilter(PING_ALARM_ACTION);
+
+IntentFilter.create(ACTION_BATTERY_CHANGED, "");// Noncompliant 
+IntentFilter.create("foo", "application/blatz");
+
+filter3.addAction(ACTION_BATTERY_CHANGED);// Noncompliant
+filter4.addAction("android.provider.Telephony.SMS_RECEIVED");
+----
+
+=== Compliant solution
 
 [source,java]
 ----
@@ -29,3 +49,7 @@ Or
 ----
 powerManager.isPowerSaveMode()
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

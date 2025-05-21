@@ -1,5 +1,5 @@
 {
-  "title": "Avoid async void methods",
+  "title": "Async void methods should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,10 +7,16 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
+    "sustainability",
     "creedengo",
     "performance",
     "bad-practice"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

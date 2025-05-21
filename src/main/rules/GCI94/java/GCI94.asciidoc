@@ -1,24 +1,34 @@
+:!sectids:
+
+== Why is this an issue?
+
 Parameter of orElse() is evaluated, even when having a non-empty Optional.
 
 Supplier method of orElseGet passed as an argument is only executed when an Optional value isn’t present.
 
 Therefore, using orElseGet() will save computing time.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
-Optional.of("creedengo").orElse(getUnpredictedMethod());
+// Noncompliant
+Optional.of("ecoCode").orElse(getUnpredictedMethod());
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
-Optional.of("creedengo").orElseGet(() -> getUnpredictedMethod());
+Optional.of("ecoCode").orElseGet(() -> getUnpredictedMethod());
 ----
 
 [source,java]
 ----
 randomClass.orElse(getUnpredictedMethod());
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices/blob/main/chapters/BP_042_fr.md[CNumR best practices (3rd edition) BP_042]

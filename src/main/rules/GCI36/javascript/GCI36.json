@@ -1,4 +1,14 @@
 {
-  "tags": ["creedengo", "eco-design", "react-native", "video", "audio"],
-  "compatibleLanguages": ["JAVASCRIPT", "TYPESCRIPT"]
+  "tags": [
+    "creedengo",
+    "sustainability",
+    "performance",
+    "react-native",
+    "video",
+    "audio"
+  ],
+  "compatibleLanguages": [
+    "JAVASCRIPT",
+    "TYPESCRIPT"
+  ]
 }

@@ -1,4 +1,6 @@
-Score creedengo: 2sur5
+:!sectids:
+
+== Why is this an issue?
 
 Services are long-living operations, as components of the apps. However, they can be started in isolation each time the device is next started, without the user's acknowledgement.
 
@@ -8,13 +10,23 @@ In addition, end-users know how to kill applications, but more rarely how to kil
 
 Thus, any developer should avoid having a call to `Context#startService()` from a Broadcast Receiver component that has specified an intent-filter for the `BOOT_COMPLETED` action in the manifest.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,xml]
 ----
+<!-- Noncompliant -->
 <receiver>
     <intent-filter>
         <action android:name= "android.intent.action.BOOT_COMPLETED"/>
     </intent-filter>
 </receiver>
 ----
+
+=== Compliant solution
+
+Boot completed intent should be avoided.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

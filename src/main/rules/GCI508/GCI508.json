@@ -1,5 +1,5 @@
 {
-  "title": "Idleness: Durable Wake Lock",
+  "title": "Durable wake lock should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,11 +8,17 @@
   },
   "tags": [
     "idleness",
-    "environment",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "0.4",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

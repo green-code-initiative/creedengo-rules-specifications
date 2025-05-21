@@ -1,5 +1,5 @@
 {
-  "title": "Use PreparedStatement instead of Statement",
+  "title": "PreparedStatement should be used instead of Statement",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -9,8 +9,14 @@
   "tags": [
     "performance",
     "sql",
-    "eco-design",
+    "sustainability",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

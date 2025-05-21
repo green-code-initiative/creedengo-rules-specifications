@@ -1,17 +1,27 @@
+:!sectids:
+
+== Why is this an issue?
+
 The rotation vector sensor is the most frequently used sensor for motion detection and monitoring. When using `SensorManager#getDefaultSensor(int type)`, always prefer the constant `TYPE_GEOMAGNETIC_ROTATION_VECTOR` which is similar to `TYPE_ROTATION_VECTOR`, but using a magnetometer instead of using a gyroscope. This sensor uses lower power than the other rotation vectors, because it doesn't use the gyroscope. However, it is more noisy and will work best outdoors.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 SensorManager sManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 sManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
 SensorManager sManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 sManager.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

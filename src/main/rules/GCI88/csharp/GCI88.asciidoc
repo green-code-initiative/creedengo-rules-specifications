@@ -1,28 +1,24 @@
 :!sectids:
 
-Dispose resources asynchronously.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Asynchronous operations free up the main thread, allowing it to handle other tasks or enter an idle state, which can lead to lower CPU usage and power consumption. Efficient resource utilization minimizes the overall environmental footprint of applications by reducing the time resources are held, lowering server load, and improving scalability.
 
 Therefore, resources that implement `IAsyncDisposable` should be disposed asynchronously whenever possible.
 
-=== When can it be ignored ?
-
-This rule shouldn't be ignored.
-
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
+// Noncompliant
 public static async Task Test()
 {
     using var stream = new MemoryStream(); // Noncompliant, can be disposed asynchronously
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -39,3 +35,7 @@ public static void Test()
     using var stream = new MemoryStream(); // Compliant, method is synchronous
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

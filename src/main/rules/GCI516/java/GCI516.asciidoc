@@ -1,18 +1,28 @@
-Creation of a Media Player object with `new MediaPlayer()` can be used to control playback of audio/video files and streams. Class own a`release()` method.
+:!sectids:
 
-In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to call this method immediately if a media object is no longer needed may also lead to continuous battery consumption for mobile devices.
+== Why is this an issue?
 
-== Non compliant Code Example
+Creation of a Media Player object with `new MediaPlayer()` can be used to control playback of audio/video files and streams. `release()` method should be used.
+
+Otherwise, in addition to unnecessary resources (such as memory and instances of codecs) being held, failure to call this method immediately if a media object is no longer needed may also lead to continuous battery consumption for mobile devices.
+
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 MediaPlayer mp = new MediaPlayer();
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
 MediaPlayer mp = new MediaPlayer();
 mp.release();
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

@@ -1,3 +1,7 @@
+:!sectids:
+
+== Why is this an issue?
+
 If possible, the utilisation of svg image format (or `<svg/>` html tag) is recommended over other image format.
 
 Because SVGs are generally smaller than other image format, they’re less taxing on your server despite needing to render on load.
@@ -15,24 +19,18 @@ Some advantages of using SVG:
 - SVGs can be embedded into the HTML which means they can be cached, edited directly using CSS and indexed for greater accessibility.
 - SVGs can be animated directly or by using CSS or JavaScript making it easy for web designers to add interactivity to a site.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,python]
 ----
+# Noncompliant
 img_jpg = "image.jpg"
 ----
 
-== Compliant Solution
-
 [source,python]
 ----
-img_svg = "image.svg"
-----
-
-== Non compliant Code Example
-
-[source,python]
-----
+# Noncompliant
 public void foo() {
     // ...
     image_format = testImage("image.jpg")
@@ -40,7 +38,22 @@ public void foo() {
 }
 ----
 
-== Compliant Solution
+[source,python]
+----
+# Noncompliant
+public void foo() {
+    // ...
+    return '<html><img src="xx/xx/image.bmp"></html>'
+    // ...
+}
+----
+
+=== Compliant solution
+
+[source,python]
+----
+img_svg = "image.svg"
+----
 
 [source,python]
 ----
@@ -51,19 +64,6 @@ public void foo() {
 }
 ----
 
-== Non compliant Code Example
-
-[source,python]
-----
-public void foo() {
-    // ...
-    return '<html><img src="xx/xx/image.bmp"></html>'
-    // ...
-}
-----
-
-== Compliant Solution
-
 [source,python]
 ----
 public void foo() {
@@ -73,8 +73,6 @@ public void foo() {
 }
 ----
 
-Or
-
 [source,python]
 ----
  public void foo() {
@@ -83,3 +81,7 @@ Or
     // ...
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

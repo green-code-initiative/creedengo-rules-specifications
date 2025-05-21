@@ -1,5 +1,5 @@
 {
-  "title": "Power: Save Mode Awareness",
+  "title": "Save Mode should be taken into account",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,12 +8,18 @@
   },
   "tags": [
     "power",
-    "environment",
     "creedengo",
     "android",
     "ios",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "1.0",
-  "defaultSeverity": "Info"
+  "defaultSeverity": "Info",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

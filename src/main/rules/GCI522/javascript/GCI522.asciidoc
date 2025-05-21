@@ -10,9 +10,11 @@ This feature was introduced to improve battery life, be careful when deactivatin
 
 Hence, keeping forcing the screen brightness on should be avoided, unless it is absolutely necessary. 
 
-== Example of non compliant code
+== How to fix it
+=== Noncompliant code example
 
-----js
+[source,javascript]
+----
 // Example with expo-brightness (Expo framework library)
 import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
@@ -20,7 +22,7 @@ import * as Brightness from 'expo-brightness';
 
 export default function App() {
     useEffect(() => {
-        (async () => { Brightness.setSystemBrightnessAsyn(1); })(); // Brightness is forced here
+        (async () => { Brightness.setSystemBrightnessAsyn(1); })(); // Noncompliant: Brightness is forced here
     }, []);
     return (
         <View>
@@ -28,3 +30,12 @@ export default function App() {
         </View>
     );
 }
+----
+
+=== Compliant solution
+
+Do not set the screen brightness.
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

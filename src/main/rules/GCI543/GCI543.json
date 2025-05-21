@@ -1,5 +1,5 @@
 {
-  "title": "Power: Compagnion In Background",
+  "title": "Compagnion in background should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,11 +8,17 @@
   },
   "tags": [
     "power",
-    "environment",
     "creedengo",
     "android",
     "ios",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

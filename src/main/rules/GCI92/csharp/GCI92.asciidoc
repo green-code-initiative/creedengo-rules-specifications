@@ -1,16 +1,15 @@
 :!sectids:
 
-Use string.Length instead of comparison with empty string
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Comparing a string to an empty string is unnecessary and can be replaced by a call to `string.Length`, which is more performant and more readable.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 This rule should not be ignored.
 
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
@@ -24,7 +23,7 @@ public void Main()
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -37,3 +36,7 @@ public void Main()
 	}
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

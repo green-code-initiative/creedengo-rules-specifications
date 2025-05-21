@@ -1,18 +1,24 @@
+:!sectids:
+
+== Why is this an issue?
+
 With a call to `LocationManager#requestLocationUpdates(String provider, long minTime, float minDistance, LocationListener listener)`, the location provider will only send your application an update when the location has changed by at least minDistance meters AND at least minTime milliseconds have passed. So `minTime` should be the primary tool to conserve battery life, and, to a lesser extent, `minDistance`.
 
 These two must imperatively be greater than 0.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
     0,
     0,
     this);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
@@ -21,3 +27,9 @@ locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
     10.0f,   // refresh location at least each 10 meters
     this);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

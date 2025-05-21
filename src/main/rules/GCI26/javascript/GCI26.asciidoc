@@ -7,12 +7,19 @@ By reducing the number of CSS properties, you help to reduce the weight of your 
 
 For example, the `font` shorthand consolidates various font-related properties, and the `margin` shorthand streamlines the definition of margins around a box.
 
+== How to fix it
+
+=== Noncompliant code example
+
 [source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
 ----
+// Noncompliant
 <div style={{ marginTop: "1em", marginRight: 0, marginBottom: "2em", marginLeft: "0.5em" }}>
     {/* Noncompliant: these properties can be grouped together in the "margin" property */}
 </div>
 ----
+
+=== Compliant solution
 
 [source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
 ----
@@ -37,7 +44,7 @@ This optimization works for a number of properties https://developer.mozilla.org
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/fc5a1f865bafb196e4775cce8835393751d40ed8/chapters/BP_026_en.md[CnumR best practices] - Use abbreviated CSS notations
+- https://github.com/cnumr/best-practices/blob/fc5a1f865bafb196e4775cce8835393751d40ed8/chapters/BP_026_en.md[CNumR best practices] - Use abbreviated CSS notations
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties[Mozilla Web Technology for Developers] - Shorthand properties
 
 === Articles & blog posts

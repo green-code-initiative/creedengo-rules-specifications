@@ -1,12 +1,17 @@
+:!sectids:
+
+== Why is this an issue?
+
 Creation of an `AVAudioRecorder` object is used to record audio. These class has a method to stop recording and release resources.
 
 In addition to unnecessary resources (such as memory and instances of codecs) being held, failure to properly stop and release these object if it is no longer needed may also lead to continuous battery consumption for mobile devices.
 
-
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 import AVFoundation
 
 var audioRecorder: AVAudioRecorder?
@@ -28,7 +33,7 @@ func startRecording() {
 }
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,swift]
 ----
@@ -59,3 +64,7 @@ func stopRecording() {
     }
 }
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

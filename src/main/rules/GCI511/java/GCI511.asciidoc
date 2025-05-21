@@ -1,11 +1,17 @@
+:!sectids:
+
+== Why is this an issue?
+
 During a voice interaction session, `VoiceInteractionSession#setKeepAwake(boolean keepAwake)` allows to decide whether it will keep the device awake while it is running a voice activity.
 
 By default, the system holds a wake lock for it while in this state, so that it can work even if the screen is off. Setting this to `false` removes that wake lock, allowing the CPU to go to sleep and hence does not let this continue to drain the battery.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
+// Noncompliant
 VoiceInteractionSession voiceSession = new VoiceInteractionSession(this);
 ----
 
@@ -13,14 +19,21 @@ or
 
 [source,java]
 ----
+// Noncompliant
 VoiceInteractionSession voiceSession = new VoiceInteractionSession(this);
 voiceSession.setKeepAwake(true);
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,java]
 ----
 VoiceInteractionSession voiceSession = new VoiceInteractionSession(this);
 voiceSession.setKeepAwake(false);
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

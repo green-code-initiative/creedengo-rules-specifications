@@ -1,16 +1,28 @@
+:!sectids:
+
+== Why is this an issue?
+
 Setting a tolerance for timers will allow them to fire later than the scheduled fire date. The system will use this flexibility to shift the execution of timers by small amounts of time, within their tolerances, increasing the ability to optimize power savings. Your app can set the `Timer#tolerance` property to specify a tolerance for a timer. Using this approach dramatically increases the amount of time that the processor spends idling while users detect no change in system responsiveness.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,swift]
 ----
+// Noncompliant
 let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in }
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,swift]
 ----
 let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in }
 timer.tolerance = 0.5
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]
+
+

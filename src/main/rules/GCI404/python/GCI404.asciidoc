@@ -1,22 +1,28 @@
-Use generator comprehension instead of list comprehension in for loop declaration.
+:!sectids:
 
-Python generators resemble lazy lists from other programming languages: when iterated over, they compute their values on the fly. They lack some list behaviors (indexing, len method, ...) but are memory-efficient, as they do not store each of their values in memory, unlike lists. Thus, when declared in a for-loop declaration, list comprehensions can be safely replaced with generator comprehensions.
+== Why is this an issue?
 
-For more details on list comprehensions vs generator comprehensions, see https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions[Python documentation].
+Python generators resemble lazy lists from other programming languages: when iterated over, they compute their values on the fly. They lack some list behaviors (indexing, len method,...) but are memory-efficient, as they do not store each of their values in memory, unlike lists. Thus, when declared in a for-loop declaration, list comprehensions can be safely replaced with generator comprehensions.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,python]
 ----
+# Noncompliant
 for var in [var2 for var2 in range(100)]:
     ...
 
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,python]
 ----
 for var in (var2 for var2 in range(100)):
     ...
 ----
+
+== Resources
+
+For more details on list comprehensions vs generator comprehensions, see https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions[Python documentation].

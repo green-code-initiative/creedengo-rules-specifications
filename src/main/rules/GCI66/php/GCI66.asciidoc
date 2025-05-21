@@ -1,15 +1,21 @@
+:!sectids:
+
+== Why is this an issue?
+
 PHP allows declaring a string with simple or double quotes. Using double quotes allows developers to insert variables which will be substituted during execution. When the string has no variables, using single quotes prevents PHP from searching for non-existent variables. It will save CPU cycles consumption and RAM usage.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,php]
 ----
+// Noncompliant
 myFunction("name", "age", "IsStudent");
     $lastName = "Hugo";
     $concatenatedString = "$lastName is a student";
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,php]
 ----
@@ -18,15 +24,23 @@ myFunction('name', 'age', 'IsStudent');
     $concatenatedString = $lastName . 'is a student';
 ----
 
+== Resources
+
+=== Best practises
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_066 (no longer exists in edition 4)]
+
+=== Impact
+
 include::../../etsdiff-methodology.asciidoc[]
 
-== Case for a 1GB database:
+==== Case for a 1GB database
 
 image::https://live.staticflickr.com/65535/52621866212_de15608a41_o.png[ETSdiff percent comparison]
 
 [format=csv,cols="1h,1,1"]
 |===
-Source of impacts,Compliant,Non-compliant
+Source of impacts,Compliant,Noncompliant
 
 include::1GB.etsdiff.csv[]
 |===

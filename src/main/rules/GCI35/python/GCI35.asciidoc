@@ -1,22 +1,28 @@
+:!sectids:
+
+== Why is this an issue?
+
 Inside complex code parts (for example multiple loops, complex data constructions...), avoid using try...catch.
 For the moment, this rule only deals with "file open" use case in try...catch blocks.
 
 When an exception is thrown, a variable (the exception itself) is created in a catch block, and it's destruction consumes unnecessary CPU cycles and RAM. Prefer using logical tests in this cases.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,python]
 ----
+# Noncompliant
 try:
     f = open(path)
     print(fh.read())
 except:
-    print('No such file '+path
+    print('No such file ' + path)
 finally:
     f.close()
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,python]
 ----
@@ -26,3 +32,6 @@ if os.path.isfile(path):
   fh.close
 ----
 
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_047 (no longer exists in edition 4)]

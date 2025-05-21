@@ -1,8 +1,6 @@
 :!sectids:
 
-Avoid `async void` methods.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 Using `async void` methods is strongly discouraged due to the significant drawbacks that affect both performance and environmental impact:
 
@@ -12,14 +10,16 @@ Using `async void` methods is strongly discouraged due to the significant drawba
 
 Overall, `async void` methods are considered poor practice, especially since the recommended alternative `async Task` is readily usable and provides an efficient solution for managing asynchronous operations without these downsides.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 In some edge cases, using an `async void` method can be beneficial, but you should **really know** what you're doing.
 
-== Non compliant example
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
+// Noncompliant
 public class Test
 {
     public async void Run()
@@ -36,7 +36,7 @@ public class Test
 }
 ----
 
-== Compliant example
+=== Compliant solution
 
 [source, cs]
 ----
@@ -55,3 +55,8 @@ public class Test
     }
 }
 ----
+
+
+== Resources
+
+Reference/Validation is unknown.

@@ -1,20 +1,24 @@
-Score creedengo: 2sur5
+:!sectids:
+
+== Why is this an issue?
 
 To avoid draining the battery, an Android device that is left idle quickly falls asleep.
 
 Hence, keeping the screen on should be avoided, unless it is absolutely necessary. If so, developers typically use the `FLAG_KEEP_SCREEN_ON` in their activity. Another way to implement this is in their application's layout XML file, by using the `android:keepScreenOn` attribute.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,xml]
 ----
+<!-- Noncompliant -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:keepScreenOn="true"/>
 ----
 
-== Compliant Code Example
+=== Compliant solution
 
 [source,xml]
 ----
@@ -23,3 +27,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:keepScreenOn="false"/>
 ----
+
+== Resources
+
+- https://github.com/cnumr/best-practices-mobile[Mobile-specific Best Practices] by https://collectif.greenit.fr/index_en.html[CNumR]

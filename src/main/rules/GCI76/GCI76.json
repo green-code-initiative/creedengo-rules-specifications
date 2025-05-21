@@ -1,5 +1,5 @@
 {
-  "title": "Avoid usage of static collections.",
+  "title": "Static collections should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,11 +7,17 @@
     "constantCost": "20min"
   },
   "tags": [
-    "cwe",
     "leak",
-    "eco-design",
+    "sustainability",
+    "performance",
     "creedengo",
     "memory"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

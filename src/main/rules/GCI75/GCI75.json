@@ -1,5 +1,5 @@
 {
-  "title": "Don't concatenate strings in loops",
+  "title": "Concatenating strings in loops should be avoided",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,9 +8,15 @@
   },
   "tags": [
     "bad-practice",
-    "eco-design",
+    "sustainability",
     "creedengo",
     "performance"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "Minor",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "LOW"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

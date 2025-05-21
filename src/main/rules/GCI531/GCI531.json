@@ -1,5 +1,5 @@
 {
-  "title": "Sobriety: High Frame Rate",
+  "title": "High frame rate should not be set",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,11 +8,17 @@
   },
   "tags": [
     "sobriety",
-    "environment",
     "creedengo",
     "android",
-    "eco-design"
+    "sustainability",
+    "performance"
   ],
   "ecoScore": "0.4",
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Major",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  }
 }

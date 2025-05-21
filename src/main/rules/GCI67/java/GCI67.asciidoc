@@ -1,15 +1,26 @@
+:!sectids:
+
+== Why is this an issue?
+
 The form `$i++` creates a temporary variable whereas `++$i` does not. It save CPU cycles.
 
-== Non compliant Code Example
+== How to fix it
+=== Noncompliant code example
 
 [source,java]
 ----
-i++  // Noncompliant
+i++;  // Noncompliant
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,java]
 ----
-++i
+++i;
 ----
+
+== Resources
+
+=== Best practises
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_067 (no longer exists in edition 4)]

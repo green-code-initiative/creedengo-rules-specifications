@@ -1,19 +1,19 @@
 :!sectids:
 
-Use Where before OrderBy.
-
-== Why is this an issue ?
+== Why is this an issue?
 
 When `Orderby` is called right before `Where`, LINQ sorts all the elements before filtering them. Doing the opposite is more efficient, first filter the items then sort the remaining ones only.
 
-=== When can it be ignored ?
+=== When can it be ignored?
 
 This rule shouldn't be ignored.
 
-== Non compliant examples
+== How to fix it
+=== Noncompliant code example
 
 [source, cs]
 ----
+// Noncompliant
 public static async Task Test()
 {
     var query = items
@@ -55,7 +55,7 @@ public static async Task Test()
 }
 ----
 
-== Compliant examples
+=== Compliant solution
 
 [source, cs]
 ----
@@ -99,3 +99,7 @@ public static async Task Test()
                 select item;
 }
 ----
+
+== Resources
+
+Reference/Validation is unknown.

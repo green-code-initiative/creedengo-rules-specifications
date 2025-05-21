@@ -1,11 +1,19 @@
+:!sectids:
+
+== Why is this an issue?
+
 Prefer local variables as parameters
 
-When calling a global variable, the interpretation engine must check that it exists in all the scopes, that it has a value, etc. Passing global variables as arguments gives them the status of local variables inside the function, thus saving computing time (CPU cycles).
+When calling a global variable, the interpretation engine must check that it exists in all the scopes, that it has a value, etc.
+Passing global variables as arguments gives them the status of local variables inside the function, thus saving computing time (CPU cycles).
 
-== Non compliant Code Example
+== How to fix it
+
+=== Noncompliant code example
 
 [source,php]
 ----
+// Noncompliant
 var aGlobal = new String('Hello');
 
 function globalLength(){
@@ -16,7 +24,7 @@ function globalLength(){
 globalLength();
 ----
 
-== Compliant Solution
+=== Compliant solution
 
 [source,php]
 ----
@@ -29,3 +37,7 @@ function someVarLength(str){
 
 somVarLength(aGlobal);
 ----
+
+== Resources
+
+- https://www.greenit.fr/2019/05/07/ecoconception-web-les-115-bonnes-pratiques-3eme-edition/[CNumR best practices (3rd edition) BP_050 (no longer exists in edition 4)]
