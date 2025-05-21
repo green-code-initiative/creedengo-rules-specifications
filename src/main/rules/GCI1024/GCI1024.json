@@ -1,0 +1,16 @@
+{
+  "title": "Liveness and liveness detection should be avoided",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5 min"
+  },
+  "tags": [
+    "performance",
+    "iac",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}

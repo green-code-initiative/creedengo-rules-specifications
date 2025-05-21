@@ -1,0 +1,60 @@
+== Why this rule is important ?
+
+The absence of liveness or readiness probes in a Kubernetes deployment can cause undesirable effects:
+
+- Unstable containers that unnecessarily consume CPU/memory resources.
+- Unready applications receiving traffic, increasing errors and client-side retries.
+- More frequent redeployments or crash-loops.
+- Increased carbon footprint due to inefficient use of resources.
+
+Defining these probes ensures that the pod is properly supervised by Kubernetes, limiting wasted resources and promoting a leaner, more stable cluster.
+
+Additional information available on:
+
+* Research articles:
+** https://arxiv.org/html/2504.10702v1[Container-level Energy Observability in Kubernetes Clusters]
+** https://arxiv.org/pdf/2503.08641[A Comprehensive Experimentation Framework for Energy-Efficient Design of Cloud-Native Applications]
+* Official Kubernetes documentation: https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/[Liveness, Readiness, and Startup Probes]
+
+== Non Compliant Code Example
+
+
+
+[source,yml]
+----
+# Liveness et readiness probes absentes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: my-app
+          image: my-image:latest
+
+----
+
+== Compliant Code Example
+
+[source,yml]
+----
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+
+----
