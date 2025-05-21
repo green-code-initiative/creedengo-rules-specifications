@@ -1,0 +1,128 @@
+When two classes are in One To Many relation and LAZY fetching strategy, calling the child list in a loop can provoque unnecessary SQL queries. This will both hinder the application performance and increase environmental impact.
+
+Say you have two classes, Author and Book, where Author has a list of books. For whatever reason, `books` fetch strategy is set to LAZY.
+
+[source,java]
+----
+@Entity
+public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    private List<Book> books;
+
+    // Getters and setters
+}
+
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    // Getters and setters
+}
+----
+
+If you call the getBooks() method in a loop, it will trigger a separate SQL query for each book, which can lead to performance issues.
+
+[source,java]
+----
+List<Author> authors = authorRepository.findAll();
+for (Author author : authors) {
+    List<Book> books = author.getBooks(); // This might trigger multiple SQL queries
+}
+----
+
+== Non compliant Code Example
+
+[source,java]
+----
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+}
+----
+
+The tricky part is that there can be many solutions to this problem.
+
+== Compliant Solutions
+
+#### 1. Join Queries: use JOIN FETCH in the query to load the books along with the authors in a single query.
+
+[source,java]
+----
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+    @Query("SELECT a FROM Author a JOIN FETCH a.books")
+    List<Author> findAllWithBooks();
+}
+----
+
+#### 2. Batch fetching: If you cannot change the query, you can use Hibernate's batch fetching feature to load the books in batches, by configuring the `hibernate.default_batch_fetch_size` property in your application properties file.
+
+[source,java]
+----
+spring.jpa.properties.hibernate.default_batch_fetch_size=20
+----
+
+#### 3. DTO Projections: Use DTO projections to load only the necessary data in a single query.
+
+[source,java]
+----
+public class AuthorWithBooksDTO {
+    private Long id;
+    private String name;
+    private List<BookLightDTO> books;
+
+    // Getters and setters
+}
+public class BookLightDTO {
+    private Long id;
+    private String title;
+
+    // Getters and setters
+}
+
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+    @Query("SELECT new com.example.AuthorWithBooksDTO(a.id, a.name, b.id, b.title) " +
+           "FROM Author a JOIN a.books b")
+    List<AuthorDTO> findAllWithBooks();
+}
+----
+
+#### 4. Use Entity Graphs: Define an entity graph to specify the fetch strategy for the books when loading authors.
+The entity graph allows to override the default fetch strategy for a specific query. Thus you can keep the default LAZY fetch strategy for the `books` field in the `Author` entity for the default query (`findAll()`), and use an entity graph to eagerly fetch the books eagerly when needed (`findAllWithBooks()`).
+
+[source,java]
+----
+
+@Entity
+@NamedEntityGraph(name = "Author.books", attributePaths = {"books"})
+public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    private List<Book> books;
+
+    // Getters and setters
+}
+
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+    @EntityGraph(attributePaths = {"books"})
+    @Query("SELECT a FROM Author a")
+    List<Author> findAllWithBooks();
+}
+----

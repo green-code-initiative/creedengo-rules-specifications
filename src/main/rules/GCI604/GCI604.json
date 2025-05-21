@@ -1,0 +1,16 @@
+{
+  "title": "Detection of the \"N+1 problem\" on Spring Data JPA repositories",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "120min"
+  },
+  "tags": [
+    "performance",
+    "spring",
+    "eco-design",
+    "creedengo"
+  ],
+  "defaultSeverity": "Minor"
+}
