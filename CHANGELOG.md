@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [GCI91](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/410) Adapt rule GCI91 to java context in case of stream
 - [GCI69](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/396) Calls to hasMoreElements() and nextElement() methods from java.util.Enumeration interface aren't flagged anymore when called in a for loop
 - Correction of various typos in rules documentations
+- [#413](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/413) Add new JS rule GCI7 - Avoid rewriting native getter/setter
 
 ### Deleted
 
