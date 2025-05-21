@@ -1,0 +1,71 @@
+Evaluating expressions that remain constant across loop iterations leads to redundant computations, increasing execution time and energy consumption. 
+Such computations should be moved outside the loop to improve code performance and reduce environmental impact.
+
+
+== Non Compliant Code Example
+
+[source,python]
+----
+def process_data(data):
+    x = (1, 2, 3, 4)
+    
+    results = []
+    for i in range(10_000):
+        n = len(x)  # Noncompliant: invariant expression computed in the loop
+        results.append(n * i)
+    
+    return results
+----
+
+== Compliant Solution
+
+[source,python]
+----
+def process_data(data):
+    x = (1, 2, 3, 4)
+    n = len(x)  # Compliant: computed once outside the loop
+
+    results = []
+    for i in range(10_000):
+        results.append(n * i)
+
+    return results
+----
+
+== Relevance Analysis
+
+This rule applies to all Python code where loops perform repeated evaluations of expressions that yield the same result in every iteration.
+
+In our benchmark, we focused on measuring the impact of a representative set of functions, namely len(), sum(), sorted(), list(), set(), max(), and min().
+Our implementation, however, goes beyond this set and currently supports detection for a broader range of functions, including len, sum, sorted, list, tuple, set, dict, max, and min. 
+This can easily be extended to cover additional pure or deterministic functions in future iterations.
+
+
+
+Avoiding such redundant operations improves both **runtime efficiency** and **carbon footprint**, especially in large-scale or iterative workloads.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, 2800 MHz, 4 cores, 8 logical processors  
+* RAM: 8 GB  
+* CO2 Emissions Measurement: Using https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+Two approaches were benchmarked:
+- *Non-compliant:* The function is recomputed at every iteration.
+- *Compliant:* The result of the function is stored once before the loop and reused.
+
+*Benchmarked functions:* len(), sum(), sorted(), list(), set(), max(), and min()
+
+=== Impact Analysis
+
+image::results_summary.png[]
+
+== Conclusion
+
+Avoiding invariant computations inside loops leads to better code efficiency and a measurable reduction in energy usage. This pattern is simple to detect and correct, and contributes meaningfully to greener Python practices.
+
+== References
+
+- https://en.wikipedia.org/wiki/Loop-invariant_code_motion
