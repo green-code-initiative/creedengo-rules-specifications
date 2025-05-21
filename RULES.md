@@ -1,10 +1,10 @@
 # Rules
 
 - [Rules](#rules)
-  - [Rules support matrix by techno](#rules-support-matrix-by-techno)
-  - [Rules to be reworked / measured / clarified](#rules-to-be-reworked--measured--clarified)
-  - [Deprecated rules](#deprecated-rules)
-  - [Refused / Deleted rules](#refused--deleted-rules)
+    - [Rules support matrix by techno](#rules-support-matrix-by-techno)
+    - [Rules to be reworked / measured / clarified](#rules-to-be-reworked--measured--clarified)
+    - [Deprecated rules](#deprecated-rules)
+    - [Refused / Deleted rules](#refused--deleted-rules)
 
 ## Rules support matrix by techno
 
@@ -84,6 +84,7 @@ Some are applicable for different technologies.
 |          | Resize images browser-side                                        | Do not resize images using the HEIGHT and WIDTH attributes of the HTML code. This approach requires transferring these images to their original size, wasting bandwidth and CPU cycles.                                                                                                                                                                                                                                       | [cnumr best practices (3rd edition) BP_034](https://github.com/cnumr/best-practices/blob/main/chapters/BP_034_fr.md)                                                    | 🚫   | 🚫  | 🚧 | 🚫     | 🚫   | 🚫 | 🚀   |
 |          | Modify the DOM when traversing it                                 | Modifying the DOM (Document Object Model) as you traverse it can lead to situations where the loop becomes very resource-intensive, especially CPU cycles.                                                                                                                                                                                                                                                                    | [cnumr best practices (3rd edition) BP_041](https://github.com/cnumr/best-practices/blob/main/chapters/BP_041_fr.md)                                                    | 🚫   | 🚫  | 🚧 | 🚫     | 🚫   | 🚫 | 🚫   |
 |          | Edit DOM elements to make it invisible                            | When an element of the Document Object Model (DOM) needs to be modified by several properties, each change in style or content will generate a repaint or reflow.                                                                                                                                                                                                                                                             | [cnumr best practices (3rd edition) BP_042](https://github.com/cnumr/best-practices/blob/main/chapters/BP_042_fr.md)                                                    | 🚫   | 🚫  | 🚀 | 🚫     | 🚫   | 🚫 | 🚫   |
+| GCI535   | Use native Intl.NumberFormat to format numbers                    | There's no need to use a library to display formatted numbers in a recent browser. Use Intl.NumberFormat for that use case.                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                         | 🚫   | 🚫  | 🚧 | 🚫     | 🚫   | 🚫 | 🚫   |
 
 
 
@@ -111,7 +112,6 @@ will be completely deleted in next releases and moved to bottom deleted rules ar
 | Rule key | Language   | Name                              | Description                                                                                               | Invalidation                                                                                                                                                                                               |
 |----------|------------|-----------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | EC34     | Java / PHP | Using try...catch...finally calls | Implementation is too simple (only detection of presence of "try" statement) AND replaced by `GCI35` rule | Github discussion with measures : [general/java](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/128) / [php](https://github.com/green-code-initiative/creedengo-php/pull/10) |
-
 
 ## Refused / Deleted rules
 
