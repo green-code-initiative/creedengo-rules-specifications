@@ -1,0 +1,28 @@
+Unpaginated Spring Data JPA repository methods fetch all records from the database into memory, regardless of the dataset size. This can lead to high memory usage, degraded application performance, and unnecessary CPU/network consumption.
+To ensure efficient data access and prevent resource overuse, always return a `Page<T>` and include a `Pageable` parameter in your repository methods.
+
+== Noncompliant Code Example
+
+[source,java]
+----
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findAll(); // Noncompliant
+    @Query(value = "SELECT * FROM users", nativeQuery = true)
+    List<User> loadAll(); // Noncompliant
+    @Query("SELECT u FROM User u")
+    List<User> getUsers(); // Noncompliant
+}
+----
+
+== Compliant Solution
+
+[source,java]
+----
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Page<User> findAll(Pageable pageable); // Compliant
+    @Query(value = "SELECT * FROM users", countQuery = "SELECT count(*) FROM users", nativeQuery = true)
+    Page<User> findAllNative(Pageable pageable); // Compliant
+}
+----
