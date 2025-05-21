@@ -1,10 +1,10 @@
 {
-  "title": "Avoid Spring repository call in loop or stream operations",
+  "title": "Detection of the \"N+1 problem\" on Spring Data JPA repositories",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "50min"
+    "constantCost": "120min"
   },
   "tags": [
     "performance",
