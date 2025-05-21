@@ -55,7 +55,7 @@ The tricky part is that there can be many solutions to this problem.
 
 == Compliant Solutions
 
-### 1- Join Queries: use JOIN FETCH in the query to load the books along with the authors in a single query.
+#### 1. Join Queries: use JOIN FETCH in the query to load the books along with the authors in a single query.
 
 [source,java]
 ----
@@ -66,14 +66,14 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 }
 ----
 
-### 2- Batch fetching: If you cannot change the query, you can use Hibernate's batch fetching feature to load the books in batches, by configuring the `hibernate.default_batch_fetch_size` property in your application properties file.
+#### 2. Batch fetching: If you cannot change the query, you can use Hibernate's batch fetching feature to load the books in batches, by configuring the `hibernate.default_batch_fetch_size` property in your application properties file.
 
 [source,java]
 ----
 spring.jpa.properties.hibernate.default_batch_fetch_size=20
 ----
 
-### 3- DTO Projections: Use DTO projections to load only the necessary data in a single query.
+#### 3. DTO Projections: Use DTO projections to load only the necessary data in a single query.
 
 [source,java]
 ----
@@ -99,7 +99,7 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 }
 ----
 
-### 4- Use Entity Graphs: Define an entity graph to specify the fetch strategy for the books when loading authors.
+#### 4. Use Entity Graphs: Define an entity graph to specify the fetch strategy for the books when loading authors.
 The entity graph allows to override the default fetch strategy for a specific query. Thus you can keep the default LAZY fetch strategy for the `books` field in the `Author` entity for the default query (`findAll()`), and use an entity graph to eagerly fetch the books eagerly when needed (`findAllWithBooks()`).
 
 [source,java]
