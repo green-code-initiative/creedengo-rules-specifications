@@ -59,5 +59,4 @@ model.fit(X_train, y_train)
 
 == 📓 Article about XGBoost: A Scalable Tree Boosting System
 
-This article explains in details what XGBoost can do :
-link:https://arxiv.org/pdf/1603.02754
+This article explains in details what XGBoost can do : https://arxiv.org/pdf/1603.02754
