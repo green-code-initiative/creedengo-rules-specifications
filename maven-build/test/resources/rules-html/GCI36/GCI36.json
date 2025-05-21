@@ -1,0 +1,22 @@
+{
+  "title": "Autoplay should be avoided for video and audio content",
+  "type": "CODE_SMELL",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  },
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "video",
+    "audio"
+  ],
+  "defaultSeverity": "Major"
+}
