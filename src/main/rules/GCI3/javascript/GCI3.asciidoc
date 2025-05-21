@@ -1,0 +1,14 @@
+== Why is this an issue?
+When iterating over any collection, fetch the size of the collection in advance to avoid fetching it on each iteration, this saves CPU cycles, and therefore consumes less power.
+[source,js,data-diff-id="2",data-diff-type="noncompliant"]
+----
+for (let i = 0; i < array.length; i++) {
+    console.log(array[array.length]); // Noncompliant
+}
+----
+[source,js,data-diff-id="2",data-diff-type="compliant"]
+----
+const arrayLength = array.length; // Fetch the length once
+for (let i = 0; i < arrayLength; i++) {
+    console.log(array[arrayLength]); // Compliant
+}

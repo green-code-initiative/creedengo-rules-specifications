@@ -9,11 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-### Changed
+- [#403](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/403) Add JS variant of rule GCI3 - Avoid getting size collection in loops
 
 - [GCI91](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/410) Adapt rule GCI91 to java context in case of stream
 - [GCI69](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/396) Calls to hasMoreElements() and nextElement() methods from java.util.Enumeration interface aren't flagged anymore when called in a for loop
 - Correction of various typos in rules documentations
+
+### Changed
 
 ### Deleted
 
