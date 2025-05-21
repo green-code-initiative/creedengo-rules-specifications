@@ -1,0 +1,13 @@
+== Why is this an issue?
+ 
+Using single quotes for string literals that do **not** require interpolation is more efficient. Double quotes (and backticks) can trigger additional parsing logic to check for variable interpolation, even if none is present.
+
+[source,js,data-diff-id="2",data-diff-type="noncompliant"]
+----
+const message = "Hello world";
+----
+ 
+[source,js,data-diff-id="2",data-diff-type="compliant"]
+----
+const message = 'Hello world';
+----
