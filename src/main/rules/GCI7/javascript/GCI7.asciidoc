@@ -1,0 +1,23 @@
+== Why is this an issue?
+
+Overloading default getters and setters lengthens the compilation and execution times, which are usually much better optimized by the language than by the developer.
+
+[source,js,data-diff-id="2",data-diff-type="noncompliant"]
+----
+const circle = {
+	_radius: 42,
+	get radius() {
+		return this._radius;
+	},
+};
+----
+
+[source,js,data-diff-id="2",data-diff-type="compliant"]
+----
+const circle = {
+	_radius: 42,
+	get diameter() {
+		return this._radius * 2 * Math.PI;
+	},
+};
+----
