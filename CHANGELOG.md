@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [#399](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/399) Add C# Rule GCI95 - Use `is` operator instead of `as` operator and null check
 - GCI69 Java : calls to hasMoreElements() and nextElement() methods from java.util.Enumeration interface aren't flagged anymore when called in a for loop
 
 - Correction of various typos in rules documentations
