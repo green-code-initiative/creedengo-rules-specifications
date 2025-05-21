@@ -1,5 +1,5 @@
 {
-  "title": "Reduce memory footprint of dataclass",
+  "title": "Reduce memory footprint of dataclasses",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
