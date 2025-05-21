@@ -1,6 +1,9 @@
 == Why is this an issue?
 
+With Default change detection strategy, Angular will check this component and all its children everytime change detection runs. Any change in any part of the app, including unrelated components, will trigger re-evaluation of this components view.
+It's advised to use OnPush change detection strategy, to improve performance by recuding the number of checks, limiting them to: input changes or events changes.
 
+ps: tracked elements should be immutable.
 
 == Non compliant Code Example
 
