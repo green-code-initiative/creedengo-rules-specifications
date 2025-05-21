@@ -1,54 +1,66 @@
-Chaque conteneur défini dans un Pod, un Deployment, ou un StatefulSet Kubernetes doit obligatoirement déclarer une readinessProbe et une livenessProbe.
+Name: Liveness and/or Readiness Probes Should Be Defined
 
-L’absence de ces probes entraîne une gestion approximative de l’état du pod :
+Targeted technology: Kubernetes (YAML manifests)
 
-Les pods peuvent être considérés comme "Ready" alors qu’ils ne le sont pas.
+Type: Maintainability + Performance + GreenIT
 
-Un conteneur en panne peut rester actif sans redémarrage.
+💡 Why this rule is important
+The absence of liveness or readiness probes in a Kubernetes deployment can cause undesirable effects:
 
-Cela peut provoquer des erreurs clients, du trafic inutile, ou des ressources CPU/RAM consommées inutilement.
+Unstable containers that unnecessarily consume CPU/memory resources.
 
-## Impact sur l'empreinte carbone
-Evite le trafic inutile vers des pods non opérationnels.
+Unready applications receiving traffic, increasing errors and client-side retries.
 
-Réduit le nombre de redémarrages manqués ou mal gérés.
+More frequent redeployments or crash-loops.
 
-Participe à une orchestration plus efficace et économe.
+Increased carbon footprint due to inefficient use of resources.
+
+Defining these probes ensures that the pod is properly supervised by Kubernetes, limiting wasted resources and promoting a leaner, more stable cluster.
+
+Translated with DeepL.com (free version)
+sources : 
+- https://arxiv.org/html/2504.10702v1
+- https://arxiv.org/pdf/2503.08641
+- https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/
+== Non Compliant Code Example
+
+
+
+[source,yml]
+----
+# Liveness et readiness probes absentes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: my-app
+          image: my-image:latest
+
+----
 
 == Compliant Code Example
 
 [source,yml]
 ----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: myapp-container
-        image: myapp:1.0
-        ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /livez
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 20
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
 
 ----

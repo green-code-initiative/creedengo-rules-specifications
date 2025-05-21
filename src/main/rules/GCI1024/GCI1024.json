@@ -1,10 +1,10 @@
 {
-  "title": "Avoid Spring repository call in loop or stream operations",
-  "type": "ECO_CODE",
-  "status": "todo",
+  "title": "Liveness and liveness detection should be avoided",
+  "type": "CODE_SMELL",
+  "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "? min"
+    "constantCost": "5 min"
   },
   "tags": [
     "performance",
