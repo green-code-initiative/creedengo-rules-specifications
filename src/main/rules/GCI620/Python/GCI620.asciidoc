@@ -1,6 +1,7 @@
 Evaluating expressions that remain constant across loop iterations leads to redundant computations, increasing execution time and energy consumption. 
 Such computations should be moved outside the loop to improve code performance and reduce environmental impact.
 
+
 == Non Compliant Code Example
 
 [source,python]
@@ -34,7 +35,13 @@ def process_data(data):
 == Relevance Analysis
 
 This rule applies to all Python code where loops perform repeated evaluations of expressions that yield the same result in every iteration.
-These include calls to functions like `len()`, `math.pi`, or repeated property lookups. 
+
+In our benchmark, we focused on measuring the impact of a representative set of functions, namely len(), sum(), sorted(), list(), set(), max(), and min().
+Our implementation, however, goes beyond this set and currently supports detection for a broader range of functions, including len, sum, sorted, list, tuple, set, dict, max, and min. 
+This can easily be extended to cover additional pure or deterministic functions in future iterations.
+
+
+
 Avoiding such redundant operations improves both **runtime efficiency** and **carbon footprint**, especially in large-scale or iterative workloads.
 
 === Configuration
@@ -46,12 +53,14 @@ Avoiding such redundant operations improves both **runtime efficiency** and **ca
 === Context
 
 Two approaches were benchmarked:
-- *Non-compliant:* The function `len(x)` is recomputed at every iteration.
-- *Compliant:* The result of `len(x)` is stored once before the loop and reused.
+- *Non-compliant:* The function is recomputed at every iteration.
+- *Compliant:* The result of the function is stored once before the loop and reused.
+
+*Benchmarked functions:* len(), sum(), sorted(), list(), set(), max(), and min()
 
 === Impact Analysis
 
-image::results.png[]
+image::results_summary.png[]
 
 == Conclusion
 
