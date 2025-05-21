@@ -1,0 +1,16 @@
+{
+  "title": "Use 'is' operator instead of 'as' operator and null check",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "1min"
+  },
+  "tags": [
+    "roslynator",
+    "readability",
+    "simplification",
+    "performance"
+  ],
+  "defaultSeverity": "Minor"
+}

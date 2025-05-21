@@ -1,0 +1,53 @@
+Using the `as` operator followed by a null check is more verbose and can be simplified using the `is` operator with pattern matching.
+
+When using the `is` pattern, the type check and cast happen in one concise statement, improving readability and reducing boilerplate.
+
+Therefore, using `is` with pattern matching will simplify code and improve maintainability.
+
+== Non compliant Code Example
+
+[source,csharp]
+----
+var myObj = obj as MyType;
+if (myObj != null)
+{
+    myObj.DoSomething();
+}
+----
+
+== Compliant Code Example
+
+[source,csharp]
+----
+if (obj is MyType myObj)
+{
+    myObj.DoSomething();
+}
+----
+
+[source,csharp]
+----
+var anotherObj = maybeObj as AnotherType;
+if (anotherObj != null)
+{
+    Console.WriteLine(anotherObj.Value);
+}
+----
+
+== Compliant Code Example
+
+[source,csharp]
+----
+if (maybeObj is AnotherType anotherObj)
+{
+    Console.WriteLine(anotherObj.Value);
+}
+----
+
+==  Additional Notes
+
+- Pattern matching avoids redundant null checks.
+- It ensures the cast object is both non-null and of the expected type.
+- It promotes safer and more modern C# practices introduced in C# 7.0 and later.
+- Also in [certain cases](https://gist.github.com/StanleySweet/cf6a62ddb1db27c4229804f8a706f323) the assembly is better with is less instructions usually means more performance and less energy consumption.
+
