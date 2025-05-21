@@ -1,0 +1,39 @@
+== Why is this an issue?
+
+
+
+== Non compliant Code Example
+
+[source,angular]
+----
+@Component({
+  selector: 'my-app',
+  template: 'my-app.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
+})
+class MyAppComponent {
+...
+----
+
+[source,angular]
+----
+@Component({
+  selector: 'my-app',
+  template: 'my-app.component.html',
+})
+class MyAppComponent {
+...
+----
+
+
+== Compliant Solution
+[source,angular]
+----
+@Component({
+  selector: 'my-app',
+  template: 'my-app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class MyAppComponent {
+...
+----
