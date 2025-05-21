@@ -1,0 +1,63 @@
+CSV for Comma-Separated Values is a widely-used way of storing data. Its main advantage is that it is “human readable”, meaning that a human can understand the data. However, the fact that it is stored per line and in “plain text” can lead to performance problems.
+On the other hand, Parquet is a storage mode optimized for data compression, as the data is stored in binary form per column. However, it cannot be understood without a dedicated program.
+
+
+== Non compliant Code Example
+
+[source,python]
+----
+file_path = 'data.csv'
+df = pd.read_csv(file_path)
+# or
+df = pd.read_csv('data.csv')
+----
+
+== Compliant Solution
+
+[source,python]
+----
+file_path = 'data.parquet'
+df = pd.read_parquet(file_path)
+# or
+df = pd.read_parquet('data.parquet')
+----
+
+== Relevance Analysis
+
+The following results were obtained through local experiments.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+=== Context
+
+To compare the two storage methods, we're going to use 3 criteria: the carbon emissions involved in saving the same dataframe, the size of this file and the carbon emissions involved in reading this file. We'll vary the number of lines in the dataframe to assess the extent of the impact as a function of file size.
+
+=== Impact Analysis
+
+Local experiments* on CSV vs Parquet format gives the following results on:
+
+*1. Carbon emissions during writing:*
+
+image::write.png[]
+
+*2. File size:*
+
+image::file_size.png[]
+
+*3. Carbon emission during reading:*
+
+image::read.png[]
+
+=== Conclusion
+
+the rule seems relevant. The Parquet format is faster to write to, lighter in weight and faster to read data from. It is suitable for use cases where there would be a lot of data I/O, especially with Cloud storage.
+
+=== References
+
+Source: https://github.com/green-code-initiative/creedengo-rules-specifications/pull/152
+
+https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions
