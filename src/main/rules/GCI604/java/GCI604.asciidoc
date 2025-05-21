@@ -1,4 +1,4 @@
-When two classes are in One To Many relation and LAZY fetching strategy, calling the child list in a loop can provoque unnecessary SQL queries.
+When two classes are in One To Many relation and LAZY fetching strategy, calling the child list in a loop can provoque unnecessary SQL queries. This will both hinder the application performance and increase environmental impact.
 
 Say you have two classes, Author and Book, where Author has a list of books. For whatever reason, `books` fetch strategy is set to LAZY.
 
