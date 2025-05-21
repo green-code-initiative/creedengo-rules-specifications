@@ -1,0 +1,16 @@
+{
+  "title": "Hibernate Query Without Pagination",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "privacy",
+    "creedengo",
+    "eco-design"
+  ],
+  "ecoScore": "0.4",
+  "defaultSeverity": "Minor"
+}
