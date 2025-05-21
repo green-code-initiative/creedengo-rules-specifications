@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [#408](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/408) Add rule GCI1234 - Optimize browserslist in package.json
+
 ### Changed
 
 - Correction of various typos in rules documentations
