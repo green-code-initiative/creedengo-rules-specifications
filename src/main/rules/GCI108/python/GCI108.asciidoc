@@ -56,3 +56,8 @@ from xgboost import XGBClassifier
 model = XGBClassifier(use_label_encoder=False, eval_metric="logloss")
 model.fit(X_train, y_train)
 ----
+
+== 📓 Article about XGBoost: A Scalable Tree Boosting System
+
+This article explains in details what XGBoost can do :
+link:https://arxiv.org/pdf/1603.02754
