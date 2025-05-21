@@ -39,7 +39,7 @@ Two approaches were benchmarked:
 
 === Impact Analysis
 
-image::results.png[]
+image::result.png[]
 
 == Conclusion
 
