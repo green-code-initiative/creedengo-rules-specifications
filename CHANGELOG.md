@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added GCI-1442 - Python3.10 - Reduce memory footprint of dataclasses with slots
+- [#409](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/409) Added GCI-1442 - Python3.10 - Reduce memory footprint of dataclasses with slots
 
 ### Changed
 
