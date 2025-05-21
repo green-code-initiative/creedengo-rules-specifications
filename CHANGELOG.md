@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added rule GCI1200: Detect a for loop and suggest a list comprehension
+
 ### Changed
 
 - [GCI91](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/410) Adapt rule GCI91 to java context in case of stream
