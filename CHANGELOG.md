@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [#322](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/332) [GCI95] Avoid querying SQL columns that are not used
+- [#401](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/401) [GCI96] Don't catch RuntimeException. They represent a problem in the program that should be fixed, not handled
 
 ### Changed
 
