@@ -65,6 +65,8 @@ These results show that even at the micro-optimization level, more efficient cod
 
 == Conclusion
 
+Unlike .items(), which creates a (key, value) tuple for each entry, .keys() and .values() access only what's needed without tuple allocation, making them more efficient.
+
 Using `.keys()` or `.values()` instead of `.items()` when you only need one part of the dictionary:
 
 - Improves code clarity and intent
@@ -75,4 +77,4 @@ Using `.keys()` or `.values()` instead of `.items()` when you only need one part
 == References
 
 - Python dict documentation: https://docs.python.org/3/library/stdtypes.html#dict  
-
+- Python .items() method: https://www.w3schools.com/python/ref_dictionary_items.asp
