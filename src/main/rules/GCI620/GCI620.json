@@ -1,0 +1,17 @@
+{
+  "title": "Code efficiency - Avoid Invariant Computations In Loop",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "sobriety",
+    "environment",
+    "creedengo",
+    "bad-practice",
+    "eco-design"
+  ],
+  "defaultSeverity": "Major"
+}
