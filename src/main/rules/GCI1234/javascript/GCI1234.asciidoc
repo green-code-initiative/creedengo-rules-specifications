@@ -1,0 +1,42 @@
+:!sectids:
+
+== Why is this an issue?
+
+When using webpack the bundle is configured with the browserfile tag in the package.json file.
+Optimize the browserfile to only target the browsers you want to serve and avoid some polyfill script which can unnecessarily make your package bigger.
+
+2 configurations can be distinguished :
+* Intranet : You know which browsers are used in your company. So you can reduce the list of allowed browsers. For example, you can just allow edge and chrome, your bundle (build package) will be smaller.
+* Internet : You should allow a maximum of browsers, your bundle will include polyfill scripts and be bigger but will serve the most part of browsers types.
+
+https://browsersl.ist/
+
+[source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
+----
+```json
+"browserslist": {
+    "defaults"
+}
+```
+----
+
+[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+----
+```json
+"browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+}
+```
+----
+
+
+== Resources
+
+=== Documentation
+
+
+=== Articles & blog posts

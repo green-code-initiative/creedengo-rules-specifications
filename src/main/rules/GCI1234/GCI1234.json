@@ -1,0 +1,20 @@
+{
+  "title": "Browserslist Tag Optimization",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "sobriety",
+    "creedengo",
+    "environment",
+    "eco-design"
+  ],
+  "defaultSeverity": "Medium",
+  "compatibleLanguages": [
+    "JAVASCRIPT",
+    "TYPESCRIPT"
+  ]
+}
