@@ -87,6 +87,7 @@ Some are applicable for different technologies.
 | GCI535   | Use native Intl.NumberFormat to format numbers                    | There's no need to use a library to display formatted numbers in a recent browser. Use Intl.NumberFormat for that use case.                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                         | 🚫   | 🚫  | 🚧 | 🚫     | 🚫   | 🚫 | 🚫   |
 
 
+| GCI1200 | To use list comprehension instead for loop in simple iterations  |    |    | ❓  | ❓      | 🚀    | ❓  | ❓  |❓  |❓  |
 
 ## Rules to be reworked / measured / clarified
 

@@ -1,0 +1,50 @@
+When you use a for loop, on every iteration, you have to look up the variable holding
+the list and then call its append() function. A list comprehension can be faster 
+than a for loop because it’s optimized for performance by Python’s internal mechanisms.
+
+== Non Compliant Code Example
+[source,python]
+----
+result = []
+for i in range(0,20):
+    result.append(i)
+----
+
+== Compliant Solution
+[source,python]
+----
+result = [i for i in range(0,20)]
+----
+
+== Relevance Analysis
+
+This rule is relevant for scenarios where is needed a simple iteration.
+The list comprehensions are often not only more readable
+but also faster than using "for loops."
+They can simplify the code, but if you put too much logic inside,
+they will instead become harder to read and understand.
+
+=== Configuration
+
+* Processor: Apple M1
+* RAM: 16 Go 
+* CO2 Emissions Measurement: Using https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+Two approaches were benchmarked:
+- *Non-compliant:* For loop
+- *Compliant:* List comprehension
+
+=== Impact Analysis
+
+image::results.png[]
+
+== Conclusion
+
+The result of the tests determinated that the list comprehensions
+can be more readable, but also an alternative to reduce the C02 emissions.
+
+== References
+
+- https://realpython.com/list-comprehension-python/
