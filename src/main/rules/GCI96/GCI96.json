@@ -1,18 +1,18 @@
 {
-  "title": "Avoid querying SQL columns that are not used",
+  "title": "Avoid CSV Format",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "10min"
+    "constantCost": "50min"
   },
   "tags": [
-    "performance",
-    "sql",
-    "eco-design",
     "creedengo",
-    "memory",
-    "network"
+    "eco-design",
+    "performance",
+    "data",
+    "ai",
+    "csv"
   ],
   "defaultSeverity": "Minor"
 }
