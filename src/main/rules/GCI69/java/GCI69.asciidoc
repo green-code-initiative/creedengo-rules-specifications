@@ -27,4 +27,5 @@ public void foo() {
 
 == Exceptions
 Iterator methods such as next() and hasNext() are allowed.
+Enumeration methods such as nextElement() and hasMoreElements() are allowed.
 Function calls inside the instanciation of the for loop are allowed.
