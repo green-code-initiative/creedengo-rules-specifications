@@ -25,8 +25,6 @@ results = np.dot(A, B)
 # np stands for NumPy, the Python library used to manipulate data series.
 ----
 
-
-
 == Relevance Analysis
 
 The following results were obtained through local experiments.
