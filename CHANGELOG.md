@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- [GCI98] Don't catch RuntimeException. They represent a problem in the program that should be fixed, not handled
 
 ### Changed
 

@@ -1,0 +1,135 @@
+We should always try to perform checks that avoids raising RuntimeExceptions, because Exception produces large objects and represents a problem in the program that should be fixed, not handled.
+
+References:
+
+* https://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html
+* https://www.jmdoudoux.fr/java/dej/chap-exceptions.htm#exceptions-3
+* https://www.baeldung.com/java-exceptions#2-unchecked-exceptions
+* _Effective Java 2/e by Joshua Bloch_ : "Item 58: Use checked exceptions for recoverable conditions and runtime exceptions for programming errors"
+Use runtime exceptions to indicate programming errors. The great majority of runtime exceptions indicate precondition violations. A precondition violation is simply a failure by the client of an API to adhere to the contract established by the API specification. For example, the contract for array access specifies that the array index must be between zero and the array length minus one. ArrayIndexOutOfBoundsException indicates that this precondition was violated.
+
+
+
+== Check if an Object is null instead of catching a NullPointerException
+
+=== Non compliant Code Example
+[source,java]
+----
+try {
+    obj.toString(); // Noncompliant
+} catch (NullPointerException e) {
+    System.out.println("Object is null");
+}
+----
+
+=== Compliant Solution
+[source,java]
+----
+if (obj != null) {
+    System.out.println(obj.toString());
+} else {
+    System.out.println("Object is null");
+}
+----
+
+
+== Check if a String is long enough when you use substring instead of catching an IndexOutOfBoundsException
+
+=== Non compliant Code Example
+[source,java]
+----
+try {
+    String part = str.substring(5); // Noncompliant
+    System.out.println(part);
+} catch (StringIndexOutOfBoundsException e) {
+    System.out.println("String too short");
+}
+----
+
+=== Compliant Solution
+[source,java]
+----
+if (str.length() >= 5) {
+    String part = str.substring(5);
+    System.out.println(part);
+} else {
+    System.out.println("String too short");
+}
+----
+
+
+== Check if a List has enough elements when you access the nth element instead of catching an IndexOutOfBoundsException
+
+=== Non compliant Code Example
+[source,java]
+----
+try {
+    String value = list.get(3); // Noncompliant
+    System.out.println(value);
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("List does not have enough elements");
+}
+----
+
+=== Compliant Solution
+[source,java]
+----
+if (list.size() > 3) {
+    String value = list.get(3);
+    System.out.println(value);
+} else {
+    System.out.println("List does not have enough elements");
+}
+----
+
+
+== Check if a divisor is not equal to 0 instead of catching an ArithmeticException
+
+=== Non compliant Code Example
+[source,java]
+----
+try {
+    int result = 10 / divisor; // Noncompliant
+    System.out.println(result);
+} catch (ArithmeticException e) {
+    System.out.println("Division by zero");
+}
+----
+=== Compliant Solution
+
+[source,java]
+----
+if (divisor != 0) {
+    int result = 10 / divisor;
+    System.out.println(result);
+} else {
+    System.out.println("Division by zero");
+}
+----
+
+== Exceptions to this rule
+
+IllegalArgumentException are not concerned by this rule, because there is not always a way to check it before raising the Exception.
+
+=== Compliant Solutions
+
+It could be tested by a regex but it would be more costly than throwing the Exception:
+[source,java]
+----
+try {
+    int result = Integer.parseInt(aString);
+} catch (NumberFormatException e) {
+    System.out.println("String is not parseable as a Integer");
+}
+----
+
+It would be difficult to check if a hostname is resolvable beforehand:
+[source,java]
+----
+try {
+    InetAddress address = InetAddress.getByName("invalidhostname");
+    Socket socket = new Socket(address, 8080);
+} catch (UnresolvedAddressException e) {
+    System.out.println("Invalid hostname or IP address");
+}
+----
