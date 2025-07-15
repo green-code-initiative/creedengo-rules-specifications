@@ -1,5 +1,5 @@
 {
-  "title": "Avoid raising Runtime Exceptions when a check is possible",
+  "title": "DATA/AI Pandas - Avoid Reading Unnecessary Columns in CSV Files",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,9 +7,12 @@
     "constantCost": "10min"
   },
   "tags": [
-    "performance",
+    "creedengo",
     "eco-design",
-    "creedengo"
+    "performance",
+    "data",
+    "ai",
+    "pandas"
   ],
   "defaultSeverity": "Minor"
 }
