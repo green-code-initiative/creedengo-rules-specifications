@@ -11,7 +11,8 @@
     "eco-design",
     "performance",
     "memory",
-    "ai"
+    "ai",
+    "pytorch"
   ],
   "defaultSeverity": "Minor"
 }
