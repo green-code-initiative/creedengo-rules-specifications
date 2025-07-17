@@ -1,5 +1,5 @@
 {
-    "title": "Avoid Iterative Matrix Operations",
+    "title": "DATA : Avoid Iterative Matrix Operations",
     "type": "CODE_SMELL",
     "status": "ready",
     "remediation": {
