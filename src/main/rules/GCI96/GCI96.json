@@ -1,5 +1,5 @@
 {
-  "title": "Avoid CSV Format",
+  "title": "DATA Avoid CSV Format",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
