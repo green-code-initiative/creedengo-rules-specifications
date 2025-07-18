@@ -1,10 +1,10 @@
 {
-  "title": "DATA/AI Pandas - Avoid Reading Unnecessary Columns in CSV Files",
+  "title": "DATA Avoid CSV Format and prefer a compressed format like Parquet",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "10min"
+    "constantCost": "50min"
   },
   "tags": [
     "creedengo",
@@ -12,7 +12,7 @@
     "performance",
     "data",
     "ai",
-    "pandas"
+    "csv"
   ],
   "defaultSeverity": "Minor"
 }
