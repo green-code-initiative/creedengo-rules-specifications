@@ -1,5 +1,5 @@
 {
-  "title": "Use Where before OrderBy",
+  "title": "Use Where before OrderBy / Use filter before sorted",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
