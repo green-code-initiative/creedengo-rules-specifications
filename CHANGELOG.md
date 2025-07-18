@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add rule GCI99 Avoid CSV Format, this rule is designed for Python but it can be implemented in other languages. It's based on the utilization of the CSV format, which is not considered an efficient format for data storage and transfer. The rule suggests using more efficient formats like Feather or Parquet instead of CSV.
+- [#400](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/400) Add rule GCI535 - Prefer usage of Intl.NumberFormat
 - [#401](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/401) Add rule GCI98 for Java. Don't catch RuntimeException. They represent a problem in the program that should be fixed, not handled
 
 ### Changed
