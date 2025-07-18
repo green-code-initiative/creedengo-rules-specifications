@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [#388](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/388) Added rule GCI104 on Torch Tensor types
 - [#387](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/387) Add rule GCI103, add specifications for a new rule on iteration method for dict in Python
 - [#386](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/386) Add rule GCI102, recommending the use of pinned memory for the dataloader when transferring data from the CPU to the GPU.
 - [#385](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/385) Add rule GCI101, Added documentation for the rule : disables bias in convolutional layers preceding Batch Normalization.
