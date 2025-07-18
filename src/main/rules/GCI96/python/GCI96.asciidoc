@@ -1,0 +1,74 @@
+This rule is specific to Python because it's related to the Pandas library, which is widely used for data manipulation and analysis in Python.
+
+Reading CSV files without explicitly specifying which columns to load leads to unnecessary data loading and increases memory and energy consumption. This guidance is specific to the use of the Pandas library in Python, but it aligns with the more general GCI74: Avoid SELECT * from table in SQL. To ensure low environmental impact and optimal performance, always use the usecols parameter in pandas.read_csv() to select only the required columns.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+file_path = 'data.csv'
+df = pd.read_csv(file_path)
+# or
+df = pd.read_csv('data.csv')
+----
+
+In this case, **all columns** are read into memory, even if only one or two are needed.
+
+== Compliant Solution
+
+[source,python]
+----
+file_path = 'data.csv'
+df = pd.read_csv(file_path, usecols=['A', 'B'])  # Only read needed columns
+----
+
+This ensures only the necessary data is loaded, reducing memory usage and energy consumption.
+
+== Relevance Analysis
+
+Local experiments were conducted to assess the environmental impact of reading CSV files with and without column selection.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO₂ Emissions Measurement: https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+We generated CSV files with the following row sizes:
+* 1,000
+* 10,000
+* 100,000
+* 1,000,000
+
+Each file contains 5 columns (`A`, `B`, `C`, `D`, `E`). We measured the carbon emissions required to read:
+* 1 column
+* 2 columns
+* 3 columns
+* 4 columns
+* all 5 columns
+
+=== Impact Analysis
+
+The graph below illustrates the emissions generated as a function of file size and number of columns read.
+
+*Carbon emissions during reading (kgCO₂eq):*
+
+image::image.png[]
+
+The results show a **increase in emissions** as more columns are read, and a strong correlation between file size and emissions.
+
+== Conclusion
+
+The rule is relevant. Explicitly specifying columns:
+- Reduces carbon emissions
+- Decreases memory and CPU usage
+- Improves data loading time
+
+This is especially critical when working with large datasets or in environments where sustainability and performance matter (e.g., cloud computing, machine learning pipelines).
+
+== References
+https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+https://medium.com/@amit25173/what-is-usecols-in-pandas-7a6a43885f4b
+
