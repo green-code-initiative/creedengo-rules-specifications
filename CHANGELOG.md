@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [#386](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/386) Add rule GCI102, recommending the use of pinned memory for the dataloader when transferring data from the CPU to the GPU.
 - [#385](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/385) Added documentation for the rule : disables bias in convolutional layers preceding Batch Normalization.
 - [#384](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/384) Add specifications for rule GCI100, this rule is specific to Python because it's based on the `PyTorch` library, a library used for Deep Learning.
 - [#379](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/379) Add rule GCI99 Avoid CSV Format, this rule is designed for Python but it can be implemented in other languages. The rule suggests using more efficient formats like Feather or Parquet instead of CSV.
