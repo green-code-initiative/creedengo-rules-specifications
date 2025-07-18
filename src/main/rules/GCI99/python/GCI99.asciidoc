@@ -54,7 +54,7 @@ image::read.png[]
 
 === Conclusion
 
-the rule seems relevant. The Parquet format is faster to write to, lighter in weight and faster to read data from. It is suitable for use cases where there would be a lot of data I/O, especially with Cloud storage.
+The rule seems relevant. The Parquet format is faster to write to, lighter in weight and faster to read data from. It is suitable for use cases where there would be a lot of data I/O, especially with Cloud storage.
 
 === References
 
