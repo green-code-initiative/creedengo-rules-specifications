@@ -20,3 +20,67 @@ for var in [var2 for var2 in range(100)]:
 for var in (var2 for var2 in range(100)):
     ...
 ----
+
+== Relevance Analysis
+
+The following results were obtained through local experiments.
+
+Credit : https://github.com/AghilesAzzoug
+
+=== Configuration
+
+12th Gen Intel Core I7-12700H
+16 Gb RAM (4800 Mhz)
+Windows 11 OS version 22H2
+Python 3.9.15
+memory_profiler==0.61.0 (for RAM experiments)
+codecarbon==2.1.4 (for CO2 emissions)
+
+=== Context
+
+The use of generator expressions instead of list comprehensions in for-loops declaration can save RAM usage. It has multiple benefits like reducing CO2 emissions as well as releasing memory constraints on the hardware.
+Python generators resemble lazy lists from other programming languages: when iterated over, they compute their values on the fly. They lack some list behaviors (indexing, len method, ...) but are memory-efficient, as they do not store each of their values in memory, unlike lists. Thus, when declared in a for-loop declaration, list comprehensions can be safely replaced with generator expressions.
+For more details on list comprehensions vs generator expressions, see Python documentation.
+
+
+=== Impact Analysis
+
+
+Local experiments* on list comprehensions vs generator comprehensions gives the following results on:
+
+*1. Memory usage:*
+
+image::memory.png[]
+
+*2. Co2 Emissions*
+
+Using CodeCarbon we get the following results:
+https://codecarbon.io/
+
+image::carbone.png[]
+
+For both metrics, the bigger the list, the greater is the gain is.
+
+=== Additional Study
+
+A complementary benchmark from the Creedengo Challenge Issue #113 further supports the recommendation to avoid list comprehensions in loop declarations.
+
+In a controlled containerized test:
+
+The "bad" implementation using a list comprehension consumed: 4,493,365,500 bytes (~4.19 GB)
+
+The "good" implementation using a generator expression consumed: 4,478,423,217 bytes (~4.17 GB)
+
+Memory savings: 14,942,283 bytes (~14.24 MB)
+
+Credit: https://github.com/green-code-initiative/creedengo-challenge/issues/113
+
+=== Conclusion
+
+Our analysis clearly demonstrates that replacing list comprehensions with generator expressions in Python for-loops offers substantial benefits in terms of both memory efficiency and environmental impact. As the data size increases, the advantages become increasingly significant.
+
+=== References
+
+Source: https://github.com/green-code-initiative/creedengo-rules-specifications/pull/152
+
+https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions
