@@ -1,0 +1,18 @@
+{
+  "title": "AI Disable bias in convolutional layers when it's followed by a batch norm layer",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "memory",
+    "ai",
+    "convolutional"
+  ],
+  "defaultSeverity": "Minor"
+}

@@ -1,5 +1,5 @@
 {
-  "title": "Use Where before OrderBy / Use filter before sorted",
+  "title": "Numpy Data - Avoid Square Root Operations In Loop",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,10 +7,11 @@
     "constantCost": "5min"
   },
   "tags": [
-    "eco-design",
     "creedengo",
+    "eco-design",
     "performance",
-    "bad-practice"
+    "data",
+    "numpy"
   ],
-  "defaultSeverity": "Major"
+  "defaultSeverity": "Minor"
 }
