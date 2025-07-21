@@ -1,16 +1,16 @@
 {
-    "title": "Use multiplication instead of math.pow() or exponentiation",
+    "title": "DATA: Prefer AppendLeft Over Insert(0)",
     "type": "CODE_SMELL",
     "status": "ready",
     "remediation": {
       "func": "Constant\/Issue",
-      "constantCost": "1min"
+      "constantCost": "10min"
     },
     "tags": [
       "creedengo",
       "eco-design",
-      "performance"
+      "performance",
+      "data"
     ],
     "defaultSeverity": "Minor"
   }
-  

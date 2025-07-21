@@ -1,17 +1,21 @@
-When you want to insert an element at the beginning of a list, it's better to use a deques or a double linked list.
+In Python, if you want to square x, you can do x*x or x**2.
+At a lower level, these are two different instructions for the CPU
+This rule will also be relevant for higher powers, but for reasons of readability and occurrence, the squaring rule remains the most relevant.
 
 == Non compliant Code Example
 
 [source,python]
 ----
-numbers.insert(0,val) 
+x = x**2
+# or
+x = math.pow(x,2)
 ----
 
 == Compliant Solution
 
 [source,python]
 ----
-numbers.appendleft(val)
+x = x*x
 ----
 
 == Relevance Analysis
@@ -26,23 +30,67 @@ The following results were obtained through local experiments.
 
 === Context
 
-We'll analyze the impact of inserting 10**6 elements at index 0 of a list and compare this with inserting the same number of elements using a deque (deque stands for Double-Ended Queue. It is a data structure that allows adding and removing elements from both ends efficiently. Unlike regular queues, which are typically operated on using FIFO (First In, First Out) principles, a deque supports both FIFO and LIFO (Last In, First Out))
+This rule is based on the fact that to perform the calculation x², there are different ways of doing it in Python. The most common method is x**2, which at compile time is translated into BINARY_POWER, resulting in additional floating-point and logarithmic calculations.
 
+This is due to the internal implementation of exponentiation in Python, often based on the identity:
+```python
+x**y = exp(y * log(x))
+```
+This allows general handling of edge cases (negative values, floats, etc.), but makes it heavier than direct multiplication. In contrast, x * x is compiled into BINARY_MULTIPLY, a direct and efficient CPU instruction.
+
+By contrast, x * x is compiled to BINARY_MULTIPLY, which corresponds to a single, simple CPU instruction.
+
+Finally, math.pow adds further overhead due to function calls and type conversions.
+
+*lambda x: x * x*
+[source,bytecode]
+----
+0 LOAD_FAST                0 (x)
+2 LOAD_FAST                0 (x)
+4 BINARY_MULTIPLY
+6 RETURN_VALUE
+----
+
+The program loads x twice, runs BINARY_MULTIPLY and returns the result.
+
+lambda x: math.pow(x, 2)
+[source,bytecode]
+----
+0 LOAD_GLOBAL              0 (math)
+2 LOAD_ATTR                1 (pow)
+4 LOAD_FAST                0 (x)
+6 LOAD_CONST               1 (2)
+8 CALL_FUNCTION            2
+10 RETURN_VALUE
+----
+
+First, the math module is loaded into the global space, then the pow attribute, the two arguments are loaded, the pow function is called and the value is returned.
+
+lambda x: x ** 2
+[source,bytecode]
+----
+0 LOAD_FAST                0 (x)
+2 LOAD_CONST               1 (2)
+4 BINARY_POWER
+6 RETURN_VALUE
+----
+
+The program loads x, and the constant 2, runs BINARY_POWER, and returns the value.
+
+To compare the three calculation techniques, we will compare their emissions by applying the calculation while varying the number of affected lines.
 
 === Impact Analysis
 
-*1. Carbon emissions:*
+It gives us the following results:
 
-image::carbon.png[]
+*1. Carbon emissions during writing:*
 
-*2. Execution time:*
-
-image::time.png[]
+image::image.png[]
 
 === Conclusion
 
-The results show that using a deque is significantly more efficient than using a list for inserting elements at the beginning. The carbon emissions and execution time are both much lower when using a deque, making it the preferred choice for this operation.
+the rule is relevant, it also applies to the case where the user wishes to set his variable to power 3, 4 etc... but in this case we'll lose visibility. Since the sqaure is the most widely used, this rule applies only to it.
 
 === References
-https://www.geeksforgeeks.org/deque-in-python/
-https://github.com/green-code-initiative/creedengo-challenge/issues/46
+
+https://chrissardegna.com/blog/python-expontentiation-performance/

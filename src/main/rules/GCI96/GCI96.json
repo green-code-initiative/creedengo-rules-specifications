@@ -1,0 +1,18 @@
+{
+  "title": "DATA/AI Pandas - Avoid Reading Unnecessary Columns in CSV Files",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "data",
+    "ai",
+    "pandas"
+  ],
+  "defaultSeverity": "Minor"
+}

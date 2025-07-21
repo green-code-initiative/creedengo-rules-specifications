@@ -1,5 +1,5 @@
 {
-    "title": "Use multiplication instead of math.pow() or exponentiation",
+    "title": "Python String Concatenation - Use Join Instead or f-Strings instead of +=",
     "type": "CODE_SMELL",
     "status": "ready",
     "remediation": {
@@ -9,8 +9,9 @@
     "tags": [
       "creedengo",
       "eco-design",
-      "performance"
+      "performance",
+      "python",
+      "string"
     ],
     "defaultSeverity": "Minor"
   }
-  

@@ -1,5 +1,5 @@
 {
-    "title": "Use multiplication instead of math.pow() or exponentiation",
+    "title": "Don't use .items() to iterate over a dictionary when only keys or values are needed",
     "type": "CODE_SMELL",
     "status": "ready",
     "remediation": {
@@ -9,8 +9,8 @@
     "tags": [
       "creedengo",
       "eco-design",
-      "performance"
+      "performance",
+      "dictionary"
     ],
     "defaultSeverity": "Minor"
   }
-  

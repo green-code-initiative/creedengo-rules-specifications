@@ -1,0 +1,80 @@
+When iterating over a dictionary in Python, always choose the iteration method appropriate to your needs:
+
+- Use `.keys()` when only keys are needed.
+- Use `.values()` when only values are needed.
+- Use `.items()` only when both keys and values are required.
+
+Avoid using `.items()` if you only use the key or the value, as this creates an unnecessary tuple, leading to increased memory allocation and slower execution.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+
+# Only keys needed, but using items()
+for k, v in my_dict.items():
+    print(k)
+----
+
+In this example, `.items()` is unnecessarily used to extract key-value pairs, even though only the key is used. This results in the creation of extra tuples, increasing memory usage and processing time.
+
+== Compliant Solution
+
+[source,python]
+----
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+
+# Proper use of keys()
+for k in my_dict.keys():
+    print(k)
+----
+
+This version uses `.keys()`, which is more efficient when values are not needed.
+
+== Relevance Analysis
+
+Experiments were conducted to evaluate the performance and environmental impact of compliant vs. non-compliant dictionary iteration.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+=== Context
+
+Two iterations were benchmarked:
+- *Compliant:* Using `.keys()`.
+- *Non-compliant:* Using `.items()`.
+
+Metrics assessed:
+- Execution time
+- Carbon emissions
+
+=== Impact Analysis
+
+image::dict_emissions.png[]
+
+image::dict_time.png[]
+
+- *Execution Time:* Compliant code executed approximately **5x faster** than non-compliant code.
+- *CO₂ Emissions:* Compliant code emitted **~60% less carbon** due to reduced processing overhead.
+
+These results show that even at the micro-optimization level, more efficient code contributes to measurable energy savings and lower environmental impact.
+
+== Conclusion
+
+Unlike .items(), which creates a (key, value) tuple for each entry, .keys() and .values() access only what's needed without tuple allocation, making them more efficient.
+
+Using `.keys()` or `.values()` instead of `.items()` when you only need one part of the dictionary:
+
+- Improves code clarity and intent
+- Reduces memory and processing overhead
+- Shortens execution time
+- Decreases carbon footprint, especially in large-scale data workflows
+
+== References
+
+- Python dict documentation: https://docs.python.org/3/library/stdtypes.html#dict  
+- Python .items() method: https://www.w3schools.com/python/ref_dictionary_items.asp
