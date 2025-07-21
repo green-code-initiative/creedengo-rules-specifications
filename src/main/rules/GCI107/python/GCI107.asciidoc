@@ -1,16 +1,19 @@
-Before going into more detail, it's important to understand how vectorization works in Python. When performing a calculation on an array/matrix, there are several possible methods:
+Before going into more detail, it's important to understand how vectorization works in Python. When performing a calculation on an array/matrix, there are several feasible methods:
 
 The first is to go through the list and perform the calculation element by element, known as an iterative approach.
 The second method consists of applying the calculation to the entire array/matrix at once, which is known as vectorization.
 
-Although it's not possible to do this in all cases without applying real parallelism using a GPU, for example, we speak of vectorization when we use the built-in functions of TensorFlow, NumPy or Pandas.
+Although it's not feasible to do this in all cases without applying real parallelism using a GPU, for example, we speak of vectorization when we use the built-in functions of TensorFlow, NumPy or Pandas.
 
-We'll also have a iterative loop, but it will be executed in lower-level code (C). As with the use of built-in functions in general, since low-level languages like C are optimized, execution will be much faster and therefore emit less CO2.
+We'll also have an iterative loop, but it will be executed in lower-level code (C). As with the use of built-in functions in general, since low-level languages like C are optimized, execution will be much faster and therefore emit less CO2.
 
 == Non compliant Code Example
 
 [source,python]
 ----
+results = [[0 for _ in range(cols_B)] for _ in range(rows_A)]
+
+
 for i in range(len(A)):
     for j in range(len(B[0])):
         for k in range(len(B)):
