@@ -11,12 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [#417](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/417) Fixed a typo in the tags GCI 100 and 104.
+
 ### Deleted
 
 ## [2.4.0] - 2025-07-20
 
 ### Added
-- [#417](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/417) Fixed a typo in the tags GCI 100 and 104.
 - [#390](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/390) Added rule GCI106 : Detect scalar sqrt usage in loops and suggest vectorized alternatives
 - [#389](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/389) Add rule GCI105, Add a rule on Python String Concatenation
 - [#388](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/388) Added rule GCI104 on Torch Tensor types
