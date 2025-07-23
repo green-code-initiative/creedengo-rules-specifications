@@ -12,7 +12,7 @@
     "performance",
     "memory",
     "ai",
-    "PyTorch"
+    "pytorch"
   ],
   "defaultSeverity": "Minor"
 }
