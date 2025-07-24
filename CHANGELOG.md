@@ -11,9 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [#417](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/417) Fixed a typo in the tags GCI 100 and 104.
-
 ### Deleted
+
+## [2.4.1] - 2025-07-24
+
+### Changed
+
+- [#417](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/417) Fixed a typo in the tags GCI 100 and 104.
 
 ## [2.4.0] - 2025-07-20
 
@@ -442,7 +446,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.1...HEAD)
+[2.4.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...2.4.1)
 [2.4.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.3.0...2.4.0)
 [2.3.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.3...2.3.0)
 [2.2.3](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.2...2.2.3)
