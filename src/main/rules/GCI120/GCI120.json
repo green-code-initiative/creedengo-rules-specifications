@@ -1,0 +1,24 @@
+{
+  "title": "Component change detection strategy should be OnPush",
+  "type": "CODE_SMELL",
+  "code": {
+    "impacts": {
+      "RELIABILITY": ""
+    },
+    "attribute": ""
+  },
+  "status": "",
+  "remediation": {
+    "func": "",
+    "constantCost": ""
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance"
+  ],
+  "defaultSeverity": "Major",
+  "compatibleLanguages": [
+    "Angular",
+  ]
+}
