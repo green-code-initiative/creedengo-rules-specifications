@@ -1,0 +1,62 @@
+= Prefer Efficient Classifiers: XGBoost vs RandomForest
+
+Using resource-heavy classifiers like `RandomForestClassifier` for standard classification tasks can result in longer execution times and higher carbon emissions.
+
+`XGBoost` offers a more optimized and eco-friendly alternative with competitive accuracy.
+
+== Metrics Comparison Table
+
+[cols="1,1,1,1", options="header"]
+|===
+|Classifier            |Accuracy |Time (s) |Carbon Emission (kg CO₂)
+
+|RandomForestClassifier
+|0.88
+|1.24
+|0.00091
+
+|XGBClassifier
+|0.89
+|0.47
+|0.00035
+|===
+
+XGBoost not only matches or exceeds the accuracy of RandomForest but also runs significantly faster and emits less CO₂.
+
+== Visual Comparison
+
+=== Accuracy vs Dataset Size
+
+image::accuracy_vs_size.png[Accuracy Comparison]
+
+=== Carbon Emission vs Dataset Size
+
+image::emissions_vs_size.png[Emission Comparison]
+
+=== Execution Time vs Dataset Size
+
+image::execution_time_vs_size.png[Time Comparison]
+
+== Non Compliant Code Example
+
+[source,python]
+----
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+----
+
+== Compliant Code Example
+
+[source,python]
+----
+from xgboost import XGBClassifier
+
+model = XGBClassifier(use_label_encoder=False, eval_metric="logloss")
+model.fit(X_train, y_train)
+----
+
+== 📓 Article about XGBoost: A Scalable Tree Boosting System
+
+This article explains in details what XGBoost can do : https://arxiv.org/pdf/1603.02754
