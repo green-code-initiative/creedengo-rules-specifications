@@ -37,12 +37,14 @@ Local experiments were conducted to assess the environmental impact of reading C
 === Context
 
 We generated CSV files with the following row sizes:
+
 * 1,000
 * 10,000
 * 100,000
 * 1,000,000
 
 Each file contains 5 columns (`A`, `B`, `C`, `D`, `E`). We measured the carbon emissions required to read:
+
 * 1 column
 * 2 columns
 * 3 columns
@@ -71,4 +73,3 @@ This is especially critical when working with large datasets or in environments 
 == References
 https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 https://medium.com/@amit25173/what-is-usecols-in-pandas-7a6a43885f4b
-

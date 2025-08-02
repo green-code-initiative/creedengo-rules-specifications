@@ -10,16 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [#381](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/381) Add rule GCI 108 Prefer Append Left
-- [#400](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/400) Add rule GCI535 - Prefer usage of Intl.NumberFormat
+- [#380](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/380) Added rule GCI107 : DATA - Avoid Iterative Matrix Operations
 
 ### Changed
 
 ### Deleted
 
+## [2.4.1] - 2025-07-24
+
+### Changed
+
+- [#417](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/417) Fixed a typo in the tags GCI 100 and 104.
+
 ## [2.4.0] - 2025-07-20
 
 ### Added
-
 - [#390](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/390) Added rule GCI106 : Detect scalar sqrt usage in loops and suggest vectorized alternatives
 - [#389](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/389) Add rule GCI105, Add a rule on Python String Concatenation
 - [#388](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/388) Added rule GCI104 on Torch Tensor types
@@ -444,7 +449,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.1...HEAD)
+[2.4.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...2.4.1)
 [2.4.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.3.0...2.4.0)
 [2.3.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.3...2.3.0)
 [2.2.3](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.2...2.2.3)
