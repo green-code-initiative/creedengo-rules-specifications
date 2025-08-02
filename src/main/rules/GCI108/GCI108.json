@@ -1,5 +1,5 @@
 {
-    "title": "DATA: Prefer AppendLeft Over Insert(0)",
+    "title": "DATA : Prefer AppendLeft Over Insert(0)",
     "type": "CODE_SMELL",
     "status": "ready",
     "remediation": {

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [#381](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/381) Add rule GCI 108 Prefer Append Left
+- [#381](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/381) Add rule GCI108 : Prefer Append Left
 - [#380](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/380) Added rule GCI107 : DATA - Avoid Iterative Matrix Operations
 
 ### Changed
