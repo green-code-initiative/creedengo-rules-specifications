@@ -34,3 +34,52 @@ client.age # Récupérer l'attribut age
 client.age = 26 # Modifier l'attribut age
 ----
 
+== Relevance Analysis
+
+The following results were obtained through local experiments.
+
+=== Configuration
+- Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MA1Hz, 12 cores, 14 logical processors
+- RAM: 16 GB
+- CO2 emissions measurement: Using CodeCarbon
+- Memory usage measurement: Using psutil
+- Time measurement: Using timeit
+
+=== Impact Analysis
+
+To measure the impact of using getters and setters, we created two classes: one with getters and setters and the other without. We then measured the memory usage of each class. Additionally, we measured the execution time of each class using timeit. Below is the code used to evaluate both time and carbon emissions.
+
+[source,python]
+----
+class Direct():
+    def __init__(self, age):
+        self.age = age  
+
+
+class WithGetter():
+    def __init__(self, age):
+        self._age = age
+
+    def get_age(self):
+        return self._age
+
+----
+
+=== Results
+image::tracking_1.png[]  
+
+
+For 100,000,000 iterations, the difference in CO2 equivalent emissions is 3.7*10^-6, which corresponds to 17 mm in equivalent emissions of a thermal car (see converter).
+
+:hide-uri-scheme: 
+https://impactco2.fr/outils/comparateur
+
+=== Conclusion
+
+Based on the results, we can conclude that using getters and setters in a class increases carbon emissions and execution time. Therefore, it is recommended to avoid them when possible. The performance difference comes from the overhead of method calls.
+
+It is important to keep in mind that for security or control reasons, the use of getters and setters may be necessary. In such cases, using the @property decorator can be a good alternative to traditional getters and setters. It allows restricting access to the attribute and adding logic when the attribute is accessed or modified. Performance is better than recreating getter and setter methods but not as good as direct attribute access.
+
+=== References
+:hide-uri-scheme: 
+https://www.datacamp.com/tutorial/property-getters-setters
