@@ -13,3 +13,28 @@ i++  // Noncompliant
 ----
 ++i
 ----
+
+## Exception
+In some cases, it may be intentional to allow the use of `i++`, even if it is probably not far from a code smell.
+Examples:
+
+[source,java]
+----
+void bar(int value) {
+    // ...
+}
+
+int foo() {
+    int i = 0;
+    bar(i++);
+    return i;
+}
+----
+or
+[source,java]
+----
+private int i = 0;
+int foo() {
+    return this.i++;
+}
+---

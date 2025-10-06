@@ -190,7 +190,7 @@
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>5.1.0.4751</version>
+                    <version>5.2.0.4988</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -313,12 +313,6 @@
                             <arguments>
                                 <argument>${project.build.directory}/rules-html</argument>
                                 <argument>${project.build.outputDirectory}/org/green-code-initiative/rules</argument>
-
-                                <argument>${project.name}</argument>
-                                <argument>${project.version}</argument>
-                                <argument>${git.commit}</argument>
-                                <argument>${git.commit.timestamp.datetime}</argument>
-                                <argument>${project.build.outputDirectory}/index.json</argument>
                             </arguments>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/maven-build-classes</additionalClasspathElement>
