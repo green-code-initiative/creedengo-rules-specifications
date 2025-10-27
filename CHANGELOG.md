@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add rule GCI110: Avoid wildcard imports in Python (`from module import *`)
+
 ### Changed
 
 - add documentation link for each rule in RULES.md file
