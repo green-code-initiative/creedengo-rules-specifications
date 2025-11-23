@@ -9,14 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [2.6.0] - 2025-11-23
+
+### Added
+
 - Add rule GCI109: Avoid Using Exceptions for Control Flow (Python)
 - Add rule GCI110: Avoid wildcard imports in Python (`from module import *`)
 
 ### Changed
 
 - add documentation link for each rule in RULES.md file
-
-### Deleted
 
 ## [2.5.0] - 2025-08-02
 
@@ -458,7 +464,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.5.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.0...HEAD)
+[2.6.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.5.0...2.6.0)
 [2.5.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.1...2.5.0)
 [2.4.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...2.4.1)
 [2.4.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.3.0...2.4.0)
