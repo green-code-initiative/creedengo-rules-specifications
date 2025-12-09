@@ -1,0 +1,178 @@
+= GCI109 — Avoid Using Exceptions for Control Flow (Python)
+
+== Why this rule?
+
+Raising and catching an exception in Python is not the same as just using a simple if/else.
+In CPython, raising an exception triggers stack unwinding, creates and attaches a traceback
+object, and searches for a suitable handler; all of which cost CPU and memory, making it an expensive operation.
+Since Python 3.11, the interpreter has reduced overheads in normal execution, but actually raising
+an exception remains costly. This cost makes using exceptions for control flow a poor choice—especially in 
+frequently-running code such as inside loops, where the expense quickly multiplies.
+
+Why it matters for eco‑design: more CPU cycles → more energy → more carbon footprint.
+
+== What is "control flow using exceptions"?
+
+Using exceptions for control flow means relying on `try/except` to steer normal program execution
+(e.g., terminate loops, select a code path, or fetch defaults), instead of using idiomatic constructs
+like `if/else`, membership checks, iterator protocols (`for`, `next(it, default)`), or dedicated APIs
+(`dict.get`, `getattr` with a default, `enumerate`, bounds checks).
+
+Why it’s not recommended:
+- Performance overhead: raising an exception creates exception and traceback objects and unwinds the stack.
+- Predictability: exceptions are optimized for rare, exceptional cases; frequent exceptions degrade throughput.
+- Readability and intent: `if/else`, iteration constructs, and "no-exception" APIs express intent more clearly.
+- Side effects and surprises: constructs like `hasattr` or properties may execute code and raise unrelated errors.
+
+
+== Rule scope
+
+Flags "control‑flow" use of these exceptions:
+- KeyError, IndexError, AttributeError, StopIteration
+- Any use of exceptions to drive program flow rather than handle errors
+
+Note: an `except` block that immediately re‑raises (bare `raise`) is error handling, not control flow.
+
+== EAFP vs LBYL (when to prefer which)
+
+Python encourages EAFP ("Easier to Ask Forgiveness than Permission"): try first, then handle the exception.
+EAFP is appropriate when failure is rare. When failure is frequent or expected,
+exceptions become an expensive branching mechanism; prefer LBYL or exception‑free idioms.
+
+== Non-compliant examples
+
+=== 1) Loop termination via StopIteration
+
+[source,python]
+----
+it = iter(source)
+while True:
+    try:
+        item = next(it)
+    except StopIteration:
+        break  # control flow via exception -> NO
+    process(item)
+----
+
+=== 2) Missing dict key
+
+[source,python]
+----
+for user in users:
+    try:
+        plan = price_table[user.tier]  # KeyError for control flow -> NO
+    except KeyError:
+        plan = DEFAULT_PLAN
+    bill(user, plan)
+----
+
+=== 3) "Missing" attribute
+
+[source,python]
+----
+for obj in objects:
+    try:
+        feature = obj.attr  # AttributeError for control flow -> NO
+    except AttributeError:
+        feature = fallback(obj)
+    consume(feature)
+----
+
+=== 4) Indexing with out-of-bounds
+
+[source,python]
+----
+for i in range(n):
+    try:
+        x = data[i]  # IndexError for control flow -> NO
+    except IndexError:
+        x = 0
+    use(x)
+----
+
+== Compliant alternatives (no "expected" exceptions)
+
+=== 1) Clean iteration and termination
+
+[source,python]
+----
+# Option A: idiomatic for-in
+for item in source:
+    process(item)
+
+# Option B: next(..., default) without exceptions
+it = iter(source)
+while True:
+    item = next(it, None)
+    if item is None:
+        break
+    process(item)
+----
+Why? PEP 479 forbids using StopIteration to drive control flow in generators;
+`for` or `next(..., default)` expresses the intent without raising exceptions.
+
+=== 2) Dictionaries: prefer get / setdefault / defaultdict
+
+[source,python]
+----
+for user in users:
+    plan = price_table.get(user.tier, DEFAULT_PLAN)
+    bill(user, plan)
+
+# If you need to build structures on the fly:
+from collections import defaultdict
+counts = defaultdict(int)
+for key in keys:
+    counts[key] += 1
+----
+
+=== 3) Attributes: getattr with a default
+
+[source,python]
+----
+for obj in objects:
+    feature = getattr(obj, "attr", None) or fallback(obj)
+    consume(feature)
+----
+Note: avoid `hasattr` on properties with side effects; `getattr(..., default)` does not raise.
+
+=== 4) Indexing: bounds checks, enumerate, iterators
+
+[source,python]
+----
+for i, x in enumerate(seq):
+    use(x)
+
+# or bounds checks when direct indexing is needed
+if 0 <= idx < len(seq):
+    use(seq[idx])
+----
+
+== Alternatives by exception (quick reference)
+
+- KeyError: `dict.get(key, default)`, `defaultdict`, `setdefault`, pre‑check membership if needed (`if key in d:`).
+- IndexError: iterate (`for x in seq`), `enumerate`, bounds checks (`if 0 <= i < len(seq)`), slicing/`itertools.islice` for windowed access.
+- AttributeError: `getattr(obj, "name", default)`, design objects to expose explicit defaults or null‑object semantics.
+- StopIteration: use `for item in iterable`, or `next(it, sentinel)`; in async contexts, prefer `async for` and sentinels instead of relying on `StopAsyncIteration`.
+
+== When exceptions are the right tool
+
+- Truly exceptional errors (I/O, network, contract violations).
+- You enrich context and re‑raise (bare `raise`); this is error handling, not control flow.
+
+== Eco-performance intuition
+
+- Try without exception: near‑zero overhead in normal execution (3.11+ improvements).
+- Raised exception: creates exception + traceback objects and unwinds the stack → extra CPU cycles → more energy → more CO₂ (electricity as carbon proxy).
+- Minimizing expected exceptions reduces runtime and energy.
+
+== References
+
+
+- What's New in Python 3.11 (Faster CPython): https://docs.python.org/3/whatsnew/3.11.html#faster-cpython
+- PEP 479 — StopIteration Handling: https://peps.python.org/pep-0479/
+- Real Python — Exceptions and EAFP discussion: https://realpython.com/python-exceptions/
+- Don't Use Exceptions For Flow Control : https://wiki.c2.com/?DontUseExceptionsForFlowControl
+- The Cost of except in Python : https://dlecocq.github.io/blog/2012/01/08/the-cost-of-except-in-python/
+- Exception handling performance regression in Python (bugs.python.org Issue40222): https://bugs.python.org/issue40222?
+- How fast are exceptions? : https://docs.python.org/2/faq/design.html#how-fast-are-exceptions
