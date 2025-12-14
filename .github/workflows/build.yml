@@ -1,8 +1,17 @@
 name: Build and Tests
 
 on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "*.md"
+      - ".github/**/*.yml"
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
   pull_request:
-    types: [ opened, synchronize, reopened ]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,14 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: "temurin"
           java-version: 11
-          cache: 'maven'
+          cache: "maven"
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -30,14 +39,19 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-
-      - name: Upload rules file
-        uses: actions/upload-artifact@v4
+      - name: Cache Maven packages
+        uses: actions/cache@v4
         with:
-          name: rules.json
-          path: tools/rule-exporter/target/json-file/rules.json
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build
+        run: mvn -B verify
+
+      - name: Sonar Scan
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar

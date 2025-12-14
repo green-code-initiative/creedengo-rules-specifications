@@ -1,0 +1,48 @@
+When you want to insert an element at the beginning of a list, it's better to use a deques or a double linked list.
+
+== Non compliant Code Example
+
+[source,python]
+----
+numbers.insert(0,val) 
+----
+
+== Compliant Solution
+
+[source,python]
+----
+numbers.appendleft(val)
+----
+
+== Relevance Analysis
+
+The following results were obtained through local experiments.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+=== Context
+
+We'll analyze the impact of inserting 10**6 elements at index 0 of a list and compare this with inserting the same number of elements using a deque (deque stands for Double-Ended Queue. It is a data structure that allows adding and removing elements from both ends efficiently. Unlike regular queues, which are typically operated on using FIFO (First In, First Out) principles, a deque supports both FIFO and LIFO (Last In, First Out))
+
+
+=== Impact Analysis
+
+*1. Carbon emissions:*
+
+image::carbon.png[]
+
+*2. Execution time:*
+
+image::time.png[]
+
+=== Conclusion
+
+The results show that using a deque is significantly more efficient than using a list for inserting elements at the beginning. The carbon emissions and execution time are both much lower when using a deque, making it the preferred choice for this operation.
+
+=== References
+https://www.geeksforgeeks.org/deque-in-python/
+https://github.com/green-code-initiative/creedengo-challenge/issues/46

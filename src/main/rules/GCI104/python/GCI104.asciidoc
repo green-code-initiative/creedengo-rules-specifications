@@ -1,0 +1,73 @@
+In PyTorch, prefer creating tensors directly using `torch.rand`, `torch.tensor`, or other Torch methods instead of converting from NumPy arrays. Avoid using `torch.tensor(np.random.rand(...))` or similar patterns when the same result can be achieved directly with PyTorch.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+import torch
+import numpy as np
+
+def non_compliant_random_rand():
+    tensor = torch.tensor(np.random.rand(1000, 1000))  
+----
+
+
+== Compliant Solution
+
+[source,python]
+----
+import torch
+
+def compliant_random_rand():
+    tensor = torch.rand([1000, 1000])  
+----
+
+
+== Relevance Analysis
+
+Experiments were conducted to compare the performance and environmental impact of two tensor creation methods in PyTorch:
+
+- Using NumPy for random data generation followed by conversion to PyTorch tensor
+- Direct creation using native PyTorch tensor functions (`torch.rand`, `torch.tensor`, etc.)
+
+=== Configuration
+
+* Processor: Intel(R) Xeon(R) CPU 3.80GHz  
+* RAM: 64GB  
+* GPU: NVIDIA Quadro RTX 6000  
+* CO₂ Emissions Measurement: https://mlco2.github.io/codecarbon/[CodeCarbon]  
+* Framework: PyTorch  
+* Dataset: MNIST  
+* Model: Simple 2-layer fully connected network
+
+=== Context
+
+Two workflows were benchmarked:
+- *NumPy-based:* Data created using NumPy and converted to PyTorch
+- *Torch-based:* Data created natively using PyTorch tensor operations
+
+Metrics assessed:
+- Training execution time
+- CO₂ emissions
+- Final model accuracy
+
+=== Impact Analysis
+
+image::image.png[]
+
+- *Execution Time:* Torch-based method reduced total training time by more than **50%**
+- *Carbon Emissions:* Torch-based method lowered emissions by approximatively **50%**
+- *Accuracy:* Both approaches yielded **comparable model accuracy**
+
+== Conclusion
+
+Using native PyTorch methods to create tensors:
+
+- Significantly reduces training time
+- Minimizes unnecessary memory operations and conversions
+- Reduces carbon footprint
+- Maintains model performance
+== References
+
+- PyTorch Tensor Docs: https://pytorch.org/docs/stable/tensors.html  
+- Credit: https://github.com/AghilesAzzoug/GreenPyData

@@ -136,6 +136,51 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.12.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-bom</artifactId>
+                <version>3.27.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- dependencies used by build code (cf. ${project.basedir}/build/java} -->
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <version>2.1.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>2.0.1</version>
+            <classifier>module</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -143,7 +188,7 @@
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>5.0.0.4389</version>
+                    <version>5.2.0.4988</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -171,19 +216,19 @@
             </plugin>
             <plugin>
                 <!--
-					This plugin convert ASCIIDOC rule specification in HTML format
-					ASCIIDOC format is used with custom features such as :
-					- syntax highlighting (see code blocks on ASCIIDOC rules)
-					- inclusions (see: php/EC74.asciidoc)
-					- table data generation from CSV (see: php/EC69.asciidoc)
-				-->
+                    This plugin convert ASCIIDOC rule specification in HTML format
+                    ASCIIDOC format is used with custom features such as :
+                    - syntax highlighting (see code blocks on ASCIIDOC rules)
+                    - inclusions (see: php/EC74.asciidoc)
+                    - table data generation from CSV (see: php/EC69.asciidoc)
+                -->
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>convert-to-html</id>
-                        <phase>generate-resources</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
                         </goals>
@@ -208,49 +253,77 @@
                 </executions>
             </plugin>
             <plugin>
-                <!--
-					Prepare resources tree needed by language.
-					Each metadata JSON file must be in the same folder as the HTML description file for the corresponding language.
-				-->
-                <groupId>com.github.johnpoth</groupId>
-                <artifactId>jshell-maven-plugin</artifactId>
-                <version>1.4</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>jakarta.json</groupId>
-                        <artifactId>jakarta.json-api</artifactId>
-                        <version>2.1.3</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.glassfish</groupId>
-                        <artifactId>jakarta.json</artifactId>
-                        <version>2.0.1</version>
-                        <classifier>module</classifier>
-                    </dependency>
-                </dependencies>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
-                        <id>prepare-rules-resources</id>
-                        <phase>generate-resources</phase>
+                        <id>add-build-code-source</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>add-source</goal>
                         </goals>
                         <configuration>
-                            <scripts>
-                                <script>${project.basedir}/src/main/script/PrepareResources.jsh</script>
-                            </scripts>
-                            <options>
-                                <option>-R "-DsourceDir=${project.build.directory}/rules-html"</option>
-                                <option>-R "-DtargetDir=${project.build.outputDirectory}/org/green-code-initiative/rules"</option>
-                            </options>
+                            <sources>
+                                <source>${project.basedir}/maven-build/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-build-code-source</id>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.basedir}/maven-build/test/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.4.2</version>
+				<configuration>
+					<excludes>
+						<exclude>org/greencodeinitiative/mavenbuildtool/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+            <plugin>
+                <!--
+                    Prepare resources tree needed by language.
+                    Each metadata JSON file must be in the same folder as the HTML description file for the corresponding language.
+                -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>run-build-code</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.greencodeinitiative.mavenbuild.ruleexporter.Main</mainClass>
+                            <arguments>
+                                <argument>${project.build.directory}/rules-html</argument>
+                                <argument>${project.build.outputDirectory}/org/green-code-initiative/rules</argument>
+                            </arguments>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/maven-build-classes</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <classpathScope>provided</classpathScope>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <!--
-					This module produce one artifact by language (with corresponding classifier)
-				-->
+                    This module produce one artifact by language (with corresponding classifier)
+                -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.7.1</version>
@@ -379,28 +452,25 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-invoker-plugin</artifactId>
-                <version>3.6.0</version>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.13</version>
                 <executions>
                     <execution>
-                        <id>run-rule-exporter</id>
+                        <id>prepare-agent</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
                         </goals>
                         <configuration>
-                            <pom>tools/rule-exporter/pom.xml</pom>
-                            <streamLogs>true</streamLogs>
-                            <noLog>true</noLog>
-                            <goals>
-                                <goal>clean</goal>
-                                <goal>compile</goal>
-                                <goal>test</goal>
-                                <goal>exec:java</goal>
-                            </goals>
-                            <properties>
-                                <artifact-file>${project.build.directory}/${project.build.finalName}.jar</artifact-file>
-                            </properties>
+                            <formats>
+                                <format>XML</format>
+                            </formats>
                         </configuration>
                     </execution>
                 </executions>
@@ -482,7 +552,7 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.6.0</version>
+                        <version>0.7.0</version>
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>

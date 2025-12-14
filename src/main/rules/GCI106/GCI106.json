@@ -1,0 +1,17 @@
+{
+  "title": "Numpy Data - Avoid Square Root Operations In Loop",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "data",
+    "numpy"
+  ],
+  "defaultSeverity": "Minor"
+}
