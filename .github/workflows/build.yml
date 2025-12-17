@@ -30,6 +30,7 @@ jobs:
         with:
           distribution: "temurin"
           java-version: 11
+          cache: "maven"
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4

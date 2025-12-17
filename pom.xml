@@ -310,6 +310,7 @@
                             <arguments>
                                 <argument>${project.build.directory}/rules-html</argument>
                                 <argument>${project.build.outputDirectory}/org/green-code-initiative/rules</argument>
+                                <argument>${project.build.outputDirectory}/rules.json</argument>
                             </arguments>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/maven-build-classes</additionalClasspathElement>

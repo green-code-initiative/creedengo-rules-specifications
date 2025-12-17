@@ -35,4 +35,32 @@ class MainTest {
                 .hasMessage("argument 2 is required: targetDir");
     }
 
+    @Test
+    void shouldRunPrepareResourcesWithIndexJsonFile() {
+        // Given
+        String sourceDir = "maven-build/test/resources";
+        String targetDir = "target/test-prepare-resources-with-index";
+        String indexJsonFile = "target/test-index.json";
+        Main main = new Main(
+                new String[]{sourceDir, targetDir, indexJsonFile}
+        );
+
+        // When
+        main.run();
+
+        // Then - no exception thrown means success
+    }
+
+    @Test
+    void shouldRunPrepareResourcesWithoutIndexJsonFile() {
+        // Given
+        String sourceDir = "maven-build/test/resources";
+        String targetDir = "target/test-prepare-resources-no-index";
+        Main main = new Main(new String[]{sourceDir, targetDir});
+
+        // When
+        main.run();
+
+        // Then - no exception thrown means success
+    }
 }
