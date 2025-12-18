@@ -1,9 +1,6 @@
 package org.greencodeinitiative.mavenbuild.ruleexporter.infra;
 
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonWriter;
+import jakarta.json.*;
 import org.greencodeinitiative.mavenbuild.ruleexporter.domain.RuleKey;
 import org.greencodeinitiative.mavenbuild.ruleexporter.domain.RuleMetadata;
 
@@ -11,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,11 @@ public class RuleMetadataWriter {
         Files.createDirectories(path.getParent());
         try (JsonWriter resultJsonWriter = Json.createWriter(Files.newBufferedWriter(path))) {
             resultJsonWriter.writeObject(
-                    Json.createObjectBuilder().add("items", buildItems(rules)).add("meta", buildMeta(rules)).build()
+                    Json.createObjectBuilder()
+                            .add("items", buildItems(rules))
+                            .add("meta", buildMeta(rules))
+                            .add("build", buildBuildInfo())
+                            .build()
             );
         }
     }
@@ -65,6 +68,15 @@ public class RuleMetadataWriter {
                 .add("technologies", extractAllProperties(rules, RuleMetadata::getTechnology))
                 .add("severities", extractAllProperties(rules, rule -> rule.getSeverity().toString()))
                 .add("statuses", extractAllProperties(rules, rule -> rule.getStatus().toString()))
+                .build();
+    }
+
+    private JsonObject buildBuildInfo() {
+        String timestamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        String gitRef = System.getenv("GIT_COMMIT_HASH");
+        return Json.createObjectBuilder()
+                .add("datetime", timestamp)
+                .add("gitRef", gitRef != null ? Json.createValue(gitRef) : JsonValue.NULL)
                 .build();
     }
 

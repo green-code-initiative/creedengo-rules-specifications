@@ -1,4 +1,4 @@
-name: Build and Tests
+name: Build
 
 on:
   push:
@@ -69,6 +69,7 @@ jobs:
           path: deployment
 
   deploy:
+    name: Deploy
     needs: build
     if: needs.build.outputs.rules-ready == 'true'
     permissions:
