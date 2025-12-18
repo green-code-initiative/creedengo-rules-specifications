@@ -10,13 +10,15 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [ opened, synchronize, reopened ]
   workflow_dispatch:
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    outputs:
+      rules-ready: ${{ steps.prepare_rules.outputs.ready }}
     permissions:
       pull-requests: read # allows SonarCloud to decorate PRs with analysis results
     steps:
@@ -39,13 +41,6 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
       - name: Build
         run: mvn -B verify
 
@@ -55,3 +50,37 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Prepare rules.json for deployment
+        id: prepare_rules
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if [ -f target/classes/rules.json ]; then
+            mkdir -p deployment
+            cp target/classes/rules.json deployment/rules.json
+            echo "ready=true" >> $GITHUB_OUTPUT
+          else
+            echo "ready=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload rules artifact for deployment
+        if: steps.prepare_rules.outputs.ready == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: deployment
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.rules-ready == 'true'
+    permissions:
+      pages: write    # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    environment:
+      name: rules
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

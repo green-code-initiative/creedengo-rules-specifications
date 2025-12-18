@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [#303](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/303) Export rule metadata into a single consolidated file
+- [#423](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/423) Add workflow task to deploy rules metadata file
 
 ### Changed
 
