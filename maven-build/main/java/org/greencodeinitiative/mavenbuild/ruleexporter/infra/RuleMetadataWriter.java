@@ -73,7 +73,7 @@ public class RuleMetadataWriter {
 
     private JsonObject buildBuildInfo() {
         String timestamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-        String gitRef = System.getenv("GIT_COMMIT_HASH");
+        String gitRef = System.getenv("GITHUB_REF_NAME");
         return Json.createObjectBuilder()
                 .add("datetime", timestamp)
                 .add("gitRef", gitRef != null ? Json.createValue(gitRef) : JsonValue.NULL)
