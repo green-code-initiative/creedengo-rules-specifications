@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Changes the file post-processing process to use Java code instead of a JShell script. This reduces build times and also allows for testing the process.
+- update library : maven-enforcer-plugin from 3.5.0 to 3.6.2
 
 ### Deleted
 
