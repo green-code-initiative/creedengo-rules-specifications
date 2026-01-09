@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [2.6.1] - 2026-01-09
+
+### Added
+
 - [#303](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/303) Export rule metadata into a single consolidated file
 - [#423](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/423) Add workflow task to deploy rules metadata file
 
@@ -16,8 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changes the file post-processing process to use Java code instead of a JShell script. This reduces build times and also allows for testing the process.
 - update library : maven-enforcer-plugin from 3.5.0 to 3.6.2
-
-### Deleted
 
 ## [2.6.0] - 2025-11-23
 
@@ -470,7 +476,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.1...HEAD)
+[2.6.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.0...2.6.1)
 [2.6.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.5.0...2.6.0)
 [2.5.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.1...2.5.0)
 [2.4.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...2.4.1)
