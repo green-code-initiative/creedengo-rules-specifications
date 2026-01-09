@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- update library : junit-bom from 5.12.2 to 6.0.2
+- update library : junit-bom from 5.12.2 to 5.14.2
+- update library : assertj-bom from 3.27.3 to 3.27.6
 
 ## [2.6.4] - 2026-01-09
 
