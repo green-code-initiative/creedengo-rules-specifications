@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deleted
 
+## [2.6.6] - 2026-01-10
+
+### Changed
+
+- update library : sonar-maven-plugin from 5.2.0.4988 to 5.5.0.6356
+- update library : build-helper-maven-plugin from 3.6.0 to 3.6.1
+- update library : maven-jar-plugin from 3.4.2 to 3.5.0
+- update library : exec-maven-plugin from 3.5.0 to 3.6.3
+- update library : maven-assembly-plugin from 3.7.1 to 3.8.0
+- update library : jacoco-maven-plugin from 0.8.13 to 0.8.14
+- update library : maven-javadoc-plugin from 3.11.2 to 3.12.0
+- update maven wrapper from 3.8.5 to 3.9.9
+
 ## [2.6.5] - 2026-01-09
 
 ### Changed

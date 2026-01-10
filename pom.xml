@@ -188,7 +188,7 @@
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>5.2.0.4988</version>
+                    <version>5.5.0.6356</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -207,7 +207,7 @@
                             <rules>
                                 <requireMavenVersion>
                                     <!-- Do not specify version upper maven wrapper (cf. ./.mvn/wrapper/maven-wrapper.properties#line=19 -->
-                                    <version>3.8.5</version>
+                                    <version>3.9.9</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -255,7 +255,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <id>add-build-code-source</id>
@@ -284,7 +284,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.4.2</version>
+				<version>3.5.0</version>
 				<configuration>
 					<excludes>
 						<exclude>org/greencodeinitiative/mavenbuildtool/**</exclude>
@@ -298,7 +298,7 @@
                 -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.6.3</version>
                 <executions>
                     <execution>
                         <id>run-build-code</id>
@@ -327,7 +327,7 @@
                 -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.7.1</version>
+                <version>3.8.0</version>
                 <executions>
                     <execution>
                         <id>assembly-java</id>
@@ -455,7 +455,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.13</version>
+                <version>0.8.14</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -508,7 +508,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.11.2</version>
+                        <version>3.12.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadoc</id>
