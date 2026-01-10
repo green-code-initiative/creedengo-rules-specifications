@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- correction of SonarQube IDE errors
+
 ### Deleted
 
 ## [2.6.6] - 2026-01-10

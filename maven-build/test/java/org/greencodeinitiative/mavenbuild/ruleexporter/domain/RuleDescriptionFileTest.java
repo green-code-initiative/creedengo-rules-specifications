@@ -34,7 +34,7 @@ class RuleDescriptionFileTest {
         // Then
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
-        assertThat(rule.getRuleKey().toString()).isEqualTo("GCI123");
+        assertThat(rule.getRuleKey().toString()).hasToString("GCI123");
         assertThat(rule.getTechnology()).isEqualTo("java");
     }
 
@@ -50,7 +50,7 @@ class RuleDescriptionFileTest {
         // Then
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
-        assertThat(rule.getRuleKey().toString()).isEqualTo("GCI456");
+        assertThat(rule.getRuleKey().toString()).hasToString("GCI456");
         assertThat(rule.getTechnology()).isEqualTo("javascript");
     }
 
@@ -61,7 +61,7 @@ class RuleDescriptionFileTest {
         RuleDescriptionFile rule = new RuleDescriptionFile("some/path/GCI789/python/GCI789.html", "GCI789", "python");
 
         // When & Then
-        assertThat(rule.getRuleKey().toString()).isEqualTo("GCI789");
+        assertThat(rule.getRuleKey().toString()).hasToString("GCI789");
         assertThat(rule.getTechnology()).isEqualTo("python");
     }
 
