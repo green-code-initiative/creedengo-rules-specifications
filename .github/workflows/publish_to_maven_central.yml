@@ -17,7 +17,8 @@ on:
 
 jobs:
   publish:
-    name: Deploy to Maven central
+    permissions:
+      contents: read # to clone the repository
     runs-on: ubuntu-latest
 
     steps:
