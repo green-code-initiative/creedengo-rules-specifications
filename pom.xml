@@ -129,6 +129,8 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- to prevent message: system modules path not set in conjunction with -source 11 -->
+        <maven.compiler.release>${java.version}</maven.compiler.release>
 
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
