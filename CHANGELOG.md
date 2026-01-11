@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - correction of SonarQube IDE errors
+- optimize weight of images used in rule descriptions
 - optimize Github actions workflows and CodeQL security corrections
 
 ### Deleted
