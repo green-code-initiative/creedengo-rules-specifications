@@ -42,6 +42,8 @@ jobs:
 
       - name: Build
         run: mvn -B verify
+        env:
+          PAGES_DEPLOYMENT_URL: ${{ vars.PAGES_DEPLOYMENT_URL }}
 
       - name: Sonar Scan
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
@@ -50,13 +52,19 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Prepare rules.json for deployment
+      - name: Prepare rules.json and HTML files for deployment
         id: prepare_rules
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           if [ -f target/classes/rules.json ]; then
             mkdir -p deployment
             cp target/classes/rules.json deployment/rules.json
+            # Copy HTML files organized by technology
+            for tech_dir in target/classes/org/green-code-initiative/rules/*/; do
+              tech_name=$(basename "$tech_dir")
+              mkdir -p "deployment/$tech_name"
+              cp "$tech_dir"*.html "deployment/$tech_name/" 2>/dev/null || true
+            done
             echo "ready=true" >> $GITHUB_OUTPUT
           else
             echo "ready=false" >> $GITHUB_OUTPUT

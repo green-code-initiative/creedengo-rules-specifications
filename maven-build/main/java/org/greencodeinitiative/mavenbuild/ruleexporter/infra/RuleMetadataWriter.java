@@ -64,10 +64,12 @@ public class RuleMetadataWriter {
     }
 
     private JsonObject buildMeta(Collection<RuleMetadata> rules) {
+        String deploymentUrl = System.getenv("PAGES_DEPLOYMENT_URL");
         return Json.createObjectBuilder()
                 .add("technologies", extractAllProperties(rules, RuleMetadata::getTechnology))
                 .add("severities", extractAllProperties(rules, rule -> rule.getSeverity().toString()))
                 .add("statuses", extractAllProperties(rules, rule -> rule.getStatus().toString()))
+                .add("contentUrlTemplate", deploymentUrl != null ? Json.createValue(deploymentUrl + "{technology}/{id}.html") : JsonValue.NULL)
                 .build();
     }
 
