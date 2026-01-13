@@ -1,5 +1,6 @@
 package org.greencodeinitiative.mavenbuild.ruleexporter;
 
+import org.greencodeinitiative.mavenbuild.ruleexporter.infra.ConfigLoader;
 import org.greencodeinitiative.mavenbuild.ruleexporter.infra.PrepareResources;
 
 import java.nio.file.Path;
@@ -28,6 +29,7 @@ public class Main implements Runnable {
         Path targetDir = argAsPath(1, "targetDir");
         Optional<Path> indexJsonFile = optionalArg(2).map(Path::of);
 
+        ConfigLoader.load();
         new PrepareResources(sourceDir, targetDir, indexJsonFile.orElse(null)).run();
     }
 

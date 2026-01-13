@@ -19,9 +19,11 @@ import java.util.stream.Collectors;
 public class RuleMetadataWriter {
 
     private final String outputFilename;
+    private final Map<String, String> technologyLabels;
 
     public RuleMetadataWriter(String outputFilename) {
         this.outputFilename = outputFilename;
+        this.technologyLabels = ConfigLoader.getTechnologyLabels();
     }
 
     public void writeRules(Collection<RuleMetadata> rules) throws IOException {
@@ -66,7 +68,10 @@ public class RuleMetadataWriter {
     private JsonObject buildMeta(Collection<RuleMetadata> rules) {
         String deploymentUrl = System.getenv("PAGES_DEPLOYMENT_URL");
         return Json.createObjectBuilder()
-                .add("technologies", extractAllProperties(rules, RuleMetadata::getTechnology))
+                .add("technologies", extractAllPropertiesToMap(rules, rule -> Map.entry(
+                        rule.getTechnology(),
+                        technologyLabels.getOrDefault(rule.getTechnology(), rule.getTechnology())
+                )))
                 .add("severities", extractAllProperties(rules, rule -> rule.getSeverity().toString()))
                 .add("statuses", extractAllProperties(rules, rule -> rule.getStatus().toString()))
                 .add("contentUrlTemplate", deploymentUrl != null ? Json.createValue(deploymentUrl + "{technology}/{id}.html") : JsonValue.NULL)
@@ -86,5 +91,15 @@ public class RuleMetadataWriter {
         return Json.createArrayBuilder(
                 rules.stream().map(mapper).distinct().sorted().collect(Collectors.toList())
         ).build();
+    }
+
+    private JsonObject extractAllPropertiesToMap(Collection<RuleMetadata> rules, Function<RuleMetadata, Map.Entry<String, String>> mapper) {
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        rules.stream()
+                .map(mapper)
+                .distinct()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(entry -> builder.add(entry.getKey(), entry.getValue()));
+        return builder.build();
     }
 }
