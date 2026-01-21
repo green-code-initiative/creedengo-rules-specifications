@@ -26,7 +26,7 @@ include::../../etsdiff-methodology.asciidoc[]
 
 == Case for a 1GB database:
 
-image::https://live.staticflickr.com/65535/52622636584_52938fcf7e_o.png[ETSdiff percent comparison]
+image::1GB.etsdiff.png[ETSdiff percent comparison]
 
 [format=csv,cols="1h,1,1"]
 |===

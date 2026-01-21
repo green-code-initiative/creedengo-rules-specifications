@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - optimize Github actions workflows and CodeQL security corrections
 - deploy HTML files of rule content
 - add technology labels in rules file
+- replace external images in database case studies
 
 ### Deleted
 
