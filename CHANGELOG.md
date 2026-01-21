@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added rule GCI1066: For logging format, prefer using `%s` with kwargs instead of builtin formatter `"".format()` or `f""`, that way message formatting will be deferred until it cannot be avoided.
+- Added rule GCI111 (Python): For logging format, prefer using `%s` with kwargs instead of builtin formatter `"".format()` or `f""`, that way message formatting will be deferred until it cannot be avoided.
 
 ### Changed
 
