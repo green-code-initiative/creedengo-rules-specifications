@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [2.7.0] - 2026-01-21
+
+### Added
+
 - Added rule GCI111 (Python): For logging format, prefer using `%s` with kwargs instead of builtin formatter `"".format()` or `f""`, that way message formatting will be deferred until it cannot be avoided.
 
 ### Changed
@@ -17,8 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - deploy HTML files of rule content
 - add technology labels in rules file
 - replace external images in database case studies
-
-### Deleted
 
 ## [2.6.7] - 2026-01-10
 
@@ -528,7 +534,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.5...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...HEAD)
+[2.7.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.7...2.7.0)
 [2.6.7](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.6...2.6.7)
 [2.6.6](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.5...2.6.6)
 [2.6.5](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.4...2.6.5)
