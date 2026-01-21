@@ -1,4 +1,4 @@
-When logging with formatted string, prefer using `%s` and logging kwargs which will be deferred until it cannot be avoided, instead of immediate `.format()` of `f""` interpolation.
+When logging with formatted string, prefer using `%s` and logging kwargs which will be deferred until it cannot be avoided, instead of immediate `.format()` or `f""` interpolation.
 
 == Non Compliant Code Example
 
