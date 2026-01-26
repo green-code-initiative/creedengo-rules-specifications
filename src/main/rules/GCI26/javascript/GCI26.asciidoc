@@ -37,7 +37,7 @@ This optimization works for a number of properties https://developer.mozilla.org
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/fc5a1f865bafb196e4775cce8835393751d40ed8/chapters/BP_026_en.md[CnumR best practices] - Use abbreviated CSS notations
+- https://rweb.greenit.fr/en/fiches/RWEB_0118-use-short-css-notations[Best practices guidelines for web ecodesign (RWEB)] - Use short CSS notations
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties[Mozilla Web Technology for Developers] - Shorthand properties
 
 === Articles & blog posts

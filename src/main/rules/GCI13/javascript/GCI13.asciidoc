@@ -39,7 +39,7 @@ class Test {
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_076_en.md[CnumR best practices] - Avoid transferring large amounts of data for processing tasks
+- https://rweb.greenit.fr/en/fiches/RWEB_0017-avoid-transferring-large-amounts-of-data-for-processing-tasks[Best practices guidelines for web ecodesign (RWEB)] - Avoid transferring large amounts of data for processing tasks
 - https://github.com/ppetzold/nestjs-paginate[nestjs-paginate] - Pagination and filtering helper method using Nest.js framework
 
 === Articles & blog posts

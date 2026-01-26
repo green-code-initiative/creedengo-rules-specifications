@@ -4,6 +4,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import org.greencodeinitiative.mavenbuild.ruleexporter.util.FileHelper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,11 @@ class PrepareResourcesTest {
     private Path targetDir;
 
     private PrepareResources prepareResources;
+
+    @BeforeAll
+    static void setUpAll() {
+        ConfigLoader.load();
+    }
 
     @BeforeEach
     void setUp() {
