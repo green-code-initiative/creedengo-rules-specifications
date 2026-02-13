@@ -1,0 +1,63 @@
+Since python 3.10 dataclass instances can easily enable a memory optimization.
+
+By default, when we define a class in Python, it uses a __dict__ to store its attributes and methods.
+
+This means that every instance of the class has an extensible dictionary to store its data, this flexibility comes at the cost of memory usage.
+
+When we use __slots__, Python creates a tuple to store the attributes of the class instead of a dictionary, reducing memory usage.
+
+== Non compliant Code Example
+
+[source,python]
+----
+@dataclass
+class MyDataclass:
+    a: int
+    b: int
+    c: int
+----
+
+== Compliant Solution
+
+[source,python]
+----
+@dataclass(slots=True)
+class MySlottedDataclass:
+    a: int
+    b: int
+    c: int
+----
+
+== Relevance Analysis
+
+=== Configuration
+
+* Host: HP ProBook 450 G7
+* Measurement: VJoule tool
+
+=== Context
+
+Two approaches were benchmarked:
+- *Non-compliant:* Using logging with `.format()`
+- *Compliant:* Using logging with `%s` and kwargs
+
+=== Impact Analysis
+
+image::result.png[]
+
+== Conclusion
+
+Extract from https://wiki.python.org/moin/UsingSlots
+
+The slots declaration allows us to explicitly declare data members, causes Python to reserve space for them in memory, and prevents the creation of dict and weakref attributes. It also prevents the creation of any variables that aren't declared in slots.
+
+Why Use __slots__?
+The short answer is slots are more efficient in terms of memory space and speed of access, and a bit safer than the default Python method of data access.
+
+Using __slots__ can be an effective way to optimize memory usage in Python classes and improve the performance of memory-intensive applications. It is a minor remediation cost to add __slots__ in class definitions and can have significant benefits in terms of memory efficiency.
+
+== References
+
+- complete POC and measures : https://github.com/green-code-initiative/creedengo-challenge/issues/32
+- https://wiki.python.org/moin/UsingSlots
+
