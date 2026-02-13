@@ -1,0 +1,78 @@
+This rule applies to PyTorch data loading, where the use of pinned memory can significantly optimize data transfer between CPU and GPU.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+train_loader = torch.utils.data.DataLoader(
+    dataset,
+    batch_size=64,
+    shuffle=True,
+    pin_memory=False  # Not using pinned memory
+)
+----
+
+In this example, the DataLoader does not use pinned memory, which leads to slower host-to-device data transfers.
+
+== Compliant Solution
+
+[source,python]
+----
+train_loader = torch.utils.data.DataLoader(
+    dataset,
+    batch_size=64,
+    shuffle=True,
+    pin_memory=True  # Enables faster transfer to GPU
+)
+----
+
+When `pin_memory=True`, PyTorch allocates page-locked memory on the host side, allowing for faster data transfer to the GPU via DMA (Direct Memory Access).
+
+== Relevance Analysis
+
+Experiments were conducted to evaluate the performance and environmental impact of using pinned memory in DataLoaders.
+
+=== Configuration
+
+* Processor: Intel(R) Xeon(R) CPU 3.80GHz
+* RAM: 64GB
+* GPU: NVIDIA Quadro RTX 6000
+* CO₂ Emissions Measurement: https://mlco2.github.io/codecarbon/[CodeCarbon]  
+* Framework: PyTorch 
+
+=== Context
+
+Two training configurations were compared:
+- One using standard memory allocation (`pin_memory=False`)
+- One using pinned memory (`pin_memory=True`)
+
+Metrics assessed:
+- Average batch processing time
+- Total training time
+- CO₂ emissions
+
+=== Impact Analysis
+
+image:image.png[]
+
+image::results.png[]
+
+- **Batch Processing Time:** Reduced from 0.0472s to 0.0378s (~20% improvement).
+- **Training Time:** Decreased by 9.82% when using pinned memory.
+- **Carbon Emissions:** Lowered by 7.56%, indicating a measurable environmental benefit.
+
+The improvements observed are particularly significant in large-scale or long-running training tasks, where data transfer becomes a bottleneck.
+
+== Conclusion
+
+Enabling pinned memory in PyTorch DataLoaders:
+- Reduces batch processing time significantly
+- Slightly shortens total training duration
+- Contributes to lowering CO₂ emissions
+- Is a recommended best practice for GPU-accelerated training
+
+== References
+Credit : https://github.com/AghilesAzzoug/GreenPyData
+
+- https://pytorch.org/docs/stable/data.html  
+- NVIDIA CUDA Documentation on Pinned Memory: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#page-locked-host-memory

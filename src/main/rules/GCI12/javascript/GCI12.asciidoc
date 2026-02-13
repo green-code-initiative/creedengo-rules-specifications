@@ -42,4 +42,4 @@ In the first example, multiple CSS properties are set in a single batch, while i
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_045_en.md[CnumR best practices] - Modify several CSS properties at once
+- https://rweb.greenit.fr/en/fiches/RWEB_0040-update-several-css-properties-at-once[Best practices guidelines for web ecodesign (RWEB)] - Update several CSS properties at once

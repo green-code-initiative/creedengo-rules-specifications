@@ -13,9 +13,142 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Correction of various typos in rules documentations
+- Use new RWEB documentation
 
 ### Deleted
+
+## [2.7.0] - 2026-01-21
+
+### Added
+
+- Added rule GCI111 (Python): For logging format, prefer using `%s` with kwargs instead of builtin formatter `"".format()` or `f""`, that way message formatting will be deferred until it cannot be avoided.
+
+### Changed
+
+- optimize weight of images used in rule descriptions
+- deploy HTML files of rule content
+- add technology labels in rules file
+- replace external images in database case studies
+
+## [2.6.7] - 2026-01-10
+
+### Changed
+
+- correction of SonarQube IDE errors
+- optimize Github actions workflows and CodeQL security corrections
+
+## [2.6.6] - 2026-01-10
+
+### Changed
+
+- update library : sonar-maven-plugin from 5.2.0.4988 to 5.5.0.6356
+- update library : build-helper-maven-plugin from 3.6.0 to 3.6.1
+- update library : maven-jar-plugin from 3.4.2 to 3.5.0
+- update library : exec-maven-plugin from 3.5.0 to 3.6.3
+- update library : maven-assembly-plugin from 3.7.1 to 3.8.0
+- update library : jacoco-maven-plugin from 0.8.13 to 0.8.14
+- update library : maven-javadoc-plugin from 3.11.2 to 3.12.0
+- update maven wrapper from 3.8.5 to 3.9.9
+
+## [2.6.5] - 2026-01-09
+
+### Changed
+
+- update library : junit-bom from 5.12.2 to 5.14.2
+- update library : assertj-bom from 3.27.3 to 3.27.6
+
+## [2.6.4] - 2026-01-09
+
+### Changed
+
+- update library : maven-gpg-plugin from 3.2.7 to 3.2.8
+
+## [2.6.3] - 2026-01-09
+
+### Changed
+
+- update library : central-publishing-maven-plugin from 0.7.0 to 0.10.0
+
+## [2.6.2] - 2026-01-09
+
+### Changed
+
+- update library : maven-source-plugin from 3.3.1 to 3.4.0
+
+## [2.6.1] - 2026-01-09
+
+### Added
+
+- [#303](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/303) Export rule metadata into a single consolidated file
+- [#423](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/423) Add workflow task to deploy rules metadata file
+
+### Changed
+
+- Changes the file post-processing process to use Java code instead of a JShell script. This reduces build times and also allows for testing the process.
+- update library : maven-enforcer-plugin from 3.5.0 to 3.6.2
+
+## [2.6.0] - 2025-11-23
+
+### Added
+
+- Add rule GCI109: Avoid Using Exceptions for Control Flow (Python)
+- Add rule GCI110: Avoid wildcard imports in Python (`from module import *`)
+
+### Changed
+
+- add documentation link for each rule in RULES.md file
+
+## [2.5.0] - 2025-08-02
+
+### Added
+
+- [#381](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/381) Add rule GCI108 : Prefer Append Left
+- [#380](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/380) Added rule GCI107 : DATA - Avoid Iterative Matrix Operations
+
+## [2.4.1] - 2025-07-24
+
+### Changed
+
+- [#417](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/417) Fixed a typo in the tags GCI 100 and 104.
+
+## [2.4.0] - 2025-07-20
+
+### Added
+- [#390](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/390) Added rule GCI106 : Detect scalar sqrt usage in loops and suggest vectorized alternatives
+- [#389](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/389) Add rule GCI105, Add a rule on Python String Concatenation
+- [#388](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/388) Added rule GCI104 on Torch Tensor types
+- [#387](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/387) Add rule GCI103, add specifications for a new rule on iteration method for dict in Python
+- [#386](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/386) Add rule GCI102, recommending the use of pinned memory for the dataloader when transferring data from the CPU to the GPU.
+- [#385](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/385) Add rule GCI101, Added documentation for the rule : disables bias in convolutional layers preceding Batch Normalization.
+- [#384](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/384) Add specifications for rule GCI100, this rule is specific to Python because it's based on the `PyTorch` library, a library used for Deep Learning.
+- [#379](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/379) Add rule GCI99 Avoid CSV Format, this rule is designed for Python but it can be implemented in other languages. The rule suggests using more efficient formats like Feather or Parquet instead of CSV.
+- [#401](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/401) Add rule GCI98 for Java. Don't catch RuntimeException. They represent a problem in the program that should be fixed, not handled
+
+## [2.3.0] - 2025-07-08
+
+### Added
+
+- [#400](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/400) Add rule GCI535 - Prefer usage of Intl.NumberFormat
+- [#382](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/382) Add specifications for rule GCI96, this rule is specific to Python because it's based on the `pandas` library, a library used for data.
+- [#383](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/383) Add specifications for rule GCI97, this rule concerns the different ways of squaring a value.
+
+### Deleted
+
+- [#58](https://github.com/green-code-initiative/creedengo-php/issues/58) Deprecation of GCI66 rule for PHP
+- deletion of deprecated PHP GCI34 rule
+
+## [2.2.3] - 2025-05-25
+
+### Added
+
+- [#322](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/332) [GCI95] Avoid querying SQL columns that are not used
+
+### Changed
+
+- [GCI91](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/410) Adapt rule GCI91 to java context in case of stream
+- [GCI69](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/396) Calls to hasMoreElements() and nextElement() methods from java.util.Enumeration interface aren't flagged anymore when called in a for loop
+- Correction of various typos in rules documentations
+- [#44](https://github.com/green-code-initiative/creedengo-java/issues/44) Improvement: "++i" statement is not so bad
 
 ## [2.2.2] - 2025-03-13
 
@@ -405,7 +538,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.1...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...HEAD)
+[2.7.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.7...2.7.0)
+[2.6.7](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.6...2.6.7)
+[2.6.6](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.5...2.6.6)
+[2.6.5](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.4...2.6.5)
+[2.6.4](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.3...2.6.4)
+[2.6.3](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.2...2.6.3)
+[2.6.2](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.1...2.6.2)
+[2.6.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.0...2.6.1)
+[2.6.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.5.0...2.6.0)
+[2.5.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.1...2.5.0)
+[2.4.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.4.0...2.4.1)
+[2.4.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.3.0...2.4.0)
+[2.3.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.3...2.3.0)
+[2.2.3](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.2...2.2.3)
+[2.2.2](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.1...2.2.2)
 [2.2.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.2.0...2.2.1)
 [2.2.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.1.0...2.2.0)
 [2.1.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.0.0...2.1.0)

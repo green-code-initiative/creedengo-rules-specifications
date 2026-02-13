@@ -1,0 +1,53 @@
+Using scalar `math.sqrt` (or `numpy.sqrt` on individual values) inside loops leads to inefficient code due to repeated function calls and missed opportunities for vectorization. Prefer using vectorized square root operations on entire arrays to improve performance and reduce environmental impact.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+import math
+data = [1, 4, 9, 16]
+results = []
+
+for value in data:
+    results.append(math.sqrt(value))  # Noncompliant: scalar sqrt in a loop
+----
+
+== Compliant Solution
+
+[source,python]
+----
+import numpy as np
+data = np.array([1, 4, 9, 16])
+results = np.sqrt(data)  # Compliant: vectorized sqrt
+----
+
+
+== Relevance Analysis
+
+This rule is relevant to scientific computing, data analysis, and machine learning workloads where element-wise mathematical operations are common and often occur within loops. Replacing scalar calls with vectorized array operations improves code efficiency and environmental impact.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors  
+* RAM: 16 GB  
+* CO2 Emissions Measurement: Using https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+Two approaches were benchmarked:
+- *Non-compliant:* Using `math.sqrt()` inside a loop over Python lists
+- *Compliant:* Using `numpy.sqrt()` on an entire NumPy array
+
+=== Impact Analysis
+
+image::results.png[]
+
+== Conclusion
+
+Replacing scalar `sqrt` operations inside loops with vectorized NumPy operations: Significantly reduces carbon footprint
+
+It's important to keep in mind that this is true for a vectorized operation. When wanting to square root a single value, the `math.sqrt` function is the best option. The `numpy.sqrt` function is not optimized for single values and will be slower than the `math.sqrt` function.
+
+== References
+
+- https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html  

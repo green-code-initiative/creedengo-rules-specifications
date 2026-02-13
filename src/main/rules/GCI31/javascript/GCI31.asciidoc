@@ -34,7 +34,7 @@ To address this issue, you can supply multiple formats for the same image.
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_080_en.md[CnumR best practices] - Optimize images
+- https://rweb.greenit.fr/en/fiches/RWEB_0049-optimize-images[Best practices guidelines for web ecodesign (RWEB)] - Optimize images
 
 === Articles & blog posts
 

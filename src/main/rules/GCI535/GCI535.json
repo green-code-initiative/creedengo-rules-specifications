@@ -1,0 +1,25 @@
+{
+  "title": "Using external libraries for number format should be avoided in favor or Intl.NumberFormat",
+  "type": "CODE_SMELL",
+  "code": {
+    "impacts": {
+      "RELIABILITY": "MEDIUM"
+    },
+    "attribute": "EFFICIENT"
+  },
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "15min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance"
+  ],
+  "defaultSeverity": "Major",
+  "compatibleLanguages": [
+    "JAVASCRIPT",
+    "TYPESCRIPT"
+  ]
+}

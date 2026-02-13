@@ -1,0 +1,82 @@
+<div class="sect1">
+<h2>Why is this an issue?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Autoplaying media consumes unnecessary energy, especially when users might not be actively engaging with the content.
+This can drain battery life on devices, particularly on mobile devices, leading to increased energy consumption and potentially contributing to environmental impact.
+It can also consume data, particularly for users on limited data plans or in areas with poor internet connectivity.
+This can lead to unnecessary data usage and potentially increased costs for users.</p>
+</div>
+<div class="paragraph">
+<p>However, even without autoplay, segments of video or audio files might still download.
+This leads to unnecessary data usage, especially if users don&#8217;t commence playback.
+To mitigate this, it&#8217;s crucial to prevent browsers from preloading any content by configuring the appropriate settings.</p>
+</div>
+<div class="paragraph">
+<p>Video:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="typescriptjsx">return (
+  &lt;&gt;
+    &lt;video src=&quot;video.mp4&quot; autoplay/&gt; // Noncompliant
+    &lt;video src=&quot;video.mp4&quot; preload=&quot;auto&quot;/&gt; // Noncompliant
+    &lt;video src=&quot;video.mp4&quot; autoplay preload=&quot;auto&quot;/&gt; // Noncompliant
+  &lt;/&gt;
+)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="typescriptjsx">return (
+  &lt;video src=&quot;video.mp4&quot; preload=&quot;none&quot;/&gt; // Compliant
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Audio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="typescriptjsx">return (
+  &lt;audio controls src=&quot;audiofile.mp3&quot; autoplay&gt;&lt;/audio&gt; // Noncompliant
+)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="typescriptjsx">return (
+  &lt;audio controls src=&quot;audiofile.mp3&quot; preload=&quot;none&quot;&gt;&lt;/audio&gt; // Compliant
+)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2>Resources</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3>Documentation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rweb.greenit.fr/en/fiches/RWEB_0106-avoid-autoplay-for-videos-and-audio-content">Best practices guidelines for web ecodesign (RWEB)</a> - Avoid autoplay for videos and audio content</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3>Articles &amp; blog posts</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://eco-conception.designersethiques.org/guide/en/content/5-2-video.html">eco-conception.designersethiques.org - 5.2. Video and sound</a></p>
+</li>
+<li>
+<p><a href="https://www.ecoindex.fr/en/ecodesign/">www.ecoindex.fr - Some good practices</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
