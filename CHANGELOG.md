@@ -9,13 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [2.7.1] - 2026-02-13
+
+### Added
+
 - [#409](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/409) Add GCI112 rule - Python - Reduce memory footprint of dataclasses with slots
 
 ### Changed
 
 - Use new RWEB documentation
-
-### Deleted
 
 ## [2.7.0] - 2026-01-21
 
@@ -539,6 +545,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Comparison List
 
 [unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...HEAD)
+[2.7.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...2.7.1)
 [2.7.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.7...2.7.0)
 [2.6.7](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.6...2.6.7)
 [2.6.6](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.5...2.6.6)
