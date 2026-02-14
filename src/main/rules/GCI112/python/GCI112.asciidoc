@@ -60,4 +60,5 @@ Using __slots__ can be an effective way to optimize memory usage in Python class
 
 - complete POC and measures : https://github.com/green-code-initiative/creedengo-challenge/issues/32
 - https://wiki.python.org/moin/UsingSlots
+- https://fr.python-3.com/?p=1628
 
