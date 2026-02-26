@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
 ### Added
-
+Add new Python rule GCI82 - Make non reassigned variables constants
 ### Changed
-
-### Deleted
+Implement GCI82 rule for Python to detect variables that are never reassigned and can be converted to constants. 
+The rule analyses assignment and compound assignment nodes to identify write-once variables and suggests using uppercase naming conventions to improve code clarity and reduce environmental footprint.
 
 ## [2.7.1] - 2026-02-13
 
