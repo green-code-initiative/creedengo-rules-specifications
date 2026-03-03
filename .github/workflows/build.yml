@@ -41,16 +41,17 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Build
-        run: mvn -B verify
+        run: ./mvnw -e -B verify
         env:
           PAGES_DEPLOYMENT_URL: ${{ vars.PAGES_DEPLOYMENT_URL }}
 
       - name: Sonar Scan
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && secrets.SONAR_TOKEN != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        # run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: ./mvnw -e -B sonar:sonar -Dsonar.projectKey=green-code-initiative_creedengo-rules-specifications -Dsonar.organization=green-code-initiative
 
       - name: Prepare rules.json and HTML files for deployment
         id: prepare_rules
