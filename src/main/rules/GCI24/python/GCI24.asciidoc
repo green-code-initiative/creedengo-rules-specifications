@@ -8,7 +8,7 @@ By limiting the number of rows returned, you reduce the amount of processing tha
 Transmitting a large number of rows over a network can be resource-intensive.
 By restricting the result set size, you reduce the amount of data that needs to be transferred between the database and the application, improving network efficiency.
 
-If you store data about customers, you certainly don’t need to retrieve information of all at once, because the larger the table will be, the more elements the query will return.
+If you store data about customers, you certainly don’t need to retrieve all their information at once, because the larger the table is, the more elements the query will return.
 
 [source,python,data-diff-id="1",data-diff-type="noncompliant"]
 ----
