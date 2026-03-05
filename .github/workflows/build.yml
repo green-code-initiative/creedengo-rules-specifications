@@ -33,6 +33,13 @@ jobs:
           java-version: 17
           cache: "maven"
 
+      # to be able to use "sonar:sonar" instead of "org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
+      # inside this build but also when the test project analysis is launched with sonar:sonar
+      - name: Configure Maven for Sonar
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings><pluginGroups><pluginGroup>org.sonarsource.scanner.maven</pluginGroup></pluginGroups></settings>" > ~/.m2/settings.xml
+
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
@@ -46,7 +53,7 @@ jobs:
           PAGES_DEPLOYMENT_URL: ${{ vars.PAGES_DEPLOYMENT_URL }}
 
       - name: Sonar Scan
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && secrets.SONAR_TOKEN != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
