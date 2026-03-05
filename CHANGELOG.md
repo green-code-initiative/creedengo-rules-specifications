@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Upgrade to JDK 17 for Java plugin to be compatible with recent SonarQube
 - Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
 
 ### Deleted
