@@ -9,14 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [3.0.0] - 2026-03-05
+
+### Added
+
 - Add rule GCI24 (Python): Avoid retrieving unlimited SQL rows
 
 ### Changed
 
 - Upgrade to JDK 17 for Java plugin to be compatible with recent SonarQube
 - Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
-
-### Deleted
 
 ## [2.7.1] - 2026-02-13
 
@@ -549,7 +555,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.0.0...HEAD)
+[3.0.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.1...3.0.0)
 [2.7.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...2.7.1)
 [2.7.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.7...2.7.0)
 [2.6.7](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.6...2.6.7)
