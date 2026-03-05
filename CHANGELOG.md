@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
+- Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
 
 ### Deleted
 

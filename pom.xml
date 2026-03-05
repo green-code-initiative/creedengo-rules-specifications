@@ -126,7 +126,7 @@
         <!--suppress UnresolvedMavenProperty -->
         <project.build.outputTimestamp>${git.commit.timestamp.datetime}</project.build.outputTimestamp>
 
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <!-- to prevent message: system modules path not set in conjunction with -source 11 -->

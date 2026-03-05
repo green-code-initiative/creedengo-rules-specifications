@@ -31,8 +31,8 @@ jobs:
       - name: Set up Maven Central Repository
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
           server-id: 'central' # must match the serverId configured for the central-publishing-maven-plugin in `pom.xml`
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
