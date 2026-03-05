@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build job
     runs-on: ubuntu-latest
     outputs:
       rules-ready: ${{ steps.prepare_rules.outputs.ready }}
@@ -47,7 +47,7 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Build
+      - name: Verify
         run: ./mvnw -e -B verify
         env:
           PAGES_DEPLOYMENT_URL: ${{ vars.PAGES_DEPLOYMENT_URL }}
@@ -85,7 +85,7 @@ jobs:
           path: deployment
 
   deploy:
-    name: Deploy
+    name: Deploy job
     needs: build
     if: needs.build.outputs.rules-ready == 'true'
     permissions:
