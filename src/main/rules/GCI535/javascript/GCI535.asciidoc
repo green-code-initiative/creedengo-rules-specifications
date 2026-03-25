@@ -1,0 +1,56 @@
+:!sectids:
+
+== Why is this an issue?
+
+Importing an external library for lightweight operations increases overall size of the program.
+Using native methods instead reduces the amount of memory and storage to run and store the application.
+This is especially critical in environments with limited resources, such as on mobile devices or in web applications
+where bandwidth and download times matter.
+
+Smaller programs generally have better runtime performance.
+Reducing the number of unnecessary modules minimizes the amount of code that needs to be interpreted or compiled,
+leading to faster execution and improved overall performance.
+
+== Examples
+
+*Example with the https://numbrojs.com/[numbro] library, when you use `format` method.*
+
+[source,js]
+----
+// Example with numbro (not compliant)
+import numbro from "numbro";
+
+numbro.setLanguage('en-GB');
+var string = numbro(1000).format({
+  thousandSeparated: true,
+}); // '1,000'
+
+// Example with numerable (not compliant)
+import { format } from "numerable";
+format(1000, '0,0');
+
+// Example with Intl (compliant)
+new Intl.NumberFormat("en-GB").format(1000); // '1,000'
+----
+
+== Limitations
+
+As for now, only two libraries are handled by this rule :
+
+- https://numbrojs.com/[numbro]
+- https://numerablejs.com/lander[numerable]
+
+
+Some candidates for the future developments are :
+
+- https://github.com/Mottie/javascript-number-formatter[javascript-number-formatter]
+- https://www.npmjs.com/package/numerable[numeraljs]
+- https://formatjs.github.io/[formatjs]
+
+It’s more likely this rule won’t ever be exhaustive.
+
+== Resources
+
+=== Documentation
+
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat[Mozilla Web Technology for Developers]

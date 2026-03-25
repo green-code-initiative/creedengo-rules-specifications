@@ -1,4 +1,4 @@
-name: Build and Tests
+name: Build
 
 on:
   push:
@@ -6,17 +6,18 @@ on:
       - main
     paths-ignore:
       - "*.md"
-      - ".github/**/*.yml"
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [ opened, synchronize, reopened ]
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build
+    name: Build job
     runs-on: ubuntu-latest
+    outputs:
+      rules-ready: ${{ steps.prepare_rules.outputs.ready }}
     permissions:
       pull-requests: read # allows SonarCloud to decorate PRs with analysis results
     steps:
@@ -25,11 +26,19 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: 11
+          java-version: 17
+          cache: "maven"
+
+      # to be able to use "sonar:sonar" instead of "org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
+      # inside this build but also when the test project analysis is launched with sonar:sonar
+      - name: Configure Maven for Sonar
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings><pluginGroups><pluginGroup>org.sonarsource.scanner.maven</pluginGroup></pluginGroups></settings>" > ~/.m2/settings.xml
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -38,19 +47,59 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
-      - name: Build
-        run: mvn -B verify
+      - name: Verify
+        run: ./mvnw -e -B verify
+        env:
+          PAGES_DEPLOYMENT_URL: ${{ vars.PAGES_DEPLOYMENT_URL }}
 
       - name: Sonar Scan
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "⚠️ SONAR_TOKEN is not set (Dependabot PR or external fork). Skipping SonarQube scan."
+          else
+            ./mvnw -e -B sonar:sonar -Dsonar.projectKey=green-code-initiative_creedengo-rules-specifications -Dsonar.organization=green-code-initiative
+          fi
+
+      - name: Prepare rules.json and HTML files for deployment
+        id: prepare_rules
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if [ -f target/classes/rules.json ]; then
+            mkdir -p deployment
+            cp target/classes/rules.json deployment/rules.json
+            # Copy HTML files organized by technology
+            for tech_dir in target/classes/org/green-code-initiative/rules/*/; do
+              tech_name=$(basename "$tech_dir")
+              mkdir -p "deployment/$tech_name"
+              cp "$tech_dir"*.html "deployment/$tech_name/" 2>/dev/null || true
+            done
+            echo "ready=true" >> $GITHUB_OUTPUT
+          else
+            echo "ready=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload rules artifact for deployment
+        if: steps.prepare_rules.outputs.ready == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: deployment
+
+  deploy:
+    name: Deploy job
+    needs: build
+    if: needs.build.outputs.rules-ready == 'true'
+    permissions:
+      pages: write    # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    environment:
+      name: rules
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

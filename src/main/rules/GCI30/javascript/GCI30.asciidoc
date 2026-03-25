@@ -47,7 +47,7 @@ Adjust font sizes, hide unnecessary elements, or make any other modifications su
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_027_en.md[CnumR best practices] - Provide a print CSS
+- https://rweb.greenit.fr/en/fiches/RWEB_0031-provide-a-css-print[Best practices guidelines for web ecodesign (RWEB)] - Provide a CSS print
 
 === Articles & blog posts
 

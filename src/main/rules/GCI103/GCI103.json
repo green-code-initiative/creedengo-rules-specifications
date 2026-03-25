@@ -1,0 +1,16 @@
+{
+    "title": "Don't use .items() to iterate over a dictionary when only keys or values are needed",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "1min"
+    },
+    "tags": [
+      "creedengo",
+      "eco-design",
+      "performance",
+      "dictionary"
+    ],
+    "defaultSeverity": "Minor"
+  }

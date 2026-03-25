@@ -17,7 +17,8 @@ on:
 
 jobs:
   publish:
-    name: Deploy to Maven central
+    permissions:
+      contents: read # to clone the repository
     runs-on: ubuntu-latest
 
     steps:
@@ -27,11 +28,11 @@ jobs:
 
       # Sets up the Java JDK, and also configures the Maven `settings.xml` file to add authentication for the
       # `ossrh` repository using the `OSSRH_USERNAME` and `OSSRH_TOKEN` environment variables.
-      - name: Set up Maven Central Repository
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
           server-id: 'central' # must match the serverId configured for the central-publishing-maven-plugin in `pom.xml`
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
@@ -48,7 +49,7 @@ jobs:
       # Runs the Maven command to publish to the maven central repository.
       # The `MAVEN_CENTRAL_USERNAME` environment variable will be set with the contents of your `MAVEN_CENTRAL_USERNAME` secret,
       # and the `MAVEN_CENTRAL_TOKEN` environment variable will be set with the contents of your `MAVEN_CENTRAL_TOKEN` secret.
-      - name: Publish package
+      - name: Publish process
         run: ./mvnw --batch-mode deploy -Pmaven-central-publishing
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_TOKEN_USERNAME }}

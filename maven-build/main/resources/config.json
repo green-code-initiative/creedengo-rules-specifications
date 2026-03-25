@@ -1,0 +1,12 @@
+{
+  "technologies": {
+    "csharp": "C#",
+    "html": "HTML",
+    "java": "Java",
+    "javascript": "JS/TS",
+    "php": "PHP",
+    "python": "Python",
+    "swift": "Swift",
+    "xml": "XML"
+  }
+}

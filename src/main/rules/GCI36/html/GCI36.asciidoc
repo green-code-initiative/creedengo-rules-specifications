@@ -39,7 +39,7 @@ Audio:
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_4003_en.md[CnumR best practices] - Avoid autoplay for videos and audio content
+- https://rweb.greenit.fr/en/fiches/RWEB_0106-avoid-autoplay-for-videos-and-audio-content[Best practices guidelines for web ecodesign (RWEB)] - Avoid autoplay for videos and audio content
 
 === Articles & blog posts
 

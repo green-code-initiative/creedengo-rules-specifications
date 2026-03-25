@@ -1,0 +1,17 @@
+{
+  "title": "DATA/AI PyTorch - Create tensors directly from Torch`",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "ai",
+    "pytorch"
+  ],
+  "defaultSeverity": "Minor"
+}

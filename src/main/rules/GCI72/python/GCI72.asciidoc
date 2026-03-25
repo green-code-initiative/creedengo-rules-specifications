@@ -21,5 +21,69 @@ def foo():
     ids = range(20)
     results = cursor.execute("SELECT name FROM users where id IN ({0})".format(', '.join("?" * len(ids))), ids).fetchmany() # Compliant
     ...
-}
+
 ----
+== Relevance Analysis
+
+The following insights are derived from both local experiments and the study "Comparing Multiple Rows Insert vs Single Row Insert" by Redgate.
+
+=== Configuration
+* SQLite Database: 5–6 GB (local test)
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 12 cores, 16 threads
+* RAM: 16 GB
+* CO2 Emissions Measurement: CodeCarbon
+* Additional Reference System (Redgate): 
+** SQL Server 2008 R2
+** Database and client application : Lenovo ThinkCentre M90, Windows XP
+
+=== Context
+
+This practice can significantly degrade performance, especially when processing large datasets or making repetitive database calls. By opting for batch processing instead of executing queries in loops, developers can improve overall system efficiency and reduce the carbon footprint of their applications.
+
+The Redgate study demonstrated that **batch processing can outperform row-by-row operations by several orders of magnitude**, particularly in data load scenarios. Even with optimized systems like SSIS or high-speed disks, row-level operations remain significantly slower and more resource-intensive. 
+
+These results align with local benchmarks in Python using SQLite.
+
+=== Test Execution
+
+Local benchmark compared:
+- 1000 individual `SELECT` queries executed in a loop.
+- A single batched `SELECT` query using `IN (...)`.
+
+=== Impact Analysis
+
+*Local benchmark results:*
+[cols="1,1,1", options="header"]
+|===
+|Metric |Compliant Solution |Non-compliant Solution
+|Execution Time (seconds) |0.13391780853271484 |124.80779719352722
+|Carbon Emissions (kg CO2 eq) |6.0358009465562945e-06 |9.932707807019985e-05
+|Car Equivalent (mm)* |27 |414
+|===
+
+*Converter: https://impactco2.fr/outils/comparateur
+
+*Redgate study results:*
+
+
+image::image.png[width=600, align="center", alt="Redgate study results"]
+
+
+[cols="1,1,1", options="header"]
+|===
+|Insert Method |Execution Time (for 1M rows) |Relative Performance
+|Single-row insert in loop |57 seconds |Baseline (slowest)
+|Batch insert (multi-row) |9 seconds |6.3× faster
+|===
+
+=== Conclusion
+
+The performance analysis conducted in this study only measures the execution time and carbon emissions of the Python code executing the queries. It does not include emissions due to database processing. 
+
+The results show that the compliant solution, which avoids SQL queries in loops, is more efficient in terms of execution time and carbon emissions. By adopting batch query processing and avoiding queries in loops, developers can improve application performance and reduce their carbon footprint. Developers are encouraged to use batch query processing whenever possible to improve application performance.
+
+=== References
+https://www.red-gate.com/simple-talk/databases/sql-server/performance-sql-server/comparing-multiple-rows-insert-vs-single-row-insert-with-three-data-load-methods/
+
+:hide-uri-scheme: 
+https://blogs.oracle.com/sql/post/avoid-writing-sql-inside-loops

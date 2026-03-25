@@ -1,0 +1,16 @@
+{
+    "title": "Use multiplication instead of math.pow() or exponentiation",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "1min"
+    },
+    "tags": [
+      "creedengo",
+      "eco-design",
+      "performance"
+    ],
+    "defaultSeverity": "Minor"
+  }
+  

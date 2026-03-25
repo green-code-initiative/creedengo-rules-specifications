@@ -1,0 +1,82 @@
+This rule is specific to Deep Learning architectures built with convolutional layers followed by Batch Normalization.
+
+Using a bias term in a convolutional layer that is immediately followed by a Batch Normalization (BatchNorm) layer is redundant and unnecessary. In such cases, the bias added by the convolution is effectively canceled out during the normalization process, as BatchNorm subtracts the mean and applies its own learnable affine transformation. As a result, the bias from the convolutional layer has no practical effect on the model's output. Removing it reduces the number of parameters—improving model efficiency slightly in terms of memory usage and emissions—while maintaining or even slightly improving training accuracy.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+nn.Sequential(
+    nn.Conv2d(in_channels, out_channels, kernel_size, bias=True),
+    nn.BatchNorm2d(out_channels),
+    nn.ReLU()
+)
+----
+
+In this example, a convolutional layer includes a bias term, which is unnecessary when immediately followed by a BatchNorm layer.
+
+== Compliant Solution
+
+[source,python]
+----
+nn.Sequential(
+    nn.Conv2d(in_channels, out_channels, kernel_size, bias=False),
+    nn.BatchNorm2d(out_channels),
+    nn.ReLU()
+)
+----
+
+Since `BatchNorm2d` normalizes and shifts the output using learnable parameters, the bias from the preceding convolution becomes redundant.
+
+== Relevance Analysis
+
+Local experiments were conducted to assess the impact of disabling bias in convolutional layers followed by BatchNorm.
+
+=== Configuration
+
+* Processor: Intel(R) Xeon(R) CPU 3.80GHz
+* RAM: 64GB
+* GPU: NVIDIA Quadro RTX 6000
+* CO₂ Emissions Measurement: https://mlco2.github.io/codecarbon/[CodeCarbon]  
+* Framework: PyTorch 
+
+=== Context
+
+Two models were trained under identical settings:
+- One with `bias=True` in convolutional layers preceding BatchNorm
+- One with `bias=False`
+
+The following metrics were compared:
+- Training time per epoch
+- GPU memory usage
+- Parameter count
+- Training and test accuracy
+- CO₂ emissions per epoch
+
+=== Impact Analysis
+
+image::convresult.png[]
+
+- **Training Time:** Nearly identical (~30 seconds/epoch) between configurations.
+- **Memory Usage:** lower for the "Without Bias" model in terms of reserved GPU memory.
+- **Training Accuracy:** We can see that there's no significant difference in training accuracy between the two models, with both converging to similar values.
+- **Test Accuracy:** Final accuracy remained the same for both models, confirming no negative impact.
+- **Parameter Count:**  
+  - With Bias: 155,850  
+  - Without Bias: 155,626  
+  This shows a real reduction in parameters.
+- **Emissions:** Emissions per epoch were fractionally lower without bias, due to a leaner architecture and reduced operations.
+
+== Conclusion
+
+Disabling bias in convolutional layers followed by BatchNorm:
+
+- Reduces the parameter count
+- Optimizes memory and emissions
+- Maintains accuracy
+
+== References
+
+Credit : https://github.com/AghilesAzzoug/GreenPyData
+- https://arxiv.org/pdf/1502.03167
+- https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html

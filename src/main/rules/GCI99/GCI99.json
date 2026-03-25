@@ -1,0 +1,18 @@
+{
+  "title": "DATA Avoid CSV Format and prefer a compressed format like Parquet",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "50min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "data",
+    "ai",
+    "csv"
+  ],
+  "defaultSeverity": "Minor"
+}

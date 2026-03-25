@@ -1,0 +1,44 @@
+:!sectids:
+
+Use filter before sorted.
+
+== Why is this an issue ?
+
+When `sorted` is called right before `filter`, Stream sorts all the elements before filtering them. Doing the opposite is more efficient, first filter the items then sort the remaining ones only.
+
+Here are the average results over 10 runs with 100,000 names:
+
+- filter then sorted: ~0.0197 sec
+- sorted then filter: ~0.0488 sec
+
+🔍 Conclusion:
+Applying `filter` before `sorted` is more than twice as fast in this scenario — because the sort operation processes a much smaller list.
+
+=== When can it be ignored ?
+
+An exception might occur in rare and very specific cases: if the filter predicate is computationally expensive, it could be worth evaluating whether moving it after the sort has a measurable impact on performance.
+Another case is when the filter condition requires the list to be sorted first.
+
+== Non compliant examples
+
+[source, java]
+----
+public void manipulateStream(List<String> list) {
+        list.stream()
+                .sorted()
+                .filter(s -> s.startsWith("A"))
+                .collect(Collectors.toList());
+}
+----
+
+== Compliant examples
+
+[source, java]
+----
+public void manipulateStream(List<String> list) {
+        list.stream()
+                .filter(s -> s.startsWith("A"))
+                .sorted()
+                .collect(Collectors.toList());
+}
+----

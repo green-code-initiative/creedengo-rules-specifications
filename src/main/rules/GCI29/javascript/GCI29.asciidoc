@@ -26,7 +26,7 @@ You can also inform the navigator of upcoming changes with the `will-change` ins
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_039_en.md[CnumR best practices] - Avoid JavaScript / CSS animations
+- https://rweb.greenit.fr/en/fiches/RWEB_0009-avoid-javascriptcss-animations[Best practices guidelines for web ecodesign (RWEB)] - Avoid JavaScript / CSS animations
 
 === Articles & blog posts
 

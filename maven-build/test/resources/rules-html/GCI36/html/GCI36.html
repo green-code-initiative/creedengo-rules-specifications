@@ -1,0 +1,70 @@
+<div class="sect1">
+<h2>Why is this an issue?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Autoplaying media consumes unnecessary energy, especially when users might not be actively engaging with the content.
+This can drain battery life on devices, particularly on mobile devices, leading to increased energy consumption and potentially contributing to environmental impact.
+It can also consume data, particularly for users on limited data plans or in areas with poor internet connectivity.
+This can lead to unnecessary data usage and potentially increased costs for users.</p>
+</div>
+<div class="paragraph">
+<p>However, even without autoplay, segments of video or audio files might still download.
+This leads to unnecessary data usage, especially if users don&#8217;t commence playback.
+To mitigate this, it&#8217;s crucial to prevent browsers from preloading any content by configuring the appropriate settings.</p>
+</div>
+<div class="paragraph">
+<p>Video:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">videofile.webm</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">autoplay</span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span> // Noncompliant</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">videofile.webm</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">preload</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">none</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span> // Compliant</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Audio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span style="color:#070;font-weight:bold">&lt;audio</span> <span style="color:#b48">controls</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">audiofile.mp3</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">autoplay</span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/audio&gt;</span> // Noncompliant</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span style="color:#070;font-weight:bold">&lt;audio</span> <span style="color:#b48">controls</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">audiofile.mp3</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">preload</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">none</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/audio&gt;</span> // Compliant</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2>Resources</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3>Documentation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rweb.greenit.fr/en/fiches/RWEB_0106-avoid-autoplay-for-videos-and-audio-content">Best practices guidelines for web ecodesign (RWEB)</a> - Avoid autoplay for videos and audio content</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3>Articles &amp; blog posts</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://eco-conception.designersethiques.org/guide/en/content/5-2-video.html">eco-conception.designersethiques.org - 5.2. Video and sound</a></p>
+</li>
+<li>
+<p><a href="https://www.ecoindex.fr/en/ecodesign/">www.ecoindex.fr - Some good practices</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
