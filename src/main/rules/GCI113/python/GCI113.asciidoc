@@ -53,7 +53,7 @@ model.fit(X_train, y_train)
 ----
 from xgboost import XGBClassifier
 
-model = XGBClassifier(use_label_encoder=False, eval_metric="logloss")
+model = XGBClassifier(eval_metric="logloss")
 model.fit(X_train, y_train)
 ----
 

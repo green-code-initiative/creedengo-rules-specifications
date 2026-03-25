@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
+- [#438](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/438) Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
 
 ### Changed
 
