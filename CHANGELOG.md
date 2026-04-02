@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add new Python rule GCI82 - Make non reassigned variables constants
+- [#438](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/438) Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
 
 ### Changed
 
@@ -26,6 +27,17 @@ The rule analyses assignment and compound assignment nodes to identify write-onc
 Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
 
 ### Deleted
+
+## [3.0.0] - 2026-03-05
+
+### Added
+
+- Add rule GCI24 (Python): Avoid retrieving unlimited SQL rows
+
+### Changed
+
+- Upgrade to JDK 17 for Java plugin to be compatible with recent SonarQube
+- Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
 
 ## [2.7.1] - 2026-02-13
 
@@ -558,7 +570,8 @@ Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.0.0...HEAD)
+[3.0.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.1...3.0.0)
 [2.7.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...2.7.1)
 [2.7.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.7...2.7.0)
 [2.6.7](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.6...2.6.7)

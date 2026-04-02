@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build job
     runs-on: ubuntu-latest
     outputs:
       rules-ready: ${{ steps.prepare_rules.outputs.ready }}
@@ -26,12 +26,19 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: 11
+          java-version: 17
           cache: "maven"
+
+      # to be able to use "sonar:sonar" instead of "org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
+      # inside this build but also when the test project analysis is launched with sonar:sonar
+      - name: Configure Maven for Sonar
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings><pluginGroups><pluginGroup>org.sonarsource.scanner.maven</pluginGroup></pluginGroups></settings>" > ~/.m2/settings.xml
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -40,8 +47,8 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Build
-        run: mvn -B verify
+      - name: Verify
+        run: ./mvnw -e -B verify
         env:
           PAGES_DEPLOYMENT_URL: ${{ vars.PAGES_DEPLOYMENT_URL }}
 
@@ -50,7 +57,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B initialize org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "⚠️ SONAR_TOKEN is not set (Dependabot PR or external fork). Skipping SonarQube scan."
+          else
+            ./mvnw -e -B sonar:sonar -Dsonar.projectKey=green-code-initiative_creedengo-rules-specifications -Dsonar.organization=green-code-initiative
+          fi
 
       - name: Prepare rules.json and HTML files for deployment
         id: prepare_rules
@@ -77,7 +89,7 @@ jobs:
           path: deployment
 
   deploy:
-    name: Deploy
+    name: Deploy job
     needs: build
     if: needs.build.outputs.rules-ready == 'true'
     permissions:
@@ -91,4 +103,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
