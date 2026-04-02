@@ -7,11 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
 ### Added
 
+- Add new Python rule GCI82 - Make non reassigned variables constants
 - [#438](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/438) Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
 
 ### Changed
+
+Implement GCI82 rule for Python to detect variables that are never reassigned and can be converted to constants. 
+The rule analyses assignment and compound assignment nodes to identify write-once variables and suggests using uppercase naming conventions to improve code clarity and reduce environmental footprint.
+
+### Added
+
+- Add rule GCI24 (Python): Avoid retrieving unlimited SQL rows
+
+### Changed
+
+Upgrade GCI74 rule to use an abstract implementation, shared with the GCI24 rule, to avoid code duplication and to make it easier to maintain in the future. This abstract implementation can be used for other rules that have the same logic (pattern verification).
 
 ### Deleted
 

@@ -4,11 +4,11 @@
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "5min"
+    "constantCost": "10min"
   },
   "tags": [
     "eco-design",
     "creedengo"
   ],
-  "defaultSeverity": "Minor"
+  "defaultSeverity": "INFO"
 }
