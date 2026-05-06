@@ -1,0 +1,51 @@
+:!sectids:
+
+Variable can be made constant.
+
+== Why is this an issue ?
+
+Unlike variables, constant values are known at compile time and are injected as is in the code, requiring no runtime processing and therefore reducing the environmental footprint.
+Although Python does not provide native constant keywords, using uppercase naming conventions (PEP8) or typing.Final helps to clarify intent and improve maintainability.
+
+== When can it be ignored ?
+
+This rule should not be ignored.
+
+== Non compliant examples
+
+[source, python]
+----
+def main():
+    i = 0  # Noncompliant, variable never reassigned and not declared as constant
+    print(i)
+----
+
+[source, python]
+----
+timeout = 10  # Noncompliant, could be a constant
+print(timeout)
+----
+
+== Compliant examples
+
+[source, python]
+----
+I = 0  # Compliant, constant by naming convention
+print(I)
+----
+
+[source, python]
+----
+from typing import Final
+
+TIMEOUT: Final = 10  # Compliant, explicitly declared constant
+print(TIMEOUT)
+----
+
+[source, python]
+----
+def main():
+    i = 0  # Compliant, reassigned later
+    print(i)
+    i += 1
+----
