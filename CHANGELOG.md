@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows)
+
 ### Deleted
 
 ## [3.0.0] - 2026-03-05
