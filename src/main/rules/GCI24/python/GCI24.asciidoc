@@ -32,3 +32,7 @@ query = "SELECT id, name, email FROM customers LIMIT 10"  # Compliant
 === Articles & blog posts
 
 - https://www.oreilly.com/library/view/high-performance-mysql/9780596101718/ch04.html[Query Performance Optimization]
+
+=== Analysis
+
+- https://github.com/green-code-initiative/creedengo-python/pull/146
