@@ -1,0 +1,78 @@
+:!sectids:
+
+== Why is this an issue?
+
+Angular's default change detection strategy checks every component in the tree on every change event, regardless of whether the component's data has actually changed.
+This means that user interactions, HTTP responses, timers, and any other async activity all trigger a full traversal of the component tree, causing unnecessary CPU work and increased energy consumption.
+
+By adopting the `OnPush` strategy, Angular skips re-evaluation of a component and its subtree unless one of the following conditions is met:
+
+- one of its `@Input()` references changes to a new value,
+- an event originating from the component or one of its children is triggered,
+- an `async` pipe bound to the template emits a new value,
+- change detection is manually triggered via `ChangeDetectorRef`.
+
+This significantly reduces the number of checks performed on each event cycle, lowering CPU usage and improving the overall energy efficiency of the application.
+
+NOTE: When using `OnPush`, input objects must be treated as immutable.
+Always pass a new reference instead of mutating an existing object, so that Angular can detect the change correctly.
+
+[source,typescript,data-diff-id="1",data-diff-type="noncompliant"]
+----
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './my-app.component.html',
+  changeDetection: ChangeDetectionStrategy.Default, // Noncompliant
+})
+export class MyAppComponent {}
+----
+
+[source,typescript,data-diff-id="2",data-diff-type="noncompliant"]
+----
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './my-app.component.html',
+  // Noncompliant: no changeDetection property, implicitly defaults to Default
+})
+export class MyAppComponent {}
+----
+
+[source,typescript,data-diff-id="1",data-diff-type="compliant"]
+----
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './my-app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush, // Compliant
+})
+export class MyAppComponent {}
+----
+
+[source,typescript,data-diff-id="2",data-diff-type="compliant"]
+----
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './my-app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush, // Compliant
+})
+export class MyAppComponent {}
+----
+
+== Resources
+
+=== Documentation
+
+- https://angular.dev/best-practices/skipping-subtrees[Angular] - Skipping component subtrees
+- https://angular.dev/api/core/ChangeDetectionStrategy[Angular API Reference] - ChangeDetectionStrategy
+
+=== Articles & blog posts
+
+- https://blog.angular-university.io/onpush-change-detection-how-it-works/[Angular University] - Angular OnPush Change Detection and Component Design - Avoid Common Pitfalls
+- https://netbasal.com/a-comprehensive-guide-to-angular-onpush-change-detection-strategy-5bac493074a4[NetBasal] - A Comprehensive Guide to Angular OnPush Change Detection Strategy
