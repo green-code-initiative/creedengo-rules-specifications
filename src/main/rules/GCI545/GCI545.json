@@ -1,0 +1,17 @@
+{
+  "title": "Power: Charge Awareness (XML)",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "power",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "defaultSeverity": "Info"
+}
