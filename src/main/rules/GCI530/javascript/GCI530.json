@@ -4,7 +4,8 @@
     "environment",
     "creedengo",
     "react-native",
-    "eco-design"
+    "eco-design",
+    "react"
   ],
   "compatibleLanguages": [
     "JAVASCRIPT",
