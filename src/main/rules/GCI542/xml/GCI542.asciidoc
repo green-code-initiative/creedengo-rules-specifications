@@ -1,0 +1,24 @@
+Requesting the `android.permission.WAKE_LOCK` permission in the Android manifest allows an application to keep the CPU on even when the device is idle.
+This prevents the device from entering low-power sleep states and drains the battery.
+
+Avoid declaring this permission unless absolutely necessary. If a wake lock is required, prefer using `WorkManager` or `JobScheduler` to batch work during opportune moments.
+
+== Non compliant Code Example
+
+[source,xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+</manifest>
+----
+
+== Compliant Code Example
+
+[source,xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+    <!-- No WAKE_LOCK permission: use WorkManager or JobScheduler instead -->
+</manifest>
+----
