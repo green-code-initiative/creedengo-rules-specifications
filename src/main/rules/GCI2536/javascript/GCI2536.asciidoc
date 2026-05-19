@@ -1,0 +1,59 @@
+:!sectids:
+
+== Why is this an issue?
+
+The `browserslist` field in `package.json` controls which browsers are targeted when building CSS and JavaScript bundles.
+When this field is a flat array or string, the same browser list is used for every build environment, including development.
+This causes unnecessary polyfills and transpilation steps to be included in production bundles, increasing their size and the energy consumed to download and execute them.
+
+Defining the configuration as an object with a `production` key restricts heavier targeting to production builds only.
+Development builds can then use a smaller, more lenient list, keeping iteration fast and production bundles lean.
+
+== Non-compliant examples
+
+[source,json]
+----
+// Non-compliant: flat array applies to all environments
+{
+  "browserslist": [
+    "defaults"
+  ]
+}
+
+// Non-compliant: flat string applies to all environments
+{
+  "browserslist": "defaults and > 0.5%"
+}
+
+// Non-compliant: object without a "production" key
+{
+  "browserslist": {
+    "development": ["last 1 Chrome version"]
+  }
+}
+----
+
+== Compliant example
+
+[source,json]
+----
+{
+  "browserslist": {
+    "production": [
+      "> 0.5%",
+      "last 2 versions",
+      "not dead"
+    ],
+    "development": [
+      "last 1 Chrome version"
+    ]
+  }
+}
+----
+
+== Resources
+
+=== Documentation
+
+- https://github.com/browserslist/browserslist#packagejson[Browserslist — package.json configuration]
+- https://create-react-app.dev/docs/supported-browsers-features/#configuring-supported-browsers[Create React App — Configuring Supported Browsers]
