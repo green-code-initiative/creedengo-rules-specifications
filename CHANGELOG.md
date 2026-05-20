@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [#48](https://github.com/green-code-initiative/creedengo-javascript/issues/48) Extend rule GCI530 (JavaScript) no-torch to detect HTML5 Web API (MediaTrackConstraints) usage
 - update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows) + documentation upgrade
 
 ### Deleted
