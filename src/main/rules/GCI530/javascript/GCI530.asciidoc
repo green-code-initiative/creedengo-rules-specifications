@@ -35,4 +35,4 @@ await track.applyConstraints({ advanced: [{ facingMode: "environment" }] });
 === Documentation
 
 - [CnumR best practices mobile](https://github.com/cnumr/best-practices-mobile) - Torch free
-- [MediaTrackConstraints: torch property (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/torch)
+- [MediaTrackConstraints: torch property (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#torch)
