@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [#48](https://github.com/green-code-initiative/creedengo-javascript/issues/48) Extend rule GCI530 (JavaScript) no-torch to detect HTML5 Web API (MediaTrackConstraints) usage
+- [#447](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/447) Extend rule GCI530 (JavaScript) no-torch to detect HTML5 Web API (MediaTrackConstraints) usage
 - update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows) + documentation upgrade
 
 ### Deleted
@@ -136,6 +136,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.4.0] - 2025-07-20
 
 ### Added
+
 - [#390](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/390) Added rule GCI106 : Detect scalar sqrt usage in loops and suggest vectorized alternatives
 - [#389](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/389) Add rule GCI105, Add a rule on Python String Concatenation
 - [#388](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/388) Added rule GCI104 on Torch Tensor types
