@@ -16,7 +16,7 @@ This leads to unnecessary CPU overhead and energy consumption.
 ----
 public void select() {
     Statement statement = connection.createStatement();
-    statement.executeUpdate("INSERT INTO persons(id, name) VALUES(2, 'John DOE')");
+    statement.executeUpdate("INSERT INTO persons(id, name) VALUES(2, 'John DOE')"); //Noncompliant
 }
 ----
 
@@ -25,10 +25,10 @@ public void select() {
 [source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 public void select() {
-    PreparedStatement statement = connection.prepareStatement("INSERT INTO persons(id, name) VALUES(?, ?)");
+    PreparedStatement statement = connection.prepareStatement(INSERT INTO persons(id, name) VALUES(?, ?));
 
     statement.setInt(1, 2);
     statement.setString(2, "John DOE");
-    statement.executeUpdate();
+    statement.executeQuery();
 }
 ----

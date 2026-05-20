@@ -17,7 +17,7 @@ Developers reading the code can understand that the variable holds a reference t
 [source,js,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 const width = document.getElementById('block').clientWidth;
-const height = document.getElementById('block').clientHeight;
+const height = document.getElementById('block').clientHeight; // Noncompliant
 ----
 
 === Compliant

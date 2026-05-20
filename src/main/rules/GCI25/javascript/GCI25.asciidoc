@@ -17,8 +17,8 @@ A missing src attribute can result in confusion and hinder accessibility.
 ----
 return (
   <>
-    <img src="" />
-    <img />
+    <img src="" /> // Noncompliant
+    <img /> // Noncompliant
   </>
 )
 ----
@@ -32,8 +32,8 @@ The HTML specification requires the src attribute for the <img> element, and not
 import myLogo from "./logo.svg"
 return (
   <>
-    <img src="./logo.svg" />
-    <img src={myLogo} />
+    <img src="./logo.svg" /> // Compliant
+    <img src={myLogo} /> // Compliant
   </>
 )
 ----

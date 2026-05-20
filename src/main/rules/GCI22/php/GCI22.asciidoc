@@ -11,7 +11,7 @@ For basic comparisons, direct operators are more efficient.
 
 [source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-$min = min($a, $b);
+$min = min($a, $b); // Noncompliant
 ----
 
 === Compliant

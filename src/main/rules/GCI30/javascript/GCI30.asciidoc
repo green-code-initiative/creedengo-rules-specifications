@@ -17,7 +17,7 @@ By optimizing the print layout, you can ensure that only essential content is pr
 ----
 <head>
   <title>Web Page</title>
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="styles.css" /> <!-- Non-compliant -->
 </head>
 ----
 
@@ -30,7 +30,7 @@ Use the media attribute with a value of "print" to indicate that this stylesheet
 ----
 <head>
   <title>Web Page</title>
-  <link rel="stylesheet" media="print" type="text/css" href="print.css" /> 
+  <link rel="stylesheet" media="print" type="text/css" href="print.css" />  <!-- Compliant -->
 </head>
 ----
 

@@ -17,18 +17,16 @@ To mitigate this, it's crucial to prevent browsers from preloading any content b
 
 [source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-<video src="videofile.webm" autoplay></video>
-
-<audio controls src="audiofile.mp3" autoplay></audio>
+<video src="videofile.webm" autoplay></video> // Noncompliant
+<audio controls src="audiofile.mp3" autoplay></audio> // Noncompliant
 ----
 
 === Compliant
 
 [source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
-<video src="videofile.webm" preload="none"></video>
-
-<audio controls src="audiofile.mp3" preload="none"></audio>
+<video src="videofile.webm" preload="none"></video> //Compliant
+<audio controls src="audiofile.mp3" preload="none"></audio> //Compliant
 ----
 
 == Resources

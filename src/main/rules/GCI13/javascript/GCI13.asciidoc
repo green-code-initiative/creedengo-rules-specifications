@@ -15,18 +15,18 @@ This rule is built for the https://nestjs.com[NestJS framework] but can work wit
 
 === Noncompliant
 
-[source,js,data-diff-id="1",data-diff-type="noncompliant"]
+[source,typescript,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 @Controller()
 class Test {
   @Get()
-  public find(): Promise<string[]> {}
+  public find(): Promise<string[]> {} // Noncompliant
 }
 ----
 
 === Compliant
 
-[source,js,data-diff-id="2",data-diff-type="compliant"]
+[source,typescript,data-diff-id="2",data-diff-type="compliant"]
 ----
 interface Pagination {
   items: string[];

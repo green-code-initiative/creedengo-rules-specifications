@@ -16,7 +16,7 @@ If you store data about customers, you certainly don’t need to retrieve inform
 
 [source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-String query = "SELECT * FROM customers";
+String query = "SELECT * FROM customers"; // Noncompliant
 ----
 
 === Compliant
@@ -25,7 +25,7 @@ It may therefore be a good idea to limit the results and use pagination, for exa
 
 [source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
-String query = "SELECT id,name,email FROM customers FETCH FIRST 10 ROWS ONLY";
+String query = "SELECT id,name,email FROM customers FETCH FIRST 10 ROWS ONLY"; // Compliant
 ----
 
 == Resources

@@ -16,9 +16,9 @@ This rule currently focuses on the "file open" use case, but the principle appli
 ----
 try:
     f = open(path)
-    print(f.read())
+    print(fh.read())
 except:
-    print('No such file ' + path)
+    print('No such file '+path)
 finally:
     f.close()
 ----

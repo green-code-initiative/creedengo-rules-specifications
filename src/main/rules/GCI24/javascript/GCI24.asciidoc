@@ -16,7 +16,7 @@ If you store data about customers, you certainly don’t need to retrieve inform
 
 [source,js,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-const query = "SELECT * FROM customers";
+const query = "SELECT * FROM customers"; // Noncompliant
 ----
 
 === Compliant

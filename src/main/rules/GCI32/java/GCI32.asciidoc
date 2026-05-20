@@ -11,7 +11,7 @@ Dynamic resizing consumes additional CPU cycles (for memory allocation and copyi
 
 [source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-StringBuilder sb = new StringBuilder();
+StringBuilder sb = new StringBuilder(); // Noncompliant
 for (int i = 0; i < 100; i++) {
     sb.append(...);
 }

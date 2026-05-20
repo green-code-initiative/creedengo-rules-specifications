@@ -19,9 +19,9 @@ To mitigate this, it's crucial to prevent browsers from preloading any content b
 ----
 return (
   <>
-    <video src="video.mp4" autoplay/>
-    <video src="video.mp4" preload="auto"/>
-    <video src="video.mp4" autoplay preload="auto"/>
+    <video src="video.mp4" autoplay/> // Noncompliant
+    <video src="video.mp4" preload="auto"/> // Noncompliant
+    <video src="video.mp4" autoplay preload="auto"/> // Noncompliant
   </>
 )
 

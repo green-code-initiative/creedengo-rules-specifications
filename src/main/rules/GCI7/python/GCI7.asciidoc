@@ -23,8 +23,8 @@ class Client():
         self.age = age
 
 client = Client(25)
-client.get_age()
-client.set_age(25)
+client.get_age() # Getter inutile
+client.set_age(25) # Setter inutile
 ----
 
 === Compliant
@@ -37,8 +37,8 @@ class Client():
         self.age = age
 
 client = Client(25)
-client.age
-client.age = 26
+client.age # Récupérer l'attribut age
+client.age = 26 # Modifier l'attribut age
 ----
 
 == Resources

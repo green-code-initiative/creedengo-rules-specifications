@@ -15,9 +15,9 @@ Thus, prefer local variables as parameters.
 ----
 global_var = 'foo'
 def print_global_var_details():
-    print(len(global_var))
-    print('Global var : ', global_var)
-    print('Global var : ' + global_var)
+    print(len(global_var)) # Noncompliant
+    print('Global var : ', global_var) # Noncompliant
+    print('Global var : ' + global_var) # Noncompliant
 print_global_var_details()
 ----
 

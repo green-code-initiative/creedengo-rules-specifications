@@ -9,7 +9,7 @@ This increases file size, which impacts loading time, storage, and energy consum
 
 === Noncompliant
 
-[source,python,data-diff-id="1",data-diff-type="noncompliant"]
+[source,xml,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
@@ -40,7 +40,7 @@ This increases file size, which impacts loading time, storage, and energy consum
 
 === Compliant
 
-[source,python,data-diff-id="2",data-diff-type="compliant"]
+[source,xml,data-diff-id="2",data-diff-type="compliant"]
 ----
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 297" width="210mm" height="297mm">
     <circle cx="104.02724" cy="152.19028" r="73.177132" style="fill:#ff00ff;stroke-width:0.264583"/>
