@@ -1,0 +1,16 @@
+{
+    "title": "Avoid range(len()) pattern, prefer direct iteration or enumerate()",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant/Issue",
+      "constantCost": "5min"
+    },
+    "tags": [
+      "creedengo",
+      "eco-design",
+      "performance"
+    ],
+    "defaultSeverity": "Minor"
+  }
+
