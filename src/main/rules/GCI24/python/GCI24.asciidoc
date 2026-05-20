@@ -23,7 +23,7 @@ query = "SELECT * FROM customers"  # Noncompliant
 
 It may therefore be a good idea to limit the results and use pagination, for example.
 
-[source,python,data-diff-id="1",data-diff-type="compliant"]
+[source,python,data-diff-id="2",data-diff-type="compliant"]
 ----
 query = "SELECT id, name, email FROM customers LIMIT 10"  # Compliant
 ----

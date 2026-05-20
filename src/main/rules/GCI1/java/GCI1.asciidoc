@@ -48,5 +48,3 @@ List<Employee> employees = employeeRepository.findAllById(ids);
 List<Integer> ids = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toList();
 List<Employee> employees = employeeRepository.findAllById(ids);
 ----
-
-== Resources

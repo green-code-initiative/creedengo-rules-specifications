@@ -25,7 +25,7 @@ globalLength();
 
 === Compliant
 
-[source,php,data-diff-id="1",data-diff-type="compliant"]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 var aGlobal = new String('Hello');
 
@@ -36,5 +36,3 @@ function someVarLength(str){
 
 somVarLength(aGlobal);
 ----
-
-== Resources

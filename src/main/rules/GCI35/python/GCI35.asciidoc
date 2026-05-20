@@ -25,12 +25,10 @@ finally:
 
 === Compliant
 
-[source,python,data-diff-id="1",data-diff-type="compliant"]
+[source,python,data-diff-id="2",data-diff-type="compliant"]
 ----
 if os.path.isfile(path):
   fh = open(path, 'r')
   print(fh.read())
   fh.close
 ----
-
-== Resources

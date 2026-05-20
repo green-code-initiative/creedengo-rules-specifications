@@ -13,7 +13,7 @@ By optimizing the print layout, you can ensure that only essential content is pr
 
 === Noncompliant
 
-[source,html,data-diff-id="3",data-diff-type="noncompliant"]
+[source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <head>
   <title>Web Page</title>
@@ -26,7 +26,7 @@ By optimizing the print layout, you can ensure that only essential content is pr
 In your HTML file, you can include a link to the print stylesheet inside the <head> section.
 Use the media attribute with a value of "print" to indicate that this stylesheet is specifically for print.
 
-[source,html,data-diff-id="3",data-diff-type="compliant"]
+[source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
 <head>
   <title>Web Page</title>
@@ -37,7 +37,7 @@ Use the media attribute with a value of "print" to indicate that this stylesheet
 You can also use the @media print rule to define styles that should be applied when the page is printed.
 Adjust font sizes, hide unnecessary elements, or make any other modifications suitable for print.
 
-[source,html,data-diff-id="4",data-diff-type="compliant"]
+[source,html,data-diff-id="3",data-diff-type="compliant"]
 ----
 <head>
   <title>Web Page</title>

@@ -22,7 +22,7 @@ public void select() {
 
 === Compliant
 
-[source,java,data-diff-id="1",data-diff-type="compliant"]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 public void select() {
     PreparedStatement statement = connection.prepareStatement("INSERT INTO persons(id, name) VALUES(?, ?)");
@@ -32,5 +32,3 @@ public void select() {
     statement.executeUpdate();
 }
 ----
-
-== Resources

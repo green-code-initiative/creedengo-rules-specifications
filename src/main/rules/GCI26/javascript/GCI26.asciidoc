@@ -11,7 +11,7 @@ For example, the `font` shorthand consolidates various font-related properties, 
 
 === Noncompliant
 
-[source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
+[source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <div style={{ marginTop: "1em", marginRight: 0, marginBottom: "2em", marginLeft: "0.5em" }}>
     {/* Noncompliant: these properties can be grouped together in the "margin" property */}
@@ -20,7 +20,7 @@ For example, the `font` shorthand consolidates various font-related properties, 
 
 === Compliant
 
-[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+[source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
 <div style={{ margin: "1em 0 2em 0.5em" }}>
     {/* Compliant usage of shorthand property */}
@@ -30,7 +30,7 @@ For example, the `font` shorthand consolidates various font-related properties, 
 This optimization can't always be done, depending on the properties you're using.
 For example, if you only want to set the left margin, you must continue to use `margin-left`.
 
-[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+[source,html,data-diff-id="3",data-diff-type="compliant"]
 ----
 <div style={{ marginLeft: "1em" }}>
     {/* Compliant because we only want a left margin */}

@@ -20,7 +20,7 @@ myFunction("name", "age", "IsStudent");
 
 === Compliant
 
-[source,php,data-diff-id="1",data-diff-type="compliant"]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 myFunction('name', 'age', 'IsStudent');
     $lastName = 'Hugo';

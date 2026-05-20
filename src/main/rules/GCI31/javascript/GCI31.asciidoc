@@ -24,7 +24,7 @@ Files are lightweight and can be scaled without loss of quality.
 
 === Compliant
 
-[source,html,data-diff-id="1",data-diff-type="compliant"]
+[source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
 <img src="./assets/images/cat.webp" alt="Optimized image of a cat"/>
 ----

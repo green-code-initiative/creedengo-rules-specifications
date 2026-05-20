@@ -15,12 +15,10 @@ $i++
 
 === Compliant
 
-[source,php,data-diff-id="1",data-diff-type="compliant"]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 ++$i
 ----
-
-== Resources
 
 include::../../etsdiff-methodology.asciidoc[]
 

@@ -27,7 +27,7 @@ catch(Exception $ex)
 
 === Compliant
 
-[source,php,data-diff-id="1",data-diff-type="compliant"]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 //try
 if (file_exists($imgFile)) {
@@ -40,8 +40,6 @@ if (!$picture) {
    print $msg;
 }
 ----
-
-== Resources
 
 include::../../etsdiff-methodology.asciidoc[]
 

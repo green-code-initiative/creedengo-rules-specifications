@@ -37,5 +37,3 @@ public void readPreferences(String filename) throws IllegalArgumentException, Fi
     //...
 }
 ----
-
-== Resources

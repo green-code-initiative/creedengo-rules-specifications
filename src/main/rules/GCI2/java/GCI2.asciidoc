@@ -44,7 +44,7 @@ return nb;
 
 SWITCH statement solution + refactor solution
 
-[source,java,data-diff-id="1",data-diff-type="compliant"]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 int index = 1;
 int nb = 2;

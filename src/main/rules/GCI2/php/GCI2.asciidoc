@@ -44,7 +44,7 @@ return $nb;
 
 SWITCH statement solution + refactor solution
 
-[source,php,data-diff-id="1",data-diff-type="compliant"]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 $index = 1;
 $nb = 2;
@@ -60,5 +60,3 @@ switch ($nb) {
 }
 return $nb;
 ----
-
-== Resources

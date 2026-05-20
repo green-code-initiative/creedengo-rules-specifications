@@ -29,7 +29,7 @@ client.set_age(25)
 
 === Compliant
 
-[source,python,data-diff-id="1",data-diff-type="compliant"]
+[source,python,data-diff-id="2",data-diff-type="compliant"]
 ----
 class Client():
 

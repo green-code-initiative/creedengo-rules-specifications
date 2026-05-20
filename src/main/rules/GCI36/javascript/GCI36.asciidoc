@@ -15,7 +15,7 @@ To mitigate this, it's crucial to prevent browsers from preloading any content b
 
 === Noncompliant
 
-[source,typescriptjsx,data-diff-id="3",data-diff-type="noncompliant"]
+[source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 return (
   <>

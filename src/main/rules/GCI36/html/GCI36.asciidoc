@@ -24,7 +24,7 @@ To mitigate this, it's crucial to prevent browsers from preloading any content b
 
 === Compliant
 
-[source,html,data-diff-id="1",data-diff-type="compliant"]
+[source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
 <video src="videofile.webm" preload="none"></video>
 

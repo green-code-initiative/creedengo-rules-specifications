@@ -23,7 +23,7 @@ String query = "SELECT * FROM customers";
 
 It may therefore be a good idea to limit the results and use pagination, for example.
 
-[source,java,data-diff-id="1",data-diff-type="compliant"]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 String query = "SELECT id,name,email FROM customers FETCH FIRST 10 ROWS ONLY";
 ----

@@ -28,7 +28,7 @@ return copy;
 
 === Compliant
 
-[source,java,data-diff-id="1",data-diff-type="compliant"]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 int[] copy = new int[array.length];
 System.arraycopy(array, 0, copy, 0, array.length);

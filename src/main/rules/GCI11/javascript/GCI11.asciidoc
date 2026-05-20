@@ -14,7 +14,7 @@ Developers reading the code can understand that the variable holds a reference t
 
 === Noncompliant
 
-[source,js,data-diff-id="2",data-diff-type="noncompliant"]
+[source,js,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 const width = document.getElementById('block').clientWidth;
 const height = document.getElementById('block').clientHeight;
@@ -22,7 +22,7 @@ const height = document.getElementById('block').clientHeight;
 
 === Compliant
 
-[source,js,data-diff-id="1",data-diff-type="compliant"]
+[source,js,data-diff-id="2",data-diff-type="compliant"]
 ----
 const blockElement = document.getElementById('block');
 const width = blockElement.clientWidth;

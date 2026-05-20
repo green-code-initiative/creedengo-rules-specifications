@@ -13,7 +13,7 @@ A missing src attribute can result in confusion and hinder accessibility.
 
 === Noncompliant
 
-[source,typescriptjsx,data-diff-id="3",data-diff-type="noncompliant"]
+[source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 return (
   <>
@@ -27,7 +27,7 @@ The HTML specification requires the src attribute for the <img> element, and not
 
 === Compliant
 
-[source,typescriptjsx,data-diff-id="4",data-diff-type="compliant"]
+[source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
 ----
 import myLogo from "./logo.svg"
 return (
