@@ -1,10 +1,17 @@
-Prefer local variables as parameters
+:!sectids:
 
-When calling a global variable, the interpretation engine must check that it exists in all the scopes, that it has a value, etc. Passing global variables as arguments gives them the status of local variables inside the function, thus saving computing time (CPU cycles).
+== Why is this an issue?
 
-== Non compliant Code Example
+Accessing global variables requires scope resolution, which consumes additional CPU cycles.
+Passing global variables as function parameters treats them as local variables, reducing lookup overhead.
 
-[source,php]
+Thus, prefer local variables as parameters.
+
+== Examples
+
+=== Noncompliant
+
+[source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 var aGlobal = new String('Hello');
 
@@ -16,9 +23,9 @@ function globalLength(){
 globalLength();
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,php]
+[source,php,data-diff-id="1",data-diff-type="compliant"]
 ----
 var aGlobal = new String('Hello');
 
@@ -29,3 +36,5 @@ function someVarLength(str){
 
 somVarLength(aGlobal);
 ----
+
+== Resources

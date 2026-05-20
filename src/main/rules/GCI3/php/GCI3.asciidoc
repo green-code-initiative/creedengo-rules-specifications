@@ -1,10 +1,17 @@
-When iterating over any collection, fetch the size of the collection in advance to avoid fetching it on each iteration, this saves CPU cycles, and therefore consumes less power.
+:!sectids:
+
+== Why is this an issue?
+
+When iterating over any collection, fetch the size of the collection in advance to avoid fetching it on each iteration.
+This saves CPU cycles, and therefore consumes less power.
 
 NB : note that we are using the `count()` method to get the size of an array but it would work the same with the `sizeof()` and `iterator_count()` methods.
 
-== Non compliant Code Example
+== Examples
 
-[source,php]
+=== Noncompliant
+
+[source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 $array = array('orange', 'banana', 'apple', 'carrot', 'collard', 'pea');
 
@@ -47,9 +54,9 @@ do {
 } while (count($array) > $i);
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,php]
+[source,php,data-diff-id="1",data-diff-type="compliant"]
 ----
 $array = array('orange', 'banana', 'apple', 'carrot', 'collard', 'pea');
 // FOR STATEMENTS / Right operand
@@ -96,3 +103,5 @@ do {
 	++$i;
 } while ($size > $i);
 ----
+
+== Resources

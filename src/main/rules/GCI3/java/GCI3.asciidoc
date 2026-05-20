@@ -1,19 +1,26 @@
-When iterating over any collection, fetch the size of the collection in advance to avoid fetching it on each iteration, this saves CPU cycles, and therefore consumes less power. The example provided below illustrates what should be avoided.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,java]
+When iterating over any collection, fetch the size of the collection in advance to avoid fetching it on each iteration.
+This saves CPU cycles, and therefore consumes less power. 
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 List<String> objList = getData();
 
-for (int i = 0; i < objList.size(); i++) {  // Noncompliant
+for (int i = 0; i < objList.size(); i++) { 
     // execute code
 }
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,java]
+[source,java,data-diff-id="1",data-diff-type="compliant"]
 ----
 List<String> objList = getData();
 
@@ -22,3 +29,5 @@ for (int i = 0; i < size; i++) {
     // execute code
 }
 ----
+
+== Resources

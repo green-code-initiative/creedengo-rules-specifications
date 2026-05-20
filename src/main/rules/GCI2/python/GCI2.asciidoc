@@ -1,9 +1,12 @@
-If we are using too many conditional IF, ELSEIF or ELSE statements it will impact performance.
-We can think of using a switch statement instead of multiple if-else if possible, or refactor code
-to reduce number of IF, ELSEIF and ELSE statements. Sometimes called "complexity cyclomatic".
-MATCH-CASE statement has a performance advantage over if – else.
+:!sectids:
+
+== Why is this an issue?
+
+Excessive use of nested IF, ELSEIF, or ELSE statements increases cyclomatic complexity and degrades performance.
+Using a MATCH-CASE statement or refactoring the code reduces CPU overhead and improves readability.
 
 == Functional rules
+
 - one variable must be used maximum twice in IF / ELSEIF / ELSE statements at the same level - WARNINGs :
 - IF and ELSEIF statements use explicitly variable names !
 - ELSE statements use implicity variable names !
@@ -12,13 +15,15 @@ MATCH-CASE statement has a performance advantage over if – else.
 - use a MATCH-CASE statement instead
 - or refactor the code if possible
 
-== Non compliant Code Example
+== Examples
+
+=== Noncompliant
 
 Non-compliant, because `nb` is used 4 times :
 - 2 explicit times in IF statements
 - 2 implicit times in ELSE statements
 
-[source,python]
+[source,python,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 index = 1
 nb = 2
@@ -34,11 +39,11 @@ else:
 return nb
 ----
 
-== Compliant Code Example
+=== Compliant
 
 MATCH-CASE statement solution + refactor solution
 
-[source,python]
+[source,python,data-diff-id="1",data-diff-type="compliant"]
 ----
 index = 1
 nb = 2
@@ -54,3 +59,5 @@ match nb:
         nb = -1
 return nb
 ----
+
+== Resources

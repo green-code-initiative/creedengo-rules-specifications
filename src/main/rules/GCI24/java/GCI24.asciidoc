@@ -10,16 +10,22 @@ By restricting the result set size, you reduce the amount of data that needs to 
 
 If you store data about customers, you certainly don’t need to retrieve information of all at once, because the larger the table will be, the more elements the query will return.
 
+== Examples
+
+=== Noncompliant
+
 [source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-String query = "SELECT * FROM customers"; // Noncompliant
+String query = "SELECT * FROM customers";
 ----
+
+=== Compliant
 
 It may therefore be a good idea to limit the results and use pagination, for example.
 
 [source,java,data-diff-id="1",data-diff-type="compliant"]
 ----
-String query = "SELECT id,name,email FROM customers FETCH FIRST 10 ROWS ONLY"; // Compliant
+String query = "SELECT id,name,email FROM customers FETCH FIRST 10 ROWS ONLY";
 ----
 
 == Resources

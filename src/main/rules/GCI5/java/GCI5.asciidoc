@@ -1,24 +1,36 @@
 Use `PreparedStatement` instead of `Statement`, because SQL will only commit the query once, whereas if you used only one statement, it would commit the query every time and thus induce unnecessary calculations by the CPU and therefore superfluous energy consumption.
 
-== Non compliant Code Example
+:!sectids:
 
-[source,java]
+== Why is this an issue?
+
+Using `Statement` instead of `PreparedStatement` causes the database to parse and compile the SQL query on every execution.
+This leads to unnecessary CPU overhead and energy consumption.
+`PreparedStatement` precompiles the query, reducing resource usage for repeated executions.
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 public void select() {
     Statement statement = connection.createStatement();
-    statement.executeUpdate("INSERT INTO persons(id, name) VALUES(2, 'John DOE')");  // Noncompliant
+    statement.executeUpdate("INSERT INTO persons(id, name) VALUES(2, 'John DOE')");
 }
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,java]
+[source,java,data-diff-id="1",data-diff-type="compliant"]
 ----
 public void select() {
-    PreparedStatement statement = connection.prepareStatement(INSERT INTO persons(id, name) VALUES(?, ?));
+    PreparedStatement statement = connection.prepareStatement("INSERT INTO persons(id, name) VALUES(?, ?)");
 
     statement.setInt(1, 2);
     statement.setString(2, "John DOE");
-    statement.executeQuery();
+    statement.executeUpdate();
 }
 ----
+
+== Resources

@@ -1,20 +1,29 @@
-When function calls global variables, a lot a CPU cycles is consumed.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,python]
+Accessing global variables requires scope resolution, which consumes additional CPU cycles.
+Passing global variables as function parameters treats them as local variables, reducing lookup overhead.
+
+Thus, prefer local variables as parameters.
+
+== Examples
+
+=== Noncompliant
+
+[source,python,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 global_var = 'foo'
 def print_global_var_details():
-    print(len(global_var)) # Noncompliant
-    print('Global var : ', global_var) # Noncompliant
-    print('Global var : ' + global_var) # Noncompliant
+    print(len(global_var))
+    print('Global var : ', global_var)
+    print('Global var : ' + global_var)
 print_global_var_details()
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,python]
+[source,python,data-diff-id="1",data-diff-type="compliant"]
 ----
 global_var = 'foo';
 def print_var_details(local_var) {
@@ -24,3 +33,5 @@ def print_var_details(local_var) {
 }
 print_length(global_var);
 ----
+
+== Resources

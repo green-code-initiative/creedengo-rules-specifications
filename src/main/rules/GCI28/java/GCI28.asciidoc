@@ -1,8 +1,15 @@
-Optimize read file exception
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,java]
+`try...catch` for file reading wastes CPU/RAM on exception overhead.
+Use explicit checks instead.
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 public void readPreferences(String filename) {
     //...
@@ -17,9 +24,9 @@ public void readPreferences(String filename) {
 }
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,java]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 public void readPreferences(String filename) throws IllegalArgumentException, FileNotFoundException, IOException {
     if (filename == null) {
@@ -30,3 +37,5 @@ public void readPreferences(String filename) throws IllegalArgumentException, Fi
     //...
 }
 ----
+
+== Resources

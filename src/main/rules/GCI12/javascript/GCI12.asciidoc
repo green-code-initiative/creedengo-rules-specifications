@@ -10,16 +10,20 @@ Making multiple CSS changes in a single batch can trigger multiple reflows and r
 Reflows and repaints are resource-intensive operations that can lead to performance issues.
 Applying changes individually minimizes the number of reflows and repaints, improving overall page performance.
 
-Here's an example in JavaScript and CSS to illustrate this rule:
+== Examples
+
+=== Noncompliant
 
 [source,html,data-diff-id="3",data-diff-type="noncompliant"]
 ----
 <script>
   element.style.height = "800px";
-  element.style.width = "600px"; // Noncompliant
-  element.style.color = "red"; // Noncompliant
+  element.style.width = "600px";
+  element.style.color = "red";
 </script>
 ----
+
+=== Compliant
 
 [source,html,data-diff-id="10",data-diff-type="compliant"]
 ----
@@ -32,7 +36,7 @@ Here's an example in JavaScript and CSS to illustrate this rule:
 </style>
 
 <script>
-  element.addClass("in-error"); // Compliant
+  element.addClass("in-error");
 </script>
 ----
 

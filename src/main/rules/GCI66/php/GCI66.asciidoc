@@ -1,22 +1,33 @@
-PHP allows declaring a string with simple or double quotes. Using double quotes allows developers to insert variables which will be substituted during execution. When the string has no variables, using single quotes prevents PHP from searching for non-existent variables. It will save CPU cycles consumption and RAM usage.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,php]
+PHP allows declaring a string with simple or double quotes. 
+Using double quotes allows developers to insert variables which will be substituted during execution. 
+When the string has no variables, using single quotes prevents PHP from searching for non-existent variables. 
+It will save CPU cycles consumption and RAM usage.
+
+== Examples
+
+=== Noncompliant
+
+[source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 myFunction("name", "age", "IsStudent");
     $lastName = "Hugo";
     $concatenatedString = "$lastName is a student";
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,php]
+[source,php,data-diff-id="1",data-diff-type="compliant"]
 ----
 myFunction('name', 'age', 'IsStudent');
     $lastName = 'Hugo';
     $concatenatedString = $lastName . 'is a student';
 ----
+
+== Resources
 
 include::../../etsdiff-methodology.asciidoc[]
 

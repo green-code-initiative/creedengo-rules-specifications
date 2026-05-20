@@ -11,14 +11,20 @@ Pagination ensures that only the relevant data is transferred, conserving bandwi
 
 This rule is built for the https://nestjs.com[NestJS framework] but can work with a controller `@Controller()` and a decorated method `@Get()`.
 
+== Examples
+
+=== Noncompliant
+
 [source,typescript,data-diff-id="4",data-diff-type="noncompliant"]
 ----
 @Controller()
 class Test {
   @Get()
-  public find(): Promise<string[]> {} // Noncompliant
+  public find(): Promise<string[]> {}
 }
 ----
+
+=== Compliant
 
 [source,typescript,data-diff-id="10",data-diff-type="compliant"]
 ----

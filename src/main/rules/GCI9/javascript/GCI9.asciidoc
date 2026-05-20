@@ -9,6 +9,8 @@ This is especially critical in environments with limited resources, such as on m
 Smaller programs generally have better runtime performance.
 Reducing the number of unnecessary modules minimizes the amount of code that needs to be interpreted or compiled, leading to faster execution and improved overall performance.
 
+== Examples
+
 *Example with the well-known https://lodash.com/[lodash] library, if you only need
 `isEmpty` method.*
 
@@ -30,25 +32,29 @@ a|index.js - 24.42 KB
 
 |===
 
+=== Noncompliant
+
 [source,js,data-diff-id="2",data-diff-type="noncompliant"]
 ----
 // Example with lodash
-import lodash from "lodash"; // Noncompliant
-import { isEmpty } from "lodash"; // Noncompliant
-import * as lodash from "lodash"; // Noncompliant
+import lodash from "lodash";
+import { isEmpty } from "lodash";
+import * as lodash from "lodash";
 
 // Example with underscore
-import _ from "underscore"; // Noncompliant
+import _ from "underscore";
 ----
+
+=== Compliant
 
 [source,js,data-diff-id="2",data-diff-type="compliant"]
 ----
 // Example with lodash (uses submodules)
-import isEmpty from "lodash/isEmpty"; // Compliant
-import intersect from "lodash/intersect"; // Compliant
+import isEmpty from "lodash/isEmpty";
+import intersect from "lodash/intersect";
 
 // Example with underscore (uses esm modules)
-import map from "underscore/modules/map.js"; // Compliant
+import map from "underscore/modules/map.js";
 ----
 
 == Resources

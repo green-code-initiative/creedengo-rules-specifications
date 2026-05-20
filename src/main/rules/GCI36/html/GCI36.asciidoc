@@ -11,28 +11,24 @@ However, even without autoplay, segments of video or audio files might still dow
 This leads to unnecessary data usage, especially if users don't commence playback.
 To mitigate this, it's crucial to prevent browsers from preloading any content by configuring the appropriate settings.
 
-Video:
+== Examples
+
+=== Noncompliant
 
 [source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-<video src="videofile.webm" autoplay></video> // Noncompliant
+<video src="videofile.webm" autoplay></video>
+
+<audio controls src="audiofile.mp3" autoplay></audio>
 ----
+
+=== Compliant
 
 [source,html,data-diff-id="1",data-diff-type="compliant"]
 ----
-<video src="videofile.webm" preload="none"></video> // Compliant
-----
+<video src="videofile.webm" preload="none"></video>
 
-Audio:
-
-[source,html,data-diff-id="1",data-diff-type="noncompliant"]
-----
-<audio controls src="audiofile.mp3" autoplay></audio> // Noncompliant
-----
-
-[source,html,data-diff-id="1",data-diff-type="compliant"]
-----
-<audio controls src="audiofile.mp3" preload="none"></audio> // Compliant
+<audio controls src="audiofile.mp3" preload="none"></audio>
 ----
 
 == Resources
@@ -43,5 +39,4 @@ Audio:
 
 === Articles & blog posts
 
-- https://eco-conception.designersethiques.org/guide/en/content/5-2-video.html[eco-conception.designersethiques.org - 5.2. Video and sound]
-- https://www.ecoindex.fr/en/ecodesign/[www.ecoindex.fr - Some good practices]
+- https://www.ecoindex.fr/en/ecodesign/[Ecodesign and good practices]

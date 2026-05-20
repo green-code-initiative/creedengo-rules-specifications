@@ -1,44 +1,52 @@
-The use of Spring repository in a loop induces unnecessary calculations by the CPU and therefore superfluous energy consumption.
-Also, the use of Spring repository in a stream operation like "peek, forEach, forEachOrdered, map" induces unnecessary multiple access to the database instead of single batch call.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,java]
+Using Spring repository calls inside loops or stream operations (e.g., `peek`, `forEach`, `forEachOrdered`, `map`) triggers unnecessary multiple access to the database instead of a single batch call.
+This leads to unnecessary CPU overhead, increased database load and higher energy consumption.
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 private final List<Integer> ids = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 List<Employee> employees = new ArrayList<>();
 
-for (Integer id: ids) {
-    Optional<Employee> employee = employeeRepository.findById(id); // Noncompliant
+for (Integer id : ids) {
+    Optional<Employee> employee = employeeRepository.findById(id);
     if (employee.isPresent()) {
         employees.add(employee.get());
     }
 }
 ----
 
-[source,java]
+[source,java,data-diff-id="2",data-diff-type="noncompliant"]
 ----
 List<Employee> employees = new ArrayList<>();
-Stream stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 stream.forEach(id -> {
-    Optional<Employee> employee = employeeRepository.findById(id); // Noncompliant
+    Optional<Employee> employee = employeeRepository.findById(id);
     if (employee.isPresent()) {
         employees.add(employee.get());
     }
 });
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,java]
+[source,java,data-diff-id="3",data-diff-type="compliant"]
 ----
 private final List<Integer> ids = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 List<Employee> employees = employeeRepository.findAllById(ids);
 ----
 
-[source,java]
+[source,java,data-diff-id="4",data-diff-type="compliant"]
 ----
-private final List<Integer> ids = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toList();
+List<Integer> ids = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toList();
 List<Employee> employees = employeeRepository.findAllById(ids);
 ----
+
+== Resources
