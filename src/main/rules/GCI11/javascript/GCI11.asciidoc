@@ -20,7 +20,9 @@ const width = document.getElementById('block').clientWidth;
 const height = document.getElementById('block').clientHeight;
 ----
 
-[source,js,data-diff-id="1",data-diff-type="noncompliant"]
+=== Compliant
+
+[source,js,data-diff-id="1",data-diff-type="compliant"]
 ----
 const blockElement = document.getElementById('block');
 const width = blockElement.clientWidth;
