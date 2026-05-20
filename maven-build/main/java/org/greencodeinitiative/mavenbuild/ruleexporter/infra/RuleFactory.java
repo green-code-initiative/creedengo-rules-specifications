@@ -42,7 +42,7 @@ public class RuleFactory {
 
             return new RuleMetadata.Builder()
                     .key(ruleFile.getRuleKey())
-                    .technology(ruleFile.getTechnology())
+                    .language(ruleFile.getLanguage())
                     .title(jsonObject.getString("title"))
                     .severity(severity)
                     .status(status)
