@@ -17,12 +17,18 @@ When index.json export is enabled, the generated file has the following structur
       "id": "GCI1",
       "name": "Rule Title",
       "severity": "MAJOR",
-      "technologies": ["java", "javascript"],
-      "status": "READY"
+      "languages": {
+        "java": {
+          "status": "READY"
+        },
+        "javascript": {
+          "status": "DEPRECATED"
+        }
+      }
     }
   ],
   "meta": {
-    "technologies": ["java", "javascript", "python"],
+    "languages": { "java": "Java", "javascript": "JS/TS" },
     "severities": ["CRITICAL", "INFO", "MAJOR", "MINOR"],
     "statuses": ["DEPRECATED", "READY"]
   }
@@ -34,11 +40,13 @@ When index.json export is enabled, the generated file has the following structur
 This module follows **Domain-Driven Design (DDD)** principles:
 
 ### Domain Layer
+
 - **Pure domain models** with no external dependencies
 - Business logic and rules validation
 - Technology-agnostic
 
 ### Infrastructure Layer
+
 - File system operations
 - JSON parsing and writing
 - External dependencies (Jakarta JSON, NIO)

@@ -31,12 +31,12 @@ public class RuleDescriptionFile {
 
     private final Path path;
     private final RuleKey ruleKey;
-    private final String technology;
+    private final String language;
 
-    public RuleDescriptionFile(String path, String key, String technology) {
+    public RuleDescriptionFile(String path, String key, String language) {
         this.path = Path.of(path);
         this.ruleKey = new RuleKey(key);
-        this.technology = technology;
+        this.language = language;
     }
 
     public Path getPath() {
@@ -51,8 +51,8 @@ public class RuleDescriptionFile {
         return ruleKey + ".json";
     }
 
-    public String getTechnology() {
-        return technology;
+    public String getLanguage() {
+        return language;
     }
 
     public Path getMetadataPath() {
@@ -64,10 +64,10 @@ public class RuleDescriptionFile {
     }
 
     public Path getHtmlDescriptionTargetPath(Path targetDir) {
-        return targetDir.resolve(technology).resolve(ruleKey + ".html");
+        return targetDir.resolve(language).resolve(ruleKey + ".html");
     }
 
     public Path getMetadataTargetPath(Path targetDir) {
-        return targetDir.resolve(technology).resolve(getMetadataFileName());
+        return targetDir.resolve(language).resolve(getMetadataFileName());
     }
 }
