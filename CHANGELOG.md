@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [#427](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/457) update rule GCI2 (Python) status (Avoid Multiple if else statement)
 - [#438](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/438) Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
 
 ### Changed
