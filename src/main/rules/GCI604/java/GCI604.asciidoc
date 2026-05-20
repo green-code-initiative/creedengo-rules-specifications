@@ -1,0 +1,56 @@
+Creating a new `ObjectMapper` for each serialization or deserialization operation can lead to unnecessary object allocation and repeated initialization costs.
+
+`ObjectMapper` instances are designed to be reused after configuration. Reusing a shared instance allows Jackson to benefit from its internal caches and avoids repeated setup work.
+
+== Non compliant Code Example
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class UserSerializer {
+
+  String toJson(Object user) throws Exception {
+    ObjectMapper mapper = new ObjectMapper(); // Noncompliant
+    return mapper.writeValueAsString(user);
+  }
+}
+----
+
+== Compliant Solution
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class UserSerializer {
+
+  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+  String toJson(Object user) throws Exception {
+    return OBJECT_MAPPER.writeValueAsString(user);
+  }
+}
+----
+
+In a Spring application, injecting a configured `ObjectMapper` bean is also a compliant solution.
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
+
+@Service
+class UserSerializer {
+
+  private final ObjectMapper objectMapper;
+
+  UserSerializer(ObjectMapper objectMapper) {
+    this.objectMapper = objectMapper;
+  }
+
+  String toJson(Object user) throws Exception {
+    return objectMapper.writeValueAsString(user);
+  }
+}
+----
