@@ -120,7 +120,7 @@
             Default version when disabling Maven `maven-git-versioning-extension` extension
             cf. https://github.com/qoomon/maven-git-versioning-extension#intellij&#45;&#45;-multi-modules-projects
         -->
-        <revision>current-SNAPSHOT</revision>
+        <revision>feature-new-rule-no-polling-without-visibility-check-SNAPSHOT</revision>
 
         <!-- Helps ensure build reproducibility (cf. https://maven.apache.org/guides/mini/guide-reproducible-builds.html) -->
         <!--suppress UnresolvedMavenProperty -->
