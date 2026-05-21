@@ -17,17 +17,16 @@ print_global_var_details()
 [source,python]
 ----
 global_var = 'foo'
-def print_var_details(local_var) :
+def print_var_details(local_var):
     print(len(local_var))
     print('Var : ', local_var)
     print('Var : ' + local_var)
-
-print_length(global_var)
+print_var_details(global_var)
 ----
 
 == Analysis
 
-=== Energy Mesurment
+=== Energy Measurment
 
 Measurements were performed using https://github.com/green-code-initiative/EnergyTracer[green-code-initiative/EnergyTracer]
 
@@ -68,7 +67,7 @@ print_var_details(global_var)
 ==== Global Consumption
 |===
 |  | With smell | Without smell
-| **Execution Time** | 0.20 ms | 0.15 ms
+| **Execution Time** | 2.0e-4 s | 1.5e-4 s
 | **Average Power** | 259.932 W | 331.044 W
 | **Total Energy** | 25.97 J | 23.99 J
 |===
