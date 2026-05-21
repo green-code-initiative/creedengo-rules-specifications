@@ -39,18 +39,18 @@ In this case, the cache is unlimited which is suspect.
     ...
 ----
 
-== Analysis
+== Relevance Analysis
 
-=== Energy Mesurment
+=== Energy Measurement
 
 Measurements were performed using https://github.com/green-code-initiative/EnergyTracer[green-code-initiative/EnergyTracer]
 
 ==== Instance Info
 
- * os: Linux 6.17.0-23-generic
- * machine: x86_64
- * chip: Intel(R) Core(TM) Ultra 7 255H
- * RAM: 32 GB
+ * **os**: `Linux 6.17.0-29-generic`
+ * **machine**: `x86_64`
+ * **chip**: `Intel(R) Core(TM) Ultra 7 255H`
+ * **RAM**: `32 GB`
 
 ==== Code used in the test
 
@@ -76,18 +76,19 @@ from functools import lru_cache
 
 @lru_cache(maxsize=5) # Compliant
 def flood_ram(i: int):
-    return [i]  * 150000
+    return [i] * 150000
 
 for i in range(10):
-   flood_ram(i)
+    flood_ram(i)
 
 ----
 
 
 ==== Global Consumption
 |===
-| | With smell | Without smell
-|Execution Time | 7.33 ms|4.83 ms
+| Metric | With smell | Without smell
+
+|Execution Time | 7.33e-3 s|4.83e-3 s
 |Average Power| 33.772 W|37.830 W
 |Total Energy| 121.81 J|89.78 J
 |===
@@ -109,19 +110,20 @@ image:cpu_violin.png[CPU violin plot]  image:dram_violin.png[RAM violin plot]
 ==== Statistical Analysis
 |===
 |Metric|Δ mean|p-value|Cohen’s d|Effect|Sig.
-|cpu_mj|+27.98%|0.00e+00|+4.807|large|✅
-|co2_eq|+26.74%|0.00e+00|+4.556|large|✅
-|dram_mj|+26.33%|0.00e+00|+4.475|large|✅
-|time_s|+34.60%|0.00e+00|+6.209|large|✅
+
+|cpu_mj|+27.98%| 1.37e-172 |+4.807|large|✅
+|co2_eq|+26.74%| 5.43e-165 |+4.556|large|✅
+|dram_mj|+26.33%|  2.30e-162 |+4.475|large|✅
+|time_s|+34.60%| 5.74e-216 |+6.209|large|✅
 |===
 
 ==== Verdict
 Removing the code smell leads to measurable energy differences:
 
- * cpu_mj: 28.0% lower energy (Cohen’s d = +4.807, large)
- * co2_eq: 26.7% lower energy (Cohen’s d = +4.556, large)
- * dram_mj: 26.3% lower energy (Cohen’s d = +4.475, large)
- * time_s: 34.6% lower time (Cohen’s d = +6.209, large)
+ * `cpu_mj`: 28.0% lower energy (Cohen’s d = +4.807, large)
+ * `co2_eq`: 26.7% lower energy (Cohen’s d = +4.556, large)
+ * `dram_mj`: 26.3% lower energy (Cohen’s d = +4.475, large)
+ * `time_s`: 34.6% lower time (Cohen’s d = +6.209, large)
 
 
 [quote]
