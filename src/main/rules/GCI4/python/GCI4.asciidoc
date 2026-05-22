@@ -25,11 +25,10 @@ print_global_var_details()
 
 [source,python,data-diff-id="2",data-diff-type="compliant"]
 ----
-global_var = 'foo';
-def print_var_details(local_var) {
-    print(len(local_var));
+global_var = 'foo'
+def print_var_details(local_var):
+    print(len(local_var))
     print('Var : ', local_var)
     print('Var : ' + local_var)
-}
-print_length(global_var);
+print_var_details(global_var)
 ----

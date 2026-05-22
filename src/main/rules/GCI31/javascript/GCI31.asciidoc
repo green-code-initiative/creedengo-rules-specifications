@@ -26,7 +26,7 @@ Files are lightweight and can be scaled without loss of quality.
 
 [source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
-<img src="./assets/images/cat.webp" alt="Optimized image of a cat"/> //Compliant
+<img src="./assets/images/cat.webp" alt="Optimized image of a cat"/> // Compliant
 ----
 
 Remember that the best image format may vary depending on the specific use case, content, and requirements of your website.
@@ -41,3 +41,6 @@ To address this issue, you can supply multiple formats for the same image.
 === Documentation
 
 - https://rweb.greenit.fr/en/fiches/RWEB_0049-optimize-images[Best practices guidelines for web ecodesign (RWEB)] - Optimize images
+=== Articles & blog posts
+
+- https://greenspector.com/en/which-image-format-to-choose-to-reduce-its-energy-consumption-and-its-environmental-impact/[greenspector.com - Which image format choose to reduce energy consumption and environmental impact?]

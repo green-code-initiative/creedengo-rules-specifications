@@ -30,7 +30,7 @@ For example, the `font` shorthand consolidates various font-related properties, 
 This optimization can't always be done, depending on the properties you're using.
 For example, if you only want to set the left margin, you must continue to use `margin-left`.
 
-[source,html,data-diff-id="3",data-diff-type="compliant"]
+[source,typescriptjsx,data-diff-id="3",data-diff-type="compliant"]
 ----
 <div style={{ marginLeft: "1em" }}>
     {/* Compliant because we only want a left margin */}

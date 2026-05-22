@@ -24,7 +24,7 @@ myFunction("name", "age", "IsStudent");
 ----
 myFunction('name', 'age', 'IsStudent');
     $lastName = 'Hugo';
-    $concatenatedString = $lastName . 'is a student';
+    $concatenatedString = $lastName . ' is a student'; 
 ----
 
 == Resources

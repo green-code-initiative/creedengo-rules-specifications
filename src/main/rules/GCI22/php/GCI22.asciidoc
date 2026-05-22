@@ -19,3 +19,4 @@ $min = min($a, $b); // Noncompliant
 [source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 $min = $a < $b ? $a : $b;
+----

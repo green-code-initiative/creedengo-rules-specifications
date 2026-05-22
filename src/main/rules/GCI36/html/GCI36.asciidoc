@@ -25,8 +25,8 @@ To mitigate this, it's crucial to prevent browsers from preloading any content b
 
 [source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
-<video src="videofile.webm" preload="none"></video> //Compliant
-<audio controls src="audiofile.mp3" preload="none"></audio> //Compliant
+<video src="videofile.webm" preload="none"></video> // Compliant
+<audio controls src="audiofile.mp3" preload="none"></audio> // Compliant
 ----
 
 == Resources
@@ -37,4 +37,5 @@ To mitigate this, it's crucial to prevent browsers from preloading any content b
 
 === Articles & blog posts
 
+- https://eco-conception.designersethiques.org/guide/en/content/5-2-video.html[eco-conception.designersethiques.org - 5.2. Video and sound]
 - https://www.ecoindex.fr/en/ecodesign/[Ecodesign and good practices]

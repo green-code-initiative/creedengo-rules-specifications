@@ -2,7 +2,7 @@
 
 == Why is this an issue?
 
-Using `try...catch` blocks for predictable operations (such as file opening) creates unnecessary overhead.
+Using `try...except` blocks for predictable operations (such as file opening) creates unnecessary overhead.
 When an exception is thrown, the exception object itself consumes CPU cycles and RAM for its creation and destruction.
 For simple, testable conditions (e.g., checking if a file exists), logical checks (like `os.path.isfile`) are more efficient and avoid the performance cost of exception handling.
 
@@ -15,12 +15,12 @@ This rule currently focuses on the "file open" use case, but the principle appli
 [source,python,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 try:
-    f = open(path)
+    fh = open(path)
     print(fh.read())
 except:
     print('No such file '+path)
 finally:
-    f.close()
+    fh.close()
 ----
 
 === Compliant

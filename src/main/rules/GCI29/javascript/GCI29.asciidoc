@@ -14,14 +14,14 @@ Limiting the usage of CSS animations helps in creating a more energy-efficient a
 
 [source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-<div style={{ border: "1px solid black", transition: "border 2s ease" }}/> //Noncompliant
+<div style={{ border: "1px solid black", transition: "border 2s ease" }}/> // Noncompliant
 ----
 
 === Compliant
 
 [source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
 ----
-<div style={{ border: "1px solid black" }}/> //Compliant
+<div style={{ border: "1px solid black" }}/> // Compliant
 ----
 
 It's important to note that while limiting animations is generally advisable for certain scenarios, there are cases where animations contribute positively to the user experience and overall design.
