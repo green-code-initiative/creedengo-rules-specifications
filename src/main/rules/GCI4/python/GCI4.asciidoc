@@ -26,7 +26,7 @@ print_var_details(global_var)
 
 == Analysis
 
-=== Energy Measurment
+=== Energy Measurement
 
 Measurements were performed using https://github.com/green-code-initiative/EnergyTracer[green-code-initiative/EnergyTracer]
 
