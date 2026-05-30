@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#447](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/447) Extend rule GCI530 (JavaScript) no-torch to detect HTML5 Web API (MediaTrackConstraints) usage
 - update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows) + documentation upgrade
 - [#472](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/472) Add analysis documentation for rule GCI4 for python
+- [#462](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/462) Add analysis documentation for rule GCI89 for python
 
 ### Deleted
 
