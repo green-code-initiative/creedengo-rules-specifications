@@ -1,0 +1,17 @@
+{
+  "title": "Idleness: Keep Screen On (XML)",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "idleness",
+    "environment",
+    "creedengo",
+    "android",
+    "eco-design"
+  ],
+  "defaultSeverity": "Major"
+}

@@ -53,7 +53,7 @@ public class PrepareResources implements Runnable {
         try {
             Collection<RuleMetadata> ruleMetadatas = ruleFiles
                     .stream()
-                    .map(ruleFactory::toRuleMetadata)
+                    .map(ruleFile -> ruleFactory.toRuleMetadata(ruleFile, targetDir))
                     .collect(Collectors.toList());
 
             RuleMetadataWriter writer = new RuleMetadataWriter(outputFile.toString());
