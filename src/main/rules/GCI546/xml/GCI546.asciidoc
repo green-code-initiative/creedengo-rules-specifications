@@ -1,0 +1,31 @@
+Taking into account when the device is entering or exiting the power save mode is a good practice.
+
+Declaring a broadcast receiver for `android.intent.action.BATTERY_CHANGED` in the Android manifest allows the application to detect battery state changes and reduce its activity accordingly (e.g., pausing background sync, reducing location updates frequency).
+
+== Compliant Code Example
+
+[source,xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+    <application>
+        <receiver android:name=".BatteryStateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
+----
+
+== Non compliant Code Example
+
+[source,xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+    <application>
+        <!-- No BATTERY_CHANGED broadcast receiver declared -->
+    </application>
+</manifest>
+----

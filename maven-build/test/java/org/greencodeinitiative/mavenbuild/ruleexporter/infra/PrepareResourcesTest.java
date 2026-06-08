@@ -87,8 +87,8 @@ class PrepareResourcesTest {
         FileHelper.mergeJsonFile(sourceJson, mergeJson, targetJson);
 
         // Then
-        String expectedContent =
-                "{\n" + "\"key1\": \"value1\",\n" + "\"key2\": \"newValue2\",\n" + "\"key3\": \"value3\"\n" + "}";
+        String expectedContent = "{\n" + "\"key1\": \"value1\",\n" + "\"key2\": \"newValue2\",\n"
+                + "\"key3\": \"value3\"\n" + "}";
         assertThat(targetJson).exists();
         assertThat(Files.readString(targetJson)).isEqualToIgnoringWhitespace(expectedContent);
     }
@@ -155,7 +155,23 @@ class PrepareResourcesTest {
             JsonObject json = reader.readObject();
             assertThat(json.containsKey("items")).isTrue();
             assertThat(json.containsKey("meta")).isTrue();
-            assertThat(json.getJsonArray("items")).isNotEmpty();
+            assertThat(json.getJsonObject("meta").containsKey("languages")).isTrue();
+
+            JsonObject gci36 = json.getJsonArray("items").stream()
+                    .map(JsonObject.class::cast)
+                    .filter(item -> "GCI36".equals(item.getString("id")))
+                    .findFirst()
+                    .orElseThrow(() -> new AssertionError("GCI36 not found in items"));
+
+            // New per-language structure
+            assertThat(gci36.containsKey("languages")).isTrue();
+            assertThat(gci36.containsKey("status")).isFalse();
+
+            JsonObject languages = gci36.getJsonObject("languages");
+            assertThat(languages.containsKey("html")).isTrue();
+            assertThat(languages.containsKey("javascript")).isTrue();
+            assertThat(languages.getJsonObject("html").getString("status")).isEqualTo("READY");
+            assertThat(languages.getJsonObject("javascript").getString("status")).isEqualTo("DEPRECATED");
         }
     }
 

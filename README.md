@@ -35,7 +35,7 @@ refer to the contribution section.
     - [Python plugin](https://github.com/green-code-initiative/creedengo-python)
     - [C# plugin](https://github.com/green-code-initiative/creedengo-csharp)
 - mobile plugins :
-    - [Android plugin](https://github.com/green-code-initiative/ecoCode-android)
+    - [Android plugin](https://github.com/green-code-initiative/creedengo-android)
     - [iOS plugin](https://github.com/green-code-initiative/creedengo-ios)
 
 ![Screenshot](docs/resources/screenshot.jpg)
@@ -53,7 +53,7 @@ There are two kinds of plugins :
   The current repository is for web / backOffice
 - One for mobile (Android/iOS), using [a set of code smells](https://github.com/cnumr/best-practices-mobile) theorised
   by Dr. Olivier Le Goaër.
-  You can find this plugin in the repository [here](https://github.com/green-code-initiative/ecoCode-android)
+  You can find this plugin in the repository [here](https://github.com/green-code-initiative/creedengo-android)
 
 ### How a SonarQube plugin works
 
@@ -117,7 +117,7 @@ detailed instructions:
 - [PHP plugin](https://github.com/green-code-initiative/creedengo-php?tab=readme-ov-file#-getting-started)
 - [Python plugin](https://github.com/green-code-initiative/creedengo-python?tab=readme-ov-file#-getting-started)
 - [C# plugin](https://github.com/green-code-initiative/creedengo-csharp?tab=readme-ov-file#-getting-started)
-- [Android Java plugin](https://github.com/green-code-initiative/ecoCode-android?tab=readme-ov-file#-quickstart)
+- [Android Java plugin](https://github.com/green-code-initiative/creedengo-android?tab=readme-ov-file#-quickstart)
 
 ## 🛒 Distribution
 
@@ -146,7 +146,7 @@ Thus, plugin versions are available on 2 repositories depending on version you w
       1.4.0 : [creedengo-javascript repository](https://github.com/green-code-initiative/creedengo-javascript/releases)
 - C# plugin :
     - since 0.x : [creedengo repository](https://github.com/green-code-initiative/creedengo-csharp/releases)
-- Android plugin : [creedengo-android repository](https://github.com/green-code-initiative/ecoCode-android/releases)
+- Android plugin : [creedengo-android repository](https://github.com/green-code-initiative/creedengo-android/releases)
 - iOS plugin : [creedengo-ios repository](https://github.com/green-code-initiative/creedengo-ios/releases)
 
 ## 🧩 Plugins version compatibility (OLD `ecocode` plugin)

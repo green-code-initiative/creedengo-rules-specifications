@@ -11,7 +11,11 @@ Pagination ensures that only the relevant data is transferred, conserving bandwi
 
 This rule is built for the https://nestjs.com[NestJS framework] but can work with a controller `@Controller()` and a decorated method `@Get()`.
 
-[source,typescript,data-diff-id="4",data-diff-type="noncompliant"]
+== Examples
+
+=== Noncompliant
+
+[source,typescript,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 @Controller()
 class Test {
@@ -20,7 +24,9 @@ class Test {
 }
 ----
 
-[source,typescript,data-diff-id="10",data-diff-type="compliant"]
+=== Compliant
+
+[source,typescript,data-diff-id="2",data-diff-type="compliant"]
 ----
 interface Pagination {
   items: string[];

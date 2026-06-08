@@ -33,8 +33,8 @@ public class RuleFactory {
         return ruleOpt;
     }
 
-    public RuleMetadata toRuleMetadata(RuleDescriptionFile ruleFile) {
-        try (JsonReader reader = Json.createReader(Files.newBufferedReader(ruleFile.getMetadataPath()))) {
+    public RuleMetadata toRuleMetadata(RuleDescriptionFile ruleFile, Path targetDir) {
+        try (JsonReader reader = Json.createReader(Files.newBufferedReader(ruleFile.getMetadataTargetPath(targetDir)))) {
             JsonObject jsonObject = reader.readObject();
 
             RuleSeverity severity = RuleSeverity.valueOf(jsonObject.getString("defaultSeverity").toUpperCase());
@@ -42,7 +42,7 @@ public class RuleFactory {
 
             return new RuleMetadata.Builder()
                     .key(ruleFile.getRuleKey())
-                    .technology(ruleFile.getTechnology())
+                    .language(ruleFile.getLanguage())
                     .title(jsonObject.getString("title"))
                     .severity(severity)
                     .status(status)

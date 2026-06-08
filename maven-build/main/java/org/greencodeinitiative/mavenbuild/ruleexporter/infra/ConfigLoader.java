@@ -30,16 +30,15 @@ public class ConfigLoader {
         }
     }
 
-    public static Map<String, String> getTechnologyLabels() {
+    public static Map<String, String> getLanguageLabels() {
         Map<String, String> labels = new HashMap<>();
-        if (config.containsKey("technologies")) {
-            JsonObject technologies = config.getJsonObject("technologies");
-            for (String key : technologies.keySet()) {
-                labels.put(key, technologies.getString(key));
+        if (config.containsKey("languages")) {
+            JsonObject languages = config.getJsonObject("languages");
+            for (String key : languages.keySet()) {
+                labels.put(key, languages.getString(key));
             }
         }
         return labels;
     }
 
 }
-
