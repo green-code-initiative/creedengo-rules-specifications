@@ -10,7 +10,7 @@ The form `$i++` creates a temporary variable whereas `++$i` does not. It saves C
 
 [source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-i++ //Noncompliant
+i++ // Noncompliant
 ----
 
 === Compliant
