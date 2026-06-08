@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows) + documentation upgrade
 - [#472](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/472) Add analysis documentation for rule GCI4 for python
 - [#462](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/462) Add analysis documentation for rule GCI89 for python
+- [#3](https://github.com/green-code-initiative/ecoCode-java/issues/3) Improvement GCI77 : pattern declaration not only in a static way
 
 ### Deleted
 
