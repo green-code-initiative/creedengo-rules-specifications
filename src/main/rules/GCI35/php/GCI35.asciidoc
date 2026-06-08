@@ -1,11 +1,18 @@
-Inside complex code parts (for exemple multiple loops, complex data constructions...), avoid using try...catch.
-For the moment, this rule only deals with "file open" use case in try...catch blocks.
+:!sectids:
 
-When an exception is thrown, a variable (the exception itself) is created in a catch block and it's destruction consumes unnecessary CPU cycles and RAM. Prefer using logical tests in this cases.
+== Why is this an issue?
 
-== Non compliant Code Example
+Using `try...catch` blocks for predictable operations (such as file opening) creates unnecessary overhead.
+When an exception is thrown, the exception object itself consumes CPU cycles and RAM for its creation and destruction.
+For simple, testable conditions (e.g., checking if a file exists), logical checks (like `file_exists`) are more efficient and avoid the performance cost of exception handling.
 
-[source,php]
+This rule currently focuses on the "file open" use case, but the principle applies to other predictable scenarios (e.g., loops, data constructions).
+
+== Examples
+
+=== Noncompliant
+
+[source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 try
 {
@@ -18,9 +25,9 @@ catch(Exception $ex)
 }
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,php]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 //try
 if (file_exists($imgFile)) {
@@ -36,7 +43,7 @@ if (!$picture) {
 
 include::../../etsdiff-methodology.asciidoc[]
 
-== Case for a 1GB database:
+=== Case for a 1GB database:
 
 image::1GB.etsdiff.png[ETSdiff percent comparison]
 

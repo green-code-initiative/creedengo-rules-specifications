@@ -1,15 +1,21 @@
-The form `$i++` creates a temporary variable whereas `++$i` does not. It save CPU cycles.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,php]
+The form `$i++` creates a temporary variable whereas `++$i` does not. It saves CPU cycles.
+
+== Examples
+
+=== Noncompliant
+
+[source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 $i++
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,php]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 ++$i
 ----
