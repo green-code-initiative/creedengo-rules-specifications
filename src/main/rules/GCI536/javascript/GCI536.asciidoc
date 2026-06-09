@@ -8,15 +8,17 @@ This consumes CPU cycles, network bandwidth, and battery on mobile devices witho
 
 The fix is to guard the polling logic with a `visibilitychange` event listener so it pauses when the page is not visible.
 
-== Non compliant Code Example
+== Examples
 
-[source,javascript,data-diff-id="1",data-diff-type="noncompliant"]
+=== Noncompliant
+
+[source,js,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 // Runs even when the tab is hidden
 setInterval(() => fetchData(), 5000); // Noncompliant
 ----
 
-[source,javascript,data-diff-id="2",data-diff-type="noncompliant"]
+[source,js,data-diff-id="2",data-diff-type="noncompliant"]
 ----
 // Recursive setTimeout without visibility check
 function poll() {
@@ -26,9 +28,9 @@ function poll() {
 poll();
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,javascript,data-diff-id="1",data-diff-type="compliant"]
+[source,js,data-diff-id="1",data-diff-type="compliant"]
 ----
 // Pauses when the tab is hidden
 let intervalId;
@@ -52,7 +54,7 @@ document.addEventListener('visibilitychange', () => {
 startPolling();
 ----
 
-[source,javascript,data-diff-id="2",data-diff-type="compliant"]
+[source,js,data-diff-id="2",data-diff-type="compliant"]
 ----
 // Recursive setTimeout with visibility check
 let timeoutId;
@@ -82,4 +84,4 @@ poll();
 
 === Articles & blog posts
 
-- https://web.dev/articles/page-lifecycle-api[web.dev] - Page Lifecycle API
+- https://developer.chrome.com/docs/web-platform/page-lifecycle-api[developer.chrome.com] - API Page Lifecycle

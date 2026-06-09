@@ -5,21 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-05-22
-
-### Changed
-
-- [#448](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/448) Update documentation from GCI1 to GCI67: fixing typo & structure, checking links, rewriting some descriptions
-
 ## [Unreleased]
 
 ### Added
 
 - [#438](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/438) Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
+- [#452](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/452) Add rule GCI536 (JS/TS): Avoid polling without checking page visibility
 
 ### Changed
 
 - [#447](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/447) Extend rule GCI530 (JavaScript) no-torch to detect HTML5 Web API (MediaTrackConstraints) usage
+- [#448](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/448) Update documentation from GCI1 to GCI67: fixing typo & structure, checking links, rewriting some descriptions
 - update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows) + documentation upgrade
 - [#472](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/472) Add analysis documentation for rule GCI4 for python
 - [#462](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/462) Add analysis documentation for rule GCI89 for python
