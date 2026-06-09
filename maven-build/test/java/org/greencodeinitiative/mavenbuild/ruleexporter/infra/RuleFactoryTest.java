@@ -38,7 +38,7 @@ class RuleFactoryTest {
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
         assertThat(rule.getRuleKey().toString()).hasToString(GCI_123);
-        assertThat(rule.getTechnology()).hasToString("java");
+        assertThat(rule.getLanguage()).hasToString("java");
     }
 
     @Test
@@ -129,7 +129,7 @@ class RuleFactoryTest {
         Path targetPath = rule.getHtmlDescriptionTargetPath(targetDir);
 
         // Then
-        assertThat(targetPath).isEqualTo(Path.of("target/classes/java/"+ GCI_123 + ".html"));
+        assertThat(targetPath).isEqualTo(Path.of("target/classes/java/" + GCI_123 + ".html"));
     }
 
     @Test
@@ -147,8 +147,8 @@ class RuleFactoryTest {
     }
 
     @Test
-    @DisplayName("Should handle different technologies")
-    void shouldHandleDifferentTechnologies(@TempDir Path tempDir) throws Exception {
+    @DisplayName("Should handle different languages")
+    void shouldHandleDifferentLanguages(@TempDir Path tempDir) throws Exception {
         // Given
         Path ruleDir = Files.createDirectories(tempDir.resolve("GCI456"));
         Path languageDir = Files.createDirectories(ruleDir.resolve("javascript"));
@@ -162,6 +162,6 @@ class RuleFactoryTest {
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
         assertThat(rule.getRuleKey().toString()).hasToString("GCI456");
-        assertThat(rule.getTechnology()).isEqualTo("javascript");
+        assertThat(rule.getLanguage()).isEqualTo("javascript");
     }
 }

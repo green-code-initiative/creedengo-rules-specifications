@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2026-05-22
+
+### Changed
+
+- [#448](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/448) Update documentation from GCI1 to GCI67: fixing typo & structure, checking links, rewriting some descriptions
+
 ## [Unreleased]
 
 ### Added
@@ -13,7 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [#447](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/447) Extend rule GCI530 (JavaScript) no-torch to detect HTML5 Web API (MediaTrackConstraints) usage
 - update rule GCI24 (Python) status (Avoid retrieving unlimited SQL rows) + documentation upgrade
+- [#472](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/472) Add analysis documentation for rule GCI4 for python
+- [#462](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/462) Add analysis documentation for rule GCI89 for python
+- [#3](https://github.com/green-code-initiative/ecoCode-java/issues/3) Improvement GCI77 : pattern declaration not only in a static way
 
 ### Deleted
 
@@ -135,6 +145,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.4.0] - 2025-07-20
 
 ### Added
+
 - [#390](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/390) Added rule GCI106 : Detect scalar sqrt usage in loops and suggest vectorized alternatives
 - [#389](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/389) Add rule GCI105, Add a rule on Python String Concatenation
 - [#388](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/388) Added rule GCI104 on Torch Tensor types
