@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [3.1.0] - 2026-06-16
+
+### Added
+
 - [#438](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/438) Add rule GCI113 (Python): AI - Prefer XGBoost to RandomForest
 - [#452](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/452) Add rule GCI536 (JS/TS): Avoid polling without checking page visibility
 
@@ -21,7 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#462](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/462) Add analysis documentation for rule GCI89 for python
 - [#3](https://github.com/green-code-initiative/ecoCode-java/issues/3) Improvement GCI77 : pattern declaration not only in a static way
 
-### Deleted
 
 ## [3.0.0] - 2026-03-05
 
@@ -566,7 +573,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.0.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.1.0...HEAD)
+[3.1.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.0.0...3.1.0)
 [3.0.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.1...3.0.0)
 [2.7.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...2.7.1)
 [2.7.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.6.7...2.7.0)
