@@ -1,0 +1,16 @@
+{
+  "title": "Multi-region deployments and always-on compute should be confirmed or replaced by serverless",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "15min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "terraform",
+    "sustainability"
+  ],
+  "defaultSeverity": "Info"
+}

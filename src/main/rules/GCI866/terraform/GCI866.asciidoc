@@ -1,0 +1,96 @@
+:!sectids:
+
+== Why is this an issue ?
+
+Two Terraform anti-patterns inflate the operational + embodied carbon footprint
+of an infrastructure without any functional gain in many projects:
+- **Reflex multi-region** : deploying the same workload in
+    several regions of the same cloud provider — through aliased
+    <code>provider</code> blocks, a <code>for_each = var.regions</code>
+    loop, or an explicit cross-region replication block — multiplies
+    both the embodied (M) and operational (E·I) terms of the
+    <em>Software Carbon Intensity</em> (SCI) equation by roughly the
+    number of replicated regions, even when no RPO/RTO constraint
+    justifies it.
+- **Always-on compute** : provisioning long-running VMs
+      (<code>aws_instance</code>, <code>azurerm_linux_virtual_machine</code>,
+      <code>google_compute_instance</code>, etc.), managed databases at
+      provisioned tier, or non-zero-min autoscaling groups, when a fully
+      managed serverless equivalent (AWS Lambda / Fargate / Aurora
+      Serverless v2, Azure Functions / Container Apps, GCP Cloud Run /
+      Cloud Functions / GKE Autopilot) would enable scale-to-zero and
+      eliminate idle-time energy cost.
+
+== How to fix it ?
+
+This rule does **not** forbid either pattern — it asks the
+author to <em>document the choice</em> or pick a more efficient
+alternative:
+- If multi-region is required (RPO/RTO, data sovereignty), add a
+    comment <code># eco-design:multiregion=&lt;reason&gt;</code> on the
+    provider/resource block to silence the warning.
+- If the always-on resource is mandatory (legacy software, OS-level
+    agent, stateful workload), add
+    <code># eco-design:serverless=&lt;reason&gt;</code> on the block.
+- Otherwise, replace the resource by its serverless equivalent or
+    consolidate the workload in a single region.
+
+== Examples
+
+=== Noncompliant
+
+[source,terraform,data-diff-id="1",data-diff-type="noncompliant"]
+----
+# Reflex multi-region — no documented RPO/RTO.
+provider "aws"               { region = "eu-west-3" }
+provider "aws" { alias = "dr" region = "us-east-1" }
+
+# Always-on VM where a Lambda would fit a bursty 5-min/hour load.
+resource "aws_instance" "cron_runner" {
+  instance_type = "t3.medium"
+}
+----
+
+=== Compliant
+
+[source,terraform,data-diff-id="3",data-diff-type="compliant"]
+----
+# eco-design:serverless=cold-start unacceptable for trading engine
+resource "aws_instance" "trading_engine" {
+  instance_type = "c7g.large"
+}
+
+# Single-region — no DR requirement.
+provider "aws" {
+  region = "eu-west-3"
+}
+----
+
+== Resources
+
+<ul>
+  <li>Patterson, D. et al. — <em>The Carbon Footprint of Machine Learning
+      Training Will Plateau, Then Shrink</em>, IEEE Computer, 2022.</li>
+  <li>Masanet, E. et al. — <em>Recalibrating global data center energy-use
+      estimates</em>, <strong>Science</strong> 367 (6481), 2020.</li>
+  <li>Jonas, E. et al. — <em>Cloud Programming Simplified: A Berkeley View
+      on Serverless Computing</em>, UC Berkeley EECS TR 2019-3
+      (arXiv:1902.03383).</li>
+  <li>Castro, P. et al. — <em>The Rise of Serverless Computing</em>,
+      <strong>Communications of the ACM</strong> 62 (12), 2019.</li>
+  <li>Wang, L. et al. — <em>Peeking Behind the Curtains of Serverless
+      Platforms</em>, USENIX ATC 2018.</li>
+  <li>Green Software Foundation — <em>Software Carbon Intensity (SCI)
+      Specification v1.0</em> (ISO/IEC 21031:2024).</li>
+  <li>CNCF TAG-Environmental Sustainability — <em>Cloud Native
+      Sustainability Whitepaper</em>, 2023.</li>
+  <li>CNCF Serverless Working Group — <em>CNCF Serverless Whitepaper
+      v1.0</em>.</li>
+  <li>AWS Well-Architected Framework — <em>Sustainability Pillar</em>
+      (SUS04-BP02, SUS05-BP01, SUS05-BP02), 2024.</li>
+  <li>Microsoft Cloud Adoption Framework — <em>Sustainability</em>, 2024.</li>
+  <li>Google Cloud Architecture Center — <em>Choosing a compute option</em>
+      decision tree, 2024.</li>
+  <li>Electricity Maps — annual grid-mix dataset.</li>
+  <li>Google Cloud — <em>Carbon Footprint per region</em> dashboard.</li>
+</ul>

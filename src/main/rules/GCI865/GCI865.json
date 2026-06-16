@@ -1,0 +1,18 @@
+{
+  "title": "Pin third-party CI actions to an immutable Git SHA",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "ci",
+    "supply-chain",
+    "github-actions",
+    "infra"
+  ],
+  "defaultSeverity": "Minor"
+}

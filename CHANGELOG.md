@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+<<<<<<< Updated upstream
+=======
+## [Unreleased] - 2026-05-22
+
+### Added
+
+- improvment for new creedengo-infra plugins (docker, terraform, kubernetes, yaml, cloudformation)
+
+### Changed
+
+- [#448](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/448) Update documentation from GCI1 to GCI67: fixing typo & structure, checking links, rewriting some descriptions
+
+>>>>>>> Stashed changes
 ## [Unreleased]
 
 ### Added

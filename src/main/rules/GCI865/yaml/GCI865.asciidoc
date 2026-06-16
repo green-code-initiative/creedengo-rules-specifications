@@ -1,0 +1,62 @@
+<div class="paragraph">
+<p>External CI actions referenced by a moving ref (<code>@main</code>, <code>@master</code>, <code>@v4</code>, <code>@release</code>) silently change behaviour between runs, with two consequences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li><p><strong>Energy waste</strong>: every new upstream release invalidates the toolchain cache pulled by that action — the runner re-downloads dependencies, re-warms layer caches, and re-executes setup steps that would otherwise be a no-op.</p></li>
+<li><p><strong>Supply-chain risk</strong>: a compromised tag (see the <code>tj-actions/changed-files</code> 2025 incident) becomes an RCE the next time a workflow runs.</p></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This rule reports any <code>uses:</code> step whose ref is <strong>not</strong> a 40-character lowercase hex Git SHA, except when the referenced action is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li><p>a first-party <code>actions/*</code> action (curated by GitHub),</p></li>
+<li><p>a locally-checked-out action (<code>./.github/actions/...</code>),</p></li>
+<li><p>a container action (<code>docker://...</code>),</p></li>
+<li><p>explicitly opted out by placing <code>eco-design:pin=tag</code> inside the step's <code>name:</code> or <code>if:</code> value, or appended to the <code>uses:</code> value as <code>uses: vendor/x@v1#eco-design:pin=tag</code>.</p></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_non_compliant_code_example">Non Compliant Code Example</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml">jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: tj-actions/changed-files@v44       # mutable tag
+      - uses: some-org/deploy@main               # branch ref
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compliant_solution">Compliant Solution</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml">jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: tj-actions/changed-files@2f7c5bfce28377bc069a65ba478de0a74aa0ca32  # v44.5.7
+      - uses: actions/checkout@v4                # first-party, exempt
+      - uses: ./.github/actions/local            # local, exempt
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See module-level rule markdown: <code>creedengo-infra/cipinactions.md</code>.</p>
+</div>
+</div>
+</div>
+
