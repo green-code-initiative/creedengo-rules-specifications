@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add search words in rules file
+
 ### Changed
 
 ### Deleted
@@ -28,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#472](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/472) Add analysis documentation for rule GCI4 for python
 - [#462](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/462) Add analysis documentation for rule GCI89 for python
 - [#3](https://github.com/green-code-initiative/ecoCode-java/issues/3) Improvement GCI77 : pattern declaration not only in a static way
-
 
 ## [3.0.0] - 2026-03-05
 

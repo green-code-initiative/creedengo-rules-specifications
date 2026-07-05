@@ -68,6 +68,7 @@ public class RuleMetadataWriter {
                 .add("name", first.getTitle())
                 .add("severity", first.getSeverity().toString())
                 .add("languages", languagesBuilder.build())
+                .add("terms", first.getTerms())
                 .build();
     }
 

@@ -15,6 +15,7 @@ public class RuleMetadataTest {
                 .key(new RuleKey("GCI10"))
                 .language("java")
                 .title("title")
+                .terms("very bad issue")
                 .severity(RuleSeverity.INFO)
                 .status(RuleStatus.READY)
                 .build();
@@ -25,6 +26,7 @@ public class RuleMetadataTest {
         assertThat(ruleMetadata.getKey()).isEqualTo(new RuleKey("GCI10"));
         assertThat(ruleMetadata.getLanguage()).isEqualTo("java");
         assertThat(ruleMetadata.getTitle()).isEqualTo("title");
+        assertThat(ruleMetadata.getTerms()).isEqualTo("very bad issue");
         assertThat(ruleMetadata.getSeverity()).isEqualTo(RuleSeverity.INFO);
         assertThat(ruleMetadata.getStatus()).isEqualTo(RuleStatus.READY);
     }
@@ -32,6 +34,7 @@ public class RuleMetadataTest {
     @Test
     void asString() {
         assertThat(ruleMetadata.toString()).isEqualTo(
-                "RuleMetadata{key='GCI10', language='java', title='title', severity=INFO, status=READY}");
+            "RuleMetadata{key='GCI10', language='java', title='title', terms='very bad issue', severity=INFO, status=READY}"
+        );
     }
 }

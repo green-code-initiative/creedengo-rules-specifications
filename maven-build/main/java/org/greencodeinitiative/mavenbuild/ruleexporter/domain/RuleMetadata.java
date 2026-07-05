@@ -5,13 +5,15 @@ public class RuleMetadata {
     private final RuleKey key;
     private final String language;
     private final String title;
+    private final String terms;
     private final RuleSeverity severity;
     private final RuleStatus status;
 
-    private RuleMetadata(RuleKey key, String language, String title, RuleSeverity severity, RuleStatus status) {
+    private RuleMetadata(RuleKey key, String language, String title, String terms, RuleSeverity severity, RuleStatus status) {
         this.key = key;
         this.language = language;
         this.title = title;
+        this.terms = terms;
         this.severity = severity;
         this.status = status;
     }
@@ -26,6 +28,10 @@ public class RuleMetadata {
 
     public String getTitle() {
         return this.title;
+    }
+
+    public String getTerms() {
+        return this.terms;
     }
 
     public RuleSeverity getSeverity() {
@@ -49,6 +55,9 @@ public class RuleMetadata {
                     ", title='" +
                     title +
                     '\'' +
+                    ", terms='" +
+                    terms +
+                    '\'' +
                     ", severity=" +
                     severity +
                     ", status=" +
@@ -62,6 +71,7 @@ public class RuleMetadata {
         private RuleKey key;
         private String language;
         private String title;
+        private String terms;
         private RuleSeverity severity;
         private RuleStatus status;
 
@@ -80,6 +90,11 @@ public class RuleMetadata {
             return this;
         }
 
+        public Builder terms(String terms) {
+            this.terms = terms;
+            return this;
+        }
+
         public Builder severity(RuleSeverity severity) {
             this.severity = severity;
             return this;
@@ -91,7 +106,7 @@ public class RuleMetadata {
         }
 
         public RuleMetadata build() {
-            return new RuleMetadata(key, language, title, severity, status);
+            return new RuleMetadata(key, language, title, terms, severity, status);
         }
     }
 }

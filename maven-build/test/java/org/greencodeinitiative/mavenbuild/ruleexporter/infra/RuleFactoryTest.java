@@ -147,6 +147,20 @@ class RuleFactoryTest {
     }
 
     @Test
+    @DisplayName("Should compute terms of the rule correctly")
+    void shouldComputeTermsOfTheRuleCorrectly() {
+        // Given
+        String resourcePath = "maven-build/test/resources/rules-html/GCI36";
+        RuleDescriptionFile rule = new RuleDescriptionFile(resourcePath + "/javascript/GCI36.html", "GCI36", "");
+
+        // When
+        String terms = ruleFactory.toRuleMetadata(rule, Path.of(resourcePath)).getTerms();
+
+        // Then
+        assertThat(terms).isEqualTo("actively appropriate areas articles audio audiofile autoplay autoplaying avoid battery browsers commence compliant conception configuring connectivity consume consumes consumption content contributing controls costs crucial designersethiques devices documentation download drain ecodesign ecoindex energy engaging environmental especially files guidelines however impact increased internet issue leading leads limited media might mitigate mobile noncompliant particularly plans playback posts potentially practices preload preloading prevent resources return segments settings sound still unnecessary usage users video videos without");
+    }
+
+    @Test
     @DisplayName("Should handle different languages")
     void shouldHandleDifferentLanguages(@TempDir Path tempDir) throws Exception {
         // Given
