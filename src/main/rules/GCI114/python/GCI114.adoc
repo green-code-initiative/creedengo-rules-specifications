@@ -30,7 +30,7 @@ my_list = [1, 2, 3, 4, 5]
 for i, item in enumerate(my_list):  # Compliant
     print(i, item)
 
-# When you only need the value (fastest)
+# When you only need the value (often fastest and simplest)
 for item in my_list:  # Compliant
     print(item)
 
