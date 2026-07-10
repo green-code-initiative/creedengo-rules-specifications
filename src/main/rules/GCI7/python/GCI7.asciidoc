@@ -1,8 +1,15 @@
-Avoid using getters and setters in a class, as they increase unnecessary RAM memory usage.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,python]
+Getters and setters add unnecessary overhead due to method call stack and memory usage.
+Direct attribute access is more efficient when no additional logic is required.
+
+== Examples
+
+=== Noncompliant
+
+[source,python,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 class Client():
 
@@ -20,9 +27,9 @@ client.get_age() # Getter inutile
 client.set_age(25) # Setter inutile
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,python]
+[source,python,data-diff-id="2",data-diff-type="compliant"]
 ----
 class Client():
 
@@ -33,6 +40,14 @@ client = Client(25)
 client.age # Récupérer l'attribut age
 client.age = 26 # Modifier l'attribut age
 ----
+
+== Resources
+
+=== Documentation
+- https://docs.python.org/3/tutorial/classes.html[Python Documentation - Classes]
+
+=== Articles & blog posts
+- https://www.datacamp.com/tutorial/property-getters-setters[Datacamp - Python @property, Getters, and Setters]
 
 == Relevance Analysis
 
@@ -79,7 +94,3 @@ https://impactco2.fr/outils/comparateur
 Based on the results, we can conclude that using getters and setters in a class increases carbon emissions and execution time. Therefore, it is recommended to avoid them when possible. The performance difference comes from the overhead of method calls.
 
 It is important to keep in mind that for security or control reasons, the use of getters and setters may be necessary. In such cases, using the @property decorator can be a good alternative to traditional getters and setters. It allows restricting access to the attribute and adding logic when the attribute is accessed or modified. Performance is better than recreating getter and setter methods but not as good as direct attribute access.
-
-=== References
-:hide-uri-scheme: 
-https://www.datacamp.com/tutorial/property-getters-setters

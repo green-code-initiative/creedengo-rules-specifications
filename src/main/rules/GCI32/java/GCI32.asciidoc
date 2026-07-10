@@ -1,10 +1,15 @@
-If you know in advance how many characters would be appended, initialize builder/buffer with the appropriate size.
-They will thus never have to be resized.
-This saves CPU cycles and therefore consumes less energy.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,java]
+When the final size of a string or buffer is known in advance, initializing it with the appropriate capacity avoids dynamic resizing during appends.
+Dynamic resizing consumes additional CPU cycles (for memory allocation and copying) and RAM, leading to unnecessary energy consumption.
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 StringBuilder sb = new StringBuilder(); // Noncompliant
 for (int i = 0; i < 100; i++) {
@@ -12,12 +17,16 @@ for (int i = 0; i < 100; i++) {
 }
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,java]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 StringBuilder sb = new StringBuilder(100);
 for (int i = 0; i < 100; i++) {
     sb.append(...);
 }
 ----
+
+== Resources
+
+- https://www.javaspring.net/blog/dynamic-array-java/[Dynamic Arrays in Java: A Comprehensive Guide]

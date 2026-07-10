@@ -71,11 +71,11 @@ jobs:
           if [ -f target/classes/rules.json ]; then
             mkdir -p deployment
             cp target/classes/rules.json deployment/rules.json
-            # Copy HTML files organized by technology
-            for tech_dir in target/classes/org/green-code-initiative/rules/*/; do
-              tech_name=$(basename "$tech_dir")
-              mkdir -p "deployment/$tech_name"
-              cp "$tech_dir"*.html "deployment/$tech_name/" 2>/dev/null || true
+            # Copy HTML files organized by language
+            for lang_dir in target/classes/org/green-code-initiative/rules/*/; do
+              lang_name=$(basename "$lang_dir")
+              mkdir -p "deployment/$lang_name"
+              cp "$lang_dir"*.html "deployment/$lang_name/" 2>/dev/null || true
             done
             echo "ready=true" >> $GITHUB_OUTPUT
           else

@@ -35,7 +35,7 @@ class RuleDescriptionFileTest {
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
         assertThat(rule.getRuleKey().toString()).hasToString("GCI123");
-        assertThat(rule.getTechnology()).isEqualTo("java");
+        assertThat(rule.getLanguage()).isEqualTo("java");
     }
 
     @Test
@@ -51,7 +51,7 @@ class RuleDescriptionFileTest {
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
         assertThat(rule.getRuleKey().toString()).hasToString("GCI456");
-        assertThat(rule.getTechnology()).isEqualTo("javascript");
+        assertThat(rule.getLanguage()).isEqualTo("javascript");
     }
 
     @Test
@@ -62,7 +62,7 @@ class RuleDescriptionFileTest {
 
         // When & Then
         assertThat(rule.getRuleKey().toString()).hasToString("GCI789");
-        assertThat(rule.getTechnology()).isEqualTo("python");
+        assertThat(rule.getLanguage()).isEqualTo("python");
     }
 
     @Test
@@ -83,25 +83,25 @@ class RuleDescriptionFileTest {
     }
 
     @Test
-    @DisplayName("Should extract technology from various valid paths")
-    void shouldExtractTechnologyFromVariousPaths() {
-        // Test different technologies
+    @DisplayName("Should extract language from various valid paths")
+    void shouldExtractLanguageFromVariousPaths() {
+        // Test different languages
         assertThat(RuleDescriptionFile.createFromPath("path/GCI1/java/GCI1.html"))
                 .isPresent()
                 .get()
-                .extracting(RuleDescriptionFile::getTechnology)
+                .extracting(RuleDescriptionFile::getLanguage)
                 .isEqualTo("java");
 
         assertThat(RuleDescriptionFile.createFromPath("path/GCI2/javascript/GCI2.html"))
                 .isPresent()
                 .get()
-                .extracting(RuleDescriptionFile::getTechnology)
+                .extracting(RuleDescriptionFile::getLanguage)
                 .isEqualTo("javascript");
 
         assertThat(RuleDescriptionFile.createFromPath("path/GCI3/python/GCI3.html"))
                 .isPresent()
                 .get()
-                .extracting(RuleDescriptionFile::getTechnology)
+                .extracting(RuleDescriptionFile::getLanguage)
                 .isEqualTo("python");
     }
 
