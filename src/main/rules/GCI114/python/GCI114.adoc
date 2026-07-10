@@ -2,10 +2,11 @@ Avoid the `range(len())` pattern. Prefer direct iteration or `enumerate()` which
 
 == Why is this an issue?
 
-Using `for i in range(len(sequence))` forces index-based access (`sequence[i]`) which is significantly slower than direct iteration using Python's iterator protocol (implemented in C). Benchmarks show *17-40% CPU savings* when using direct iteration instead.
+Using `for i in range(len(sequence))` often leads to index-based access (`sequence[i]`), adding a `__getitem__` call and bounds checking on each iteration.
+In many cases, iterating directly (or using `enumerate()` when you need the index) is faster for built-in sequences, though results can vary by data type and size.
 
-* Index-based access (`sequence[i]`) requires `__getitem__` call + bounds checking at each iteration
-* Direct iteration uses `__next__()` optimized in C
+* Index-based access (`sequence[i]`) adds a `__getitem__` call + bounds checking per iteration
+* Direct iteration uses the iterator protocol (`__iter__`/`__next__`), optimized for built-in sequences
 * The pattern encourages developers to use index access when it is not needed
 
 == Noncompliant Code Example
