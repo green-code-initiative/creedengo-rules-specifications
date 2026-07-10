@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update internal library versions
 - [#482](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/482) Complete GCI91 documentation to prove relevance for Python language
 - update RULES.md : GCI22 for python must by checked
+- deprecation of GCI2 rule for Python
 
 ### Deleted
 
