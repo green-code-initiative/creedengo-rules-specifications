@@ -1,10 +1,7 @@
 = GCI91 Rule Feasibility and Optimization Report: Use Filter Before Sort
-Authors: Les Buzz du decollage permanent
-Revision: 1.0
 
 == 1. Objective and Context
 The purpose of this report is to evaluate the applicability and green software metrics of rule GCI91 (Use filter feature before sort elements) for the Python language. This analysis aims to justify changing its status from pending evaluation to active within the standard matrix. 
-
 In data processing pipelines, sorting algorithms are highly intensive operations. This investigation provides data-driven evidence that reducing the dataset size via filtering prior to executing a sort operation drastically cuts power consumption, execution time, and memory overhead.
 
 == 2. Implementation Feasibility in Static Code Analysis
@@ -30,23 +27,25 @@ To demonstrate optimization efficiency, a hardware-level stress test was execute
 
 Non-Compliant Pattern (Sort then Filter):
 - Execution Time: 1.7046 sec
-- Peak RAM Allocation: 11.41 Mo
+- Peak RAM Allocation: 11.41 MB
 
 Compliant Pattern (Filter then Sort):
 - Execution Time: 0.3639 sec
-- Peak RAM Allocation: 1.87 Mo
+- Peak RAM Allocation: 1.87 MB
 
-=== Part B: Hardware Energy and Carbon Relevancy (2 Million Items)
+=== Part B: Hardware Energy and Carbon Relevance (2 Million Items)
 
 Non-Compliant Pattern (Sort then Filter):
-- CPU Energy Consumption: 0.000000 kWh
+- CPU Energy Consumption: < 0.000001 kWh
 - RAM Energy Consumption: 0.000009 kWh
 - Carbon Footprint Estimate: 0.5258 mg CO2
 
 Compliant Pattern (Filter then Sort):
-- CPU Energy Consumption: 0.000000 kWh
+- CPU Energy Consumption: < 0.000001 kWh
 - RAM Energy Consumption: 0.000002 kWh
 - Carbon Footprint Estimate: 0.0979 mg CO2
+
+NOTE: CPU energy is reported here in kWh for consistency with the measurement output; values shown as 0.000000 kWh are below the display precision/measurement resolution and should not be interpreted as exact zero consumption.
 
 === Part C: Optimization Ratios
 - Execution Time Reduction: Divided by 4.68
@@ -57,7 +56,7 @@ Compliant Pattern (Filter then Sort):
 == 5. Algorithmic and Structural Analysis
 The massive variance in resource draw is mathematically sound. Python uses Timsort, an adaptive sorting algorithm derived from Merge Sort and Insertion Sort, operating with a worst-case time complexity of O(n log n). 
 
-By executing the sorting operation on the unfiltered dataset, the CPU must compute relationships across the complete dataset. Inverting the logic reduces the parameter 'n' by roughly 90% before it hits Timsort. Consequently, the CPU performs exponentially fewer operations, and the memory runtime architecture skips allocating large, volatile pointer lists for discarded elements, protecting the RAM buffer from heavy peaks.
+By executing the sorting operation on the unfiltered dataset, the CPU must compute relationships across the complete dataset. Inverting the logic reduces the parameter 'n' by roughly 90% before it hits Timsort. Consequently, the CPU performs significantly fewer operations because the sorting work drops from roughly n log n to m log m after filtering, and the memory runtime architecture skips allocating large, volatile pointer lists for discarded elements, protecting the RAM buffer from heavy peaks.
 
 == 6. Recommendation
 Based on clear empirical evidence tracking hardware power consumption, implementing GCI91 delivers substantial infrastructure relief and carbon reduction without adding syntax complexity. We recommend shifting the rule state to applicable for Python.
