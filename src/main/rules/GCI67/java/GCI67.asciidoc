@@ -1,24 +1,30 @@
-The form `$i++` creates a temporary variable whereas `++$i` does not. It save CPU cycles.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,java]
+The form `$i++` creates a temporary variable whereas `++$i` does not. It saves CPU cycles.
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
 ----
-i++  // Noncompliant
+i++ // Noncompliant
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,java]
+[source,java,data-diff-id="2",data-diff-type="compliant"]
 ----
 ++i
 ----
 
-## Exception
+=== Exception
 In some cases, it may be intentional to allow the use of `i++`, even if it is probably not far from a code smell.
 Examples:
 
-[source,java]
+[source,java,data-diff-id="3",data-diff-type="compliant"]
 ----
 void bar(int value) {
     // ...
@@ -31,7 +37,7 @@ int foo() {
 }
 ----
 or
-[source,java]
+[source,java,data-diff-id="1",data-diff-type="compliant"]
 ----
 private int i = 0;
 int foo() {

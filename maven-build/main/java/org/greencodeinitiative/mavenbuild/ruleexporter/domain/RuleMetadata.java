@@ -3,15 +3,17 @@ package org.greencodeinitiative.mavenbuild.ruleexporter.domain;
 public class RuleMetadata {
 
     private final RuleKey key;
-    private final String technology;
+    private final String language;
     private final String title;
+    private final String terms;
     private final RuleSeverity severity;
     private final RuleStatus status;
 
-    private RuleMetadata(RuleKey key, String technology, String title, RuleSeverity severity, RuleStatus status) {
+    private RuleMetadata(RuleKey key, String language, String title, String terms, RuleSeverity severity, RuleStatus status) {
         this.key = key;
-        this.technology = technology;
+        this.language = language;
         this.title = title;
+        this.terms = terms;
         this.severity = severity;
         this.status = status;
     }
@@ -20,12 +22,16 @@ public class RuleMetadata {
         return this.key;
     }
 
-    public String getTechnology() {
-        return this.technology;
+    public String getLanguage() {
+        return this.language;
     }
 
     public String getTitle() {
         return this.title;
+    }
+
+    public String getTerms() {
+        return this.terms;
     }
 
     public RuleSeverity getSeverity() {
@@ -39,29 +45,33 @@ public class RuleMetadata {
     @Override
     public String toString() {
         return (
-                "RuleMetadata{" +
-                        "key='" +
-                        key +
-                        '\'' +
-                        ", language='" +
-                        technology +
-                        '\'' +
-                        ", title='" +
-                        title +
-                        '\'' +
-                        ", severity=" +
-                        severity +
-                        ", status=" +
-                        status +
-                        '}'
+            "RuleMetadata{" +
+                    "key='" +
+                    key +
+                    '\'' +
+                    ", language='" +
+                    language +
+                    '\'' +
+                    ", title='" +
+                    title +
+                    '\'' +
+                    ", terms='" +
+                    terms +
+                    '\'' +
+                    ", severity=" +
+                    severity +
+                    ", status=" +
+                    status +
+                    '}'
         );
     }
 
     public static class Builder {
 
         private RuleKey key;
-        private String technology;
+        private String language;
         private String title;
+        private String terms;
         private RuleSeverity severity;
         private RuleStatus status;
 
@@ -70,13 +80,18 @@ public class RuleMetadata {
             return this;
         }
 
-        public Builder technology(String technology) {
-            this.technology = technology;
+        public Builder language(String language) {
+            this.language = language;
             return this;
         }
 
         public Builder title(String title) {
             this.title = title;
+            return this;
+        }
+
+        public Builder terms(String terms) {
+            this.terms = terms;
             return this;
         }
 
@@ -91,7 +106,7 @@ public class RuleMetadata {
         }
 
         public RuleMetadata build() {
-            return new RuleMetadata(key, technology, title, severity, status);
+            return new RuleMetadata(key, language, title, terms, severity, status);
         }
     }
 }

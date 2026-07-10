@@ -38,7 +38,7 @@ class RuleFactoryTest {
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
         assertThat(rule.getRuleKey().toString()).hasToString(GCI_123);
-        assertThat(rule.getTechnology()).hasToString("java");
+        assertThat(rule.getLanguage()).hasToString("java");
     }
 
     @Test
@@ -129,7 +129,7 @@ class RuleFactoryTest {
         Path targetPath = rule.getHtmlDescriptionTargetPath(targetDir);
 
         // Then
-        assertThat(targetPath).isEqualTo(Path.of("target/classes/java/"+ GCI_123 + ".html"));
+        assertThat(targetPath).isEqualTo(Path.of("target/classes/java/" + GCI_123 + ".html"));
     }
 
     @Test
@@ -147,8 +147,22 @@ class RuleFactoryTest {
     }
 
     @Test
-    @DisplayName("Should handle different technologies")
-    void shouldHandleDifferentTechnologies(@TempDir Path tempDir) throws Exception {
+    @DisplayName("Should compute terms of the rule correctly")
+    void shouldComputeTermsOfTheRuleCorrectly() {
+        // Given
+        String resourcePath = "maven-build/test/resources/rules-html/GCI36";
+        RuleDescriptionFile rule = new RuleDescriptionFile(resourcePath + "/javascript/GCI36.html", "GCI36", "");
+
+        // When
+        String terms = ruleFactory.toRuleMetadata(rule, Path.of(resourcePath)).getTerms();
+
+        // Then
+        assertThat(terms).isEqualTo("actively appropriate areas articles audio audiofile autoplay autoplaying avoid battery browsers commence compliant conception configuring connectivity consume consumes consumption content contributing controls costs crucial designersethiques devices documentation download drain ecodesign ecoindex energy engaging environmental especially files guidelines however impact increased internet issue leading leads limited media might mitigate mobile noncompliant particularly plans playback posts potentially practices preload preloading prevent resources return segments settings sound still unnecessary usage users video videos without");
+    }
+
+    @Test
+    @DisplayName("Should handle different languages")
+    void shouldHandleDifferentLanguages(@TempDir Path tempDir) throws Exception {
         // Given
         Path ruleDir = Files.createDirectories(tempDir.resolve("GCI456"));
         Path languageDir = Files.createDirectories(ruleDir.resolve("javascript"));
@@ -162,6 +176,6 @@ class RuleFactoryTest {
         assertThat(result).isPresent();
         RuleDescriptionFile rule = result.get();
         assertThat(rule.getRuleKey().toString()).hasToString("GCI456");
-        assertThat(rule.getTechnology()).isEqualTo("javascript");
+        assertThat(rule.getLanguage()).isEqualTo("javascript");
     }
 }

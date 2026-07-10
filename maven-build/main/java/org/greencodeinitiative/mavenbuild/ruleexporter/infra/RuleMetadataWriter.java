@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -19,11 +20,11 @@ import java.util.stream.Collectors;
 public class RuleMetadataWriter {
 
     private final String outputFilename;
-    private final Map<String, String> technologyLabels;
+    private final Map<String, String> languageLabels;
 
     public RuleMetadataWriter(String outputFilename) {
         this.outputFilename = outputFilename;
-        this.technologyLabels = ConfigLoader.getTechnologyLabels();
+        this.languageLabels = ConfigLoader.getLanguageLabels();
     }
 
     public void writeRules(Collection<RuleMetadata> rules) throws IOException {
@@ -56,25 +57,39 @@ public class RuleMetadataWriter {
 
     private JsonObject buildItem(Collection<RuleMetadata> rulesById) {
         RuleMetadata first = rulesById.iterator().next();
+
+        JsonObjectBuilder languagesBuilder = Json.createObjectBuilder();
+        rulesById.stream()
+                .sorted(Comparator.comparing(RuleMetadata::getLanguage))
+                .forEach(rule -> languagesBuilder.add(rule.getLanguage(), buildLanguageEntry(rule)));
+
         return Json.createObjectBuilder()
                 .add("id", first.getKey().toString())
                 .add("name", first.getTitle())
                 .add("severity", first.getSeverity().toString())
-                .add("technologies", extractAllProperties(rulesById, RuleMetadata::getTechnology))
-                .add("status", first.getStatus().toString())
+                .add("languages", languagesBuilder.build())
+                .add("terms", first.getTerms())
+                .build();
+    }
+
+    private JsonObject buildLanguageEntry(RuleMetadata rule) {
+        return Json.createObjectBuilder()
+                .add("status", rule.getStatus().toString())
                 .build();
     }
 
     private JsonObject buildMeta(Collection<RuleMetadata> rules) {
         String deploymentUrl = System.getenv("PAGES_DEPLOYMENT_URL");
         return Json.createObjectBuilder()
-                .add("technologies", extractAllPropertiesToMap(rules, rule -> Map.entry(
-                        rule.getTechnology(),
-                        technologyLabels.getOrDefault(rule.getTechnology(), rule.getTechnology())
+                .add("languages", extractAllPropertiesToMap(rules, rule -> Map.entry(
+                        rule.getLanguage(),
+                        languageLabels.getOrDefault(rule.getLanguage(), rule.getLanguage())
                 )))
                 .add("severities", extractAllProperties(rules, rule -> rule.getSeverity().toString()))
                 .add("statuses", extractAllProperties(rules, rule -> rule.getStatus().toString()))
-                .add("contentUrlTemplate", deploymentUrl != null ? Json.createValue(deploymentUrl + "{technology}/{id}.html") : JsonValue.NULL)
+                .add("contentUrlTemplate",
+                        deploymentUrl != null ? Json.createValue(deploymentUrl + "{language}/{id}.html")
+                                : JsonValue.NULL)
                 .build();
     }
 
@@ -93,7 +108,10 @@ public class RuleMetadataWriter {
         ).build();
     }
 
-    private JsonObject extractAllPropertiesToMap(Collection<RuleMetadata> rules, Function<RuleMetadata, Map.Entry<String, String>> mapper) {
+    private JsonObject extractAllPropertiesToMap(
+            Collection<RuleMetadata> rules,
+            Function<RuleMetadata, Map.Entry<String, String>> mapper
+    ) {
         JsonObjectBuilder builder = Json.createObjectBuilder();
         rules.stream()
                 .map(mapper)
