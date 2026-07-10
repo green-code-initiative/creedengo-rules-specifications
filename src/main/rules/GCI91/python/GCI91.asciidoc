@@ -54,8 +54,7 @@ NOTE: CPU energy is reported here in kWh for consistency with the measurement ou
 - RAM Energy Draw Optimization: Divided by 4.50
 
 == 5. Algorithmic and Structural Analysis
-The massive variance in resource draw is mathematically sound. Python uses Timsort, an adaptive sorting algorithm derived from Merge Sort and Insertion Sort, operating with a worst-case time complexity of O(n log n). 
-
+The massive variance in resource draw is mathematically sound. Python uses Timsort, an adaptive sorting algorithm derived from Merge Sort and Insertion Sort, operating with a worst-case time complexity of O(n log n).
 By executing the sorting operation on the unfiltered dataset, the CPU must compute relationships across the complete dataset. Inverting the logic reduces the parameter 'n' by roughly 90% before it hits Timsort. Consequently, the CPU performs significantly fewer operations because the sorting work drops from roughly n log n to m log m after filtering, and the memory runtime architecture skips allocating large, volatile pointer lists for discarded elements, protecting the RAM buffer from heavy peaks.
 
 == 6. Recommendation

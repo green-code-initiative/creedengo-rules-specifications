@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [#197](https://github.com/green-code-initiative/creedengo-java/issues/197) Deprecation of GCI67 for java ("++i" instead of "i++")
 - update internal library versions
+- [#482](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/482) Complete GCI91 documentation to prove relevance for Python language
 
 ### Deleted
 
