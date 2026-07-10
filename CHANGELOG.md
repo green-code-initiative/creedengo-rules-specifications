@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- []() Add rule GCI116: Avoid range(len()) pattern, prefer direct iteration or enumerate()
+- Add rule GCI114: Avoid range(len()) pattern, prefer direct iteration or enumerate()
 - Add search words in rules file
 
 ### Changed
