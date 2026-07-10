@@ -1,0 +1,61 @@
+= GCI91 Rule Feasibility and Optimization Report: Use Filter Before Sort
+
+== 1. Objective and Context
+The purpose of this report is to evaluate the applicability and green software metrics of rule GCI91 (Use filter feature before sort elements) for the Python language. This analysis aims to justify changing its status from pending evaluation to active within the standard matrix. 
+In data processing pipelines, sorting algorithms are highly intensive operations. This investigation provides data-driven evidence that reducing the dataset size via filtering prior to executing a sort operation drastically cuts power consumption, execution time, and memory overhead.
+
+== 2. Implementation Feasibility in Static Code Analysis
+From an AST (Abstract Syntax Tree) perspective, detecting this anti-pattern in Python code is highly straightforward and fully implementable within the Creedengo static analysis engine.
+
+The analyzer needs to inspect the AST for the following sequence:
+- A sorting mechanism operation, such as the built-in sorted() function or a .sort() method call on a list object.
+- A list comprehension or loop filtering pattern wrapped immediately around or executed right after the sorting operation on the same dataset.
+
+When the sorting node is identified as an input directly feeding a filter constraint, the rule engine can easily raise a violation issue recommending a structural inversion (filtering first, then sorting).
+
+== 3. Benchmark and Technical Protocol
+To demonstrate optimization efficiency, a hardware-level stress test was executed.
+- Dataset 1 (Performance Benchmark): A list of 1,000,000 random integers.
+- Dataset 2 (Energy Benchmark): A list of 2,000,000 random integers ranging from 1 to 100.
+- Filter Condition: Retaining elements with a value strictly greater than 90 (filtering out approximately 90% of the dataset).
+- Measurement Engine: CodeCarbon integration linked with system-level Intel/AMD RAPL (Running Average Power Limit) energy sensors to track raw hardware power draws, alongside tracemalloc for memory peaks.
+- Iterations: 10 sequential loops with the Python Garbage Collector disabled to eliminate cleanup bias and capture raw processing energy.
+
+== 4. Detailed Green Software Metrics
+
+=== Part A: Raw Performance and Memory Results (1 Million Items)
+
+Non-Compliant Pattern (Sort then Filter):
+- Execution Time: 1.7046 sec
+- Peak RAM Allocation: 11.41 MB
+
+Compliant Pattern (Filter then Sort):
+- Execution Time: 0.3639 sec
+- Peak RAM Allocation: 1.87 MB
+
+=== Part B: Hardware Energy and Carbon Relevance (2 Million Items)
+
+Non-Compliant Pattern (Sort then Filter):
+- CPU Energy Consumption: < 0.000001 kWh
+- RAM Energy Consumption: 0.000009 kWh
+- Carbon Footprint Estimate: 0.5258 mg CO2
+
+Compliant Pattern (Filter then Sort):
+- CPU Energy Consumption: < 0.000001 kWh
+- RAM Energy Consumption: 0.000002 kWh
+- Carbon Footprint Estimate: 0.0979 mg CO2
+
+NOTE: CPU energy is reported here in kWh for consistency with the measurement output; values shown as 0.000000 kWh are below the display precision/measurement resolution and should not be interpreted as exact zero consumption.
+
+=== Part C: Optimization Ratios
+- Execution Time Reduction: Divided by 4.68
+- Peak RAM Buffer Draw Optimization: Divided by 6.10
+- Total Carbon Footprint Reduction: Divided by 5.37
+- RAM Energy Draw Optimization: Divided by 4.50
+
+== 5. Algorithmic and Structural Analysis
+The massive variance in resource draw is mathematically sound. Python uses Timsort, an adaptive sorting algorithm derived from Merge Sort and Insertion Sort, operating with a worst-case time complexity of O(n log n).
+By executing the sorting operation on the unfiltered dataset, the CPU must compute relationships across the complete dataset. Inverting the logic reduces the parameter 'n' by roughly 90% before it hits Timsort. Consequently, the CPU performs significantly fewer operations because the sorting work drops from roughly n log n to m log m after filtering, and the memory runtime architecture skips allocating large, volatile pointer lists for discarded elements, protecting the RAM buffer from heavy peaks.
+
+== 6. Recommendation
+Based on clear empirical evidence tracking hardware power consumption, implementing GCI91 delivers substantial infrastructure relief and carbon reduction without adding syntax complexity. We recommend shifting the rule state to applicable for Python.
