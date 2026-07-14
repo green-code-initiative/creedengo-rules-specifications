@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- [#313](https://github.com/green-code-initiative/ecoCode/issues/313) [EC528] Swift port
+
 
 - [#481](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/481) Add rule GCI114 for Python: Avoid range(len()) pattern, prefer direct iteration or enumerate()
 - Add search words in rules file
