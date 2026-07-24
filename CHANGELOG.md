@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#481](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/481) Add rule GCI114 for Python: Avoid range(len()) pattern, prefer direct iteration or enumerate()
 - Add search words in rules file
 
+### Added
+- [#407](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/407): Detect a for loop and suggest a list comprehension
+
 ### Changed
 
 - [#197](https://github.com/green-code-initiative/creedengo-java/issues/197) Deprecation of GCI67 for java ("++i" instead of "i++")

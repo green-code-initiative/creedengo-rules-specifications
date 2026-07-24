@@ -1,0 +1,15 @@
+{
+    "title": "Use list comprehension instead for loop in simple iterations",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5min"
+    },
+    "tags": [
+      "creedengo",
+      "eco-design",
+      "performance"
+    ],
+    "defaultSeverity": "Minor"
+  }
