@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add search words in rules file
 
 ### Added
-- [#407](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/407): Detect a for loop and suggest a list comprehension
+- [#407](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/407): GCI115 - Python - Detect a for loop and suggest a list comprehension
 
 ### Changed
 
