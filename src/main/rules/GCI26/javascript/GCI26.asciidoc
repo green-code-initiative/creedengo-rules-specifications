@@ -7,6 +7,10 @@ By reducing the number of CSS properties, you help to reduce the weight of your 
 
 For example, the `font` shorthand consolidates various font-related properties, and the `margin` shorthand streamlines the definition of margins around a box.
 
+== Examples
+
+=== Noncompliant
+
 [source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <div style={{ marginTop: "1em", marginRight: 0, marginBottom: "2em", marginLeft: "0.5em" }}>
@@ -14,7 +18,9 @@ For example, the `font` shorthand consolidates various font-related properties, 
 </div>
 ----
 
-[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+=== Compliant
+
+[source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
 ----
 <div style={{ margin: "1em 0 2em 0.5em" }}>
     {/* Compliant usage of shorthand property */}
@@ -24,7 +30,7 @@ For example, the `font` shorthand consolidates various font-related properties, 
 This optimization can't always be done, depending on the properties you're using.
 For example, if you only want to set the left margin, you must continue to use `margin-left`.
 
-[source,typescriptjsx,data-diff-id="1",data-diff-type="compliant"]
+[source,typescriptjsx,data-diff-id="3",data-diff-type="compliant"]
 ----
 <div style={{ marginLeft: "1em" }}>
     {/* Compliant because we only want a left margin */}
@@ -37,7 +43,7 @@ This optimization works for a number of properties https://developer.mozilla.org
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/fc5a1f865bafb196e4775cce8835393751d40ed8/chapters/BP_026_en.md[CnumR best practices] - Use abbreviated CSS notations
+- https://rweb.greenit.fr/en/fiches/RWEB_0118-use-short-css-notations[Best practices guidelines for web ecodesign (RWEB)] - Use short CSS notations
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties[Mozilla Web Technology for Developers] - Shorthand properties
 
 === Articles & blog posts

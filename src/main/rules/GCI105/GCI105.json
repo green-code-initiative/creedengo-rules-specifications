@@ -1,0 +1,17 @@
+{
+    "title": "Python String Concatenation - Use Join Instead or f-Strings instead of +=",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "1min"
+    },
+    "tags": [
+      "creedengo",
+      "eco-design",
+      "performance",
+      "python",
+      "string"
+    ],
+    "defaultSeverity": "Minor"
+  }

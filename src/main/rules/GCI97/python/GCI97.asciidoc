@@ -1,0 +1,96 @@
+In Python, if you want to square x, you can do x*x or x**2.
+At a lower level, these are two different instructions for the CPU
+This rule will also be relevant for higher powers, but for reasons of readability and occurrence, the squaring rule remains the most relevant.
+
+== Non compliant Code Example
+
+[source,python]
+----
+x = x**2
+# or
+x = math.pow(x,2)
+----
+
+== Compliant Solution
+
+[source,python]
+----
+x = x*x
+----
+
+== Relevance Analysis
+
+The following results were obtained through local experiments.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+=== Context
+
+This rule is based on the fact that to perform the calculation x², there are different ways of doing it in Python. The most common method is x**2, which at compile time is translated into BINARY_POWER, resulting in additional floating-point and logarithmic calculations.
+
+This is due to the internal implementation of exponentiation in Python, often based on the identity:
+```python
+x**y = exp(y * log(x))
+```
+This allows general handling of edge cases (negative values, floats, etc.), but makes it heavier than direct multiplication. In contrast, x * x is compiled into BINARY_MULTIPLY, a direct and efficient CPU instruction.
+
+By contrast, x * x is compiled to BINARY_MULTIPLY, which corresponds to a single, simple CPU instruction.
+
+Finally, math.pow adds further overhead due to function calls and type conversions.
+
+*lambda x: x * x*
+[source,bytecode]
+----
+0 LOAD_FAST                0 (x)
+2 LOAD_FAST                0 (x)
+4 BINARY_MULTIPLY
+6 RETURN_VALUE
+----
+
+The program loads x twice, runs BINARY_MULTIPLY and returns the result.
+
+lambda x: math.pow(x, 2)
+[source,bytecode]
+----
+0 LOAD_GLOBAL              0 (math)
+2 LOAD_ATTR                1 (pow)
+4 LOAD_FAST                0 (x)
+6 LOAD_CONST               1 (2)
+8 CALL_FUNCTION            2
+10 RETURN_VALUE
+----
+
+First, the math module is loaded into the global space, then the pow attribute, the two arguments are loaded, the pow function is called and the value is returned.
+
+lambda x: x ** 2
+[source,bytecode]
+----
+0 LOAD_FAST                0 (x)
+2 LOAD_CONST               1 (2)
+4 BINARY_POWER
+6 RETURN_VALUE
+----
+
+The program loads x, and the constant 2, runs BINARY_POWER, and returns the value.
+
+To compare the three calculation techniques, we will compare their emissions by applying the calculation while varying the number of affected lines.
+
+=== Impact Analysis
+
+It gives us the following results:
+
+*1. Carbon emissions during writing:*
+
+image::image.png[]
+
+=== Conclusion
+
+the rule is relevant, it also applies to the case where the user wishes to set his variable to power 3, 4 etc... but in this case we'll lose visibility. Since the sqaure is the most widely used, this rule applies only to it.
+
+=== References
+
+https://chrissardegna.com/blog/python-expontentiation-performance/

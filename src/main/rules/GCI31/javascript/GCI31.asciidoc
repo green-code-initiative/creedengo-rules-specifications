@@ -13,12 +13,18 @@ We recommend using the following formats:
 - *SVG* (Scalable Vector Graphics) is a vector image format that is based on XML.
 Files are lightweight and can be scaled without loss of quality.
 
+== Examples
+
+=== Noncompliant
+
 [source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <img src="./assets/images/cat.jpg" alt="Unoptimized image of a cat"/> // Noncompliant
 ----
 
-[source,html,data-diff-id="1",data-diff-type="compliant"]
+=== Compliant
+
+[source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
 <img src="./assets/images/cat.webp" alt="Optimized image of a cat"/> // Compliant
 ----
@@ -34,9 +40,7 @@ To address this issue, you can supply multiple formats for the same image.
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_080_en.md[CnumR best practices] - Optimize images
-
+- https://rweb.greenit.fr/en/fiches/RWEB_0049-optimize-images[Best practices guidelines for web ecodesign (RWEB)] - Optimize images
 === Articles & blog posts
 
 - https://greenspector.com/en/which-image-format-to-choose-to-reduce-its-energy-consumption-and-its-environmental-impact/[greenspector.com - Which image format choose to reduce energy consumption and environmental impact?]
-- https://dodonut.com/blog/use-cases-of-web-image-formats/[dodonut.com - The Most Efficient Web Image Formats. Use Cases For Different Types Of Images.]

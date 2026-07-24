@@ -1,0 +1,34 @@
+Monitoring power changes and customizing behavior depending on battery level is a good practice.
+
+Declaring broadcast receivers for `ACTION_POWER_CONNECTED`, `ACTION_POWER_DISCONNECTED`, `BATTERY_OKAY` or `BATTERY_LOW` in the manifest allows the app to adapt its behavior when the device is charging or running low on battery.
+
+== Compliant Code Example
+
+[source,xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+    <application>
+        <receiver android:name=".PowerReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
+----
+
+== Non compliant Code Example
+
+[source,xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+    <application>
+        <!-- No battery-related broadcast receiver declared -->
+    </application>
+</manifest>
+----

@@ -1,0 +1,87 @@
+:!sectids:
+
+== Why is this an issue?
+
+Polling loops (using `setInterval` or recursive `setTimeout`) that run regardless of the page visibility state waste energy continuously.
+When a user switches to another tab or minimizes the window, the browser keeps firing network requests and running JavaScript for nothing.
+This consumes CPU cycles, network bandwidth, and battery on mobile devices without providing any value to the user.
+
+The fix is to guard the polling logic with a `visibilitychange` event listener so it pauses when the page is not visible.
+
+== Examples
+
+=== Noncompliant
+
+[source,js,data-diff-id="1",data-diff-type="noncompliant"]
+----
+// Runs even when the tab is hidden
+setInterval(() => fetchData(), 5000); // Noncompliant
+----
+
+[source,js,data-diff-id="2",data-diff-type="noncompliant"]
+----
+// Recursive setTimeout without visibility check
+function poll() {
+  fetchData();
+  setTimeout(poll, 5000); // Noncompliant
+}
+poll();
+----
+
+=== Compliant
+
+[source,js,data-diff-id="1",data-diff-type="compliant"]
+----
+// Pauses when the tab is hidden
+let intervalId;
+
+function startPolling() {
+  intervalId = setInterval(() => fetchData(), 5000);
+}
+
+function stopPolling() {
+  clearInterval(intervalId);
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    startPolling();
+  } else {
+    stopPolling();
+  }
+});
+
+startPolling();
+----
+
+[source,js,data-diff-id="2",data-diff-type="compliant"]
+----
+// Recursive setTimeout with visibility check
+let timeoutId;
+
+function poll() {
+  fetchData();
+  timeoutId = setTimeout(poll, 5000);
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    poll();
+  } else {
+    clearTimeout(timeoutId);
+  }
+});
+
+poll();
+----
+
+== Resources
+
+=== Documentation
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event[MDN Web Docs] - visibilitychange event
+- https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API[MDN Web Docs] - Page Visibility API
+
+=== Articles & blog posts
+
+- https://developer.chrome.com/docs/web-platform/page-lifecycle-api[developer.chrome.com] - API Page Lifecycle

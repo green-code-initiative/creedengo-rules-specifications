@@ -1,15 +1,21 @@
-The form `$i++` creates a temporary variable whereas `++$i` does not. It save CPU cycles.
+:!sectids:
 
-== Non compliant Code Example
+== Why is this an issue?
 
-[source,php]
+The form `$i++` creates a temporary variable whereas `++$i` does not. It saves CPU cycles.
+
+== Examples
+
+=== Noncompliant
+
+[source,php,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 $i++
 ----
 
-== Compliant Solution
+=== Compliant
 
-[source,php]
+[source,php,data-diff-id="2",data-diff-type="compliant"]
 ----
 ++$i
 ----
@@ -18,7 +24,7 @@ include::../../etsdiff-methodology.asciidoc[]
 
 == Case for a 1GB database:
 
-image::https://live.staticflickr.com/65535/52622379586_f84c767111_o.png[ETSdiff percent comparison]
+image::1GB.etsdiff.png[ETSdiff percent comparison]
 
 [format=csv,cols="1h,1,1"]
 |===

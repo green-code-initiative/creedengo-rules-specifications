@@ -1,4 +1,4 @@
-Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer.
+Database servers have to resolve schema fields when using asterisk symbol (`*`). Knowing and using the schema saves CPU cycles and network transfer. 
 
 == Non compliant Code Example
 
@@ -21,3 +21,37 @@ public void foo() {
     ...
 }
 ----
+==== Our Analysis
+
+The following results were obtained through local experiments.
+
+===== Configuration
+* SQLite Database: 5-6 GB
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO2 Emissions Measurement: Using CodeCarbon
+
+===== Context
+
+SQL also includes many optimization mechanisms, for example, if a table/column is queried frequently, then this column will be indexed and subsequent queries will perform better. The results of the study would show that using SELECT * SQL will disable optimization mechanisms.
+
+===== Impact Analysis
+
+First, let's analyze the impact that the number of selected columns has on RAM consumption, execution time, and CO2 emissions.
+
+For the same number of rows, for the following query: SELECT {selected_cols} FROM my_table where col10=random_word
+
+*CO2 Emissions*
+
+image::tracking_1.png[]
+
+*Memory Usage*
+
+image::tracking_2.png[]
+
+*Execution Time*
+
+image::tracking_3.png[]
+
+We can conclude that it is not recommended to use SELECT *, even if we want all the columns. We need to specify them because when we use *, SQL generally avoids using the already created indexes, which greatly increases the computation time.
+

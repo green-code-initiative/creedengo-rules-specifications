@@ -1,0 +1,73 @@
+This rule is specific to Python because it's related to PyTorch library, which is widely used for deep learning and machine learning tasks in Python.
+
+Using a PyTorch model in evaluation mode without wrapping inference in `torch.no_grad()` leads to unnecessary gradient tracking, which increases memory usage and energy consumption. This rule applies specifically to PyTorch, but aligns with general energy efficiency and eco-design principles: avoid performing unnecessary computations.
+
+== Non Compliant Code Example
+
+[source,python]
+----
+model.eval()
+for inputs in dataloader:
+    outputs = model(inputs)
+----
+
+In this case, PyTorch still tracks gradients even though no backward pass is needed.
+
+== Compliant Solution
+
+[source,python]
+----
+model.eval()
+with torch.no_grad():
+    for inputs in dataloader:
+        outputs = model(inputs)
+----
+
+Using `torch.no_grad()` disables gradient computation during inference, saving memory and computational resources.
+
+== Relevance Analysis
+
+Local experiments were conducted to assess the carbon emissions associated with inference with and without `torch.no_grad()`.
+
+=== Configuration
+
+* Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+* RAM: 16 GB
+* CO₂ Emissions Measurement: https://mlco2.github.io/codecarbon/[CodeCarbon]
+* Framework: PyTorch 2.1
+
+=== Context
+
+We benchmarked inference using a small convolutional neural network on batches of random tensors. Two configurations were compared:
+* Inference with gradient tracking (default)
+* Inference using `torch.no_grad()`
+
+=== Impact Analysis
+
+We begin by analyzing RAM and GPU memory usage. The graph below shows the memory consumption during inference, with and without torch.no_grad():
+
+image::memory.png[]
+
+As expected, using torch.no_grad() significantly reduces memory usage. This effect is especially noticeable on GPU, since it no longer needs to store intermediate values required for gradient computation.
+
+The blue shaded area represents the range of memory or emissions observed across multiple batch iterations during a single epoch.
+
+Next, we compare the carbon emissions generated in both cases:
+
+image::emissions.png[]
+
+While the difference in emissions is less dramatic than for memory usage, it remains meaningful. This is because most of the energy consumption comes from matrix operations, which are computationally expensive — and torch.no_grad() helps avoid some unnecessary overhead.
+
+== Conclusion
+
+The rule is relevant. Wrapping inference in `torch.no_grad()`:
+- Reduces energy consumption
+- Improves inference performance
+- Prevents memory waste
+
+This practice is essential in any production or evaluation setting involving PyTorch models.
+
+== References
+
+* https://pytorch.org/docs/stable/generated/torch.no_grad.html
+

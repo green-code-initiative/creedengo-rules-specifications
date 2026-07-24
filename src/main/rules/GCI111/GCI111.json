@@ -1,0 +1,17 @@
+{
+  "title": "Logging Format Interpolation - Avoid using immediate string formatter in logging calls.",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "logging",
+    "format"
+  ],
+  "defaultSeverity": "Minor"
+}

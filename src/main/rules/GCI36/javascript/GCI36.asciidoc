@@ -11,9 +11,11 @@ However, even without autoplay, segments of video or audio files might still dow
 This leads to unnecessary data usage, especially if users don't commence playback.
 To mitigate this, it's crucial to prevent browsers from preloading any content by configuring the appropriate settings.
 
-Video:
+== Examples
 
-[source,typescriptjsx,data-diff-id="3",data-diff-type="noncompliant"]
+=== Noncompliant
+
+[source,typescriptjsx,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 return (
   <>
@@ -24,15 +26,6 @@ return (
 )
 ----
 
-[source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
-----
-return (
-  <video src="video.mp4" preload="none"/> // Compliant
-)
-----
-
-Audio:
-
 [source,typescriptjsx,data-diff-id="2",data-diff-type="noncompliant"]
 ----
 return (
@@ -40,7 +33,16 @@ return (
 )
 ----
 
-[source,typescriptjsx,data-diff-id="2",data-diff-type="compliant"]
+=== Compliant
+
+[source,typescriptjsx,data-diff-id="3",data-diff-type="compliant"]
+----
+return (
+  <video src="video.mp4" preload="none"/> // Compliant
+)
+----
+
+[source,typescriptjsx,data-diff-id="4",data-diff-type="compliant"]
 ----
 return (
   <audio controls src="audiofile.mp3" preload="none"></audio> // Compliant
@@ -49,11 +51,9 @@ return (
 
 == Resources
 
-=== Documentation
-
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_4003_en.md[CnumR best practices] - Avoid autoplay for videos and audio content
+- https://rweb.greenit.fr/en/fiches/RWEB_0106-avoid-autoplay-for-videos-and-audio-content[Best practices guidelines for web ecodesign (RWEB)] - Avoid autoplay for videos and audio content
 
 === Articles & blog posts
 
 - https://eco-conception.designersethiques.org/guide/en/content/5-2-video.html[eco-conception.designersethiques.org - 5.2. Video and sound]
-- https://www.ecoindex.fr/en/ecodesign/[www.ecoindex.fr - Some good practices]
+- https://www.ecoindex.fr/en/ecodesign/[Ecodesign and good practices]

@@ -1,0 +1,22 @@
+{
+  "title": "Avoid wildcard imports in Python (from module import *)",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant/Issue",
+    "constantCost": "2min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance",
+    "python",
+    "bad-practice",
+    "memory",
+    "import",
+    "namespace"
+  ],
+  "defaultSeverity": "Minor"
+}
+
+

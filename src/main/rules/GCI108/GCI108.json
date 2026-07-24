@@ -1,0 +1,16 @@
+{
+    "title": "DATA : Prefer AppendLeft Over Insert(0)",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "10min"
+    },
+    "tags": [
+      "creedengo",
+      "eco-design",
+      "performance",
+      "data"
+    ],
+    "defaultSeverity": "Minor"
+  }

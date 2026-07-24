@@ -1,0 +1,24 @@
+Keeping the screen on should be avoided to prevent unnecessary battery drain.
+
+Android devices that are left idle quickly fall asleep to save energy.
+Using the `android:keepScreenOn="true"` attribute in a layout XML file forces the screen to stay on, consuming significant power.
+
+== Non compliant Code Example
+
+[source,xml]
+----
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"/>
+----
+
+== Compliant Code Example
+
+[source,xml]
+----
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="false"/>
+----

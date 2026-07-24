@@ -50,7 +50,7 @@ include::../../etsdiff-methodology.asciidoc[]
 
 == Case for a 1GB database:
 
-image::https://live.staticflickr.com/65535/52622813465_9c453a43b1_w.jpg[ETSdiff percent comparison" style="padding: 1rem;]
+image::1GB.etsdiff.png[ETSdiff percent comparison" style="padding: 1rem;]
 
 [format=csv,cols="1h,1,1"]
 |===
@@ -61,7 +61,7 @@ include::1GB.etsdiff.csv[]
 
 == Case for a 2GB database:
 
-image::https://live.staticflickr.com/65535/52622862388_720fd219ba_o.png[ETSdiff percent comparison" style="padding: 1rem;]
+image::2GB.etsdiff.png[ETSdiff percent comparison" style="padding: 1rem;]
 
 [format=csv,cols="1h,1,1"]
 |===
@@ -72,7 +72,7 @@ include::2GB.etsdiff.csv[]
 
 == Case for a 4GB database:
 
-image::https://live.staticflickr.com/65535/52622814395_f8aab7a5c0_o.png[ETSdiff percent comparison" style="padding: 1rem;]
+image::4GB.etsdiff.png[ETSdiff percent comparison" style="padding: 1rem;]
 
 [format=csv,cols="1h,1,1"]
 |===
@@ -83,7 +83,7 @@ include::4GB.etsdiff.csv[]
 
 == Case for a 8GB database:
 
-image::https://live.staticflickr.com/65535/52622635779_f1c5d9660e_o.png[ETSdiff percent comparison" style="padding: 1rem;]
+image::8GB.etsdiff.png[ETSdiff percent comparison" style="padding: 1rem;]
 
 [format=csv,cols="1h,1,1"]
 |===

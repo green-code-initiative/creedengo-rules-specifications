@@ -10,9 +10,11 @@ Making multiple CSS changes in a single batch can trigger multiple reflows and r
 Reflows and repaints are resource-intensive operations that can lead to performance issues.
 Applying changes individually minimizes the number of reflows and repaints, improving overall page performance.
 
-Here's an example in JavaScript and CSS to illustrate this rule:
+== Examples
 
-[source,html,data-diff-id="3",data-diff-type="noncompliant"]
+=== Noncompliant
+
+[source,html,data-diff-id="1",data-diff-type="noncompliant"]
 ----
 <script>
   element.style.height = "800px";
@@ -21,7 +23,9 @@ Here's an example in JavaScript and CSS to illustrate this rule:
 </script>
 ----
 
-[source,html,data-diff-id="10",data-diff-type="compliant"]
+=== Compliant
+
+[source,html,data-diff-id="2",data-diff-type="compliant"]
 ----
 <style>
   .in-error {
@@ -42,4 +46,4 @@ In the first example, multiple CSS properties are set in a single batch, while i
 
 === Documentation
 
-- https://github.com/cnumr/best-practices/blob/main/chapters/BP_045_en.md[CnumR best practices] - Modify several CSS properties at once
+- https://rweb.greenit.fr/en/fiches/RWEB_0040-update-several-css-properties-at-once[Best practices guidelines for web ecodesign (RWEB)] - Update several CSS properties at once
