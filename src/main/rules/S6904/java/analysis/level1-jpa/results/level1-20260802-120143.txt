@@ -1,0 +1,26 @@
+GCI205 - JPA/Hibernate benchmark
+java=21.0.11 vm=OpenJDK 64-Bit Server VM os=Mac OS X aarch64
+parent rows=200
+
+fetch        N   reads   stmt/read    ent/read   coll/read      us/read     KiB/read
+----------------------------------------------------------------------------------------
+EAGER       10    2000        1,00       11,00        0,00        121,1         33,6
+LAZY        10    2000        1,00        1,00        0,00         67,0         24,4
+EAGER      100     200        1,00      101,00        0,00        253,9        105,1
+LAZY       100     200        1,00        1,00        0,00         68,1         24,1
+EAGER     1000     100        1,00     1001,00        0,00        968,5        764,1
+LAZY      1000     100        1,00        1,00        0,00         76,6         23,8
+
+Overhead of EAGER over LAZY, per parent read:
+  N=10    time x1,81   allocation x1,38   rows hydrated +10
+  N=100   time x3,73   allocation x4,37   rows hydrated +100
+  N=1000  time x12,65   allocation x32,09   rows hydrated +1000
+
+--- CSV ---
+strategy,child_count,reads,statements,entity_loads,collection_fetches,elapsed_ns,allocated_bytes
+EAGER,10,2000,2000,22000,0,242198333,68858584
+LAZY,10,2000,2000,2000,0,133940000,49931872
+EAGER,100,200,200,20200,0,50782833,21523744
+LAZY,100,200,200,200,0,13616042,4925568
+EAGER,1000,100,100,100100,0,96853000,78239448
+LAZY,1000,100,100,100,0,7658000,2438376
