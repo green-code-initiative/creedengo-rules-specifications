@@ -9,11 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [#407](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/407): GCI115 - Python - Detect a for loop and suggest a list comprehension
 - [#481](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/481) Add rule GCI114 for Python: Avoid range(len()) pattern, prefer direct iteration or enumerate()
 - Add search words in rules file
-
-### Added
-- [#407](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/407): GCI115 - Python - Detect a for loop and suggest a list comprehension
+- [#XXX](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/XXX) Add rule GCI116 for Java: Force usage of FetchType LAZY for collections on JPA entities
 
 ### Changed
 

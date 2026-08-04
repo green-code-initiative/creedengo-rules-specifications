@@ -1,0 +1,96 @@
+:!sectids:
+
+== Why is this an issue?
+
+When a JPA collection association is mapped with `FetchType.EAGER`, the persistence provider loads
+the whole associated collection every time the owning entity is read, even when the application
+never accesses it.
+
+On a collection, this is not a marginal cost: a single entity read can pull an arbitrary number of
+additional rows from the database. This means more CPU cycles spent by the database engine, more
+data transferred over the network, and more heap allocated by the application — all for objects
+that may never be used. Less data loaded into memory means less energy consumed, both on the
+database server and on the application server.
+
+`FetchType.LAZY` defers the load until the collection is actually accessed, which lets the
+application pay the cost only when it needs the data.
+
+Note that `LAZY` is already the default for `@OneToMany` and `@ManyToMany`: this rule only reports
+associations where `EAGER` has been set explicitly.
+
+== Examples
+
+=== Noncompliant
+
+[source,java,data-diff-id="1",data-diff-type="noncompliant"]
+----
+@Entity
+@Table(name = "purchase_order")
+public class Order {
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER) // Noncompliant
+    private Set<OrderItem> items = new HashSet<>();
+
+}
+----
+
+[source,java,data-diff-id="2",data-diff-type="noncompliant"]
+----
+@Entity
+@Table(name = "purchase_order")
+public class Order {
+
+    @ManyToMany(fetch = FetchType.EAGER) // Noncompliant
+    private Set<Tag> tags = new HashSet<>();
+
+}
+----
+
+=== Compliant
+
+[source,java,data-diff-id="3",data-diff-type="compliant"]
+----
+@Entity
+@Table(name = "purchase_order")
+public class Order {
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private Set<OrderItem> items = new HashSet<>();
+
+}
+----
+
+[source,java,data-diff-id="4",data-diff-type="compliant"]
+----
+@Entity
+@Table(name = "purchase_order")
+public class Order {
+
+    @ManyToMany // Default fetch type for @ManyToMany is already LAZY
+    private Set<Tag> tags = new HashSet<>();
+
+}
+----
+
+== Exceptions to this rule
+
+This rule only applies to collection associations (`@OneToMany`, `@ManyToMany`).
+
+Single-valued associations (`@ManyToOne`, `@OneToOne`) default to `FetchType.EAGER` in JPA, but
+their cost profile is different: they load one additional row, not an arbitrary number. Their real
+impact appears when they are traversed in a loop, which is the N+1 selects problem — a separate
+concern.
+
+No issue is raised when the `fetch` attribute is omitted on a collection association, since
+`FetchType.LAZY` is already the JPA default in that case.
+
+== Resources
+
+=== Documentation
+
+- https://jakarta.ee/specifications/persistence/[Jakarta Persistence Specification] - Default fetch types for association mappings
+- https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#fetching[Hibernate User Guide] - Fetching strategies
+
+=== Articles & blog posts
+
+- https://vladmihalcea.com/eager-fetching-is-a-code-smell/[Eager fetching is a code smell] - Vlad Mihalcea
