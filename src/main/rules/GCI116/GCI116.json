@@ -20,7 +20,7 @@
     "orm",
     "memory"
   ],
-  "defaultSeverity": "Minor",
+  "defaultSeverity": "Major",
   "compatibleLanguages": [
     "JAVA"
   ]
