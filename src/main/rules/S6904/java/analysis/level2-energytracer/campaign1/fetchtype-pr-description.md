@@ -1,3 +1,10 @@
+> **Superseded.** This draft proposed adding a *new* rule to be identified S6904. It turned
+> out SonarQube already ships a built-in rule under that same identifier, so no new rule is
+> being added and the four PRs below are being closed as duplicates instead of merged. See
+> `../../s6904-pr-description.md` (analysis root) for the closure PR that replaces this
+> draft. Kept here for history; the recomputed figures in it are still accurate and were
+> reused there.
+
 # PR description — ready to paste
 
 *`results-template.md` filled in with the results of the campaign run on 4 August 2026.*
