@@ -7,8 +7,8 @@ to a SonarQube built-in rule.*
 
 Two blocks:
 
-- **A** — internal record (context for you, not for the PR body)
-- **B** — PR description, paste as is
+- **A** — internal record 
+- **B** — summary for PR description
 
 ---
 ---
@@ -25,14 +25,11 @@ close: a two-level benchmark (JPA/Hibernate functional cost, then EnergyTracer h
 energy measurement) run twice, once on 4 August (three sizes) and once on 5 August (six
 sizes, refining the first run).
 
-Partway through, the rule was assigned the working identifier **S6904** by the core team.
-On review, **S6904 turns out to already be a SonarQube built-in rule** covering the same
-case. Proposing a new custom rule under an identifier already in use by the engine itself
-is not viable — hence closing the four PRs rather than merging any of them.
+**S6904 already exists as a SonarQube built-in rule** covering all the use case.
 
 ## Why keep the analysis
 
-The measurement work is not wasted. It answers, with real hardware data, the exact
+The measurement work answers, with real hardware data, the exact
 question that stalled the four PRs for two years: does this pattern actually matter? Yes,
 measurably, at every collection size tested (10 to 1000 elements). That evidence is useful
 independently of whether a new rule ships:
@@ -62,7 +59,7 @@ independently of whether a new rule ships:
 ---
 ---
 
-# B — PR description, paste as is
+# B — Summary for PR description
 
 ```markdown
 ## Closing in favour of the built-in rule
@@ -72,11 +69,9 @@ This PR closes #122, #125, #155 and #325 without merging any of them.
 All four proposed a custom rule flagging `FetchType.EAGER` on JPA collection associations
 that are never read. That discussion stalled repeatedly since January 2024 for lack of
 measured impact. To settle it, a two-level measurement harness was built and run twice —
-see below — and partway through, the rule was assigned the working identifier **S6904**.
+see below.
 
-It turns out **S6904 already exists as a built-in SonarQube rule** covering exactly this
-case. Adding a new custom rule under an identifier the engine already uses is not viable,
-so these four PRs are being closed as duplicates rather than merged.
+**S6904 already exists as a SonarQube built-in rule** covering all the use case. Adding a new custom rule under covering the same use case is not viable, so these four PRs are being closed as duplicates rather than merged.
 
 ### The measurement work is kept, and here is what it shows
 
@@ -143,7 +138,3 @@ than a raw energy total.
 ## Before posting
 
 - [ ] Fill in the `<link to ...>` placeholders once this branch/PR exists
-- [ ] Confirm the exact SonarQube quality profile(s) this project uses, so the "suggested
-      follow-up" bullet can name them specifically rather than staying generic
-- [ ] **Review and validate before posting** — this closes four PRs and will be read by
-      whoever opened them
