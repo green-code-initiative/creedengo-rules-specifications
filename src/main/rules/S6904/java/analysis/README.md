@@ -1,16 +1,23 @@
 # Measurement campaign — FetchType LAZY on JPA collections (S6904)
 
-Measurement harness for the rule "force FetchType.LAZY on JPA collections".
-Produces the impact evidence missing from the four superseded PRs
-(#122, #125, #155, #325), which is what is blocking its acceptance by the core team.
+Measurement harness for the rule "force FetchType.LAZY on JPA collections", superseding
+the four historical PRs (#122, #125, #155, #325). The rule turned out to already exist as
+a SonarQube built-in (`java:S6904`), so no new rule specification is added; this harness
+produces the impact evidence kept as supporting documentation instead — see
+[PR #487](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/487)
+and `s6904-analysis-summary.md` at the root of this directory.
 
-**Status: campaign1 executed and analysed.** Run on 2026-08-04 on a MacBook Pro M1 Pro,
-30 phases × 30 iterations, sizes 10 / 100 / 1000. Results archived under
-`level2-energytracer/campaign1/`; interpretation and PR description alongside them
-(`fetchtype-measurement-interpretation.md`, `fetchtype-pr-description.md`).
+**Status: both campaigns executed and analysed.**
 
-**campaign2 in preparation**: sizes 10 / 30 / 50 / 100 / 500 / 1000, to locate the
-relevance threshold between 10 and 100 — the question campaign1 leaves open.
+- **campaign1** — run on 2026-08-04, sizes 10 / 100 / 1000, 30 phases × 30 iterations.
+  Archived under `level2-energytracer/campaign1/`; interpretation alongside it
+  (`campaign1-interpretation.md`).
+- **campaign2** — run on 2026-08-05, sizes 10 / 30 / 50 / 100 / 500 / 1000, same protocol,
+  to locate the relevance threshold campaign1 left open. Archived under
+  `level2-energytracer/campaign2/`; interpretation alongside it
+  (`campaign2-interpretation.md`). Confirms campaign1 and discloses one genuine anomaly
+  around N=50–100 that campaign1's three points could not reveal — see that document,
+  §4–§5.
 
 ---
 
@@ -48,7 +55,7 @@ two separate benches, each measuring what it can measure correctly.
 ```
 ./
 ├── README.md                          this file: protocol and how-to
-├── results-template.md                results template to fill in and paste into the PR
+├── s6904-analysis-summary.md          PR #487 description, kept in sync with the analysis
 ├── level1-jpa/
 │   ├── pom.xml                        Hibernate 6.4 + H2 2.2, Java 17
 │   ├── run.sh                         build + run
@@ -61,7 +68,7 @@ two separate benches, each measuring what it can measure correctly.
 └── level2-energytracer/
     ├── 1-generate.sh                  generates the variants + checks they compile
     ├── 2-calibrate.sh                 (optional) tunes PARENT_READS for the machine
-    ├── 3-run_campaign.sh              the campaign
+    ├── 3-run_campaign.sh              the campaign — writes to ./out-tmp and ./results
     ├── 4-aggregate_report.sh          consolidates the campaign into a single report
     ├── 4-aggregate_report.py          (the actual work: stats, plots, markdown)
     │
@@ -69,13 +76,26 @@ two separate benches, each measuring what it can measure correctly.
     │   ├── template/Eager.java.tpl    noncompliant variant  (source of truth)
     │   ├── template/Lazy.java.tpl     compliant variant      (source of truth)
     │   └── variants/                  generated: FetchType{Eager,Lazy}N<size>.java
+    │                                  (currently: N=10,30,50,100,500,1000)
     │
-    ├── out-tmp/                       generated: raw per-phase measurements (disposable)
-    ├── results/n<size>/                generated: raw ET-analyzer reports
-    ├── consolidated-report/           generated: THE deliverable to use
+    ├── campaign1/                      archived — sizes 10, 100, 1000 (2026-08-04)
+    │   ├── campaign1-interpretation.md   write-up: results, stats, caveats
+    │   ├── out-tmp/                      raw per-phase measurements, kept for traceability
+    │   ├── results/n<size>/              ET-analyzer's own per-size reports
+    │   └── consolidated-report/          REPORT.md, data/, plots/, reports-source/
     │
-    └── campaign<N>/                   archived campaigns (see § 5)
+    └── campaign2/                      archived — sizes 10,30,50,100,500,1000 (2026-08-05)
+        ├── campaign2-interpretation.md   write-up: results, stats, caveats
+        ├── out-tmp/                      raw per-phase measurements, kept for traceability
+        ├── results/n<size>/              ET-analyzer's own per-size reports
+        └── consolidated-report/          REPORT.md, data/, plots/, reports-source/
 ```
+
+Between a run and its archiving, `3-run_campaign.sh` and `4-aggregate_report.sh` write
+`out-tmp/`, `results/n<size>/` and `consolidated-report/` directly under
+`level2-energytracer/` — see § 5, "Archiving a campaign", for the `mv` step that moves
+them under `campaign<N>/`. Nothing is currently sitting unarchived at that top level: both
+campaigns above are the full history.
 
 Level 2's scripts are **prefixed by their launch order**. `2-calibrate.sh` is optional:
 it only checks or tunes the bench's sizing on a new machine. `1-generate.sh` does not
@@ -307,8 +327,9 @@ filtered per phase on small samples — a weaker, doubly-filtered pipeline.
 The script also picks up data produced by the earlier version of `3-run_campaign.sh`
 (without the `phase-<i>` level), reported as a single phase.
 
-Then transcribe the figures into `results-template.md`, which pre-structures the
-write-up and already lists the limitations to state.
+Then transcribe the figures into that campaign's `campaign<N>-interpretation.md` — see
+`campaign1-interpretation.md` and `campaign2-interpretation.md` for the structure to
+follow (results, phase-level statistics, quality control, what not to claim, sources).
 
 ### What to look at, in order
 
@@ -405,20 +426,41 @@ them anyway. Stating them upfront strengthens the measurement's credibility.
 - **The bimodality observed** over 2 to 8 phases depending on size (+23% to +48%), not
   contiguous. It does not affect the relative gap, but its cause remains unknown.
 
+**Confirmed by campaign2, with one new open item**
+
+- Six sizes instead of three reproduce the relative gap within 0.6 points at the three
+  shared sizes (10, 100, 1000), across two independent measurement sessions run on
+  different days — see `campaign2-interpretation.md` § 3.
+- The intermediate sizes (30, 50, 500) do **not** fill in a smooth curve: energy per
+  hydrated row dips at N=100 instead of climbing monotonically, and the phase-level
+  correlation between EAGER and LAZY collapses at N=100 (+0.10, versus +0.73 to +0.97
+  everywhere else). Three independent signals converge on this anomaly; none identifies a
+  mechanism. **Worth a dedicated re-run around N=50–150** — see `campaign2-interpretation.md`
+  § 4–§ 5 before assuming it is settled.
+
 ---
 
-## 9. Feeding the result back into the specification
+## 9. Where this landed in the specification
 
-Once figures are in hand, two places to update:
+This harness's output already feeds
+[PR #487](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/487),
+which supersedes the four historical PRs. Three things to know if you are picking this up
+after a gap:
 
-1. **The PR description** — the level-1 table, plus the consolidated energy report. This
-   is where the evidence is discussed.
-2. **`src/main/rules/S6904/java/S6904.asciidoc`**, `== Resources` section — a link to the
-   PR or to this harness. Rule files in this repository carry no measurement section: do
-   not paste the report there, it would break the convention. `results-template.md`
-   proposes compact wording for that section.
-3. **`RULES.md`**, `Reference/Validation` column, currently empty on every row of the
-   matrix — filling it in is a welcome gesture.
+1. **No new rule specification is added.** The rule already exists as the SonarQube
+   built-in `java:S6904`; adding a custom one under the same identifier is not viable.
+2. **`src/main/rules/S6904/java/S6904.asciidoc` already exists** and documents why this
+   isn't a `GCIxxx` rule, with the usual "why is this an issue," compliant/noncompliant
+   examples and exceptions sections, plus a "Local measures" section pointing at this
+   harness's results. Keep it in sync if the analysis changes; do not assume it needs to be
+   created.
+3. **`RULES.md`'s row for this rule already points to PR #487** (its legacy key,
+   `CRJVM205`, is kept — no `GCI116` row was ever added, despite that being the original
+   plan in the PR's first commit).
+
+`s6904-analysis-summary.md`, at the root of this directory, is the PR description kept in
+sync with both campaigns — paste-ready, and the place to update if the analysis changes
+again.
 
 Reminder: the project's `starter-pack.md` **does not require** an energy measurement. The
 Definition of Done is purely software-based (unit tests, integration tests, CHANGELOG);
