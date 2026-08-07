@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deleted
+
+## [3.2.0] - 2026-08-07
+
+### Added
+
 - [#407](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/407): GCI115 - Python - Detect a for loop and suggest a list comprehension
 - [#481](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/481) Add rule GCI114 for Python: Avoid range(len()) pattern, prefer direct iteration or enumerate()
 - Add search words in rules file
@@ -21,8 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#482](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/482) Complete GCI91 documentation to prove relevance for Python language
 - update RULES.md : GCI22 for python must by checked
 - [#483](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/483) deprecation of GCI2 rule for Python
-
-### Deleted
 
 ## [3.1.0] - 2026-06-16
 
@@ -583,7 +589,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.1.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.2.0...HEAD)
+[3.2.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.1.0...3.2.0)
 [3.1.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.0.0...3.1.0)
 [3.0.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.1...3.0.0)
 [2.7.1](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.0...2.7.1)
