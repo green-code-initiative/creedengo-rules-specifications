@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deleted
 
+- [#450](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/450) GCI82 rule for Python not possible
+
 ## [3.2.0] - 2026-08-07
 
 ### Added
