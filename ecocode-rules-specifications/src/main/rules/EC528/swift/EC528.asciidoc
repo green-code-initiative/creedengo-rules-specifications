@@ -1,0 +1,14 @@
+Shaking or vibrating an iOS device is possible using `UIFeedbackGenerator`.
+Behind this effect stands a specific hardware component, the Haptic Engine, which consumes power. As a consequence, its usage should be carefully considered, especially if its added value is not clear.
+
+== Noncompliant Code Example
+
+[source,swift]
+----
+import UIKit
+
+func triggerVibration() {
+    let generator = UIImpactFeedbackGenerator(style: .heavy)
+    generator.impactOccurred()
+}
+----
