@@ -1,0 +1,44 @@
+Most iOS devices come equipped with a variety of sensors that measure motion, orientation, and various environmental conditions.
+Additionally, these devices include advanced sensors such as the image sensor (commonly referred to as the Camera) and the geo-positioning sensor (commonly referred to as GPS).
+
+The common point of all these sensors is that they are power-intensive while in use. A typical issue arises when these sensors continue to process data unnecessarily after the application enters an idle state, like when it is backgrounded or the user stops interacting with it.
+
+    As a result, calls to manage these sensors must be carefully paired: `AVCaptureSession.startRunning()` and `AVCaptureSession.stopRunning()`.
+    Failure to properly manage these calls can lead to significant battery drain within a few hours.
+
+== Noncompliant Code Example
+
+[source,swift]
+----
+import AVFoundation
+
+class CameraManager {
+    var captureSession: AVCaptureSession?
+
+    func activateCamera() {
+        captureSession = AVCaptureSession()
+        captureSession?.startRunning()  // Camera starts capturing
+        // Missing corresponding stopRunning
+    }
+}
+----
+
+== Compliant Code Example
+
+[source,swift]
+----
+import AVFoundation
+
+class CameraManager {
+    var captureSession: AVCaptureSession?
+
+    func activateCamera() {
+        captureSession = AVCaptureSession()
+        captureSession?.startRunning()  // Camera starts capturing
+    }
+
+    func deactivateCamera() {
+        captureSession?.stopRunning()  // Camera stops capturing
+    }
+}
+----
