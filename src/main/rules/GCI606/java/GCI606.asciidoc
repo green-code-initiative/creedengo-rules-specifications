@@ -1,0 +1,80 @@
+Performing HTTP calls inside loops can create many network requests.
+
+Each HTTP request may consume CPU, memory, bandwidth, and remote server resources. When the loop iterates over many elements, this can lead to unnecessary network traffic and slower execution.
+
+When possible, prefer batch APIs, bulk endpoints, caching, or moving the HTTP call outside the loop.
+
+== Why is this an issue?
+
+Calling a remote service is much more expensive than a local operation.
+
+For example, if a loop processes 100 elements and performs one HTTP call for each element, the application sends 100 HTTP requests. This increases latency, network usage, CPU usage, and the load on the remote service.
+
+Grouping requests into a single batch call is usually more efficient.
+
+== Non compliant Code Example
+
+[source,java]
+----
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+class UserService {
+
+  private final RestTemplate restTemplate = new RestTemplate();
+
+  void enrichUsers(List<User> users) {
+    for (User user : users) {
+      UserDetails details = restTemplate.getForObject(
+        "https://api.example.com/users/" + user.getId(),
+        UserDetails.class
+      ); // Noncompliant
+
+      user.setDetails(details);
+    }
+  }
+}
+----
+
+== Compliant Solution
+
+[source,java]
+----
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+class UserService {
+
+  private final RestTemplate restTemplate = new RestTemplate();
+
+  void enrichUsers(List<User> users) {
+    List<Long> userIds = users.stream()
+      .map(User::getId)
+      .toList();
+
+    UserDetails[] detailsArray = restTemplate.postForObject(
+      "https://api.example.com/users/batch",
+      userIds,
+      UserDetails[].class
+    );
+
+    Map<Long, UserDetails> detailsByUserId = Arrays.stream(detailsArray)
+      .collect(Collectors.toMap(UserDetails::getUserId, Function.identity()));
+
+    for (User user : users) {
+      UserDetails details = detailsByUserId.get(user.getId());
+      user.setDetails(details);
+    }
+  }
+}
+----
+
+== Exceptions
+
+This rule should not report an issue when the loop is explicitly limited to a very small number of iterations,or when the HTTP call is required by an external API that does not provide a batch endpoint.
