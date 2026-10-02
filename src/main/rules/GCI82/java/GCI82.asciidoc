@@ -5,7 +5,18 @@ Variable can be made constant.
 == Why is this an issue ?
 
 Unlike variables, constant values are known at compile time and are injected as is in the code, requiring no runtime processing and therefore reducing the environmental footprint.
-Although good compilers will const eligible variables by themselves, it is still good practice to declare them constant, as it makes the code intent clearer.
+
+In Java, the `final` keyword only brings such an optimization in two cases :
+
+- a **constant variable** (JLS 4.12.4) : a `final` variable of primitive or `String` type, initialized with a constant expression (JLS 15.29 : literals, operators, conditional expressions, casts and other constants). The compiler inlines its value and computes the expressions using it (`a + "b"` becomes `"ab"`), for local variables as well as for fields,
+- a **`static final` field** : once its class is initialized, the JIT compiler trusts its value as a constant, whatever its initializer, and can optimize the code using it.
+
+Therefore, this rule reports a variable that is never reassigned, not already `final` and either :
+
+- of primitive or `String` type, initialized with a constant expression,
+- or a `static` field with an initializer.
+
+Everywhere else (parameters, objects, arrays, values computed at runtime by a method call or read from a field...), the bytecode is identical with or without `final` : the keyword only improves readability, which is out of the scope of this rule.
 
 === When can it be ignored ?
 
@@ -17,17 +28,19 @@ This rule should not be ignored.
 ----
 public class MyClass {
 
-    private final Logger logger = Logger.getLogger("");
+    private static final String PREFIX = "pre";
 
-    private Object myNonFinalAndNotReassignedObject = new Object(); // Noncompliant, object initialized but neither used nor reassigned
-    private String varDefinedInClassNotReassigned = "0"; // Noncompliant, object initialized and used but not reassigned
-    private String varDefinedInClassNotUsed = "0"; // Noncompliant, simple type object initialized but neither used nor reassigned
+    private static int maxRetries = 3; // Noncompliant, static field never reassigned
+    private static Logger logger = Logger.getLogger(""); // Noncompliant, static field never reassigned, whatever its initializer
+
+    private String varDefinedInClassNotReassigned = "0"; // Noncompliant, String initialized with a constant expression but not reassigned
+    private int timeoutInSeconds = 60 * 5; // Noncompliant, primitive initialized with a constant expression but not reassigned
 
     void localVariableNotReassigned() {
-        String y4 = "10"; // Noncompliant, local variable initialized but not reassigned
+        String y4 = "10"; // Noncompliant, local variable initialized with a constant expression but not reassigned
+        String fromConstant = PREFIX + "-suffix"; // Noncompliant, initialized with a constant expression
 
-        logger.info(y4);
-        logger.info(varDefinedInClassNotReassigned);
+        logger.info(y4 + fromConstant + varDefinedInClassNotReassigned + timeoutInSeconds + maxRetries);
     }
 
 }
@@ -39,58 +52,57 @@ public class MyClass {
 ----
 public class MyClass {
 
-    private final Logger logger = Logger.getLogger(""); // Compliant, object initialized and used (never reassigned but ok because "final" keyword used)
+    private static final int MAX_RETRIES = 3; // Compliant, already 'static final'
+    private static final Logger LOGGER = Logger.getLogger(""); // Compliant, already 'static final'
+    private static int counter = 0; // Compliant, reassigned in method
 
-    private Object myNonFinalAndReassignedObject = new Object(); // Compliant, reassigned in method
-    private final Object myFinalAndNotReassignedObject = new Object(); // Compliant, object initialized and never reassigned but 'final' keyword used
-
-    private static final String CONSTANT = "toto";  // Compliant, because 'static' and 'final' keywords
-    private String varDefinedInClassReassigned = "0"; // Compliant, reassigned in method
+    private final String varDefinedInClassNotReassigned = "0"; // Compliant, 'final' keyword used
+    private Object myNonFinalAndNotReassignedObject = new Object(); // Compliant, an object is not a constant : 'final' brings no optimization
     private String varDefinedInConstructorReassigned = "1"; // Compliant, reassigned in constructor
 
     public MyClass() {
         varDefinedInConstructorReassigned = "3";
-        logger.info(varDefinedInConstructorReassigned);
+        LOGGER.info(varDefinedInConstructorReassigned);
+    }
+
+    void parameterNotReassigned(String parameter) { // Compliant, 'final' on a parameter brings no optimization
+        LOGGER.info(parameter);
     }
 
     void localVariableReassigned() {
-        String y1 = "10"; // Compliant, reassigned above
-        final String PI = "3.14159"; // Compliant, not reassigned but 'final' keyword used
+        String y1 = "10"; // Compliant, reassigned below
+        final String PI = "3.14159"; // Compliant, 'final' keyword used
 
         y1 = "titi";
+        counter++;
 
-        logger.info(y1);
-        logger.info(PI);
+        LOGGER.info(y1 + PI);
     }
 
-    void localVariableIncrement() {
-        String y2 = "10"; // Compliant, reassigned above
-        y2 += "titi";
-        logger.info(y2);
-    }
+    void valuesComputedAtRuntime() {
+        String fromMethod = String.valueOf(counter); // Compliant, computed at runtime : not a constant
+        int fromNonFinal = counter * 2; // Compliant, 'counter' is not final : not a constant expression
+        Integer boxed = 42; // Compliant, a boxed type can't be a constant
+        String[] values = {"a", "b"}; // Compliant, an array is never a constant
+        byte[] buffer = new byte[1024]; // Compliant, an array is never a constant
 
-    void localIntVariableIncrement() {
-        int y3 = 10; // Compliant, reassigned above
-        ++y3;
-        logger.info(y3+"");
-    }
-
-    void classVariableReassigned() {
-        varDefinedInClassReassigned = "1";
-
-        logger.info(varDefinedInClassReassigned);
-        logger.info(varDefinedInClassNotReassigned);
-        logger.info(CONSTANT);
-    }
-
-    void classVariableReassignedBis() {
-        varDefinedInClassReassigned = "2"; // method to avoid sonarqube error asking for moving class variable "varDefinedInClassReassigned" to local variable method
-        myNonFinalAndReassignedObject = new Object();
-
-        logger.info(varDefinedInClassReassigned);
-        logger.info(myNonFinalAndReassignedObject);
-        logger.info(myFinalAndNotReassignedObject);
+        LOGGER.info(fromMethod + fromNonFinal + boxed + values.length + buffer.length + MAX_RETRIES
+                + varDefinedInClassNotReassigned + myNonFinalAndNotReassignedObject);
     }
 
 }
 ----
+
+== Related SonarQube rules
+
+Some native SonarQube rules may also apply to the code fixed by this rule :
+
+- `S1170` : a `final` instance field initialized with a constant should be `static final`, to avoid duplicating its value in every instance,
+- `S1444` : a `public static` field should be `final`,
+- `S1312` : a logger should be `private static final`,
+- `S115` : once `static final`, a field is a constant and should follow the naming convention of constants.
+
+== Resources
+
+- https://docs.oracle.com/javase/specs/jls/se21/html/jls-4.html#jls-4.12.4[JLS 4.12.4 - final Variables (constant variables)]
+- https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.29[JLS 15.29 - Constant Expressions]

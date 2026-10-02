@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [creedengo-java#125](https://github.com/green-code-initiative/creedengo-java/issues/125) GCI82 Java : only report the variables for which 'final' brings an optimization (javac constant variables, JIT static final fields)
+
 ### Deleted
 
 - [#450](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/450) GCI82 rule for Python not possible
