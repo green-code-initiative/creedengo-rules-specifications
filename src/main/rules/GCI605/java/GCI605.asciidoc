@@ -1,0 +1,35 @@
+Using `String.format` in log calls has the same problem: the message is formatted before the logger decides whether it should be written.
+
+== Non compliant Code Example
+
+[source,java]
+----
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+class UserService {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+
+  void process(String username) {
+    LOGGER.info(String.format("Processing user %s", username)); // Noncompliant
+  }
+}
+----
+
+== Compliant Solution
+
+[source,java]
+----
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+class UserService {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+
+  void process(String username) {
+    LOGGER.info("Processing user {}", username);
+  }
+}
+----
