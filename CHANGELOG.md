@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+### Deleted
+
+## [3.3.0] - 2026-11-13
+
+### Changed
+
 - [creedengo-java#125](https://github.com/green-code-initiative/creedengo-java/issues/125) GCI82 Java : only report the variables for which 'final' brings an optimization (javac constant variables, JIT static final fields)
 
 ### Deleted
@@ -593,7 +599,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Comparison List
 
-[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.2.0...HEAD)
+[unreleased](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.3.0...HEAD)
+[3.3.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.2.0...3.3.0)
 [3.2.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.1.0...3.2.0)
 [3.1.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/3.0.0...3.1.0)
 [3.0.0](https://github.com/green-code-initiative/creedengo-rules-specifications/compare/2.7.1...3.0.0)
