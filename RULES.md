@@ -173,7 +173,7 @@ will be completely deleted in next releases and moved to bottom deleted rules ar
 | Rule key | Language | Name                                      | Description                                                                                                            | Invalidation                                                                                                         |
 |----------|----------|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | GCI2     | Python   | Avoid multiple if else statements         | This optimization is not valid for Python                                                                              | [Github discussion with sources](https://github.com/green-code-initiative/creedengo-rules-specifications/pull/427)   |
-| GCI67    | Java     | Use the $i++ variable during an iteration | After checking the generated code by the JVM for both ++i and I++, it reveals that the JVM bytcode is exactly the same | [Github discussion with sources](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/103) |
+| GCI67    | Java     | Use the $i++ variable during an iteration | After checking the generated code by the JVM for both ++i and I++, it reveals that the JVM bytcode is exactly the same | [Github discussion with sources](https://github.com/green-code-initiative/creedengo-rules-specifications/issues/103) [2nd Github discussion](https://github.com/green-code-initiative/creedengo-java/issues/197) |
 
 ## Refused / Deleted rules
 
